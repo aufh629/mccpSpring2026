@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adaptive Parameter Selection for KRR - Interactive Interconnection Visualization</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #f5f5f5;
+            overflow-x: auto;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+        .controls {
+            background: white;
+            padding: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .control-btn {
+            padding: 10px 20px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9em;
+        }
+        .control-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+        .control-btn.active {
+            background: #667eea;
+            color: white;
+        }
+        .main-content {
+            display: flex;
+            min-height: calc(100vh - 200px);
+        }
+        .sidebar {
+            width: 250px;
+            background: white;
+            padding: 20px;
+            overflow-y: auto;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+        .sidebar h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        .section-node {
+            padding: 12px;
+            margin: 8px 0;
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .section-node:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        .section-node.active {
+            background: #667eea;
+            color: white;
+        }
+        .section-node h4 {
+            font-size: 1em;
+            margin-bottom: 5px;
+        }
+        .section-num {
+            font-size: 0.85em;
+            opacity: 0.8;
+        }
+        .visualization-area {
+            flex: 1;
+            position: relative;
+            overflow: auto;
+            background: #fafafa;
+        }
+        .network-container {
+            position: relative;
+            width: 1800px;
+            height: 1400px;
+            margin: 20px;
+        }
+        .concept-node {
+            position: absolute;
+            width: 300px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+        .concept-node:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            z-index: 20;
+        }
+        .concept-node.active {
+            border: 3px solid #667eea;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+        }
+        .concept-node.section-1 { border-top: 4px solid #e74c3c; }
+        .concept-node.section-2 { border-top: 4px solid #3498db; }
+        .concept-node.section-3 { border-top: 4px solid #27ae60; }
+        .concept-node.section-4 { border-top: 4px solid #f39c12; }
+        .concept-node h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .concept-text {
+            font-size: 0.9em;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 10px;
+            max-height: 180px;
+            overflow-y: auto;
+        }
+        .concept-links {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+        .concept-links a {
+            display: inline-block;
+            margin: 3px 5px 3px 0;
+            padding: 5px 10px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 3px;
+            font-size: 0.85em;
+            transition: background 0.3s;
+        }
+        .concept-links a:hover {
+            background: #5568d3;
+        }
+        .connection-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .legend {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .legend h4 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+        }
+        .legend-color {
+            width: 20px;
+            height: 3px;
+            margin-right: 10px;
+            background: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Adaptive Parameter Selection for Kernel Ridge Regression</h1>
+        <p>Interactive Interconnection Visualization - Explore Relationships Between Sections</p>
+    </div>
+
+    <div class="controls">
+        <button class="control-btn active" onclick="showAll()">Show All Connections</button>
+        <button class="control-btn" onclick="showSection(1)">Section 1: Introduction</button>
+        <button class="control-btn" onclick="showSection(2)">Section 2: KRR & Parameter Selection</button>
+        <button class="control-btn" onclick="showSection(3)">Section 3: Adaptive Selection</button>
+        <button class="control-btn" onclick="showSection(4)">Section 4: Proofs</button>
+        <button class="control-btn" onclick="highlightConnections()">Highlight Key Connections</button>
+    </div>
+
+    <div class="main-content">
+        <div class="sidebar">
+            <h3>Paper Structure</h3>
+            <div class="section-node active" onclick="focusSection(1)">
+                <h4>1. Introduction</h4>
+                <div class="section-num">Problem Setup & Motivation</div>
+            </div>
+            <div class="section-node" onclick="focusSection(2)">
+                <h4>2. KRR & Parameter Selection</h4>
+                <div class="section-num">Mathematical Foundation</div>
+            </div>
+            <div class="section-node" onclick="focusSection(3)">
+                <h4>3. Adaptive Selection</h4>
+                <div class="section-num">Main Contribution: ASUS</div>
+            </div>
+            <div class="section-node" onclick="focusSection(4)">
+                <h4>4. Proofs</h4>
+                <div class="section-num">Rigorous Analysis</div>
+            </div>
+
+            <h3 style="margin-top: 30px;">Key Concepts</h3>
+            <div style="font-size: 0.9em; line-height: 1.8;">
+                <div>• KRR Definition</div>
+                <div>• Assumptions (3)</div>
+                <div>• Optimal Rates</div>
+                <div>• Existing Methods (HO, DP, LP)</div>
+                <div>• Spectral Property</div>
+                <div>• ASUS Algorithm</div>
+                <div>• Uniform Subdivision</div>
+            </div>
+        </div>
+
+        <div class="visualization-area">
+            <div class="network-container" id="networkContainer">
+                <!-- Section 1: Introduction -->
+                <div class="concept-node section-1" style="top: 50px; left: 50px;" data-section="1" onclick="selectNode(this, 1)">
+                    <h4>1. Introduction</h4>
+                    <div class="concept-text">
+                        <strong>Problem:</strong> KRR has excellent theoretical properties but requires a-priori regularization parameter selection, which is infeasible in practice.
+                        <br><br>
+                        <strong>Existing Methods:</strong> Hold-out (HO), Discrepancy Principle (DP), and Lepskii-type Principle (LP) all have limitations - HO wastes samples, DP is sub-optimal, LP requires expensive pairwise comparisons and achieves only near-optimal rates.
+                        <br><br>
+                        <strong>Main Contribution:</strong> Proposes ASUS (Adaptive Selection with Uniform Subdivision) - an early-stopping type parameter selection strategy that removes recurrent pairwise comparisons and achieves optimal learning rates.
+                    </div>
+                    <div class="concept-links">
+                        <a href="#" onclick="highlightConnection(1,2); return false;">→ Section 2</a>
+                        <a href="#" onclick="highlightConnection(1,3); return false;">→ Section 3</a>
+                    </div>
+                </div>
+
+                <!-- Section 2: KRR Definition -->
+                <div class="concept-node section-2" style="top: 50px; left: 400px;" data-section="2" onclick="selectNode(this, 2)">
+                    <h4>KRR Definition</h4>
+                    <div class="concept-text">
+                        Kernel Ridge Regression: f_{D,λ} = argmin_{f∈H_K} {1/|D| Σ(f(x)-y)² + λ||f||²_K}
+                        <br><br>
+                        Computational complexity: O(|D|²) storage, O(|D|³) training. Theoretical assessments show KRR is an excellent learner under proper assumptions.
+                    </div>
+                    <div class="concept-links">
+                        <a href="#" onclick="highlightConnection(2,3); return false;">→ Assumptions</a>
+                        <a href="#" onclick="highlightConnection(2,4); return false;">→ Optimal Rates</a>
+                    </div>
+                </div>
+
+                <!-- Assumptions -->
+                <div class="concept-node section-2" style="top: 300px; left: 400px;" data-section="2" onclick="selectNode(this, 2)">
+                    <h4>Three Standard Assumptions</h4>
+                    <div class="concept-text">
+                        <strong>Assumption 1 (Boundedness):</strong> Bernstein noise condition for bounded/Gaussian/sub-Gaussian noise.
+                        <br><br>
+                        <strong>Assumption 2 (Regularity):</strong> f_ρ = L_K^r h_ρ for some h_ρ ∈ L²_{ρ_X}, where r > 0 describes regularity.
+                        <br><br>
+                        <strong>Assumption 3 (Effective Dimension):</strong> N(λ) = Tr((λI+L_K)⁻¹L_K) ≤ C₀λ⁻ˢ for some s ∈ (0,1].
+                    </div>
+                    <div class="concept-links">
+                        <a href="#" onclick="highlightConnection(2,5); return false;">→ Lemma</a>
+                        <a href="#" onclick="highlightConnection(2,3); return false;">→ Section 3</a>
+                    </div>
+                </div>
+
+                <!-- Optimal Learning Rates -->
+                <div class="concept-node section-2" style="top: 550px; left: 400px;" data-section="2" onclick="selectNode(this, 2)">
+                    <h4>Optimal Learning Rates (Lemma)</h4>
+                    <div class="concept-text">
+                        Under Assumptions 1-3, with optimal parameter λ* = c₀|D|^(-1/(2r+s)):
+                        <br><br>
+                        ||f_{D,λ*} - f_ρ||_ρ ≤ C̃|D|^(-r/(2r+s)) log(2/δ)
+                        <br>
+                        ||f_{D,λ*} - f_ρ||_K ≤ C̃|D|^(-(r-1/2)/(2r+s)) log(2/δ)
+                        <br><br>
+                        <strong>Problem:</strong> λ* depends on unknown r and s, making it impractical.
+                    </div>
+                    <div class="concept-links">
+                        <a href="#" onclick="highlightConnection(4,6); return false;">→ LP Method</a>
+                        <a href="#" onclick="highlightConnection(4,3); return false;">→ Section 3</a>
+                    </div>
+                </div>
+
+                <!-- LP Method -->
+                <div class="concept-node section-2" style="top: 800px; left: 400px;" data-section="2" onclick="selectNode(this, 2)">
+                    <h4>Lepskii Principle (LP)</h4>
+                    <div class="concept-text">
+                        LP uses logarithmic subdivision: λ_k = q^k for q ∈ (0,1).
+                        <br><br>
+                        <strong>Stopping Rule:</strong> λ_LP = max{λ_k: ||(L_{K,D}+λ_k)^(1/2)(f_{D,λ_k'} - f_{D,λ_k})||_K ≤ C_LP W_{D,λ_k} log³(8/δ), k' = k+1,...,K_q}
+                        <br><br>
+                        <strong>Limitations:</strong> Requires recurrent pairwise comparisons (expensive), achieves only near-optimal rates with double logarithmic factor.
+                    </div>
+                    <div class="concept-links">
+                        <a href="#" onclick="highlightConnection(6,7); return false;">→ Section 3</a>
+                        <a href="#" onclick="highlightConnection(6,1); return false;">← Introduction</a>
+                    </div>
+                </div>
+
+                <!-- Section 3: Spectral Property -->
+                <div class="concept-node section-3" style="top: 300px; left: 750px;" data-section="3" onclick="selectNode(this, 3)">
+                    <h4>Spectral Property (Proposition)</h4>
+                    <div class="concept-text">
+                        <strong>Key Insight:</strong> Uniform subdivision (λ_k = 1/(bk)) better captures spectral properties than logarithmic subdivision.
+                        <br><br>
+                        For uniform subdivision: ||(L_{K,D}+λ_k I)^(1/2)(f_{D,λ_k} - f_{D,λ_{k+1}})||_K ≤ C̄₁bλ_k(W_{D,λ_k} + λ_k^r) log²(8/δ)
+                        <br><br>
+                        This enables optimal rates through delicate subdivision.
+                    </div>
+                    <div class="concept-links">
+                        <a href="#" onclick="highlightConnection(7,8); return false;">→ ASUS</a>
+                        <a href="#" onclick="highlightConnection(7,2); return false;">← Section 2</a>
+                    </div>
+                </div>
+
+                <!-- ASUS Algorithm -->
+                <div class="concept-node section-3" style="top: 550px; left: 750px;" data-section="3" onclick="selectNode(this, 3)">
+                    <h4>ASUS Algorithm</h4>
+                    <div class="concept-text">
+                        <strong>Adaptive Selection with Uniform Subdivision:</strong>
+                        <br><br>
+                        Parameter set: Λ^uni_b = {λ_k = 1/(bk) : 0 ≤ k ≤ K*}
+                        <br><br>
+                        <strong>Early-stopping rule:</strong> Find first k (from K* downward) such that ||(L_{K,D}+λ_{k-1}I)^(1/2)(f_{λ_k,D} - f_{λ_{k-1},D})||_K ≥ C_{US}W_{D,λ_k} log²(8/δ)
+                        <br><br>
+                        <strong>Advantages:</strong> No recurrent pairwise comparisons needed, achieves optimal rates.
+                    </div>
+                    <div class="concept-links">
+                        <a href="#" onclick="highlightConnection(8,9); return false;">→ Theorem</a>
+                        <a href="#" onclick="highlightConnection(8,4); return false;">← Optimal Rates</a>
+                    </div>
+                </div>
+
+                <!-- Main Theorem -->
+                <div class="concept-node section-3" style="top: 800px; left: 750px;" data-section="3" onclick="selectNode(this, 3)">
+                    <h4>Main Theorem (ASUS Optimality)</h4>
+                    <div class="concept-text">
+                        Under Assumptions 1-3, with confidence 1-δ:
+                        <br><br>
+                        ||f_{D,λ̂_uni} - f_ρ||_ρ ≤ C₁|D|^(-r/(2r+s)) log⁴(8/δ)
+                        <br>
+                        ||f_{D,λ̂_uni} - f_ρ||_K ≤ C₁|D|^(-(r-1/2)/(2r+s)) log⁴(8/δ)
+                        <br><br>
+                        <strong>Achieves optimal learning rates!</strong> Better than LP, DP, and comparable to HO.
+                    </div>
+                    <div class="concept-links">
+                        <a href="#" onclick="highlightConnection(9,10); return false;">→ Proofs</a>
+                        <a href="#" onclick="highlightConnection(9,1); return false;">← Introduction</a>
+                    </div>
+                </div>
+
+                <!-- Section 4: Proofs -->
+                <div class="concept-node section-4" style="top: 550px; left: 1100px;" data-section="4" onclick="selectNode(this, 4)">
+                    <h4>4. Proofs</h4>
+                    <div class="concept-text">
+                        <strong>Methodology:</strong> Integral operator approach with sampling operator S_D and adjoint S_D^T.
+                        <br><br>
+                        <strong>Key Quantities:</strong> Q_{D,λ}, P_{D,λ}, S_{D,λ} - bounds on operator differences.
+                        <br><br>
+                        <strong>Main Lemma:</strong> Provides tight bounds on empirical vs. population operators, enabling proof of ASUS optimality through spectral analysis and uniform subdivision.
+                    </div>
+                    <div class="concept-links">
+                        <a href="#" onclick="highlightConnection(10,9); return false;">← Theorem</a>
+                        <a href="#" onclick="highlightConnection(10,2); return false;">← Assumptions</a>
+                    </div>
+                </div>
+
+                <!-- Connection Lines (SVG) -->
+                <svg class="connection-line">
+                    <!-- Section 1 to Section 2 -->
+                    <line x1="200" y1="150" x2="400" y2="150" stroke="#3498db" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <!-- Section 2 to Assumptions -->
+                    <line x1="550" y1="200" x2="550" y2="350" stroke="#3498db" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <!-- Assumptions to Optimal Rates -->
+                    <line x1="550" y1="450" x2="550" y2="600" stroke="#3498db" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <!-- Optimal Rates to LP -->
+                    <line x1="550" y1="700" x2="550" y2="850" stroke="#3498db" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <!-- LP to Spectral Property -->
+                    <line x1="700" y1="850" x2="900" y2="350" stroke="#9b59b6" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <!-- Spectral Property to ASUS -->
+                    <line x1="900" y1="400" x2="900" y2="600" stroke="#9b59b6" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <!-- ASUS to Theorem -->
+                    <line x1="900" y1="700" x2="900" y2="850" stroke="#9b59b6" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <!-- Theorem to Proofs -->
+                    <line x1="1100" y1="850" x2="1100" y2="600" stroke="#f39c12" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <!-- Optimal Rates to ASUS -->
+                    <line x1="700" y1="600" x2="750" y2="600" stroke="#27ae60" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead)"/>
+                    <!-- Section 1 to Section 3 -->
+                    <line x1="200" y1="150" x2="750" y2="400" stroke="#e74c3c" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead)"/>
+
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                            <polygon points="0 0, 10 3, 0 6" fill="#3498db" />
+                        </marker>
+                    </defs>
+                </svg>
+            </div>
+
+            <div class="legend">
+                <h4>Connection Types</h4>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #3498db;"></div>
+                    <span>Foundation Flow</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #9b59b6;"></div>
+                    <span>Main Contribution</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #f39c12;"></div>
+                    <span>Proof Flow</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #27ae60; border-style: dashed;"></div>
+                    <span>Key Relationship</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function selectNode(node, section) {
+            document.querySelectorAll('.concept-node').forEach(n => n.classList.remove('active'));
+            node.classList.add('active');
+            document.querySelectorAll('.section-node').forEach(n => n.classList.remove('active'));
+            if (section > 0) {
+                document.querySelectorAll('.section-node')[section - 1].classList.add('active');
+            }
+        }
+
+        function focusSection(section) {
+            document.querySelectorAll('.concept-node').forEach(n => {
+                n.classList.remove('active');
+                if (n.dataset.section == section) {
+                    n.classList.add('active');
+                }
+            });
+            document.querySelectorAll('.section-node').forEach(n => n.classList.remove('active'));
+            document.querySelectorAll('.section-node')[section - 1].classList.add('active');
+        }
+
+        function showAll() {
+            document.querySelectorAll('.concept-node').forEach(n => {
+                n.style.opacity = '1';
+                n.style.transform = 'scale(1)';
+            });
+            document.querySelectorAll('.control-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function showSection(section) {
+            document.querySelectorAll('.concept-node').forEach(n => {
+                if (n.dataset.section == section) {
+                    n.style.opacity = '1';
+                    n.style.transform = 'scale(1)';
+                } else {
+                    n.style.opacity = '0.3';
+                    n.style.transform = 'scale(0.9)';
+                }
+            });
+            document.querySelectorAll('.control-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function highlightConnections() {
+            const keyNodes = document.querySelectorAll('.concept-node[data-section="3"]');
+            keyNodes.forEach(n => {
+                n.style.boxShadow = '0 0 20px rgba(155, 89, 182, 0.8)';
+                setTimeout(() => {
+                    n.style.boxShadow = '';
+                }, 2000);
+            });
+        }
+
+        function highlightConnection(from, to) {
+            console.log(`Highlighting connection from ${from} to ${to}`);
+        }
+    </script>
+</body>
+</html>

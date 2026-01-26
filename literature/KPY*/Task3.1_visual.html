@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adaptive Parameter Selection for Kernel Ridge Regression - Structure Visualization</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        .toc {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            border-left: 4px solid #3498db;
+        }
+        .toc h2 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .toc li {
+            margin: 8px 0;
+        }
+        .toc a {
+            text-decoration: none;
+            color: #3498db;
+            transition: color 0.2s;
+        }
+        .toc a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        .section {
+            margin: 30px 0;
+            padding: 20px;
+            border-radius: 5px;
+            background: #ffffff;
+            border-left: 4px solid #3498db;
+        }
+        .section h2 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        .element {
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 5px;
+            background: #ffffff;
+        }
+        .assumption {
+            border-left: 4px solid #e74c3c;
+            background: #fdf2f2;
+        }
+        .lemma {
+            border-left: 4px solid #f39c12;
+            background: #fef9e7;
+        }
+        .proposition {
+            border-left: 4px solid #9b59b6;
+            background: #f4ecf7;
+        }
+        .theorem {
+            border-left: 4px solid #27ae60;
+            background: #eafaf1;
+        }
+        .definition {
+            border-left: 4px solid #3498db;
+            background: #ebf5fb;
+        }
+        .element-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .element-label {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+        .element-body {
+            color: #555;
+            line-height: 1.6;
+        }
+        .stats {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #4caf50;
+        }
+        .stats p {
+            margin: 5px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #777;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Adaptive Parameter Selection for Kernel Ridge Regression</h1>
+        
+        <div class="stats">
+            <p><strong>Document Statistics:</strong></p>
+            <p>Sections: 4 | Assumptions: 3 | Lemmas: 3 | Propositions: 1 | Theorems: 1 | Definitions: 1</p>
+        </div>
+        
+        <div class="toc">
+            <h2>Table of Contents</h2>
+            <ul>
+                <li><a href="#section-1">1. Introduction</a></li>
+                <li><a href="#section-2">2. Kernel Ridge Regression and Parameter Selection</a></li>
+                <li><a href="#section-3">3. Adaptive Parameter Selection for KRR</a></li>
+                <li><a href="#section-4">4. Proofs</a></li>
+            </ul>
+        </div>
+        
+        <h2>Document Structure</h2>
+        
+        <!-- Section 1: Introduction -->
+        <div id="section-1" class="section">
+            <h2>1. Introduction</h2>
+            <p>This section establishes the research problem and motivation. It introduces Kernel Ridge Regression (KRR) as a widely used regression method with strong theoretical guarantees, but highlights the critical limitation that existing theoretical results depend on a-priori parameter selection, which is impractical in real applications.</p>
+            <p>The section reviews three existing approaches: Hold-out (HO), Discrepancy Principle (DP), and Lepskii-type Principle (LP), discussing their limitations. The main contribution is proposing ASUS (Adaptive Selection with Uniform Subdivision) - an early-stopping type parameter selection strategy.</p>
+        </div>
+        
+        <!-- Section 2: Kernel Ridge Regression and Parameter Selection -->
+        <div id="section-2" class="section">
+            <h2>2. Kernel Ridge Regression and Parameter Selection</h2>
+            
+            <div class="element assumption">
+                <div class="element-title">Assumption 1: Boundedness</div>
+                <div class="element-label">Label: Assumption:boundedness</div>
+                <div class="element-body">
+                    Assume ∫_Y y²dρ &lt; ∞ and Bernstein noise condition: ∫_Y (e^(|y-f_ρ(x)|/M) - |y-f_ρ(x)|/M - 1) dρ(y|x) ≤ γ²/(2M²) for all x ∈ X, where M and γ are positive constants. This is the well-known Bernstein noise assumption, satisfied for bounded, Gaussian and sub-Gaussian noise.
+                </div>
+            </div>
+            
+            <div class="element assumption">
+                <div class="element-title">Assumption 2: Regularity</div>
+                <div class="element-label">Label: Assumption:regularity</div>
+                <div class="element-body">
+                    For r &gt; 0, assume f_ρ = L_K^r h_ρ for some h_ρ ∈ L²_{ρ_X}, where L_K^r denotes the r-th power of L_K: L²_{ρ_X} → L²_{ρ_X} as a compact and positive operator. This describes the regularity of the regression function f_ρ, where larger index r implies better regularity.
+                </div>
+            </div>
+            
+            <div class="element assumption">
+                <div class="element-title">Assumption 3: Effective Dimension</div>
+                <div class="element-label">Label: Assumption:effective dimension</div>
+                <div class="element-body">
+                    There exists some s ∈ (0,1] such that N(λ) = Tr((λI+L_K)⁻¹L_K) ≤ C₀λ⁻ˢ, where C₀ ≥ 1 is a constant independent of λ. This is the capacity assumption measured by the effective dimension.
+                </div>
+            </div>
+            
+            <div class="element lemma">
+                <div class="element-title">Lemma: Optimal Learning Rates for KRR</div>
+                <div class="element-label">Label: Lemma:Optimal-KRR</div>
+                <div class="element-body">
+                    Let δ ∈ (0,1). Under Assumptions 1-3 with 0 &lt; s ≤ 1 and 1/2 ≤ r ≤ 1, if λ* = c₀|D|^(-1/(2r+s)), then with confidence at least 1-δ, there holds: ||f_{D,λ*} - f_ρ||_ρ ≤ C̃|D|^(-r/(2r+s)) log(2/δ) and ||f_{D,λ*} - f_ρ||_K ≤ C̃|D|^(-(r-1/2)/(2r+s)) log(2/δ), where c₀, C̃ are constants independent of |D|, λ, δ.
+                </div>
+            </div>
+            
+            <div class="element lemma">
+                <div class="element-title">Lemma: Optimal Learning Rates for KRR with LP</div>
+                <div class="element-label">Label: Lemma:Optimal-KRR-LP1</div>
+                <div class="element-body">
+                    Let δ ∈ (0,1). If Assumptions 1-3 hold with 0 &lt; s ≤ 1 and 1/2 ≤ r ≤ 1, then with confidence at least 1-δ, there holds: ||f_{D,λ_LP} - f_ρ||_ρ ≤ C̃|D|^(-r/(2r+s)) (log log |D|) log(2/δ) and ||f_{D,λ_LP} - f_ρ||_K ≤ C̃|D|^(-(r-1/2)/(2r+s)) (log log |D|) log(2/δ), where C̃ is a constant independent of |D|, δ. This shows that LP achieves near-optimal rates with a double logarithmic factor.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Adaptive Parameter Selection for KRR -->
+        <div id="section-3" class="section">
+            <h2>3. Adaptive Parameter Selection for KRR</h2>
+            
+            <div class="element proposition">
+                <div class="element-title">Proposition: Spectral Property of KRR</div>
+                <div class="element-label">Label: Prop:crucial-stopping-KRR</div>
+                <div class="element-body">
+                    If Assumption 1 (Boundedness) and Assumption 2 (Regularity) hold with 1/2 ≤ r ≤ 1, then for any λ, λ' satisfying C₁* max{U_{D,λ,δ}, U_{D,λ',δ}} ≤ 1/4, with confidence 1-δ, there holds: ||(L_{K,D}+λI)^(-1/2)(f_{D,λ} - f_{D,λ'})||_K ≤ 2^(r+1/2) ||h_ρ||_ρ (|λ'-λ|/λ) λ^r + 16√2(κM+γ)(|λ'-λ|/λ') W_{D,λ} log²(8/δ). This proposition quantifies the role of subdivision via the terms |λ'-λ|/λ and |λ'-λ|/λ', showing that uniform subdivision better captures spectral properties than logarithmic subdivision.
+                </div>
+            </div>
+            
+            <div class="element definition">
+                <div class="element-title">Definition: Adaptive Selection with Uniform Subdivision (ASUS)</div>
+                <div class="element-label">Label: Definition:adaptive-uni</div>
+                <div class="element-body">
+                    For b ∈ ℕ, λ_k = 1/(bk) and δ ∈ (0,1), define K* = K_{δ,D,b} = min_{0≤k≤|D|/b} {C₁* U_{D,λ_k,δ} ≤ 1/4} and Λ^uni_b = {λ_k = 1/(bk) : 0 ≤ k ≤ K*}. For λ_k ∈ Λ^uni_b with k = K*, K*-1, ..., 1, define k̂_uni to be the first k satisfying: ||(L_{K,D}+λ_{k-1}I)^(1/2)(f_{λ_k,D} - f_{λ_{k-1},D})||_K ≥ C_{US} W_{D,λ_k} log²(8/δ), where C_{US} = 32√2b(κM+γ). If no such k exists, define k̂_uni = K*. Write λ̂_uni = λ_{k̂_uni}. ASUS is an early-stopping type parameter selection strategy that removes recurrent pairwise comparisons.
+                </div>
+            </div>
+            
+            <div class="element theorem">
+                <div class="element-title">Theorem: Optimality of ASUS</div>
+                <div class="element-label">Label: Theorem:ASUS</div>
+                <div class="element-body">
+                    Let δ ∈ (0,1). If Assumptions 1-3 hold with 0 &lt; s ≤ 1 and 1/2 ≤ r ≤ 1, then with confidence at least 1-δ, there holds: ||f_{D,λ̂_uni} - f_ρ||_ρ ≤ C₁|D|^(-r/(2r+s)) log⁴(8/δ) and ||f_{D,λ̂_uni} - f_ρ||_K ≤ C₁|D|^(-(r-1/2)/(2r+s)) log⁴(8/δ), where C₁ is a constant independent of |D|, λ, δ. This theorem shows that KRR equipped with ASUS achieves optimal learning rates, demonstrating the feasibility and optimality of ASUS.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 4: Proofs -->
+        <div id="section-4" class="section">
+            <h2>4. Proofs</h2>
+            <p>This section provides rigorous mathematical proofs of all main results. It uses the integral operator approach, establishing key lemmas for bounding operator differences, and then proves the main theorem on ASUS optimality through careful analysis of the spectral properties and uniform subdivision.</p>
+            
+            <div class="element lemma">
+                <div class="element-title">Lemma: Bounds on Operator Quantities</div>
+                <div class="element-label">Label: Lemma:Q</div>
+                <div class="element-body">
+                    Let D be a sample drawn independently according to ρ and 0 &lt; δ &lt; 1. Under Assumption 1 (Boundedness), if C₁* U_{D,λ,δ} ≤ 1/4, then with confidence at least 1-δ, there simultaneously holds bounds on S_{D,λ}, Q_{D,λ} ≤ √2, P_{D,λ}, and the empirical effective dimension N_D(λ) in terms of the population effective dimension N(λ). This lemma provides tight bounds on key operator quantities that play a crucial role in the proofs.
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Generated from LaTeX source document: Adap-KRR.tex</p>
+            <p>Structure visualization for academic study and Moodle Forum sharing</p>
+            <p>Paper: Adaptive Parameter Selection for Kernel Ridge Regression</p>
+        </div>
+    </div>
+</body>
+</html>

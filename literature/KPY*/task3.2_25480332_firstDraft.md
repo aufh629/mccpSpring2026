@@ -1,0 +1,47 @@
+# My First Draft
+
+## Source Information
+
+**Date written:** [Date]
+
+**Context:** [Draft for the course assignment?]
+
+**Status:** [Complete draft]
+
+---
+
+## Introduction
+
+
+- Move 1: Establishing a Territory
+Kernel ridge regression (KRR) has become integral to modern machine learning and statistical inference, serving as a foundational non-parametric method for regression and classification in domains such as image analysis, bioinformatics, and financial modeling (Caponnetto & De Vito, 2007; Steinwart & Christmann, 2008). The core strength of KRR lies in its ability to model complex, nonlinear relationships while offering strong theoretical guarantees. Central to its success is the selection of the regularization parameter λ, which governs the balance between model complexity and empirical fit, thereby mitigating overfitting and enhancing generalization.
+In high-dimensional regimes, where feature dimensionality may surpass sample size, the challenge of adaptive parameter selection intensifies. Incorrect choices of λ can result in either poor predictive performance or excessive computational overhead. Traditionally, minimax optimal learning rates for KRR are achievable when λ is selected a priori, based on assumptions about the smoothness of the target function and the capacity of the underlying reproducing kernel Hilbert space (RKHS). Yet, such prior knowledge is rarely available in practical settings, motivating the development of adaptive selection strategies (Blanchard et al., 2019; Lu et al., 2020). Among these, approaches like hold-out validation, cross-validation, and more recently, Lepskii-type principles, have been developed to provide theoretically justified parameter selection without data splitting (Blanchard et al., 2019; Lu et al., 2020).
+Recent advances have introduced the Adaptive Selection with Uniform Subdivision (ASUS) algorithm as a promising solution to the limitations of earlier approaches. ASUS employs a uniform subdivision of the parameter space and an early-stopping rule, eliminating the need for repeated pairwise comparisons. The algorithm achieves minimax optimal learning rates under relaxed assumptions and has demonstrated adaptability across both L2 and RKHS norms (Lin, 2024). Its potential to bridge theoretical optimality and practical scalability is especially relevant for data-intensive fields such as healthcare and genomics.
+- Move 2: Identifying a Niche 
+Despite these developments, ASUS is not without limitations. Theoretical analyses indicate that the algorithm depends on strong assumptions, including specific eigenvalue decay rates and precise knowledge of the effective dimension—requirements that are often infeasible in practice (Lin, 2024). For example, ASUS’s proofs rely on advanced spectral properties and calculations of empirical effective dimension, which may not be valid in distributed or semi-supervised learning environments where data heterogeneity is prevalent. Furthermore, the original ASUS framework presupposes smoothness and capacity conditions that are seldom met in real-world data, such as non-polynomial kernel eigenvalue decay or target functions that do not reside in the RKHS (Lin et al., 2017; Meister & Steinwart, 2016).
+Moreover, while ASUS eliminates certain logarithmic factors from learning rates and streamlines computational requirements, its proof structure remains complex, relying on intricate operator theory and bias-variance decompositions. These artificial constraints on the regularization parameter can hinder practical implementation. The need for a simplified and more accessible variant of ASUS is thus evident, particularly for robust parameter selection under less restrictive assumptions. Currently, research is lacking on reformulating ASUS to relax its hypotheses and optimize the proof techniques, thereby enhancing its accessibility and applicability.
+- Move 3: Occupying the Niche
+To address these gaps, the present research proposes a refined version of the ASUS algorithm, focusing on simplifying its assumptions and optimizing the proof process for greater interpretability and practicality. The main objective is to reduce the algorithm’s reliance on stringent conditions—such as specific eigenvalue decay and target function regularity—while maintaining minimax optimal learning rates. Specifically, this study aims to (i) reformulate the ASUS framework under weaker assumptions regarding effective dimension and smoothness, (ii) streamline proof techniques using more tractable error bound analyses and uniform subdivision schemes, and (iii) validate the new model empirically in diverse data environments, including high-dimensional and distributed settings. By doing so, the research seeks to make adaptive parameter selection in KRR more robust, interpretable, and widely applicable.
+
+---
+
+## Literature Review
+
+
+- Move 1: Thematic Overview
+KRR occupies a central role in statistical learning, distinguished by its flexibility in modeling nonlinear phenomena and its rigorous theoretical foundations (Caponnetto & De Vito, 2007; Steinwart & Christmann, 2008). The literature on regularization parameter selection has evolved in response to escalating data complexity, transitioning from theory-driven, a priori strategies to adaptive, data-driven approaches. Early methods relied on knowledge of the effective dimension and target function regularity (Zhang, 2005; Smale & Zhou, 2007), but such information is rarely available in practice.
+Adaptive techniques, such as hold-out (HO) and cross-validation (CV), have gained popularity for their simplicity and generalizability (Caponnetto & Yao, 2010; Steinwart et al., 2009). More sophisticated methods—including the discrepancy principle (DP) (Celisse & Wahl, 2021) and balancing principles (De Vito et al., 2010; Lu et al., 2020)—provide theoretically justified, data-dependent rules for parameter selection. Recently, Lepskii-type principles (LP) have emerged, adaptively selecting λ by comparing successive estimators and achieving near-optimal convergence rates (Blanchard et al., 2019; Lu et al., 2020). Building on these foundations, the ASUS algorithm was introduced as a computationally efficient, early-stopping strategy that discretizes the parameter space and circumvents recurrent pairwise comparisons (Lin, 2024).
+- Move 2: Critical Analysis
+A critical examination reveals persistent challenges with existing methods. HO and CV, while widely used, suffer from sample inefficiency: withholding data from training can yield unstable parameter selection and suboptimal learning rates, especially in small-sample settings (Caponnetto & Yao, 2010; Steinwart et al., 2009). Discrepancy principle approaches, though theoretically appealing, often require precise knowledge of noise variance—an unrealistic expectation in practice (Celisse & Wahl, 2021)—and are sensitive to violations of their assumptions, such as non-Gaussian noise or heteroscedasticity.
+Balancing and Lepskii-type principles offer improved adaptivity but at the cost of increased computational overhead due to complex pairwise comparisons on finely discretized parameter grids (Blanchard et al., 2019; Lu et al., 2020). The ASUS algorithm mitigates some computational bottlenecks by employing uniform subdivision and early-stopping, thereby obviating exhaustive comparisons (Lin, 2024). Theoretically, ASUS achieves minimax optimal rates under classical polynomial eigenvalue decay and sufficient target function regularity. However, its proof framework is intricate, relying on advanced operator theory and assumptions about effective dimension and smoothness that are challenging to verify in practice.
+Furthermore, most studies on ASUS and related algorithms focus on idealized scenarios—polynomial kernel eigenvalue decay and RKHS target functions—conditions not always fulfilled in real-world data (Chang et al., 2017; Fischer & Steinwart, 2020). Empirical evidence from large-scale and distributed learning tasks suggests that these strong assumptions restrict the robustness and applicability of adaptive parameter selection schemes (Lin et al., 2017; Rudi et al., 2015).
+- Move 3: Research Gaps
+Despite progress, significant gaps remain. First, there is a lack of simplified, practical variants of ASUS that operate under relaxed assumptions about kernel eigenvalue decay and target function regularity. Second, existing proof techniques for ASUS and related methods often impose artificial constraints on the regularization parameter and require precise knowledge of effective dimension, rarely available in practical applications. Third, empirical validation of ASUS in heterogeneous, high-dimensional, or distributed data environments is limited.
+- Move 4: Conclusion
+In summary, research on regularization parameter selection in KRR has shifted from rigid, theory-driven approaches to adaptive, data-driven methodologies. While the ASUS algorithm marks a substantial advance in computational efficiency and theoretical rigor, its practical utility is curtailed by reliance on strong assumptions and complex proofs. Addressing these limitations—by developing a refined ASUS variant with weaker assumptions, simplified proofs, and robust empirical validation—will enhance the accessibility and impact of kernel methods in data science, bridging the gap between theoretical optimality and real-world applicability.
+
+---
+
+## Notes
+
+[Any additional notes about your draft, challenges you faced, questions you have, etc.]

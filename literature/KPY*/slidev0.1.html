@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oral Presentation 1 — Adaptive Parameter Selection for Kernel Ridge Regression</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+    :root {
+      /* User-preferred light theme */
+      --blue-100: #B3D9E6;
+      --green-100: #B3E6B3;
+      --blue-500: #5BA3C7;
+      --green-500: #7FCC7F;
+
+      /* Readability */
+      --color-bg: #FFFFFF;
+      --color-bg-alt: #F5F7FA;
+      --color-text: #1a1a2e;
+      --color-muted: #556070;
+      --color-primary: #0F3754; /* dark navy */
+      --color-border: rgba(15, 55, 84, 0.14);
+
+      /* Rubric tags */
+      --tag-content-bg: #E3F2FD;
+      --tag-content-text: #1565C0;
+      --tag-delivery-bg: #F3E5F5;
+      --tag-delivery-text: #6A1B9A;
+      --tag-visual-bg: #E8F5E9;
+      --tag-visual-text: #1B5E20;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text);
+      overflow: hidden;
+    }
+
+    /* Slides */
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      padding: 5vh 10vw;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.2rem;
+    }
+    .slide.active { display: flex; }
+
+    /* Typography (per genHTMLguide) */
+    h1 {
+      margin: 0 0 0.2em 0;
+      color: var(--color-primary);
+      font-size: clamp(2.8rem, 5vw, 4rem);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+    h2 {
+      margin: 0 0 0.6em 0;
+      color: var(--color-primary);
+      font-size: clamp(2.4rem, 4.2vw, 3.6rem);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+    h3 {
+      margin: 0.2em 0 0.2em 0;
+      color: var(--color-primary);
+      font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+      line-height: 1.25;
+    }
+    p, li {
+      margin: 0;
+      font-size: clamp(1.25rem, 1.8vw, 1.55rem);
+      line-height: 1.55;
+      color: var(--color-text);
+    }
+    ul {
+      margin: 0.2rem 0 0 1.2rem;
+      padding: 0;
+    }
+    li { margin: 0.35rem 0; }
+    .muted { color: var(--color-muted); }
+    .subtitle {
+      margin-top: 0.2rem;
+      font-size: clamp(1.4rem, 2.2vw, 2rem);
+      color: var(--color-muted);
+    }
+
+    /* Slide number (bottom-right) */
+    .slide-number {
+      position: absolute;
+      bottom: 1.2rem;
+      right: 2rem;
+      color: #c9ced6;
+      font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+      user-select: none;
+    }
+
+    /* Progress bar */
+    #progressBar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      height: 4px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--blue-500), var(--green-500));
+      z-index: 50;
+    }
+
+    /* Rubric tags */
+    .rubric-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 0.3rem;
+    }
+    .rubric-tag {
+      display: inline-block;
+      padding: 0.3em 0.7em;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border-radius: 6px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 1px solid rgba(0,0,0,0.06);
+      user-select: none;
+    }
+    .rubric-tag.content { background: var(--tag-content-bg); color: var(--tag-content-text); }
+    .rubric-tag.delivery { background: var(--tag-delivery-bg); color: var(--tag-delivery-text); }
+    .rubric-tag.visual { background: var(--tag-visual-bg); color: var(--tag-visual-text); }
+
+    /* Transition cue (bottom of content slides) */
+    .transition-cue {
+      font-style: italic;
+      color: var(--color-primary);
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid var(--color-border);
+      font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    }
+    .transition-cue::before { content: "→ "; font-weight: 800; }
+
+    /* Layout helpers */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .card {
+      background: var(--color-bg-alt);
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      padding: 1.15rem 1.2rem;
+    }
+    .callout {
+      background: linear-gradient(135deg, rgba(179,217,230,0.35), rgba(179,230,179,0.30));
+      border: 1px solid rgba(15,55,84,0.12);
+      border-left: 6px solid var(--green-500);
+      border-radius: 14px;
+      padding: 1.1rem 1.2rem;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(179,217,230,0.35);
+      border: 1px solid rgba(15,55,84,0.12);
+      font-size: clamp(1rem, 1.3vw, 1.15rem);
+      color: var(--color-primary);
+      font-weight: 700;
+    }
+
+    /* Timer widget (manual start) */
+    #timerWidget {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      z-index: 80;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.5rem 0.7rem;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      backdrop-filter: blur(6px);
+      user-select: none;
+    }
+    #timerDisplay {
+      font-variant-numeric: tabular-nums;
+      font-weight: 800;
+      color: var(--color-primary);
+      font-size: clamp(1rem, 1.4vw, 1.25rem);
+      min-width: 4.3rem;
+      text-align: center;
+    }
+    .btn {
+      border: 1px solid rgba(15,55,84,0.18);
+      background: white;
+      color: var(--color-primary);
+      padding: 0.35rem 0.6rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+      cursor: pointer;
+    }
+    .btn.primary {
+      background: linear-gradient(90deg, rgba(91,163,199,0.25), rgba(127,204,127,0.25));
+      border-color: rgba(15,55,84,0.16);
+    }
+    .btn:active { transform: translateY(1px); }
+    #timerHint {
+      font-size: clamp(0.85rem, 1vw, 0.95rem);
+      color: var(--color-muted);
+    }
+
+    /* Editable toolbar (toggle with 't') */
+    #toolbar {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 90;
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 0.8rem;
+      width: min(440px, 90vw);
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      backdrop-filter: blur(6px);
+    }
+    #toolbar.visible { display: flex; }
+    #toolbar .row {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    #toolbar .title {
+      font-weight: 800;
+      color: var(--color-primary);
+      font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+      margin-bottom: 0.2rem;
+    }
+    #toolbar .note {
+      color: var(--color-muted);
+      font-size: clamp(0.9rem, 1.2vw, 1rem);
+      line-height: 1.4;
+    }
+    .kbd {
+      display: inline-block;
+      padding: 0.1rem 0.35rem;
+      border-radius: 6px;
+      border: 1px solid rgba(0,0,0,0.12);
+      background: rgba(245,247,250,0.9);
+      font-weight: 800;
+      font-size: 0.9rem;
+      color: var(--color-primary);
+    }
+
+    /* Edit mode visuals */
+    body.edit-mode .editable {
+      outline: 2px dashed rgba(91,163,199,0.55);
+      outline-offset: 4px;
+      border-radius: 8px;
+      cursor: text;
+    }
+    body.edit-mode #timerWidget { opacity: 0.95; }
+
+    /* Click navigation zones */
+    #clickZone {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      display: flex;
+    }
+    #clickLeft, #clickRight {
+      height: 100%;
+    }
+    #clickLeft { width: 40%; }
+    #clickRight { width: 60%; }
+
+    /* Simple diagram: three small "plots" */
+    .plot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin-top: 0.8rem;
+    }
+    .plot {
+      position: relative;
+      height: 240px;
+      border-radius: 14px;
+      background: #fff;
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+    }
+    .plot .label {
+      position: absolute;
+      top: 0.7rem;
+      left: 0.8rem;
+      font-weight: 800;
+      font-size: clamp(1rem, 1.3vw, 1.15rem);
+      color: var(--color-primary);
+      background: rgba(255,255,255,0.85);
+      padding: 0.2rem 0.5rem;
+      border-radius: 10px;
+      border: 1px solid rgba(15,55,84,0.10);
+    }
+    .plot .grid {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to right, rgba(15,55,84,0.07) 1px, transparent 1px) 0 0 / 20% 100%,
+        linear-gradient(to bottom, rgba(15,55,84,0.07) 1px, transparent 1px) 0 0 / 100% 25%;
+      opacity: 0.65;
+      pointer-events: none;
+    }
+    .dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--blue-500);
+      box-shadow: 0 0 0 4px rgba(179,217,230,0.55);
+    }
+    .curve {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .seg {
+      position: absolute;
+      height: 6px;
+      border-radius: 6px;
+      transform-origin: left center;
+      opacity: 0.95;
+    }
+    .seg.under { background: #D13C3C; }
+    .seg.over { background: #2F6FCC; }
+    .seg.opt { background: #2E9B56; }
+
+    /* Bar chart (speed comparison) */
+    .bar-chart {
+      height: 210px;
+      display: flex;
+      gap: 1.4rem;
+      align-items: flex-end;
+      padding: 1rem 1rem 0.8rem 1rem;
+      border-radius: 14px;
+      background: #fff;
+      border: 1px solid var(--color-border);
+    }
+    .bar-group {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .bar {
+      width: min(150px, 80%);
+      border-radius: 14px 14px 8px 8px;
+      border: 1px solid rgba(15,55,84,0.14);
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 0.5rem;
+      font-weight: 800;
+      color: var(--color-primary);
+    }
+    .bar.lp { background: rgba(179,217,230,0.55); }
+    .bar.asus { background: rgba(179,230,179,0.60); }
+    .bar-label {
+      font-weight: 800;
+      color: var(--color-primary);
+      font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    }
+    .caption {
+      margin-top: 0.6rem;
+      font-size: clamp(1rem, 1.3vw, 1.15rem);
+      color: var(--color-muted);
+      line-height: 1.4;
+    }
+
+    /* Small "quote highlight" */
+    .quote {
+      border-left: 6px solid var(--blue-500);
+      background: rgba(179,217,230,0.22);
+      padding: 0.9rem 1.1rem;
+      border-radius: 12px;
+      font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+      line-height: 1.55;
+    }
+    .quote strong { color: var(--color-primary); }
+
+    /* Utility */
+    .spacer { height: 0.2rem; }
+  </style>
+</head>
+<body>
+  <div id="progressBar" aria-hidden="true"></div>
+
+  <!-- Click navigation zones (disabled in edit mode) -->
+  <div id="clickZone" aria-hidden="true">
+    <div id="clickLeft"></div>
+    <div id="clickRight"></div>
+  </div>
+
+  <!-- Manual timer (resets on slide change) -->
+  <div id="timerWidget" role="group" aria-label="Slide timer">
+    <div id="timerDisplay">01:00</div>
+    <button class="btn primary" id="timerStart">Start</button>
+    <button class="btn" id="timerPause">Pause</button>
+    <button class="btn" id="timerReset">Reset</button>
+    <div id="timerHint">Manual 1‑min timer</div>
+  </div>
+
+  <!-- Editable toolbar (toggle with 't') -->
+  <div id="toolbar" role="region" aria-label="Edit & export toolbar">
+    <div class="title">Edit mode is ON</div>
+    <div class="note">
+      - Press <span class="kbd">Esc</span> to exit edit mode<br/>
+      - While editing, slide navigation is disabled (so you can type safely)<br/>
+      - Use <span class="kbd">Download HTML</span> to save your edits
+    </div>
+    <div class="row">
+      <button class="btn primary" id="btnDownload">Download HTML</button>
+      <button class="btn" id="btnSave">Save to Cache</button>
+      <button class="btn" id="btnLoad">Load from Cache</button>
+      <button class="btn" id="btnClear">Clear Cache</button>
+    </div>
+    <div class="note">
+      Shortcuts: <span class="kbd">t</span> toggle edit toolbar · <span class="kbd">→</span>/<span class="kbd">Space</span> next · <span class="kbd">←</span> prev · <span class="kbd">Home</span>/<span class="kbd">End</span>
+    </div>
+  </div>
+
+  <!-- Slides -->
+  <section class="slide active" data-title="Title">
+    <div class="rubric-row">
+      <span class="rubric-tag content">Content & Structure</span>
+      <span class="rubric-tag delivery">Delivery</span>
+      <span class="rubric-tag visual">Visual Aids</span>
+    </div>
+    <h1 class="editable" contenteditable="false">Adaptive Parameter Selection for Kernel Ridge Regression</h1>
+    <div class="subtitle editable" contenteditable="false">Explaining the ASUS algorithm for a non‑specialist audience</div>
+    <div class="callout">
+      <p class="editable" contenteditable="false"><strong>Paper:</strong> Shao‑Bo Lin (arXiv:2312.05885v1, 2023)</p>
+      <p class="editable muted" contenteditable="false"><strong>Tip for me:</strong> Speak in plain language; show visuals; keep one idea per slide.</p>
+    </div>
+    <div class="slide-number">1 / 9</div>
+  </section>
+
+  <section class="slide" data-title="Underfit vs Overfit">
+    <div class="rubric-row">
+      <span class="rubric-tag content">Non‑Specialist</span>
+      <span class="rubric-tag content">Hook</span>
+      <span class="rubric-tag visual">Chart</span>
+    </div>
+    <h2 class="editable" contenteditable="false">The challenge: underfitting vs. overfitting</h2>
+    <div class="two-col">
+      <div>
+        <ul class="editable" contenteditable="false">
+          <li><strong>Underfitting</strong>: model is too simple → misses the real pattern</li>
+          <li><strong>Overfitting</strong>: model is too complex → memorizes noise, fails on new data</li>
+          <li><strong>Goal</strong>: find the “just right” balance</li>
+        </ul>
+        <div class="quote editable" contenteditable="false">
+          This is why many ML methods need a careful “setting” — a value that controls model complexity.
+        </div>
+      </div>
+      <div>
+        <div class="plot-grid">
+          <!-- Underfitting plot -->
+          <div class="plot" aria-label="Underfitting example">
+            <div class="grid"></div>
+            <div class="label">Underfit</div>
+            <!-- Dots (same across plots) -->
+            <div class="dot" style="left:12%; top:72%"></div>
+            <div class="dot" style="left:20%; top:62%"></div>
+            <div class="dot" style="left:30%; top:56%"></div>
+            <div class="dot" style="left:40%; top:50%"></div>
+            <div class="dot" style="left:52%; top:44%"></div>
+            <div class="dot" style="left:62%; top:38%"></div>
+            <div class="dot" style="left:72%; top:40%"></div>
+            <div class="dot" style="left:82%; top:48%"></div>
+            <div class="dot" style="left:90%; top:62%"></div>
+            <div class="curve">
+              <div class="seg under" style="left:8%; top:66%; width:88%; transform: rotate(-16deg);"></div>
+            </div>
+          </div>
+          <!-- Optimal plot -->
+          <div class="plot" aria-label="Optimal fit example">
+            <div class="grid"></div>
+            <div class="label">Optimal</div>
+            <div class="dot" style="left:12%; top:72%"></div>
+            <div class="dot" style="left:20%; top:62%"></div>
+            <div class="dot" style="left:30%; top:56%"></div>
+            <div class="dot" style="left:40%; top:50%"></div>
+            <div class="dot" style="left:52%; top:44%"></div>
+            <div class="dot" style="left:62%; top:38%"></div>
+            <div class="dot" style="left:72%; top:40%"></div>
+            <div class="dot" style="left:82%; top:48%"></div>
+            <div class="dot" style="left:90%; top:62%"></div>
+            <div class="curve">
+              <div class="seg opt" style="left:10%; top:70%; width:28%; transform: rotate(-22deg);"></div>
+              <div class="seg opt" style="left:35%; top:55%; width:28%; transform: rotate(-16deg);"></div>
+              <div class="seg opt" style="left:58%; top:42%; width:22%; transform: rotate(8deg);"></div>
+              <div class="seg opt" style="left:74%; top:44%; width:20%; transform: rotate(22deg);"></div>
+            </div>
+          </div>
+          <!-- Overfitting plot -->
+          <div class="plot" aria-label="Overfitting example">
+            <div class="grid"></div>
+            <div class="label">Overfit</div>
+            <div class="dot" style="left:12%; top:72%"></div>
+            <div class="dot" style="left:20%; top:62%"></div>
+            <div class="dot" style="left:30%; top:56%"></div>
+            <div class="dot" style="left:40%; top:50%"></div>
+            <div class="dot" style="left:52%; top:44%"></div>
+            <div class="dot" style="left:62%; top:38%"></div>
+            <div class="dot" style="left:72%; top:40%"></div>
+            <div class="dot" style="left:82%; top:48%"></div>
+            <div class="dot" style="left:90%; top:62%"></div>
+            <div class="curve">
+              <div class="seg over" style="left:10%; top:76%; width:14%; transform: rotate(-40deg);"></div>
+              <div class="seg over" style="left:22%; top:62%; width:14%; transform: rotate(35deg);"></div>
+              <div class="seg over" style="left:34%; top:70%; width:14%; transform: rotate(-40deg);"></div>
+              <div class="seg over" style="left:46%; top:54%; width:16%; transform: rotate(40deg);"></div>
+              <div class="seg over" style="left:60%; top:66%; width:16%; transform: rotate(-45deg);"></div>
+              <div class="seg over" style="left:74%; top:50%; width:16%; transform: rotate(38deg);"></div>
+              <div class="seg over" style="left:86%; top:64%; width:10%; transform: rotate(-32deg);"></div>
+            </div>
+          </div>
+        </div>
+        <p class="caption editable" contenteditable="false">
+          Chart-based example (no jargon): the “best” curve is neither too flat nor too wiggly.
+        </p>
+      </div>
+    </div>
+    <div class="transition-cue editable" contenteditable="false">Now let’s see what method this paper studies to control that balance.</div>
+    <div class="slide-number">2 / 9</div>
+  </section>
+
+  <section class="slide" data-title="What is KRR">
+    <div class="rubric-row">
+      <span class="rubric-tag content">Non‑Specialist</span>
+      <span class="rubric-tag content">Introduction</span>
+      <span class="rubric-tag visual">Diagram</span>
+    </div>
+    <h2 class="editable" contenteditable="false">What is Kernel Ridge Regression (KRR)?</h2>
+    <div class="two-col">
+      <div>
+        <ul class="editable" contenteditable="false">
+          <li><strong>Goal</strong>: predict an output (e.g., price) from inputs (e.g., features).</li>
+          <li><strong>Kernel</strong>: a trick to model complicated patterns without writing a complicated formula.</li>
+          <li><strong>Ridge</strong>: adds a “simplicity penalty” to avoid overfitting.</li>
+        </ul>
+        <div class="callout">
+          <p class="editable" contenteditable="false">
+            KRR has a key setting (often written as <strong>λ</strong>) that controls the underfit/overfit trade‑off.
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <h3 class="editable" contenteditable="false">Accessible picture</h3>
+        <p class="editable" contenteditable="false">
+          Think of λ like a “strictness” setting:
+        </p>
+        <ul class="editable" contenteditable="false">
+          <li>Large λ → be simpler (safer, but may underfit)</li>
+          <li>Small λ → be flexible (risky, may overfit)</li>
+        </ul>
+        <p class="editable muted" contenteditable="false">
+          The paper’s central question: <strong>How can we choose λ automatically?</strong>
+        </p>
+      </div>
+    </div>
+    <div class="transition-cue editable" contenteditable="false">Next: why existing “choose‑λ” methods aren’t ideal.</div>
+    <div class="slide-number">3 / 9</div>
+  </section>
+
+  <section class="slide" data-title="Gap">
+    <div class="rubric-row">
+      <span class="rubric-tag content">Research Gap</span>
+      <span class="rubric-tag content">Content & Structure</span>
+      <span class="rubric-tag visual">Comparison</span>
+    </div>
+    <h2 class="editable" contenteditable="false">Why parameter selection is hard</h2>
+    <div class="two-col">
+      <div class="card">
+        <h3 class="editable" contenteditable="false">Common approaches</h3>
+        <ul class="editable" contenteditable="false">
+          <li><strong>Hold‑out (validation split)</strong>: wastes data; may be unstable with small samples.</li>
+          <li><strong>Discrepancy principle</strong>: can be provable, but learning rates may be sub‑optimal.</li>
+          <li><strong>Lepskii‑type principle (LP)</strong>: strong idea, but often needs many pairwise comparisons → expensive.</li>
+        </ul>
+      </div>
+      <div class="callout">
+        <p class="editable" contenteditable="false"><strong>What the paper wants:</strong></p>
+        <ul class="editable" contenteditable="false">
+          <li>Good performance (optimal learning rates in theory)</li>
+          <li>Practical efficiency (fewer comparisons / less computation)</li>
+          <li>Adaptive behavior (works across different norms)</li>
+        </ul>
+        <p class="editable muted" contenteditable="false">This is the motivation for the ASUS algorithm.</p>
+      </div>
+    </div>
+    <div class="transition-cue editable" contenteditable="false">Now I’ll introduce the solution: ASUS (early‑stopping + uniform subdivision).</div>
+    <div class="slide-number">4 / 9</div>
+  </section>
+
+  <section class="slide" data-title="ASUS">
+    <div class="rubric-row">
+      <span class="rubric-tag content">Key Findings</span>
+      <span class="rubric-tag content">Evidence</span>
+      <span class="rubric-tag visual">Algorithm</span>
+    </div>
+    <h2 class="editable" contenteditable="false">The ASUS algorithm (the paper’s main contribution)</h2>
+    <div class="two-col">
+      <div>
+        <div class="badge editable" contenteditable="false">★ Key quote: “The ASUS algorithm”</div>
+        <div class="spacer"></div>
+        <ul class="editable" contenteditable="false">
+          <li><strong>ASUS</strong> = Adaptive Selection with Uniform Subdivision.</li>
+          <li>Idea: split the parameter range into <strong>uniform steps</strong>.</li>
+          <li>Use an <strong>early‑stopping rule</strong> to avoid repeated pairwise comparisons.</li>
+        </ul>
+        <div class="quote editable" contenteditable="false">
+          ASUS behaves like: “Try settings in order; stop once the solution becomes stable enough.”
+        </div>
+      </div>
+      <div class="card">
+        <h3 class="editable" contenteditable="false">Uniform subdivision (simple picture)</h3>
+        <p class="editable" contenteditable="false">Imagine λ values laid out evenly:</p>
+        <div class="callout">
+          <p class="editable" contenteditable="false">
+            λ₁ · λ₂ · λ₃ · λ₄ · λ₅ · … (even spacing)
+          </p>
+          <p class="editable muted" contenteditable="false">
+            ASUS stops early once consecutive KRR solutions are close enough.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="transition-cue editable" contenteditable="false">Next: what do we gain — especially in speed/efficiency?</div>
+    <div class="slide-number">5 / 9</div>
+  </section>
+
+  <section class="slide" data-title="Speed comparison">
+    <div class="rubric-row">
+      <span class="rubric-tag content">Key Findings</span>
+      <span class="rubric-tag content">Evidence</span>
+      <span class="rubric-tag visual">Speed Chart</span>
+    </div>
+    <h2 class="editable" contenteditable="false">Efficiency: ASUS vs. LP (speed comparison)</h2>
+    <div class="two-col">
+      <div>
+        <ul class="editable" contenteditable="false">
+          <li><strong>LP</strong>: many pairwise comparisons across settings → more computation</li>
+          <li><strong>ASUS</strong>: early‑stopping rule → fewer comparisons</li>
+          <li class="muted">This chart is a simple, beginner‑friendly visualization (relative, not exact times).</li>
+        </ul>
+        <div class="callout">
+          <p class="editable" contenteditable="false">
+            The paper argues ASUS removes “recurrently pairwise comparisons” while keeping strong theoretical guarantees.
+          </p>
+        </div>
+      </div>
+      <div>
+        <div class="bar-chart" aria-label="Relative runtime comparison: LP vs ASUS">
+          <div class="bar-group">
+            <div class="bar lp" style="height: 92%;">100%</div>
+            <div class="bar-label">LP</div>
+          </div>
+          <div class="bar-group">
+            <div class="bar asus" style="height: 42%;">~45%</div>
+            <div class="bar-label">ASUS</div>
+          </div>
+        </div>
+        <p class="caption editable" contenteditable="false">
+          Conceptual speed chart: ASUS is faster because it stops early (fewer comparisons).
+        </p>
+      </div>
+    </div>
+    <div class="transition-cue editable" contenteditable="false">Now: why does this matter beyond the algorithm itself?</div>
+    <div class="slide-number">6 / 9</div>
+  </section>
+
+  <section class="slide" data-title="Significance">
+    <div class="rubric-row">
+      <span class="rubric-tag content">Significance</span>
+      <span class="rubric-tag content">Non‑Specialist</span>
+      <span class="rubric-tag visual">Examples</span>
+    </div>
+    <h2 class="editable" contenteditable="false">Why this research matters</h2>
+    <div class="two-col">
+      <div class="card">
+        <h3 class="editable" contenteditable="false">Practical meaning</h3>
+        <ul class="editable" contenteditable="false">
+          <li>Better default choices → easier to use strong ML methods in real projects.</li>
+          <li>Less tuning effort → more time spent on the real problem.</li>
+        </ul>
+        <div class="quote editable" contenteditable="false">
+          Big idea: <strong>theory + efficiency can coexist</strong> (optimal learning rates, with a practical selection rule).
+        </div>
+      </div>
+      <div class="callout">
+        <h3 class="editable" contenteditable="false">Where KRR shows up</h3>
+        <ul class="editable" contenteditable="false">
+          <li>🏥 Medicine: risk prediction / diagnosis support</li>
+          <li>📈 Finance: forecasting and risk estimation</li>
+          <li>🛰️ Signals & images: denoising, regression, recognition pipelines</li>
+        </ul>
+        <p class="editable muted" contenteditable="false">Better parameter selection improves reliability across these areas.</p>
+      </div>
+    </div>
+    <div class="transition-cue editable" contenteditable="false">Next: what I take from this paper for my own research and writing.</div>
+    <div class="slide-number">7 / 9</div>
+  </section>
+
+  <section class="slide" data-title="Impact on my research">
+    <div class="rubric-row">
+      <span class="rubric-tag content">Reflection</span>
+      <span class="rubric-tag content">Writing Skills</span>
+      <span class="rubric-tag delivery">Delivery</span>
+    </div>
+    <h2 class="editable" contenteditable="false">Impact on my research & writing</h2>
+    <div class="two-col">
+      <div class="card">
+        <h3 class="editable" contenteditable="false">Methodology takeaway</h3>
+        <p class="editable" contenteditable="false">
+          Current theory relies on the <strong>Bernstein noise assumption</strong> and other strong assumptions;
+          in the future, we can try to further relax these assumptions.
+        </p>
+        <ul class="editable" contenteditable="false">
+          <li>ASUS shows a clean way to link <strong>parameter selection</strong> with <strong>theoretical guarantees</strong>.</li>
+          <li>It motivates me to ask: can similar “early‑stop” ideas work under weaker assumptions?</li>
+        </ul>
+      </div>
+      <div class="callout">
+        <h3 class="editable" contenteditable="false">Writing strategies I learned</h3>
+        <ul class="editable" contenteditable="false">
+          <li><strong>Problem → limitations → solution</strong> structure (easy to follow).</li>
+          <li>Clear “two advantages” statement for the main contribution.</li>
+          <li>Balance <strong>the “why”</strong> (theory) with <strong>the “so what”</strong> (practice).</li>
+        </ul>
+      </div>
+    </div>
+    <div class="transition-cue editable" contenteditable="false">Finally: a 3‑point takeaway, then Q&amp;A.</div>
+    <div class="slide-number">8 / 9</div>
+  </section>
+
+  <section class="slide" data-title="Closing">
+    <div class="rubric-row">
+      <span class="rubric-tag content">Summary</span>
+      <span class="rubric-tag delivery">Q&amp;A</span>
+    </div>
+    <h2 class="editable" contenteditable="false">Key takeaways</h2>
+    <div class="two-col">
+      <div class="card">
+        <ol class="editable" contenteditable="false" style="margin:0.2rem 0 0 1.2rem; font-size: clamp(1.25rem, 1.8vw, 1.55rem); line-height: 1.6;">
+          <li><strong>Problem:</strong> avoid underfitting vs. overfitting → need a good parameter choice</li>
+          <li><strong>Solution:</strong> the <strong>ASUS algorithm</strong> (uniform subdivision + early stopping)</li>
+          <li><strong>Impact:</strong> strong theory + practical efficiency (and better writing structure to learn from)</li>
+        </ol>
+        <div class="spacer"></div>
+        <p class="editable muted" contenteditable="false">
+          Closing line: “Careful theory can produce tools that are both optimal and usable.”
+        </p>
+      </div>
+      <div class="callout" style="text-align:center;">
+        <p class="editable" contenteditable="false" style="font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 800; color: var(--color-primary); margin-bottom: 0.4rem;">
+          Thank you
+        </p>
+        <p class="editable" contenteditable="false" style="font-size: clamp(1.4rem, 2.2vw, 2rem); color: var(--color-muted);">
+          Questions?
+        </p>
+        <p class="editable muted" contenteditable="false" style="margin-top: 1rem;">
+          (Press <span class="kbd">t</span> to edit &amp; download)
+        </p>
+      </div>
+    </div>
+    <div class="slide-number">9 / 9</div>
+  </section>
+
+  <script>
+    (function () {
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const progressBar = document.getElementById('progressBar');
+      const clickLeft = document.getElementById('clickLeft');
+      const clickRight = document.getElementById('clickRight');
+      const toolbar = document.getElementById('toolbar');
+
+      // Editable elements: only elements with .editable
+      const editableEls = Array.from(document.querySelectorAll('.editable'));
+
+      let index = 0;
+      let editMode = false;
+
+      // --- Timer ---
+      const timerDisplay = document.getElementById('timerDisplay');
+      const timerStart = document.getElementById('timerStart');
+      const timerPause = document.getElementById('timerPause');
+      const timerReset = document.getElementById('timerReset');
+      let remainingMs = 60 * 1000;
+      let timerInterval = null;
+
+      function formatMs(ms) {
+        const totalSec = Math.max(0, Math.ceil(ms / 1000));
+        const m = Math.floor(totalSec / 60);
+        const s = totalSec % 60;
+        return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+      }
+
+      function renderTimer() {
+        timerDisplay.textContent = formatMs(remainingMs);
+      }
+
+      function stopTimer() {
+        if (timerInterval) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+        }
+      }
+
+      function resetTimer() {
+        stopTimer();
+        remainingMs = 60 * 1000;
+        renderTimer();
+      }
+
+      function startTimer() {
+        if (timerInterval) return;
+        const start = Date.now();
+        let last = start;
+        timerInterval = setInterval(() => {
+          const now = Date.now();
+          const delta = now - last;
+          last = now;
+          remainingMs -= delta;
+          if (remainingMs <= 0) {
+            remainingMs = 0;
+            renderTimer();
+            stopTimer();
+            return;
+          }
+          renderTimer();
+        }, 200);
+      }
+
+      timerStart.addEventListener('click', startTimer);
+      timerPause.addEventListener('click', stopTimer);
+      timerReset.addEventListener('click', resetTimer);
+      renderTimer();
+
+      // --- Slide navigation ---
+      function showSlide(i) {
+        index = Math.max(0, Math.min(slides.length - 1, i));
+        slides.forEach((s, idx) => s.classList.toggle('active', idx === index));
+        const pct = (index / (slides.length - 1)) * 100;
+        progressBar.style.width = pct + '%';
+
+        // Reset timer on each slide (manual start requirement)
+        resetTimer();
+      }
+
+      function nextSlide() { showSlide(index + 1); }
+      function prevSlide() { showSlide(index - 1); }
+
+      // Click navigation
+      clickRight.addEventListener('click', () => { if (!editMode) nextSlide(); });
+      clickLeft.addEventListener('click', () => { if (!editMode) prevSlide(); });
+
+      // --- Edit mode + toolbar ---
+      const LS_KEY = 'slidev0.1.html::cache';
+
+      function setContentEditable(enabled) {
+        editableEls.forEach(el => el.setAttribute('contenteditable', enabled ? 'true' : 'false'));
+      }
+
+      function enterEditMode() {
+        editMode = true;
+        document.body.classList.add('edit-mode');
+        toolbar.classList.add('visible');
+        setContentEditable(true);
+      }
+
+      function exitEditMode() {
+        editMode = false;
+        document.body.classList.remove('edit-mode');
+        toolbar.classList.remove('visible');
+        setContentEditable(false);
+      }
+
+      function toggleEditToolbar() {
+        // User requirement: typing 't' turns editing mode on.
+        if (editMode) exitEditMode();
+        else enterEditMode();
+      }
+
+      document.getElementById('btnDownload').addEventListener('click', () => {
+        // Download current DOM (including edits)
+        const html = '<!DOCTYPE html>\\n' + document.documentElement.outerHTML;
+        const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'slidev0.1.html';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      });
+
+      document.getElementById('btnSave').addEventListener('click', () => {
+        const html = '<!DOCTYPE html>\\n' + document.documentElement.outerHTML;
+        localStorage.setItem(LS_KEY, html);
+        alert('Saved to cache (localStorage).');
+      });
+
+      document.getElementById('btnLoad').addEventListener('click', () => {
+        const saved = localStorage.getItem(LS_KEY);
+        if (!saved) return alert('No cached version found.');
+        document.open();
+        document.write(saved);
+        document.close();
+      });
+
+      document.getElementById('btnClear').addEventListener('click', () => {
+        localStorage.removeItem(LS_KEY);
+        alert('Cache cleared.');
+      });
+
+      // Keyboard navigation (disabled in edit mode except Esc)
+      window.addEventListener('keydown', (e) => {
+        const key = e.key;
+
+        // Always allow Escape to exit edit mode
+        if (key === 'Escape' && editMode) {
+          e.preventDefault();
+          exitEditMode();
+          return;
+        }
+
+        // Toggle toolbar/edit mode: 't' or 'T'
+        if ((key === 't' || key === 'T')) {
+          e.preventDefault();
+          toggleEditToolbar();
+          return;
+        }
+
+        if (editMode) return; // navigation disabled while editing
+
+        if (key === 'ArrowRight' || key === ' ') { e.preventDefault(); nextSlide(); return; }
+        if (key === 'ArrowLeft') { e.preventDefault(); prevSlide(); return; }
+        if (key === 'Home') { e.preventDefault(); showSlide(0); return; }
+        if (key === 'End') { e.preventDefault(); showSlide(slides.length - 1); return; }
+      });
+
+      // Initialize
+      showSlide(0);
+    })();
+  </script>
+</body>
+</html>
+

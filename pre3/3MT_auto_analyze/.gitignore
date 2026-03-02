@@ -1,0 +1,8 @@
+# Avoid pushing large media to GitHub (>50MB)
+output/**/*.mp4
+output/**/*.mp3
+*.mp4
+*.mp3
+
+# Logs (optional)
+logs/*.log

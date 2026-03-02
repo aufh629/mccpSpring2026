@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Academic poster (HTML+CSS)</title>
+  <style>
+    :root {
+      --color-title: #f57900;
+      --color-accent: #3465a4;
+      --color-bg-light: #eeeeec;
+      --color-bg-dark: #2e3436;
+      --gap: 1rem;
+      --column-min: 22rem;
+      --column-max: 30rem;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+    header, footer {
+      background: #000;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      display: grid;
+      gap: 0.5rem;
+      text-align: center;
+    }
+    header h1 { font-size: 1.5rem; margin: 0; }
+    header h2 { font-size: 1.1rem; font-weight: 500; margin: 0.25rem 0 0; }
+    main {
+      padding: var(--gap);
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--gap);
+      align-content: flex-start;
+    }
+    main > * {
+      min-width: var(--column-min);
+      max-width: var(--column-max);
+      flex: 1 1 22rem;
+    }
+    article {
+      background: var(--color-bg-light);
+      padding: 0 0.5rem 0.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+    article > header {
+      background: var(--color-bg-dark);
+      color: var(--color-title);
+      margin: 0 -0.5rem 0.5rem -0.5rem;
+      padding: 0.25rem 0.5rem;
+    }
+    article h3 { margin: 0; font-weight: 500; }
+    ul { padding-left: 1.25em; }
+    ul li::marker { color: var(--color-accent); }
+    footer { font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Poster title</h1>
+    <h2>Subtitle or venue</h2>
+    <address>Author One, Author Two · Institution</address>
+  </header>
+  <main>
+    <article>
+      <header><h3>Introduction</h3></header>
+      <p>Context and motivation. Semantic HTML works well with html2canvas and print.</p>
+      <ul>
+        <li>Point one</li>
+        <li>Point two</li>
+      </ul>
+    </article>
+    <article>
+      <header><h3>Methods</h3></header>
+      <p>Brief methods. Use CSS variables for theming.</p>
+    </article>
+    <article>
+      <header><h3>Results</h3></header>
+      <p>Key results. Add figures with <code>&lt;figure&gt;</code>.</p>
+    </article>
+  </main>
+  <footer>
+    Project link · Contact · Based on cpitclaudel/academic-poster-template
+  </footer>
+</body>
+</html>

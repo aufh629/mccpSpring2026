@@ -1,0 +1,74 @@
+[2026-02-02 00:20:52] Starting find_critical_sentences
+[2026-02-02 00:20:52] Parsed 2 sections, 39 template items
+[2026-02-02 00:20:52] Found 28 HTML files in /Users/simonwang/Library/CloudStorage/OneDrive-HongKongBaptistUniversity/GTD/Areas/Teaching/Courses/MCCP 6020/PhDagentSpring2026/writing/buildPaperCollection_arXiv/html_collection
+[2026-02-02 00:20:52] Paper 1/28: 1910.10683
+[2026-02-02 00:20:53] Paper 2/28: 2111.13463
+[2026-02-02 00:20:53] Paper 3/28: 2111.13463v2
+[2026-02-02 00:20:53] Paper 4/28: 2206.04615
+[2026-02-02 00:20:53] Paper 5/28: 2211.05100
+[2026-02-02 00:20:53] Paper 6/28: 2211.12588
+[2026-02-02 00:20:53] Paper 7/28: 2303.08774
+[2026-02-02 00:20:53] Paper 8/28: 2303.11366
+[2026-02-02 00:20:53] Paper 9/28: 2304.08354
+[2026-02-02 00:20:53] Paper 10/28: 2305.10601
+[2026-02-02 00:20:53] Paper 11/28: 2306.05685
+[2026-02-02 00:20:53] Paper 12/28: 2306.07174
+[2026-02-02 00:20:53] Paper 13/28: 2307.16789
+[2026-02-02 00:20:53] Paper 14/28: 2308.11432
+[2026-02-02 00:20:53] Paper 15/28: 2308.14296
+[2026-02-02 00:20:53] Paper 16/28: 2308.16505
+[2026-02-02 00:20:53] Paper 17/28: 2309.14365
+[2026-02-02 00:20:53] Paper 18/28: 2310.10108
+[2026-02-02 00:20:53] Paper 19/28: 2310.11188
+[2026-02-02 00:20:54] Paper 20/28: 2310.11188v2
+[2026-02-02 00:20:54] Paper 21/28: 2402.15235
+[2026-02-02 00:20:54] Paper 22/28: 2405.14249
+[2026-02-02 00:20:54] Paper 23/28: 2405.14249v1
+[2026-02-02 00:20:54] Paper 24/28: 2410.20027
+[2026-02-02 00:20:54] Paper 25/28: 2411.07569
+[2026-02-02 00:20:54] Paper 26/28: 2411.07569v1
+[2026-02-02 00:20:54] Paper 27/28: 2503.21676
+[2026-02-02 00:20:54] Paper 28/28: 2503.21676v2
+[2026-02-02 00:20:54] Writing report_criticalSentences.md
+[2026-02-02 00:20:54] Wrote /Users/simonwang/Library/CloudStorage/OneDrive-HongKongBaptistUniversity/GTD/Areas/Teaching/Courses/MCCP 6020/PhDagentSpring2026/writing/academicPhrasebank/MapSentences/criticalSentences/report_criticalSentences.md
+[2026-02-02 00:20:54] Writing report_criticalSentences.html
+[2026-02-02 00:21:09] Starting find_critical_sentences
+[2026-02-02 00:21:09] Parsed 2 sections, 39 template items
+[2026-02-02 00:21:09] Found 28 HTML files in /Users/simonwang/Library/CloudStorage/OneDrive-HongKongBaptistUniversity/GTD/Areas/Teaching/Courses/MCCP 6020/PhDagentSpring2026/writing/buildPaperCollection_arXiv/html_collection
+[2026-02-02 00:21:09] Paper 1/28: 1910.10683
+[2026-02-02 00:21:09] Paper 2/28: 2111.13463
+[2026-02-02 00:21:09] Paper 3/28: 2111.13463v2
+[2026-02-02 00:21:09] Paper 4/28: 2206.04615
+[2026-02-02 00:21:09] Paper 5/28: 2211.05100
+[2026-02-02 00:21:09] Paper 6/28: 2211.12588
+[2026-02-02 00:21:09] Paper 7/28: 2303.08774
+[2026-02-02 00:21:09] Paper 8/28: 2303.11366
+[2026-02-02 00:21:09] Paper 9/28: 2304.08354
+[2026-02-02 00:21:10] Paper 10/28: 2305.10601
+[2026-02-02 00:21:10] Paper 11/28: 2306.05685
+[2026-02-02 00:21:10] Paper 12/28: 2306.07174
+[2026-02-02 00:21:10] Paper 13/28: 2307.16789
+[2026-02-02 00:21:10] Paper 14/28: 2308.11432
+[2026-02-02 00:21:10] Paper 15/28: 2308.14296
+[2026-02-02 00:21:10] Paper 16/28: 2308.16505
+[2026-02-02 00:21:10] Paper 17/28: 2309.14365
+[2026-02-02 00:21:10] Paper 18/28: 2310.10108
+[2026-02-02 00:21:10] Paper 19/28: 2310.11188
+[2026-02-02 00:21:10] Paper 20/28: 2310.11188v2
+[2026-02-02 00:21:10] Paper 21/28: 2402.15235
+[2026-02-02 00:21:10] Paper 22/28: 2405.14249
+[2026-02-02 00:21:10] Paper 23/28: 2405.14249v1
+[2026-02-02 00:21:10] Paper 24/28: 2410.20027
+[2026-02-02 00:21:10] Paper 25/28: 2411.07569
+[2026-02-02 00:21:10] Paper 26/28: 2411.07569v1
+[2026-02-02 00:21:10] Paper 27/28: 2503.21676
+[2026-02-02 00:21:10] Paper 28/28: 2503.21676v2
+[2026-02-02 00:21:10] Writing report_criticalSentences.md
+[2026-02-02 00:21:10] Wrote /Users/simonwang/Library/CloudStorage/OneDrive-HongKongBaptistUniversity/GTD/Areas/Teaching/Courses/MCCP 6020/PhDagentSpring2026/writing/academicPhrasebank/MapSentences/criticalSentences/report_criticalSentences.md
+[2026-02-02 00:21:10] Writing report_criticalSentences.html
+[2026-02-02 00:21:10] Wrote /Users/simonwang/Library/CloudStorage/OneDrive-HongKongBaptistUniversity/GTD/Areas/Teaching/Courses/MCCP 6020/PhDagentSpring2026/writing/academicPhrasebank/MapSentences/criticalSentences/report_criticalSentences.html
+[2026-02-02 00:21:10] Done. 39 matches → report_criticalSentences.md, report_criticalSentences.html
+[2026-02-02 00:24:36] Writing report_criticalSentences.md
+[2026-02-02 00:24:36] Wrote /Users/simonwang/Library/CloudStorage/OneDrive-HongKongBaptistUniversity/GTD/Areas/Teaching/Courses/MCCP 6020/PhDagentSpring2026/writing/academicPhrasebank/MapSentences/criticalSentences/report_criticalSentences.md
+[2026-02-02 00:24:36] Writing report_criticalSentences.html
+[2026-02-02 00:24:36] Wrote /Users/simonwang/Library/CloudStorage/OneDrive-HongKongBaptistUniversity/GTD/Areas/Teaching/Courses/MCCP 6020/PhDagentSpring2026/writing/academicPhrasebank/MapSentences/criticalSentences/report_criticalSentences.html

@@ -1,0 +1,49 @@
+% Portrait Better Poster skeleton (LanaSina style)
+% Requires better_poster.sty and images/ from https://github.com/LanaSina/better_poster_latex
+% Or use Overleaf template: better-poster-for-scientific-presentation
+
+\documentclass[a4paper]{article}
+\usepackage{better_poster}
+
+\postersize{a0paper}
+\title{Your Title}
+\author{Author A, Author B}
+\newcommand\postertype{exp}  % [exp], [methods], [theory]
+
+\begin{document}
+\makefinding{
+\textbf{Main finding} in plain English. \textbf{Emphasize} important words.
+}
+
+\makemain{
+ \raggedcolumns
+ \begin{multicols}{2}
+ \section{Intro}
+ \begin{compactitem}
+ \item Context
+ \item Background
+ \end{compactitem}
+
+ \section{Methods}
+ \begin{compactitem}
+ \item Method one
+ \item Method two
+ \end{compactitem}
+
+ \columnbreak
+
+ \section{Results}
+ \includegraphics[width=\linewidth]{images/result.png}
+ \begin{compactitem}
+ \item Result one
+ \item Result two
+ \end{compactitem}
+ \end{multicols}
+}
+
+\makeextracolumn{
+Supplementary material or extra figures.
+}
+
+\makefooter{images/uni_logo.png}{images/qr-code.png}
+\end{document}

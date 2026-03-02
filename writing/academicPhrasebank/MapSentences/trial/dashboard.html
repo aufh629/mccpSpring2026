@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MapSentences Dashboard — 2211.05100</title>
+<style>
+:root { --bg: #0f1419; --card: #1a2332; --accent: #3b82f6; --muted: #8b98a5; --text: #e7e9ea; }
+* { box-sizing: border-box; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 1.5rem; line-height: 1.5; }
+h1 { font-size: 1.5rem; margin: 0 0 1rem; color: var(--text); }
+h2 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: var(--muted); }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+.stat { background: var(--card); border-radius: 8px; padding: 1rem; border: 1px solid #2f3640; }
+.stat-num { font-size: 1.75rem; font-weight: 700; color: var(--accent); }
+.stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 0.25rem; }
+table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 8px; overflow: hidden; border: 1px solid #2f3640; }
+th, td { padding: 0.6rem 0.75rem; text-align: left; }
+th { background: #252d38; color: var(--muted); font-size: 0.8rem; font-weight: 600; }
+tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+td { font-size: 0.9rem; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.fn { font-weight: 500; }
+.none { color: var(--muted); }
+</style>
+</head>
+<body>
+<h1>MapSentences dashboard</h1>
+<p style="color: var(--muted); margin: 0;">Paper: <strong>2211.05100</strong></p>
+
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">322</div>
+    <div class="stat-label">Sentences processed</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">194</div>
+    <div class="stat-label">Similar sentences found</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">194</div>
+    <div class="stat-label">New templates identified</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">17</div>
+    <div class="stat-label">Functions covered</div>
+  </div>
+</div>
+
+<h2>Per function</h2>
+<table>
+<thead><tr><th>Function</th><th>Similar sentences</th><th>New templates</th><th>Report</th></tr></thead>
+<tbody>
+<tr><td class="fn">Being critical</td><td>7</td><td>7</td><td><a href="report_being-critical.md">report_being-critical.md</a></td></tr>
+<tr><td class="fn">Classifying and listing</td><td>19</td><td>19</td><td><a href="report_classifying-and-listing.md">report_classifying-and-listing.md</a></td></tr>
+<tr><td class="fn">Compare and contrast</td><td>6</td><td>6</td><td><a href="report_compare-and-contrast.md">report_compare-and-contrast.md</a></td></tr>
+<tr><td class="fn">Describing methods</td><td>10</td><td>10</td><td><a href="report_describing-methods.md">report_describing-methods.md</a></td></tr>
+<tr><td class="fn">Describing quantities</td><td>17</td><td>17</td><td><a href="report_describing-quantities.md">report_describing-quantities.md</a></td></tr>
+<tr><td class="fn">Describing trends</td><td>10</td><td>10</td><td><a href="report_describing-trends.md">report_describing-trends.md</a></td></tr>
+<tr><td class="fn">Discussing findings</td><td>13</td><td>13</td><td><a href="report_discussing-findings.md">report_discussing-findings.md</a></td></tr>
+<tr><td class="fn">Explaining causality</td><td>6</td><td>6</td><td><a href="report_explaining-cause-and-effect.md">report_explaining-cause-and-effect.md</a></td></tr>
+<tr><td class="fn">Giving examples</td><td>9</td><td>9</td><td><a href="report_giving-examples.md">report_giving-examples.md</a></td></tr>
+<tr><td class="fn">Introducing work</td><td>9</td><td>9</td><td><a href="report_introducing-work.md">report_introducing-work.md</a></td></tr>
+<tr><td class="fn">Referring to sources</td><td>30</td><td>30</td><td><a href="report_referring-to-sources.md">report_referring-to-sources.md</a></td></tr>
+<tr><td class="fn">Reporting results</td><td>10</td><td>10</td><td><a href="report_reporting-results.md">report_reporting-results.md</a></td></tr>
+<tr><td class="fn">Signalling transition</td><td>11</td><td>11</td><td><a href="report_signalling-transition.md">report_signalling-transition.md</a></td></tr>
+<tr><td class="fn">Being cautious</td><td>11</td><td>11</td><td><a href="report_using-cautious-language.md">report_using-cautious-language.md</a></td></tr>
+<tr><td class="fn">Writing about the past</td><td>9</td><td>9</td><td><a href="report_writing-about-the-past.md">report_writing-about-the-past.md</a></td></tr>
+<tr><td class="fn">Writing conclusions</td><td>9</td><td>9</td><td><a href="report_writing-conclusions.md">report_writing-conclusions.md</a></td></tr>
+<tr><td class="fn">Defining terms</td><td>8</td><td>8</td><td><a href="report_writing-definitions.md">report_writing-definitions.md</a></td></tr>
+</tbody>
+</table>
+</body>
+</html>

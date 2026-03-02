@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KVFlow: Making AI Agent Teams Work Faster — Presentation 1</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@600;700;800&display=swap');
+
+:root {
+  --color-primary: #1B4942;
+  --color-text: #1a1a2e;
+  --color-bg: #FFFFFF;
+  --color-bg-alt: #F8FAF4;
+  --color-accent-light: #E8F0ED;
+  --color-planner: #E76F51;
+  --color-executor: #2A9D8F;
+  --color-writer: #E9C46A;
+  --color-reviewer: #264653;
+  --color-red: #E63946;
+  --color-green: #2A9D8F;
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Open Sans', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: #000;
+  overflow: hidden;
+}
+
+/* ========== SLIDE LAYOUT — wider margins ========== */
+.slide {
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5vh 15vw;          /* wider side margins: 15vw instead of 8vw */
+  background: var(--color-bg);
+  position: absolute;
+  top: 0; left: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.slide.active { display: flex; opacity: 1; }
+
+/* ========== TYPOGRAPHY ========== */
+.slide-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 1.2rem;
+  line-height: 1.2;
+}
+
+.slide-subtitle {
+  font-family: var(--font-heading);
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+  font-weight: 600;
+  color: var(--color-primary);
+  opacity: 0.8;
+  margin-bottom: 0.8rem;
+}
+
+.slide-body {
+  font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+  line-height: 1.7;
+}
+
+ul.bullets { list-style: none; padding: 0; margin: 0.8rem 0; }
+
+ul.bullets li {
+  font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+  line-height: 1.7;
+  padding-left: 1.5rem;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+ul.bullets li::before {
+  content: '•';
+  color: var(--color-primary);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+/* ========== BOXES ========== */
+.highlight-box {
+  background: var(--color-accent-light);
+  border-left: 4px solid var(--color-primary);
+  padding: 1rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+  margin: 0.8rem 0;
+  font-size: clamp(0.88rem, 1.15vw, 1.05rem);
+  line-height: 1.6;
+}
+
+.highlight-box.quote {
+  font-style: italic;
+  border-left-color: var(--color-writer);
+}
+
+/* Rubric tag */
+.rubric-tag {
+  display: inline-block;
+  background: var(--color-primary);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-right: 4px;
+  vertical-align: middle;
+  font-family: var(--font-heading);
+  letter-spacing: 0.03em;
+}
+
+.rubric-tag.content { background: #2A9D8F; }
+.rubric-tag.delivery { background: #E76F51; }
+.rubric-tag.visual { background: #264653; }
+.rubric-tag.language { background: #E9C46A; color: #1a1a2e; }
+
+/* Transition cue */
+.transition-cue {
+  margin-top: auto;
+  padding-top: 0.8rem;
+  border-top: 1px solid #eee;
+  font-size: clamp(0.8rem, 1vw, 0.9rem);
+  color: var(--color-primary);
+  font-style: italic;
+  font-weight: 600;
+}
+
+.transition-cue::before { content: '→ '; }
+
+/* ========== BIG NUMBERS ========== */
+.big-number {
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.caption {
+  font-size: clamp(0.8rem, 1vw, 0.9rem);
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+/* ========== AGENT DIAGRAM ========== */
+.agent-diagram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.agent-node {
+  width: clamp(70px, 8vw, 100px);
+  height: clamp(70px, 8vw, 100px);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: var(--font-heading);
+  font-size: clamp(0.65rem, 0.9vw, 0.8rem);
+  font-weight: 700;
+  text-align: center;
+  position: relative;
+}
+
+.agent-node .step-badge {
+  position: absolute;
+  top: -6px; right: -6px;
+  background: var(--color-text);
+  color: white;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow { font-size: 1.5rem; color: var(--color-primary); font-weight: bold; }
+
+.evicted { opacity: 0.3; position: relative; }
+.evicted::after {
+  content: '✗';
+  position: absolute;
+  font-size: 2.5rem;
+  color: var(--color-red);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.active-agent {
+  box-shadow: 0 0 0 3px var(--color-green), 0 0 15px rgba(42, 157, 143, 0.3);
+}
+
+/* ========== TIMELINE ========== */
+.timeline-container { margin: 1rem 0; }
+
+.timeline-row { display: flex; align-items: center; margin-bottom: 0.6rem; }
+
+.timeline-label {
+  width: clamp(90px, 12vw, 140px);
+  font-size: clamp(0.7rem, 0.9vw, 0.85rem);
+  font-weight: 600;
+  text-align: right;
+  padding-right: 0.8rem;
+  flex-shrink: 0;
+}
+
+.timeline-bar-container {
+  flex: 1;
+  display: flex;
+  height: 32px;
+  border-radius: 4px;
+  overflow: hidden;
+  gap: 2px;
+}
+
+.timeline-block {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(0.55rem, 0.7vw, 0.7rem);
+  font-weight: 600;
+  color: white;
+  border-radius: 3px;
+}
+
+.block-compute { background: var(--color-executor); }
+.block-load { background: var(--color-planner); }
+.block-idle { background: #ddd; color: #999; }
+.block-prefetch { background: var(--color-writer); }
+
+/* ========== BAR CHART ========== */
+.bar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(1rem, 2.5vw, 2.5rem);
+  margin: 1.5rem 0;
+  height: 160px;
+}
+
+.bar-group { display: flex; flex-direction: column; align-items: center; flex: 1; }
+
+.bar {
+  width: clamp(45px, 6vw, 70px);
+  border-radius: 6px 6px 0 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 0.4rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(0.8rem, 1vw, 1rem);
+  color: white;
+}
+
+.bar-label {
+  margin-top: 0.4rem;
+  font-size: clamp(0.65rem, 0.85vw, 0.8rem);
+  text-align: center;
+  font-weight: 600;
+}
+
+/* ========== WRITING LESSON CARDS ========== */
+.lesson-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  margin: 0.8rem 0;
+}
+
+.lesson-card {
+  background: var(--color-bg-alt);
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  border-left: 3px solid var(--color-primary);
+}
+
+.lesson-card .lesson-num {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  color: var(--color-primary);
+  font-size: 0.75rem;
+  margin-bottom: 0.2rem;
+}
+
+.lesson-card .lesson-title {
+  font-weight: 700;
+  font-size: clamp(0.8rem, 1vw, 0.95rem);
+  margin-bottom: 0.2rem;
+}
+
+.lesson-card .lesson-desc {
+  font-size: clamp(0.7rem, 0.85vw, 0.82rem);
+  color: #555;
+  line-height: 1.4;
+}
+
+/* ========== BRIDGE DIAGRAM ========== */
+.bridge-diagram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin: 1.5rem 0;
+}
+
+.bridge-side {
+  background: var(--color-bg-alt);
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(0.85rem, 1.1vw, 1rem);
+  min-width: 120px;
+}
+
+.bridge-center {
+  background: var(--color-primary);
+  color: white;
+  border-radius: 12px;
+  padding: 1.2rem 2rem;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+}
+
+.bridge-arrow { font-size: 1.5rem; color: var(--color-primary); }
+
+/* ========== STATS ROW ========== */
+.stats-row { display: flex; gap: 1.5rem; margin: 1rem 0; flex-wrap: wrap; }
+.stat-card { text-align: center; flex: 1; min-width: 100px; }
+
+/* ========== SLIDE NUMBER ========== */
+.slide-number {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ccc;
+}
+
+/* ========== PROGRESS BAR ========== */
+.progress-bar {
+  position: fixed;
+  bottom: 0; left: 0;
+  height: 4px;
+  background: var(--color-primary);
+  transition: width 0.3s ease;
+  z-index: 100;
+}
+
+/* ========== TOOLBAR ========== */
+.toolbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 40px;
+  background: rgba(27, 73, 66, 0.95);
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  gap: 0.5rem;
+  z-index: 200;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+  font-family: var(--font-body);
+}
+
+.toolbar.visible { transform: translateY(0); }
+
+.toolbar button {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+.toolbar button:hover { background: rgba(255,255,255,0.25); }
+.toolbar button.active { background: rgba(255,255,255,0.35); border-color: white; }
+
+.toolbar .toolbar-label {
+  color: rgba(255,255,255,0.8);
+  font-size: 0.8rem;
+  margin-left: auto;
+}
+
+.toolbar .slide-info {
+  color: white;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+/* ========== EDITABLE MODE ========== */
+body.edit-mode .slide { cursor: text; }
+body.edit-mode .slide [contenteditable="true"]:focus {
+  outline: 2px dashed var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+body.edit-mode .slide [contenteditable="true"]:hover {
+  outline: 1px dashed #ccc;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ========== TITLE SLIDE ========== */
+.slide.title-slide {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-alt) 100%);
+}
+
+.slide.title-slide .slide-title {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  margin-bottom: 0.5rem;
+}
+
+.title-bar {
+  width: 80px;
+  height: 4px;
+  background: var(--color-primary);
+  margin: 0.8rem auto;
+  border-radius: 2px;
+}
+
+.paper-ref {
+  font-size: clamp(0.7rem, 0.9vw, 0.85rem);
+  color: #888;
+  margin-top: 1rem;
+  max-width: 65%;
+  line-height: 1.5;
+}
+
+/* ========== CLOSING SLIDE ========== */
+.slide.closing-slide {
+  text-align: center;
+  align-items: center;
+  background: linear-gradient(135deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
+}
+
+.closing-takeaway {
+  font-family: var(--font-heading);
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-weight: 600;
+  color: var(--color-primary);
+  max-width: 65%;
+  line-height: 1.5;
+  margin: 1rem 0;
+}
+
+/* ========== TWO-COLUMN ========== */
+.two-col { display: flex; gap: 2rem; margin: 0.8rem 0; }
+.two-col > div { flex: 1; }
+
+/* ========== SAVED INDICATOR ========== */
+.save-indicator {
+  position: fixed;
+  top: 50px;
+  right: 20px;
+  background: var(--color-green);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 300;
+  pointer-events: none;
+}
+
+.save-indicator.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- TOOLBAR -->
+<div class="toolbar" id="toolbar">
+  <button onclick="toggleEditMode()" id="editBtn">Edit Mode</button>
+  <button onclick="saveToCache()">Save to Cache</button>
+  <button onclick="loadFromCache()">Load from Cache</button>
+  <button onclick="downloadHTML()">Download HTML</button>
+  <button onclick="clearCache()">Clear Cache</button>
+  <span class="toolbar-label">Press <strong>E</strong> to toggle edit | <strong>T</strong> to toggle toolbar</span>
+  <span class="slide-info" id="slideInfo"></span>
+</div>
+<div class="save-indicator" id="saveIndicator">Saved!</div>
+
+<!-- ==================== SLIDES ==================== -->
+
+<!-- Slide 1: Title -->
+<div class="slide title-slide active" id="slide1">
+  <span class="slide-number">1</span>
+  <div class="slide-title" contenteditable="false">KVFlow: Making AI Agent Teams Work Faster</div>
+  <div class="title-bar"></div>
+  <div class="slide-subtitle" contenteditable="false">Oral Presentation 1 — Research Story-telling by Experienced Writers</div>
+  <p style="font-size:0.85rem; color:#999; margin:0.5rem 0;">MCCP6020 — 8-minute presentation (20%)</p>
+  <div class="paper-ref" contenteditable="false">
+    Pan, Z., Patel, A., Hu, Z., Shen, Y., Guan, Y., Li, W.-L., Qin, L., Wang, Y., &amp; Ding, Y. (2025).<br>
+    <em>KVFlow: Efficient Prefix Caching for Accelerating LLM-Based Multi-Agent Workflows.</em><br>
+    UCSD &amp; AWS — arXiv:2507.07400
+  </div>
+</div>
+
+<!-- Slide 2: Overview / Roadmap -->
+<div class="slide" id="slide2">
+  <span class="slide-number">2</span>
+  <div class="slide-title" contenteditable="false">Presentation Roadmap</div>
+  <p class="slide-body" contenteditable="false" style="margin-bottom:0.8rem;">
+    <span class="rubric-tag content">CONTENT &amp; STRUCTURE</span> Following the assessment brief, this presentation covers:
+  </p>
+  <ul class="bullets" contenteditable="false">
+    <li><strong>1. Introduction</strong> to the article — what it's about, in accessible terms</li>
+    <li><strong>2. Key findings</strong> — the three main contributions and results</li>
+    <li><strong>3. Significance</strong> — why this research matters broadly</li>
+    <li><strong>4. Impact on my research &amp; writing lessons</strong> — how this article shapes my own work, and what writing strategies I learned</li>
+  </ul>
+  <div class="highlight-box" contenteditable="false">
+    <span class="rubric-tag content">STRUCTURE</span> This structure follows the four requirements in the assessment instructions and aims to be <strong>intelligible to a non-specialist audience</strong>.
+  </div>
+  <div class="transition-cue" contenteditable="false">Let me start by setting the scene with a quick analogy...</div>
+</div>
+
+<!-- Slide 3: Hook -->
+<div class="slide" id="slide3">
+  <span class="slide-number">3</span>
+  <div class="slide-title" contenteditable="false">What if your AI team keeps forgetting?</div>
+  <div class="agent-diagram">
+    <div class="agent-node" style="background:var(--color-planner)">Planner</div>
+    <div class="arrow">→</div>
+    <div class="agent-node" style="background:var(--color-executor)">Executor</div>
+    <div class="arrow">→</div>
+    <div class="agent-node" style="background:var(--color-writer)">Writer</div>
+    <div class="arrow">→</div>
+    <div class="agent-node" style="background:var(--color-reviewer)">Reviewer</div>
+    <div class="arrow">→</div>
+    <div style="font-size:1.3rem;color:var(--color-primary)">🔄</div>
+  </div>
+  <div class="highlight-box" contenteditable="false">
+    <span class="rubric-tag content">NON-SPECIALIST</span> Imagine a team of 4 specialists taking turns on a project. Each time one finishes, the next has to <strong>re-read all background documents from scratch</strong> — even though they just read them moments ago. That's what happens in today's AI multi-agent systems.
+  </div>
+  <p class="slide-body" contenteditable="false" style="margin-top:0.8rem;">
+    AI systems like <strong>MetaGPT</strong>, <strong>AutoGen</strong>, and <strong>ChatDev</strong> organize specialized AI agents into teams. Each agent is powered by a Large Language Model and carries fixed instructions ("role descriptions") that get used repeatedly.
+  </p>
+  <div class="transition-cue" contenteditable="false">So what exactly is the problem? Let me explain...</div>
+</div>
+
+<!-- Slide 4: The Problem — Context & Gap -->
+<div class="slide" id="slide4">
+  <span class="slide-number">4</span>
+  <div class="slide-title" contenteditable="false">The Problem: Memory That Doesn't Look Ahead</div>
+  <p class="slide-body" contenteditable="false" style="margin-bottom:0.8rem;">
+    <span class="rubric-tag content">INTRODUCTION</span> Each agent's instructions are processed and stored as <strong>KV caches</strong> — think of them as "pre-processed notes." Caching saves time; recomputing from scratch is slow. But <strong>GPU memory is limited</strong>, so the system must decide what to keep.
+  </p>
+  <div class="two-col">
+    <div class="highlight-box" style="border-left-color:var(--color-red);" contenteditable="false">
+      <strong style="color:var(--color-red);">Current approach (LRU):</strong><br>
+      "Throw away whichever notes haven't been used most recently."<br><br>
+      Problem: This is like discarding the Writer's notes while the Executor works — even though the Writer is <strong>next in line</strong>.
+    </div>
+    <div class="highlight-box" style="border-left-color:var(--color-green);" contenteditable="false">
+      <strong style="color:var(--color-green);">The gap this paper addresses:</strong><br>
+      Existing systems <strong>don't look ahead</strong> at the workflow schedule. They look backward at what was used recently — a "fundamental inefficiency."
+    </div>
+  </div>
+  <div class="agent-diagram" style="margin:0.8rem 0;">
+    <div class="agent-node" style="background:var(--color-planner);width:65px;height:65px;">Plan</div>
+    <div class="arrow">→</div>
+    <div class="agent-node active-agent" style="background:var(--color-executor);width:65px;height:65px;">Exec<span class="step-badge" style="background:var(--color-green);width:20px;height:20px;font-size:0.6rem;">▶</span></div>
+    <div class="arrow">→</div>
+    <div class="agent-node evicted" style="background:var(--color-writer);width:65px;height:65px;">Write</div>
+    <div class="arrow">→</div>
+    <div class="agent-node" style="background:var(--color-reviewer);width:65px;height:65px;">Rev</div>
+  </div>
+  <div class="transition-cue" contenteditable="false">Now let me explain how KVFlow solves this problem...</div>
+</div>
+
+<!-- Slide 5: Solution — Agent Step Graph -->
+<div class="slide" id="slide5">
+  <span class="slide-number">5</span>
+  <div class="slide-title" contenteditable="false">KVFlow Solution 1: The Agent Step Graph</div>
+  <p class="slide-body" contenteditable="false">
+    <span class="rubric-tag content">KEY FINDINGS</span> The researchers introduce the <strong>Agent Step Graph</strong> — each agent gets a "steps-to-execution" score estimating when it will next be needed.
+  </p>
+  <div class="agent-diagram">
+    <div class="agent-node" style="background:var(--color-planner)">Planner<span class="step-badge">3</span></div>
+    <div class="arrow">→</div>
+    <div class="agent-node active-agent" style="background:var(--color-executor)">Executor<span class="step-badge" style="background:var(--color-green)">0</span></div>
+    <div class="arrow">→</div>
+    <div class="agent-node" style="background:var(--color-writer)">Writer<span class="step-badge">1</span></div>
+    <div class="arrow">→</div>
+    <div class="agent-node" style="background:var(--color-reviewer)">Reviewer<span class="step-badge">2</span></div>
+  </div>
+  <div class="highlight-box" contenteditable="false">
+    <span class="rubric-tag content">NON-SPECIALIST</span> <strong>Analogy:</strong> Like a hospital triage system — instead of treating patients in order of arrival, you prioritize based on <em>urgency</em>. Agents needed soonest get their memory preserved; agents needed later can be safely evicted.
+  </div>
+  <ul class="bullets" contenteditable="false">
+    <li>The graph supports complex workflows: conditional branches, parallel execution, synchronization barriers</li>
+    <li>Eviction priorities are assigned at the <strong>cache node level</strong>, not just agent level — enabling fine-grained memory management</li>
+    <li>Shared prefixes between agents are preserved as long as any near-future agent needs them</li>
+  </ul>
+  <div class="transition-cue" contenteditable="false">But smarter eviction alone isn't enough. What about when data must be loaded back?</div>
+</div>
+
+<!-- Slide 6: Solution — Proactive Prefetching -->
+<div class="slide" id="slide6">
+  <span class="slide-number">6</span>
+  <div class="slide-title" contenteditable="false">KVFlow Solution 2: Loading While Working</div>
+  <p class="slide-body" contenteditable="false" style="margin-bottom:0.5rem;">
+    <span class="rubric-tag content">KEY FINDINGS</span> Even with smart eviction, cache misses can still occur. KVFlow introduces <strong>proactive prefetching</strong> — loading the next agent's data from CPU to GPU in the background.
+  </p>
+  <div class="timeline-container">
+    <div class="timeline-row">
+      <div class="timeline-label">Reactive<br>(Baseline)</div>
+      <div class="timeline-bar-container">
+        <div class="timeline-block block-compute" style="flex:3;">GPU: Planner</div>
+        <div class="timeline-block block-idle" style="flex:2;">Wait</div>
+        <div class="timeline-block block-load" style="flex:2;">Load</div>
+        <div class="timeline-block block-compute" style="flex:3;">GPU: Executor</div>
+      </div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-label">Proactive<br>Prefetch</div>
+      <div class="timeline-bar-container">
+        <div class="timeline-block block-compute" style="flex:3;">GPU: Planner</div>
+        <div class="timeline-block block-prefetch" style="flex:2;">Prefetch</div>
+        <div class="timeline-block block-compute" style="flex:3;">GPU: Executor</div>
+        <div class="timeline-block block-prefetch" style="flex:2;">Prefetch</div>
+      </div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-label" style="color:var(--color-primary);font-weight:700;">KVFlow<br>(Full)</div>
+      <div class="timeline-bar-container">
+        <div class="timeline-block block-compute" style="flex:3;">GPU: Planner</div>
+        <div class="timeline-block block-compute" style="flex:3;">GPU: Executor</div>
+        <div class="timeline-block block-compute" style="flex:3;">GPU: Writer</div>
+        <div class="timeline-block block-compute" style="flex:1;">...</div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;gap:1rem;margin-top:0.3rem;font-size:0.78rem;flex-wrap:wrap;">
+    <span><span style="display:inline-block;width:12px;height:12px;background:var(--color-executor);border-radius:2px;vertical-align:middle;margin-right:3px;"></span>GPU Compute</span>
+    <span><span style="display:inline-block;width:12px;height:12px;background:var(--color-planner);border-radius:2px;vertical-align:middle;margin-right:3px;"></span>CPU→GPU Load</span>
+    <span><span style="display:inline-block;width:12px;height:12px;background:var(--color-writer);border-radius:2px;vertical-align:middle;margin-right:3px;"></span>Background Prefetch</span>
+    <span><span style="display:inline-block;width:12px;height:12px;background:#ddd;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>Idle/Wait</span>
+  </div>
+  <div class="highlight-box" contenteditable="false" style="margin-top:0.5rem;">
+    <span class="rubric-tag content">NON-SPECIALIST</span> <strong>Like a relay runner already in motion before the baton arrives.</strong> Plus, <strong>status-aware scheduling</strong> skips agents whose data isn't ready and works on others first — no GPU sits idle.
+  </div>
+  <div class="transition-cue" contenteditable="false">So how much faster does this actually make things? Let's look at the results...</div>
+</div>
+
+<!-- Slide 7: Results -->
+<div class="slide" id="slide7">
+  <span class="slide-number">7</span>
+  <div class="slide-title" contenteditable="false">Results: Significant Speedups</div>
+  <p class="slide-body" contenteditable="false" style="margin-bottom:0.5rem;">
+    <span class="rubric-tag content">KEY FINDINGS</span> Tested on Llama-3.1-8B (NVIDIA A10G) and Qwen2.5-32B (NVIDIA H100):
+  </p>
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="big-number">1.83×</div>
+      <p class="caption">Single workflow<br>(large prompts, vs HiCache)</p>
+    </div>
+    <div class="stat-card">
+      <div class="big-number">2.91×</div>
+      <p class="caption">Single workflow<br>(vs GPU-only baseline)</p>
+    </div>
+    <div class="stat-card">
+      <div class="big-number">2.19×</div>
+      <p class="caption">High concurrency<br>(many workflows, vs HiCache)</p>
+    </div>
+  </div>
+  <div class="bar-chart">
+    <div class="bar-group">
+      <div class="bar" style="height:65px;background:#ccc;">1.0×</div>
+      <div class="bar-label">SGLang<br>(GPU only)</div>
+    </div>
+    <div class="bar-group">
+      <div class="bar" style="height:100px;background:var(--color-planner);">1.59×</div>
+      <div class="bar-label">SGLang<br>+ HiCache</div>
+    </div>
+    <div class="bar-group">
+      <div class="bar" style="height:155px;background:var(--color-primary);">2.91×</div>
+      <div class="bar-label" style="color:var(--color-primary);font-weight:700;">KVFlow</div>
+    </div>
+  </div>
+  <p class="caption" contenteditable="false" style="text-align:center;">
+    <strong>Same output quality guaranteed</strong> — KVFlow only optimizes system performance, not model behavior. Benefits grow with larger prompt sizes.
+  </p>
+  <div class="transition-cue" contenteditable="false">Now let me discuss why this research is significant beyond just the numbers...</div>
+</div>
+
+<!-- Slide 8: Significance -->
+<div class="slide" id="slide8">
+  <span class="slide-number">8</span>
+  <div class="slide-title" contenteditable="false">Why This Research Matters</div>
+  <p class="slide-body" contenteditable="false" style="margin-bottom:0.5rem;">
+    <span class="rubric-tag content">SIGNIFICANCE</span> The broader implications of KVFlow extend beyond the specific system:
+  </p>
+  <div class="bridge-diagram">
+    <div class="bridge-side" contenteditable="false">Agent Design<br><span style="font-size:0.75rem;color:#888;">(Frontend logic)</span></div>
+    <div class="bridge-arrow">←</div>
+    <div class="bridge-center" contenteditable="false">KVFlow<br><span style="font-size:0.8rem;font-weight:400;">Workflow semantics<br>enable system-level gains</span></div>
+    <div class="bridge-arrow">→</div>
+    <div class="bridge-side" contenteditable="false">System Optimization<br><span style="font-size:0.75rem;color:#888;">(Backend efficiency)</span></div>
+  </div>
+  <ul class="bullets" contenteditable="false">
+    <li><strong>Multi-agent AI is mainstream</strong> — MetaGPT, AutoGen, ChatDev, LangGraph all organize agents into structured workflows</li>
+    <li><strong>Workflow awareness as a general principle:</strong> Simply telling the system about agent execution order yields nearly 2× speedup — applicable to any LLM serving framework</li>
+    <li><strong>Cost and energy impact:</strong> Faster execution = less GPU time = lower operational costs and reduced energy consumption as AI scales</li>
+    <li><strong>Bridge between fields:</strong> Most research focuses on making agents smarter; this paper shows the <em>infrastructure</em> matters just as much</li>
+  </ul>
+  <div class="transition-cue" contenteditable="false">This brings me to how this paper impacts my own research and what I learned about academic writing...</div>
+</div>
+
+<!-- Slide 9: Impact on Research Design -->
+<div class="slide" id="slide9">
+  <span class="slide-number">9</span>
+  <div class="slide-title" contenteditable="false">Impact on My Research Design</div>
+  <p class="slide-body" contenteditable="false" style="margin-bottom:0.5rem;">
+    <span class="rubric-tag content">IMPACT &amp; REFLECTION</span> This paper has shaped my thinking about research in several ways:
+  </p>
+  <ul class="bullets" contenteditable="false">
+    <li><strong>System-level thinking is essential:</strong> It's not enough to design good AI prompts or agent roles — we must also think about how efficiently the underlying systems execute them</li>
+    <li><strong>Workflow-aware optimization as a transferable concept:</strong> If you tell the system about the <em>structure</em> of your task, it can serve you much faster. This principle applies beyond computer science to any field where sequential processes can be anticipated</li>
+    <li><strong>Practical implication:</strong> For anyone working with multi-agent AI tools, the way you organize agent interactions directly affects performance — not just quality of output, but speed and cost</li>
+  </ul>
+  <div class="highlight-box" contenteditable="false">
+    <span class="rubric-tag content">EVIDENCE</span> The paper states: <em>"While prior work on multi-agent systems has predominantly focused on designing frontend application logic and interaction protocols, KVFlow highlights the importance of workflow semantics in enabling system-level optimizations."</em> — This captures a key insight for any researcher using AI tools.
+  </div>
+  <div class="transition-cue" contenteditable="false">Beyond the research content, this article also taught me important lessons about academic writing...</div>
+</div>
+
+<!-- Slide 10: Writing Lesson 1 — CARS Model -->
+<div class="slide" id="slide10">
+  <span class="slide-number">10</span>
+  <div class="slide-title" contenteditable="false">Writing Lesson: The CARS Model in Action</div>
+  <p class="slide-body" contenteditable="false" style="margin-bottom:0.5rem;">
+    <span class="rubric-tag content">WRITING SKILLS</span> The paper's introduction masterfully follows the <strong>CARS model</strong> (Creating a Research Space):
+  </p>
+  <div class="two-col">
+    <div>
+      <div class="highlight-box" style="border-left-color:var(--color-executor);" contenteditable="false">
+        <strong>Move 1 — Establishing Territory:</strong><br>
+        Opens with a centrality claim citing 5 references: <em>"LLM-based agentic workflows have become a popular paradigm..."</em> — immediately positions the topic as important and timely.
+      </div>
+      <div class="highlight-box" style="border-left-color:var(--color-planner);" contenteditable="false">
+        <strong>Move 2 — Identifying a Niche:</strong><br>
+        Constructs a specific, vivid scenario (Figure 1) that makes the gap <em>concrete and intuitive</em>. Uses cautious hedging: <em>"We observe that this strategy can lead to suboptimal performance."</em>
+      </div>
+    </div>
+    <div>
+      <div class="highlight-box" style="border-left-color:var(--color-primary);" contenteditable="false">
+        <strong>Move 3 — Occupying the Niche:</strong><br>
+        Clean transition: <em>"To address the limitations... we present KVFlow"</em> — directly responds to the identified gap. Followed by a numbered contribution list.
+      </div>
+      <div class="highlight-box" style="background:var(--color-bg-alt);border-left-color:var(--color-writer);" contenteditable="false">
+        <strong>Takeaway:</strong> A strong introduction tells a <em>story</em> — from importance, through a concrete problem, to a solution. Each move builds on the last. This is what the rubric means by "well-structured with clear logical flow."
+      </div>
+    </div>
+  </div>
+  <div class="transition-cue" contenteditable="false">I also noticed powerful visual storytelling and honest evaluation throughout the paper...</div>
+</div>
+
+<!-- Slide 11: Writing Lessons 2-4 -->
+<div class="slide" id="slide11">
+  <span class="slide-number">11</span>
+  <div class="slide-title" contenteditable="false">More Writing Lessons from This Article</div>
+  <p class="slide-body" contenteditable="false" style="margin-bottom:0.5rem;">
+    <span class="rubric-tag content">WRITING SKILLS</span> <span class="rubric-tag content">EVIDENCE</span> Three more strategies I learned, with evidence from the article:
+  </p>
+  <div class="lesson-grid">
+    <div class="lesson-card" contenteditable="false">
+      <div class="lesson-num">VISUAL STORYTELLING</div>
+      <div class="lesson-title">Figures that argue, not just illustrate</div>
+      <div class="lesson-desc">Every key concept has a figure (8 total). Figure 1 makes the gap tangible; Figure 3 makes the solution intuitive; Figure 4 shows the mechanism; Figures 5-8 present evidence. Each figure <em>advances</em> the narrative.</div>
+    </div>
+    <div class="lesson-card" contenteditable="false">
+      <div class="lesson-num">HONEST EVALUATION</div>
+      <div class="lesson-title">Acknowledging limitations builds trust</div>
+      <div class="lesson-desc">The authors state: <em>"As the number of output tokens increases, the relative gain diminishes"</em> — and explain why. They note HiCache anomalies and hypothesize causes rather than glossing over them.</div>
+    </div>
+    <div class="lesson-card" contenteditable="false">
+      <div class="lesson-num">EFFECTIVE SYNTHESIS</div>
+      <div class="lesson-title">Positioning, not just listing</div>
+      <div class="lesson-desc">Related work is organized by theme, with each cluster <em>positioned</em> relative to KVFlow: "orthogonal to KVFlow" and "complementary to ours" — showing relationships, not just cataloguing papers.</div>
+    </div>
+    <div class="lesson-card" contenteditable="false">
+      <div class="lesson-num">RUBRIC CONNECTION</div>
+      <div class="lesson-title">What the rubric rewards</div>
+      <div class="lesson-desc">These strategies align with "in-depth reflection well-integrated into the analysis" and "content entirely appropriate to non-specialist audience" — the highest rubric descriptors.</div>
+    </div>
+  </div>
+  <div class="transition-cue" contenteditable="false">To conclude, let me summarize the key takeaway from both the research and the writing...</div>
+</div>
+
+<!-- Slide 12: Closing -->
+<div class="slide closing-slide" id="slide12">
+  <span class="slide-number">12</span>
+  <div class="slide-title" contenteditable="false">Thank You</div>
+  <div class="title-bar"></div>
+  <div class="closing-takeaway" contenteditable="false">
+    "Knowing the game plan isn't just helpful — it's transformative."
+  </div>
+  <p class="slide-body" contenteditable="false" style="max-width:60%;text-align:center;margin-top:0.8rem;">
+    KVFlow shows that structured workflow awareness enables nearly 2× system-level speedups — and the paper itself demonstrates that clear, structured writing following the CARS model makes complex research accessible to any audience.
+  </p>
+  <div class="paper-ref" contenteditable="false" style="margin-top:1.5rem;">
+    Pan et al. (2025). <em>KVFlow: Efficient Prefix Caching for Accelerating LLM-Based Multi-Agent Workflows.</em> arXiv:2507.07400
+  </div>
+  <p style="font-family:var(--font-heading);font-size:1.3rem;color:var(--color-primary);margin-top:1.5rem;font-weight:700;">
+    Questions?
+  </p>
+  <p class="caption" style="margin-top:0.5rem;">
+    <span class="rubric-tag delivery">DELIVERY</span> Remember: welcome questions, listen actively, repeat if needed, keep answers brief.
+  </p>
+</div>
+
+<!-- ==================== PROGRESS BAR ==================== -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- ==================== JAVASCRIPT ==================== -->
+<script>
+let current = 0;
+let editMode = false;
+const slides = document.querySelectorAll('.slide');
+const total = slides.length;
+const progressBar = document.getElementById('progressBar');
+const slideInfo = document.getElementById('slideInfo');
+const toolbar = document.getElementById('toolbar');
+const editBtn = document.getElementById('editBtn');
+const saveIndicator = document.getElementById('saveIndicator');
+let toolbarVisible = false;
+
+function showSlide(n) {
+  if (n < 0 || n >= total) return;
+  slides[current].classList.remove('active');
+  current = n;
+  slides[current].classList.add('active');
+  progressBar.style.width = ((current + 1) / total * 100) + '%';
+  slideInfo.textContent = (current + 1) + ' / ' + total;
+}
+
+function toggleToolbar() {
+  toolbarVisible = !toolbarVisible;
+  toolbar.classList.toggle('visible', toolbarVisible);
+}
+
+function toggleEditMode() {
+  editMode = !editMode;
+  document.body.classList.toggle('edit-mode', editMode);
+  editBtn.classList.toggle('active', editMode);
+  document.querySelectorAll('[contenteditable]').forEach(el => {
+    el.contentEditable = editMode ? 'true' : 'false';
+  });
+}
+
+function showSaveIndicator(msg) {
+  saveIndicator.textContent = msg || 'Saved!';
+  saveIndicator.classList.add('show');
+  setTimeout(() => saveIndicator.classList.remove('show'), 2000);
+}
+
+function saveToCache() {
+  const content = document.documentElement.outerHTML;
+  try {
+    localStorage.setItem('slidesV2_content', content);
+    localStorage.setItem('slidesV2_timestamp', new Date().toISOString());
+    showSaveIndicator('Saved to cache!');
+  } catch (e) {
+    showSaveIndicator('Error: ' + e.message);
+  }
+}
+
+function loadFromCache() {
+  const saved = localStorage.getItem('slidesV2_content');
+  const ts = localStorage.getItem('slidesV2_timestamp');
+  if (saved) {
+    if (confirm('Load saved version from ' + (ts || 'cache') + '? Current changes will be lost.')) {
+      document.open();
+      document.write(saved);
+      document.close();
+    }
+  } else {
+    showSaveIndicator('No saved version found');
+  }
+}
+
+function clearCache() {
+  if (confirm('Clear all cached slide data?')) {
+    localStorage.removeItem('slidesV2_content');
+    localStorage.removeItem('slidesV2_timestamp');
+    showSaveIndicator('Cache cleared');
+  }
+}
+
+function downloadHTML() {
+  const content = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+  const blob = new Blob([content], { type: 'text/html' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'slidesV2_edited_' + new Date().toISOString().slice(0,10) + '.html';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showSaveIndicator('Downloaded!');
+}
+
+document.addEventListener('keydown', (e) => {
+  if (editMode && e.key !== 'Escape' && e.key !== 'F5') return;
+
+  switch(e.key) {
+    case 'ArrowRight': case ' ':
+      e.preventDefault(); showSlide(current + 1); break;
+    case 'ArrowLeft':
+      e.preventDefault(); showSlide(current - 1); break;
+    case 'Home':
+      e.preventDefault(); showSlide(0); break;
+    case 'End':
+      e.preventDefault(); showSlide(total - 1); break;
+    case 'e': case 'E':
+      e.preventDefault(); toggleEditMode(); break;
+    case 't': case 'T':
+      e.preventDefault(); toggleToolbar(); break;
+    case 'Escape':
+      if (editMode) { toggleEditMode(); }
+      break;
+  }
+});
+
+document.addEventListener('click', (e) => {
+  if (editMode) return;
+  if (e.target.closest('.toolbar') || e.target.closest('button')) return;
+  if (e.clientX > window.innerWidth * 0.6) showSlide(current + 1);
+  else if (e.clientX < window.innerWidth * 0.4) showSlide(current - 1);
+});
+
+showSlide(0);
+</script>
+
+</body>
+</html>

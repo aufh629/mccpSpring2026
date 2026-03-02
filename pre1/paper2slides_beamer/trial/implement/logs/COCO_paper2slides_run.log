@@ -1,0 +1,309 @@
+11:11:33 [INFO] Input: COCO_2310.18955v3.pdf (file)
+11:11:33 [INFO] 
+11:11:33 [INFO] Project: COCO_2310.18955v3
+11:11:33 [INFO] Base: /Users/simonwang/Library/CloudStorage/OneDrive-HongKongBaptistUniversity/GTD/Areas/Teaching/Courses/MCCP 6020/PhDagentSpring2026/pre1/paper2slides_beamer/trial/implement/Paper2Slides/outputs/COCO_2310.18955v3/paper
+11:11:33 [INFO] Config: slides_academic_short
+11:11:33 [INFO] 
+11:11:33 [INFO] Starting from stage: rag
+11:11:33 [INFO] 
+11:11:33 [INFO] ────────────────────────────────────────────────────────────
+11:11:33 [INFO] STAGE: RAG
+11:11:33 [INFO] ────────────────────────────────────────────────────────────
+11:11:33 [INFO] Running in FAST mode (parse only, no indexing)
+11:11:34 [INFO] Parsing file: COCO_2310.18955v3.pdf
+11:11:34 [INFO] Found 1 files to process
+Processing files (mineru):   0%|          | 0/1 [00:00<?, ?file/s]11:11:34 [INFO] Executing mineru command: mineru -p /Users/simonwang/Library/CloudStorage/OneDrive-HongKongBaptistUniversity/GTD/Areas/Teaching/Courses/MCCP 6020/PhDagentSpring2026/pre1/paper2slides_beamer/trial/implement/COCO_2310.18955v3.pdf -o /Users/simonwang/Library/CloudStorage/OneDrive-HongKongBaptistUniversity/GTD/Areas/Teaching/Courses/MCCP 6020/PhDagentSpring2026/pre1/paper2slides_beamer/trial/implement/Paper2Slides/outputs/COCO_2310.18955v3/paper/rag_output -m auto
+11:11:36 [INFO] [MinerU] objc[65060]: Class AVFFrameReceiver is implemented in both /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x10abf83a8) and /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x1172103a8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+11:11:36 [INFO] [MinerU] objc[65060]: Class AVFAudioReceiver is implemented in both /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x10abf83f8) and /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x1172103f8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+11:11:42 [INFO] [MinerU] 2026-01-31 11:11:42.761 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:128 - Batch 1/1: 22 pages/22 pages
+11:11:42 [INFO] [MinerU] 2026-01-31 11:11:42.763 | INFO     | mineru.backend.pipeline.model_init:__init__:208 - DocAnalysis init, this may take some times......
+11:11:43 [INFO] [MinerU] Fetching 1 files:   0%|          | 0/1 [00:00<?, ?it/s]
+11:11:43 [INFO] [MinerU] Fetching 1 files: 100%|██████████| 1/1 [00:00<00:00, 37117.73it/s]
+11:11:43 [INFO] [MinerU] Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]
+11:11:43 [INFO] [MinerU] Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 56570.57it/s]
+11:11:48 [INFO] [MinerU] Fetching 1 files:   0%|          | 0/1 [00:00<?, ?it/s]
+11:11:48 [INFO] [MinerU] Fetching 1 files: 100%|██████████| 1/1 [00:00<00:00, 33288.13it/s]
+11:11:49 [INFO] [MinerU] Fetching 1 files:   0%|          | 0/1 [00:00<?, ?it/s]
+11:11:49 [INFO] [MinerU] Fetching 1 files: 100%|██████████| 1/1 [00:00<00:00, 20068.44it/s]
+11:11:49 [INFO] [MinerU] Fetching 1 files:   0%|          | 0/1 [00:00<?, ?it/s]
+11:11:49 [INFO] [MinerU] Fetching 1 files: 100%|██████████| 1/1 [00:00<00:00, 21845.33it/s]
+11:11:51 [INFO] [MinerU] Fetching 1 files:   0%|          | 0/1 [00:00<?, ?it/s]
+11:11:51 [INFO] [MinerU] Fetching 1 files: 100%|██████████| 1/1 [00:00<00:00, 6374.32it/s]
+11:11:51 [INFO] [MinerU] Fetching 1 files:   0%|          | 0/1 [00:00<?, ?it/s]
+11:11:51 [INFO] [MinerU] Fetching 1 files: 100%|██████████| 1/1 [00:00<00:00, 18558.87it/s]
+11:11:53 [INFO] [MinerU] Fetching 1 files:   0%|          | 0/1 [00:00<?, ?it/s]
+11:11:53 [INFO] [MinerU] Fetching 1 files: 100%|██████████| 1/1 [00:00<00:00, 7281.78it/s]
+11:11:53 [INFO] [MinerU] Fetching 1 files:   0%|          | 0/1 [00:00<?, ?it/s]
+11:11:53 [INFO] [MinerU] Fetching 1 files: 100%|██████████| 1/1 [00:00<00:00, 19599.55it/s]
+11:11:54 [INFO] [MinerU] Fetching 1 files:   0%|          | 0/1 [00:00<?, ?it/s]
+11:11:54 [INFO] [MinerU] Fetching 1 files: 100%|██████████| 1/1 [00:00<00:00, 16710.37it/s]
+11:11:54 [INFO] [MinerU] Fetching 1 files:   0%|          | 0/1 [00:00<?, ?it/s]
+11:11:54 [INFO] [MinerU] Fetching 1 files: 100%|██████████| 1/1 [00:00<00:00, 16912.52it/s]
+11:11:54 [INFO] [MinerU] Fetching 1 files:   0%|          | 0/1 [00:00<?, ?it/s]
+11:11:54 [INFO] [MinerU] Fetching 1 files: 100%|██████████| 1/1 [00:00<00:00, 15592.21it/s]
+11:11:56 [INFO] [MinerU] Fetching 1 files:   0%|          | 0/1 [00:00<?, ?it/s]
+11:11:56 [INFO] [MinerU] Fetching 1 files: 100%|██████████| 1/1 [00:00<00:00, 7084.97it/s]
+11:11:56 [INFO] [MinerU] 2026-01-31 11:11:56.163 | INFO     | mineru.backend.pipeline.model_init:__init__:270 - DocAnalysis init done!
+11:11:56 [INFO] [MinerU] 2026-01-31 11:11:56.163 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:65 - model init cost: 13.400092124938965
+11:11:57 [INFO] [MinerU] Layout Predict:   0%|          | 0/22 [00:00<?, ?it/s]
+11:11:58 [INFO] [MinerU] Layout Predict:   5%|▍         | 1/22 [00:01<00:28,  1.36s/it]
+11:11:58 [INFO] [MinerU] Layout Predict:   9%|▉         | 2/22 [00:01<00:14,  1.34it/s]
+11:11:58 [INFO] [MinerU] Layout Predict:  14%|█▎        | 3/22 [00:01<00:10,  1.84it/s]
+11:11:59 [INFO] [MinerU] Layout Predict:  18%|█▊        | 4/22 [00:02<00:08,  2.21it/s]
+11:11:59 [INFO] [MinerU] Layout Predict:  23%|██▎       | 5/22 [00:02<00:06,  2.48it/s]
+11:11:59 [INFO] [MinerU] Layout Predict:  27%|██▋       | 6/22 [00:02<00:05,  2.71it/s]
+11:11:59 [INFO] [MinerU] Layout Predict:  32%|███▏      | 7/22 [00:03<00:05,  2.88it/s]
+11:12:00 [INFO] [MinerU] Layout Predict:  36%|███▋      | 8/22 [00:03<00:04,  3.00it/s]
+11:12:00 [INFO] [MinerU] Layout Predict:  41%|████      | 9/22 [00:03<00:04,  3.03it/s]
+11:12:00 [INFO] [MinerU] Layout Predict:  45%|████▌     | 10/22 [00:04<00:03,  3.14it/s]
+11:12:01 [INFO] [MinerU] Layout Predict:  50%|█████     | 11/22 [00:04<00:03,  3.21it/s]
+11:12:01 [INFO] [MinerU] Layout Predict:  55%|█████▍    | 12/22 [00:04<00:03,  3.29it/s]
+11:12:01 [INFO] [MinerU] Layout Predict:  59%|█████▉    | 13/22 [00:05<00:02,  3.26it/s]
+11:12:02 [INFO] [MinerU] Layout Predict:  64%|██████▎   | 14/22 [00:05<00:02,  3.32it/s]
+11:12:02 [INFO] [MinerU] Layout Predict:  68%|██████▊   | 15/22 [00:05<00:02,  3.34it/s]
+11:12:02 [INFO] [MinerU] Layout Predict:  73%|███████▎  | 16/22 [00:05<00:01,  3.36it/s]
+11:12:02 [INFO] [MinerU] Layout Predict:  77%|███████▋  | 17/22 [00:06<00:01,  3.34it/s]
+11:12:03 [INFO] [MinerU] Layout Predict:  82%|████████▏ | 18/22 [00:06<00:01,  3.38it/s]
+11:12:03 [INFO] [MinerU] Layout Predict:  86%|████████▋ | 19/22 [00:06<00:00,  3.34it/s]
+11:12:03 [INFO] [MinerU] Layout Predict:  91%|█████████ | 20/22 [00:07<00:00,  3.31it/s]
+11:12:04 [INFO] [MinerU] Layout Predict:  95%|█████████▌| 21/22 [00:07<00:00,  3.27it/s]
+11:12:04 [INFO] [MinerU] Layout Predict: 100%|██████████| 22/22 [00:07<00:00,  3.25it/s]
+11:12:04 [INFO] [MinerU] Layout Predict: 100%|██████████| 22/22 [00:07<00:00,  2.84it/s]
+11:12:06 [INFO] [MinerU] MFD Predict:   0%|          | 0/22 [00:00<?, ?it/s]
+11:12:06 [INFO] [MinerU] MFD Predict:   5%|▍         | 1/22 [00:01<00:41,  1.99s/it]
+11:12:07 [INFO] [MinerU] MFD Predict:   9%|▉         | 2/22 [00:02<00:22,  1.12s/it]
+11:12:07 [INFO] [MinerU] MFD Predict:  14%|█▎        | 3/22 [00:02<00:15,  1.22it/s]
+11:12:08 [INFO] [MinerU] MFD Predict:  18%|█▊        | 4/22 [00:03<00:12,  1.43it/s]
+11:12:08 [INFO] [MinerU] MFD Predict:  23%|██▎       | 5/22 [00:03<00:10,  1.59it/s]
+11:12:09 [INFO] [MinerU] MFD Predict:  27%|██▋       | 6/22 [00:04<00:09,  1.68it/s]
+11:12:09 [INFO] [MinerU] MFD Predict:  32%|███▏      | 7/22 [00:05<00:08,  1.76it/s]
+11:12:10 [INFO] [MinerU] MFD Predict:  36%|███▋      | 8/22 [00:05<00:07,  1.80it/s]
+11:12:10 [INFO] [MinerU] MFD Predict:  41%|████      | 9/22 [00:06<00:07,  1.83it/s]
+11:12:11 [INFO] [MinerU] MFD Predict:  45%|████▌     | 10/22 [00:06<00:06,  1.85it/s]
+11:12:11 [INFO] [MinerU] MFD Predict:  50%|█████     | 11/22 [00:07<00:05,  1.91it/s]
+11:12:12 [INFO] [MinerU] MFD Predict:  55%|█████▍    | 12/22 [00:07<00:05,  1.91it/s]
+11:12:12 [INFO] [MinerU] MFD Predict:  59%|█████▉    | 13/22 [00:08<00:04,  1.98it/s]
+11:12:13 [INFO] [MinerU] MFD Predict:  64%|██████▎   | 14/22 [00:08<00:04,  1.87it/s]
+11:12:13 [INFO] [MinerU] MFD Predict:  68%|██████▊   | 15/22 [00:09<00:03,  1.86it/s]
+11:12:14 [INFO] [MinerU] MFD Predict:  73%|███████▎  | 16/22 [00:09<00:03,  1.87it/s]
+11:12:14 [INFO] [MinerU] MFD Predict:  77%|███████▋  | 17/22 [00:10<00:02,  1.89it/s]
+11:12:15 [INFO] [MinerU] MFD Predict:  82%|████████▏ | 18/22 [00:10<00:02,  1.89it/s]
+11:12:15 [INFO] [MinerU] MFD Predict:  86%|████████▋ | 19/22 [00:11<00:01,  1.89it/s]
+11:12:16 [INFO] [MinerU] MFD Predict:  91%|█████████ | 20/22 [00:11<00:01,  1.89it/s]
+11:12:17 [INFO] [MinerU] MFD Predict:  95%|█████████▌| 21/22 [00:12<00:00,  1.91it/s]
+11:12:17 [INFO] [MinerU] MFD Predict: 100%|██████████| 22/22 [00:12<00:00,  1.93it/s]
+11:12:17 [INFO] [MinerU] MFD Predict: 100%|██████████| 22/22 [00:12<00:00,  1.71it/s]
+11:12:18 [INFO] [MinerU] MFR Predict:   0%|          | 0/684 [00:00<?, ?it/s]
+11:12:19 [INFO] [MinerU] MFR Predict:   2%|▏         | 16/684 [00:01<00:54, 12.21it/s]
+11:12:20 [INFO] [MinerU] MFR Predict:   5%|▍         | 32/684 [00:02<00:46, 14.04it/s]
+11:12:22 [INFO] [MinerU] MFR Predict:   7%|▋         | 48/684 [00:03<00:44, 14.26it/s]
+11:12:23 [INFO] [MinerU] MFR Predict:   9%|▉         | 64/684 [00:04<00:49, 12.54it/s]
+11:12:24 [INFO] [MinerU] MFR Predict:  12%|█▏        | 80/684 [00:06<00:46, 12.92it/s]
+11:12:25 [INFO] [MinerU] MFR Predict:  14%|█▍        | 96/684 [00:07<00:44, 13.24it/s]
+11:12:26 [INFO] [MinerU] MFR Predict:  16%|█▋        | 112/684 [00:08<00:41, 13.68it/s]
+11:12:27 [INFO] [MinerU] MFR Predict:  19%|█▊        | 128/684 [00:09<00:39, 14.05it/s]
+11:12:28 [INFO] [MinerU] MFR Predict:  21%|██        | 144/684 [00:10<00:38, 14.12it/s]
+11:12:30 [INFO] [MinerU] MFR Predict:  23%|██▎       | 160/684 [00:11<00:37, 13.90it/s]
+11:12:31 [INFO] [MinerU] MFR Predict:  26%|██▌       | 176/684 [00:13<00:38, 13.29it/s]
+11:12:33 [INFO] [MinerU] MFR Predict:  28%|██▊       | 192/684 [00:14<00:39, 12.49it/s]
+11:12:34 [INFO] [MinerU] MFR Predict:  30%|███       | 208/684 [00:16<00:40, 11.77it/s]
+11:12:35 [INFO] [MinerU] MFR Predict:  33%|███▎      | 224/684 [00:17<00:38, 11.98it/s]
+11:12:36 [INFO] [MinerU] MFR Predict:  35%|███▌      | 240/684 [00:18<00:35, 12.43it/s]
+11:12:38 [INFO] [MinerU] MFR Predict:  37%|███▋      | 256/684 [00:19<00:34, 12.37it/s]
+11:12:39 [INFO] [MinerU] MFR Predict:  40%|███▉      | 272/684 [00:21<00:34, 12.00it/s]
+11:12:41 [INFO] [MinerU] MFR Predict:  42%|████▏     | 288/684 [00:22<00:34, 11.32it/s]
+11:12:42 [INFO] [MinerU] MFR Predict:  44%|████▍     | 304/684 [00:24<00:34, 10.99it/s]
+11:12:44 [INFO] [MinerU] MFR Predict:  47%|████▋     | 320/684 [00:26<00:34, 10.64it/s]
+11:12:46 [INFO] [MinerU] MFR Predict:  49%|████▉     | 336/684 [00:27<00:33, 10.49it/s]
+11:12:48 [INFO] [MinerU] MFR Predict:  51%|█████▏    | 352/684 [00:29<00:32, 10.36it/s]
+11:12:50 [INFO] [MinerU] MFR Predict:  54%|█████▍    | 368/684 [00:31<00:32,  9.78it/s]
+11:12:52 [INFO] [MinerU] MFR Predict:  56%|█████▌    | 384/684 [00:33<00:32,  9.22it/s]
+11:12:54 [INFO] [MinerU] MFR Predict:  58%|█████▊    | 400/684 [00:35<00:32,  8.67it/s]
+11:12:55 [INFO] [MinerU] MFR Predict:  61%|██████    | 416/684 [00:37<00:31,  8.38it/s]
+11:12:57 [INFO] [MinerU] MFR Predict:  63%|██████▎   | 432/684 [00:38<00:29,  8.56it/s]
+11:12:59 [INFO] [MinerU] MFR Predict:  65%|██████▌   | 448/684 [00:40<00:26,  9.00it/s]
+11:13:01 [INFO] [MinerU] MFR Predict:  68%|██████▊   | 464/684 [00:42<00:25,  8.66it/s]
+11:13:03 [INFO] [MinerU] MFR Predict:  70%|███████   | 480/684 [00:44<00:24,  8.28it/s]
+11:13:06 [INFO] [MinerU] MFR Predict:  73%|███████▎  | 496/684 [00:46<00:22,  8.27it/s]
+11:13:08 [INFO] [MinerU] MFR Predict:  75%|███████▍  | 512/684 [00:49<00:23,  7.25it/s]
+11:13:11 [INFO] [MinerU] MFR Predict:  77%|███████▋  | 528/684 [00:51<00:22,  7.02it/s]
+11:13:14 [INFO] [MinerU] MFR Predict:  80%|███████▉  | 544/684 [00:54<00:20,  6.87it/s]
+11:13:18 [INFO] [MinerU] MFR Predict:  82%|████████▏ | 560/684 [00:57<00:20,  6.05it/s]
+11:13:22 [INFO] [MinerU] MFR Predict:  84%|████████▍ | 576/684 [01:01<00:19,  5.56it/s]
+11:13:27 [INFO] [MinerU] MFR Predict:  87%|████████▋ | 592/684 [01:05<00:18,  5.03it/s]
+11:13:34 [INFO] [MinerU] MFR Predict:  89%|████████▉ | 608/684 [01:10<00:17,  4.27it/s]
+11:13:39 [INFO] [MinerU] MFR Predict:  91%|█████████ | 624/684 [01:17<00:18,  3.22it/s]
+11:13:46 [INFO] [MinerU] MFR Predict:  94%|█████████▎| 640/684 [01:22<00:13,  3.23it/s]
+11:13:55 [INFO] [MinerU] MFR Predict:  96%|█████████▌| 656/684 [01:29<00:09,  2.95it/s]
+11:14:11 [INFO] [MinerU] MFR Predict:  98%|█████████▊| 672/684 [01:38<00:04,  2.46it/s]
+11:14:11 [INFO] [MinerU] MFR Predict: 100%|██████████| 684/684 [01:54<00:00,  1.59it/s]
+11:14:11 [INFO] [MinerU] MFR Predict: 100%|██████████| 684/684 [01:54<00:00,  5.99it/s]
+11:14:13 [INFO] [MinerU] Table-ocr det:   0%|          | 0/1 [00:00<?, ?it/s]
+11:14:13 [INFO] [MinerU] Table-ocr det: 100%|██████████| 1/1 [00:02<00:00,  2.46s/it]
+11:14:13 [INFO] [MinerU] Table-ocr det: 100%|██████████| 1/1 [00:02<00:00,  2.46s/it]
+11:14:14 [INFO] [MinerU] Fetching 1 files:   0%|          | 0/1 [00:00<?, ?it/s]
+11:14:14 [INFO] [MinerU] Fetching 1 files: 100%|██████████| 1/1 [00:00<00:00, 1276.80it/s]
+11:14:14 [INFO] [MinerU] Fetching 1 files:   0%|          | 0/1 [00:00<?, ?it/s]
+11:14:14 [INFO] [MinerU] Fetching 1 files: 100%|██████████| 1/1 [00:00<00:00, 5645.09it/s]
+11:14:18 [INFO] [MinerU] Table-ocr rec ch:   0%|          | 0/76 [00:00<?, ?it/s]
+11:14:19 [INFO] [MinerU] Table-ocr rec ch:   8%|▊         | 6/76 [00:02<00:34,  2.04it/s]
+11:14:19 [INFO] [MinerU] Table-ocr rec ch:  16%|█▌        | 12/76 [00:03<00:13,  4.70it/s]
+11:14:19 [INFO] [MinerU] Table-ocr rec ch:  32%|███▏      | 24/76 [00:03<00:04, 11.67it/s]
+11:14:19 [INFO] [MinerU] Table-ocr rec ch:  47%|████▋     | 36/76 [00:03<00:02, 19.99it/s]
+11:14:19 [INFO] [MinerU] Table-ocr rec ch:  63%|██████▎   | 48/76 [00:03<00:00, 29.45it/s]
+11:14:21 [INFO] [MinerU] Table-ocr rec ch:  79%|███████▉  | 60/76 [00:03<00:00, 39.54it/s]
+11:14:22 [INFO] [MinerU] Table-ocr rec ch:  95%|█████████▍| 72/76 [00:05<00:00, 15.74it/s]
+11:14:22 [INFO] [MinerU] Table-ocr rec ch: 100%|██████████| 76/76 [00:06<00:00, 11.79it/s]
+11:14:22 [INFO] [MinerU] Table-wireless Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+11:14:22 [INFO] [MinerU] Table-wireless Predict: 100%|██████████| 1/1 [00:00<00:00,  6.24it/s]
+11:14:22 [INFO] [MinerU] Table-wireless Predict: 100%|██████████| 1/1 [00:00<00:00,  6.23it/s]
+11:14:23 [INFO] [MinerU] Table-wired Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+11:14:23 [INFO] [MinerU] Fetching 1 files:   0%|          | 0/1 [00:00<?, ?it/s][A
+11:14:23 [INFO] [MinerU] Fetching 1 files: 100%|██████████| 1/1 [00:00<00:00, 10951.19it/s]
+11:14:23 [INFO] [MinerU] Table-wired Predict: 100%|██████████| 1/1 [00:01<00:00,  1.01s/it]
+11:14:23 [INFO] [MinerU] Table-wired Predict: 100%|██████████| 1/1 [00:01<00:00,  1.01s/it]
+11:14:24 [INFO] [MinerU] OCR-det Predict:   0%|          | 0/22 [00:00<?, ?it/s]
+11:14:24 [INFO] [MinerU] Fetching 1 files:   0%|          | 0/1 [00:00<?, ?it/s][A
+11:14:24 [INFO] [MinerU] Fetching 1 files: 100%|██████████| 1/1 [00:00<00:00, 9425.40it/s]
+11:14:24 [INFO] [MinerU] Fetching 1 files:   0%|          | 0/1 [00:00<?, ?it/s][A
+11:14:24 [INFO] [MinerU] Fetching 1 files: 100%|██████████| 1/1 [00:00<00:00, 23301.69it/s]
+11:14:38 [INFO] [MinerU] OCR-det Predict:   5%|▍         | 1/22 [00:11<03:53, 11.13s/it]
+11:14:40 [INFO] [MinerU] OCR-det Predict:   9%|▉         | 2/22 [00:14<02:12,  6.65s/it]
+11:14:43 [INFO] [MinerU] OCR-det Predict:  14%|█▎        | 3/22 [00:16<01:25,  4.50s/it]
+11:14:47 [INFO] [MinerU] OCR-det Predict:  18%|█▊        | 4/22 [00:19<01:08,  3.83s/it]
+11:14:48 [INFO] [MinerU] OCR-det Predict:  23%|██▎       | 5/22 [00:23<01:09,  4.07s/it]
+11:14:50 [INFO] [MinerU] OCR-det Predict:  27%|██▋       | 6/22 [00:24<00:48,  3.04s/it]
+11:14:54 [INFO] [MinerU] OCR-det Predict:  32%|███▏      | 7/22 [00:26<00:40,  2.70s/it]
+11:14:58 [INFO] [MinerU] OCR-det Predict:  36%|███▋      | 8/22 [00:31<00:44,  3.20s/it]
+11:15:01 [INFO] [MinerU] OCR-det Predict:  41%|████      | 9/22 [00:34<00:44,  3.39s/it]
+11:15:01 [INFO] [MinerU] OCR-det Predict:  45%|████▌     | 10/22 [00:37<00:38,  3.22s/it]
+11:15:02 [INFO] [MinerU] OCR-det Predict:  50%|█████     | 11/22 [00:38<00:26,  2.37s/it]
+11:15:03 [INFO] [MinerU] OCR-det Predict:  55%|█████▍    | 12/22 [00:38<00:17,  1.76s/it]
+11:15:05 [INFO] [MinerU] OCR-det Predict:  59%|█████▉    | 13/22 [00:39<00:14,  1.58s/it]
+11:15:06 [INFO] [MinerU] OCR-det Predict:  64%|██████▎   | 14/22 [00:41<00:12,  1.60s/it]
+11:15:08 [INFO] [MinerU] OCR-det Predict:  68%|██████▊   | 15/22 [00:42<00:10,  1.55s/it]
+11:15:09 [INFO] [MinerU] OCR-det Predict:  73%|███████▎  | 16/22 [00:44<00:10,  1.71s/it]
+11:15:10 [INFO] [MinerU] OCR-det Predict:  77%|███████▋  | 17/22 [00:46<00:08,  1.60s/it]
+11:15:10 [INFO] [MinerU] OCR-det Predict:  82%|████████▏ | 18/22 [00:46<00:04,  1.22s/it]
+11:15:11 [INFO] [MinerU] OCR-det Predict:  86%|████████▋ | 19/22 [00:46<00:02,  1.08it/s]
+11:15:13 [INFO] [MinerU] OCR-det Predict:  91%|█████████ | 20/22 [00:48<00:02,  1.09s/it]
+11:15:13 [INFO] [MinerU] OCR-det Predict:  95%|█████████▌| 21/22 [00:49<00:01,  1.07s/it]
+11:15:13 [INFO] [MinerU] OCR-det Predict: 100%|██████████| 22/22 [00:49<00:00,  1.28it/s]
+11:15:13 [INFO] [MinerU] OCR-det Predict: 100%|██████████| 22/22 [00:49<00:00,  2.25s/it]
+11:15:14 [INFO] [MinerU] Processing pages:   0%|          | 0/22 [00:00<?, ?it/s]
+11:15:14 [INFO] [MinerU] Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s][A
+11:18:02 [INFO] [MinerU] Fetching 2 files:  50%|█████     | 1/2 [00:00<00:00,  1.67it/s][A
+11:18:02 [INFO] [MinerU] Fetching 2 files: 100%|██████████| 2/2 [02:48<00:00, 98.92s/it][A
+11:18:02 [INFO] [MinerU] Fetching 2 files: 100%|██████████| 2/2 [02:48<00:00, 84.17s/it]
+11:18:09 [INFO] [MinerU] Processing pages:   5%|▍         | 1/22 [02:55<1:01:20, 175.28s/it]
+11:18:10 [INFO] [MinerU] Processing pages:   9%|▉         | 2/22 [02:56<24:12, 72.63s/it]
+11:18:11 [INFO] [MinerU] Processing pages:  14%|█▎        | 3/22 [02:56<12:36, 39.82s/it]
+11:18:11 [INFO] [MinerU] Processing pages:  18%|█▊        | 4/22 [02:57<07:19, 24.41s/it]
+11:18:12 [INFO] [MinerU] Processing pages:  23%|██▎       | 5/22 [02:58<04:28, 15.79s/it]
+11:18:12 [INFO] [MinerU] Processing pages:  27%|██▋       | 6/22 [02:58<02:49, 10.60s/it]
+11:18:13 [INFO] [MinerU] Processing pages:  32%|███▏      | 7/22 [02:59<01:49,  7.32s/it]
+11:18:13 [INFO] [MinerU] Processing pages:  36%|███▋      | 8/22 [02:59<01:12,  5.15s/it]
+11:18:14 [INFO] [MinerU] Processing pages:  41%|████      | 9/22 [02:59<00:46,  3.58s/it]
+11:18:14 [INFO] [MinerU] Processing pages:  45%|████▌     | 10/22 [03:00<00:32,  2.71s/it]
+11:18:14 [INFO] [MinerU] Processing pages:  50%|█████     | 11/22 [03:01<00:22,  2.02s/it]
+11:18:16 [INFO] [MinerU] Processing pages:  55%|█████▍    | 12/22 [03:01<00:14,  1.44s/it]
+11:18:16 [INFO] [MinerU] Processing pages:  59%|█████▉    | 13/22 [03:02<00:13,  1.52s/it]
+11:18:17 [INFO] [MinerU] Processing pages:  64%|██████▎   | 14/22 [03:03<00:08,  1.11s/it]
+11:18:17 [INFO] [MinerU] Processing pages:  68%|██████▊   | 15/22 [03:03<00:06,  1.04it/s]
+11:18:17 [INFO] [MinerU] Processing pages:  73%|███████▎  | 16/22 [03:04<00:05,  1.19it/s]
+11:18:18 [INFO] [MinerU] Processing pages:  77%|███████▋  | 17/22 [03:04<00:03,  1.59it/s]
+11:18:18 [INFO] [MinerU] Processing pages:  82%|████████▏ | 18/22 [03:04<00:02,  1.72it/s]
+11:18:18 [INFO] [MinerU] Processing pages:  86%|████████▋ | 19/22 [03:05<00:01,  2.17it/s]
+11:18:19 [INFO] [MinerU] Processing pages:  91%|█████████ | 20/22 [03:05<00:00,  2.80it/s]
+11:18:19 [INFO] [MinerU] Processing pages:  95%|█████████▌| 21/22 [03:05<00:00,  2.42it/s]
+11:18:19 [INFO] [MinerU] Processing pages: 100%|██████████| 22/22 [03:06<00:00,  2.03it/s]
+11:18:19 [INFO] [MinerU] Processing pages: 100%|██████████| 22/22 [03:06<00:00,  8.47s/it]
+11:18:20 [INFO] [MinerU] 2026-01-31 11:18:20.395 | INFO     | mineru.cli.common:_process_output:151 - local output dir is /Users/simonwang/Library/CloudStorage/OneDrive-HongKongBaptistUniversity/GTD/Areas/Teaching/Courses/MCCP 6020/PhDagentSpring2026/pre1/paper2slides_beamer/trial/implement/Paper2Slides/outputs/COCO_2310.18955v3/paper/rag_output/COCO_2310.18955v3/auto
+11:18:22 [INFO] [MinerU] Command executed successfully
+11:18:22 [INFO] Fixing image paths in /Users/simonwang/Library/CloudStorage/OneDrive-HongKongBaptistUniversity/GTD/Areas/Teaching/Courses/MCCP 6020/PhDagentSpring2026/pre1/paper2slides_beamer/trial/implement/Paper2Slides/outputs/COCO_2310.18955v3/paper/rag_output/COCO_2310.18955v3/auto/COCO_2310.18955v3_content_list.json with base directory: /Users/simonwang/Library/CloudStorage/OneDrive-HongKongBaptistUniversity/GTD/Areas/Teaching/Courses/MCCP 6020/PhDagentSpring2026/pre1/paper2slides_beamer/trial/implement/Paper2Slides/outputs/COCO_2310.18955v3/paper/rag_output/COCO_2310.18955v3/auto
+11:18:22 [INFO] Successfully processed /Users/simonwang/Library/CloudStorage/OneDrive-HongKongBaptistUniversity/GTD/Areas/Teaching/Courses/MCCP 6020/PhDagentSpring2026/pre1/paper2slides_beamer/trial/implement/COCO_2310.18955v3.pdf (357 content blocks, 407.85s)
+11:18:22 [ERROR] Batch processing failed: 1 (of 1) futures unfinished
+Processing files (mineru):   0%|          | 0/1 [06:47<?, ?file/s]
+11:18:22 [INFO] Batch Processing Summary:
+  Total files: 1
+  Successful: 0 (0.0%)
+  Failed: 0
+  Processing time: 407.86 seconds
+  Output directory: /Users/simonwang/Library/CloudStorage/OneDrive-HongKongBaptistUniversity/GTD/Areas/Teaching/Courses/MCCP 6020/PhDagentSpring2026/pre1/paper2slides_beamer/trial/implement/Paper2Slides/outputs/COCO_2310.18955v3/paper/rag_output
+11:18:22 [INFO]   Parsing completed: 0 successful
+11:18:22 [INFO]   Found 1 markdown file(s)
+11:18:22 [INFO] 
+11:18:22 [INFO] Running queries with GPT-4o and images (paper)...
+11:18:22 [INFO] Processing markdown files and embedding images...
+11:18:22 [INFO]   COCO_2310.18955v3.md: embedded 3 images
+11:18:22 [INFO] Total embedded images: 3
+11:18:25 [ERROR] Query failed: What gap or unmet need motivates this research? Ho... Error: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+11:18:25 [ERROR] Query failed: Show the main performance comparison table with al... Error: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+11:18:25 [ERROR] Query failed: What is the core model formulation or main equatio... Error: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+11:18:25 [ERROR] Query failed: What problem or task does this paper aim to solve?... Error: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+11:18:25 [ERROR] Query failed: Show the ablation study table with all variants an... Error: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+11:18:25 [ERROR] Query failed: What method, approach, or framework does this pape... Error: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+11:18:25 [ERROR] Query failed: What are the limitations or drawbacks of existing ... Error: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+11:18:26 [ERROR] Query failed: Describe the architecture or framework diagram. Wh... Error: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+11:18:26 [ERROR] Query failed: What are the key equations, formulas, or mathemati... Error: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+11:18:26 [ERROR] Query failed: What are the main components, modules, or steps of... Error: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+11:18:26 [ERROR] Query failed: Describe the system design, model structure, or th... Error: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+11:18:26 [ERROR] Query failed: What datasets, benchmarks, or experimental setups ... Error: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+11:18:26 [ERROR] Query failed: What are the main results shown in the main result... Error: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+11:18:27 [ERROR] Query failed: What are the key parameters, settings, or implemen... Error: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+11:18:27 [ERROR] Query failed: What is the algorithm, procedure, or workflow? Des... Error: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+11:18:27 [ERROR] Query failed: What ablation study or sensitivity analysis is con... Error: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+11:18:27 [ERROR] Query failed: How does the proposed method compare to baseline m... Error: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+11:18:27 [ERROR] Query failed: What analysis, case study, or discussion of the re... Error: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+11:18:27 [ERROR] Query failed: List the paper title, author names and their insti... Error: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+11:18:27 [ERROR] Query failed: What performance does the method achieve? Report t... Error: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+11:18:27 [ERROR] Query failed: What limitations does the paper acknowledge? What ... Error: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+11:18:27 [ERROR] Query failed: What are the main contributions listed in the intr... Error: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+11:18:28 [ERROR] Query failed: What evaluation metrics or criteria are used to me... Error: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+11:18:28 [ERROR] Query failed: What is novel or new about this work compared to e... Error: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+11:18:28 [ERROR] Query failed: What objective function, optimization goal, or the... Error: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+11:18:28 [ERROR] Query failed: Show any dataset statistics table with sizes, spli... Error: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+11:18:28 [INFO]   Completed 26 queries
+11:18:28 [INFO]   Saved: /Users/simonwang/Library/CloudStorage/OneDrive-HongKongBaptistUniversity/GTD/Areas/Teaching/Courses/MCCP 6020/PhDagentSpring2026/pre1/paper2slides_beamer/trial/implement/Paper2Slides/outputs/COCO_2310.18955v3/paper/fast/checkpoint_rag.json
+11:18:28 [INFO] 
+11:18:28 [INFO] ────────────────────────────────────────────────────────────
+11:18:28 [INFO] STAGE: SUMMARY
+11:18:28 [INFO] ────────────────────────────────────────────────────────────
+11:18:28 [INFO] Extracting content from indexed documents (paper)...
+11:18:28 [INFO]   Extracting paper metadata from 1 markdown file(s)...
+11:18:28 [ERROR] Stage failed: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+Traceback (most recent call last):
+  File "/Users/simonwang/Library/CloudStorage/OneDrive-HongKongBaptistUniversity/GTD/Areas/Teaching/Courses/MCCP 6020/PhDagentSpring2026/pre1/paper2slides_beamer/trial/implement/Paper2Slides/paper2slides/core/pipeline.py", line 67, in run_pipeline
+    await run_summary_stage(base_dir, config)
+  File "/Users/simonwang/Library/CloudStorage/OneDrive-HongKongBaptistUniversity/GTD/Areas/Teaching/Courses/MCCP 6020/PhDagentSpring2026/pre1/paper2slides_beamer/trial/implement/Paper2Slides/paper2slides/core/stages/summary_stage.py", line 42, in run_summary_stage
+    paper_metadata = await extract_paper_metadata_from_markdown(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/simonwang/Library/CloudStorage/OneDrive-HongKongBaptistUniversity/GTD/Areas/Teaching/Courses/MCCP 6020/PhDagentSpring2026/pre1/paper2slides_beamer/trial/implement/Paper2Slides/paper2slides/summary/paper.py", line 355, in extract_paper_metadata_from_markdown
+    response = await loop.run_in_executor(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/paper2slides/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/simonwang/Library/CloudStorage/OneDrive-HongKongBaptistUniversity/GTD/Areas/Teaching/Courses/MCCP 6020/PhDagentSpring2026/pre1/paper2slides_beamer/trial/implement/Paper2Slides/paper2slides/summary/paper.py", line 357, in <lambda>
+    lambda: llm_client.chat.completions.create(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/paper2slides/lib/python3.12/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/paper2slides/lib/python3.12/site-packages/openai/resources/chat/completions/completions.py", line 1192, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/opt/anaconda3/envs/paper2slides/lib/python3.12/site-packages/openai/_base_client.py", line 1294, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/paper2slides/lib/python3.12/site-packages/openai/_base_client.py", line 1067, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'No cookie auth credentials found', 'code': 401}}
+11:18:28 [INFO] 
+11:18:28 [INFO] ────────────────────────────────────────────────────────────
+11:18:28 [INFO] SUMMARY
+11:18:28 [INFO] ────────────────────────────────────────────────────────────
+11:18:28 [INFO]   [✓] rag: completed
+11:18:28 [INFO]   [✗] summary: failed
+11:18:28 [INFO]   [○] plan: pending
+11:18:28 [INFO]   [○] generate: pending

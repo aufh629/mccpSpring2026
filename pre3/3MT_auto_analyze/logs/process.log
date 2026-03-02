@@ -1,0 +1,27 @@
+# 3MT process log – real-time updates
+
+## 2026-02-04
+
+- **Phase 1 started.** Goal: build 3MTlist.csv (title, speaker, URL).
+- **1.1** Using yt-dlp search: `ytsearchN:3 minute thesis` (no API key).
+- **1.2–1.4** Added `fetch_3mt_list.py`: searches YouTube, parses title/speaker/url, writes CSV. Ran with max 20 results.
+- **3MTlist.csv** created with 20 rows (title, speaker, url). Speaker parsed from title when possible, else channel.
+
+---
+
+- **Phase 2 started.** Picked first 3MT: Emily Johnston (2014), URL https://www.youtube.com/watch?v=dh0pJdgY6Lc.
+- **2.1–2.2** Modified `scripts/youtube_capture.py` to accept CLI: `python3 youtube_capture.py <url> <output_dir>`. Created folder `3MT/output/dh0pJdgY6Lc/`. Running pipeline.
+- **2.3–2.4** Pipeline finished. All assets in `3MT/output/dh0pJdgY6Lc/`:
+  - Video: `2014 Three Minute Thesis winning presentation by E.mp4`
+  - Audio: `2014 Three Minute Thesis winning presentation by E.mp3`
+  - Transcript: `2014 Three Minute Thesis winning presentation by E.txt`
+  - Detailed transcript: `...by E.detailed.json`
+  - Screenshot: `video_page.png`
+  - Metadata: `metadata.json`
+
+---
+
+- **Phase 3 started.** Goal: analysis.md + keep process.log updated.
+- **3.1** Created `analysis.md` in `3MT/`: lists multimodal elements (video, audio, text, detailed.json, image, metadata); ways to analyse (transcript themes, structure, time-aligned pacing, future audio/visual); example insights (rhetorical patterns, discipline/year comparison, accessibility); optional next steps.
+- **3.2** process.log already in `3MT/`; updated with Phase 3 completion.
+

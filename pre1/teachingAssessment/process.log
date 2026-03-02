@@ -1,0 +1,78 @@
+============================================================
+PROCESS LOG - Presentation 1 Teaching Assessment Setup
+============================================================
+Date: 2026-02-16
+Working directory: mccpSpring2026/pre1/teachingAssessment/
+============================================================
+
+[2026-02-16 Step 1] READ genPlan.md
+  - Reviewed the master plan document outlining all deliverables
+  - Key deliverables: plan4pre1.md, pre1work folder, genOutline.md, feedback.md, process.log
+
+[2026-02-16 Step 2] READ all reference materials
+  - pre1/materials/pre1AssessmentRubrics.md — rubric with 4 criteria (Content/Structure/Interaction, Delivery/Body Language/Timing, Visual Aids, Language Range/Accuracy), each scored Excellent/Satisfactory/Unsatisfactory, total out of 40
+  - pre1/materials/Presentation_1_Brief.md — 8-minute presentation on empirical journal article for non-specialist audience; 4 required sections; peer review required; no reading from scripts
+  - pre1/materials/Session 4_Handout_STUDENT Version_LLM_Formatted.md — detailed guidance on structuring presentations, audience analysis, delivery skills, body language, Q&A handling
+  - pre1/materials/Session 4_Giving an Academic Presentation_Part 1_LLM_Formatted.md — lecture slides covering same content with answers/examples
+  - pre1/teachingAssessment/ideaPlan.md — instructor's plan: AI generates outline from paper, student reviews, AI generates HTML slides, practice delivery in class, peer review with AI assistance
+  - pre2/materials/whyHTMLslides.md — rationale for using HTML slides: AI generates code precisely, web-based, editable in browser
+
+[2026-02-16 Step 3] CREATE process.log (this file)
+
+[2026-02-16 Step 4] CREATE plan4pre1.md
+  - Outlines before-class, in-class, and after-class activities
+  - Separate roles for speaker and reviewer
+  - Integrates HTML slide workflow via pre1work folder
+
+[2026-02-16 Step 5] CREATE pre1work/ folder and files
+  - pre1work/papers/ — folder for sharing the journal article
+  - pre1work/sample_slides/ — sample HTML presentation slides
+  - pre1work/genOutline.md — AI agent instructions for generating outline and slide plan
+  - pre1work/feedback.md — speaker feedback placeholders on AI-generated outline
+
+[2026-02-16 Step 6] UPDATE plan4pre1.md
+  - Added section explaining how students use the pre1work folder
+  - Added explanation of why HTML slides are used (from whyHTMLslides.md)
+
+============================================================
+DEMO EXECUTION — pre1workDemo/genOutline.md
+============================================================
+Date: 2026-02-16
+
+[2026-02-16 Demo Step 1] READ assessment requirements
+  - Re-reviewed Presentation_1_Brief.md, pre1AssessmentRubrics.md, Session 4 materials
+  - Confirmed: 8-min presentation, 4 required sections, rubric with 4 criteria (total 40 marks)
+
+[2026-02-16 Demo Step 2] READ the student's paper
+  - Paper: KVFlow: Efficient Prefix Caching for Accelerating LLM-Based Multi-Agent Workflows
+  - Authors: Pan et al. (UCSD & AWS, 2025), arXiv:2507.07400
+  - Topic: Optimizing GPU memory management for LLM-based multi-agent workflows
+  - Problem: LRU eviction policy causes premature cache eviction → cache misses → latency
+  - Solution: Agent Step Graph + workflow-aware eviction + proactive prefetching
+  - Key results: up to 1.83× speedup (single workflow), 2.19× (high concurrency)
+  - Paper is 993 lines of HTML with 8 figures and 40 references
+
+[2026-02-16 Demo Step 3] GENERATE presentation outline
+  - Created: pre1workDemo/outline_generated.md
+  - Structure: Opening (hook + context) → Introduction → Key Findings → Significance → Impact on Research → Closing
+  - Used analogies: team of specialists, hospital triage, relay runner
+  - Included presenter notes for each section (delivery, visual aids, language, rubric alignment)
+  - Added timing guide (1:00 + 1:30 + 2:00 + 1:30 + 1:30 + 0:30 = 8:00)
+  - Added rubric alignment checklist
+
+[2026-02-16 Demo Step 4] CREATE HTML slide plan
+  - Created: pre1workDemo/slide_plan.md
+  - 10 slides planned with title, content, visual elements, and design notes for each
+  - HTML specs: single-file, embedded CSS, arrow key navigation, progress bar
+  - Color scheme: white background, blue accents, agent-specific colors
+  - Diagrams: CSS/HTML-based (no external images needed)
+  - Responsive design for laptop/projector
+
+[2026-02-16 Demo Step 5] AWAITING student feedback
+  - Student should review outline_generated.md
+  - Write feedback in feedback.md
+  - AI agent will then revise outline and generate the actual HTML slides
+
+============================================================
+END OF LOG
+============================================================

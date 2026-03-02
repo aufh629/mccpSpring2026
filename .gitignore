@@ -1,15 +1,35 @@
 # Ignore sensitive data
 .env
+.env.*
+!.env.example
 *.key
 API_KEY*
+*API*key*
+*Key*.md
+bltkey.md
 openRouterAPIkey.md
+openRouterKey.md
+poeAPIkey.md
 HKBUAPIkey.md
+HKBUkey.md
+HKBUbaseURL.md
 zai.md
 poe.md
+
+# Paper2Slides clone - contains local .env with keys; never push to GitHub
+pre1/paper2slides_beamer/trial/implement/Paper2Slides/
 
 # Ignore LLM folder with API keys
 LLM/
 LLM dummy/
+
+# Local meetings (not synced to GitHub)
+meetings/
+
+# Ignore Python bytecode
+__pycache__/
+*.pyc
+*.pyo
 
 # Ignore OS files
 .DS_Store

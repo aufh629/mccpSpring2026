@@ -1,0 +1,40 @@
+Starting map_sentences: paper=2211.05100, out_dir=trial
+Paper: 2211.05100, sentences: 322
+  sample: Large language models (LLMs) have been shown to be able to perform new tasks bas...
+Using Poe API (key from LLM/poe.md).
+Using LLM for matching (model=gpt-4o-mini).
+Processing function 1/17: being-critical
+  wrote report_being-critical.md
+Processing function 2/17: classifying-and-listing
+  wrote report_classifying-and-listing.md
+Processing function 3/17: compare-and-contrast
+  wrote report_compare-and-contrast.md
+Processing function 4/17: describing-quantities
+  wrote report_describing-quantities.md
+Processing function 5/17: describing-trends
+  wrote report_describing-trends.md
+Processing function 6/17: explaining-cause-and-effect
+  wrote report_explaining-cause-and-effect.md
+Processing function 7/17: giving-examples
+  wrote report_giving-examples.md
+Processing function 8/17: signalling-transition
+  wrote report_signalling-transition.md
+Processing function 9/17: using-cautious-language
+  wrote report_using-cautious-language.md
+Processing function 10/17: writing-about-the-past
+  wrote report_writing-about-the-past.md
+Processing function 11/17: writing-definitions
+  wrote report_writing-definitions.md
+Processing function 12/17: describing-methods
+  wrote report_describing-methods.md
+Processing function 13/17: discussing-findings
+  wrote report_discussing-findings.md
+Processing function 14/17: introducing-work
+  wrote report_introducing-work.md
+Processing function 15/17: referring-to-sources
+  wrote report_referring-to-sources.md
+Processing function 16/17: reporting-results
+  wrote report_reporting-results.md
+Processing function 17/17: writing-conclusions
+  wrote report_writing-conclusions.md
+Done. Reports in trial

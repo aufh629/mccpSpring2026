@@ -16,6 +16,19 @@ Both papers have been successfully:
 3. Analyzed for macro-level structure
 4. Reports generated with extensive excerpts from original papers
 
+Updated: 2026-01-31
+- [X] Downloaded PDFs from arXiv
+  * COCO_2310.18955v3.pdf (COCO, NeurIPS 2024) - 857 KB
+  * aaai25_2412.10703.pdf (COLDQ, AAAI 2025) - 516 KB
+  * Added download_pdf_from_arxiv.py for re-running downloads
+
+Updated: 2026-01-26
+- [X] Converted markdown papers to HTML format
+  * Created aaai25_paper.html (from aaai25_paper.md, arXiv:2412.10703v21)
+  * Created COCO_paper.html (from COCO_paper.md, arXiv:2310.18955v3)
+  * Attempted to fetch HTML from arXiv - successfully retrieved HTML for arXiv:2310.18955v3
+  * Created convert_md_to_html.py script for markdown to HTML conversion
+
 Progress Notes:
 - Found two papers: 
   * arXiv-2310.18955v3 (COCO paper, NeurIPS 2024) - uses multiple \input{} files

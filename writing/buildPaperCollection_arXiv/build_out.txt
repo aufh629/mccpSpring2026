@@ -1,0 +1,405 @@
+Building corpus (max 100 papers), seed: 2402.15235
+==================================================
+[1/100] Processing 2402.15235 (found from: SEED)
+  Saved HTML: 2402.15235.html
+  Added: MACRec: a Multi-Agent Collaboration Framework for Recommendation...
+  FOUND arXiv ref -> 2308.10848 | cited_by=2402.15235
+  FOUND arXiv ref -> 2305.14325 | cited_by=2402.15235
+  FOUND arXiv ref -> 2308.16505 | cited_by=2402.15235
+  FOUND arXiv ref -> 2303.17760 | cited_by=2402.15235
+  FOUND arXiv ref -> 2112.09332 | cited_by=2402.15235
+  FOUND arXiv ref -> 2308.10435 | cited_by=2402.15235
+  FOUND arXiv ref -> 2303.08774 | cited_by=2402.15235
+  FOUND arXiv ref -> 2303.17580 | cited_by=2402.15235
+  FOUND arXiv ref -> 2308.09904 | cited_by=2402.15235
+  FOUND arXiv ref -> 2302.13971 | cited_by=2402.15235
+  FOUND arXiv ref -> 2306.02552 | cited_by=2402.15235
+  FOUND arXiv ref -> 2308.14296 | cited_by=2402.15235
+  FOUND arXiv ref -> 2308.08155 | cited_by=2402.15235
+  FOUND arXiv ref -> 2210.03629 | cited_by=2402.15235
+  FOUND arXiv ref -> 2210.02414 | cited_by=2402.15235
+  FOUND arXiv ref -> 2310.10108 | cited_by=2402.15235
+  FOUND arXiv ref -> 2307.02485 | cited_by=2402.15235
+  FOUND arXiv ref -> 2310.09233 | cited_by=2402.15235
+[2/100] Processing 2308.10848 (found from: 2402.15235)
+  [ERROR] fetch 2308.10848: 404 Client Error: Not Found for url: https://arxiv.org/html/2308.10848
+  Added: AgentVerse: Facilitating Multi-Agent Collaboration and Exploring Emerg...
+[3/100] Processing 2305.14325 (found from: 2402.15235)
+  [ERROR] fetch 2305.14325: 404 Client Error: Not Found for url: https://arxiv.org/html/2305.14325
+  Added: Improving Factuality and Reasoning in Language Models through Multiage...
+[4/100] Processing 2308.16505 (found from: 2402.15235)
+  Saved HTML: 2308.16505.html
+  Added: Recommender AI Agent: Integrating Large Language Models for Interactiv...
+  FOUND arXiv ref -> 2308.09687 | cited_by=2308.16505
+  FOUND arXiv ref -> 1908.05391 | cited_by=2308.16505
+  FOUND arXiv ref -> 2211.12588 | cited_by=2308.16505
+  FOUND arXiv ref -> 2204.02311 | cited_by=2308.16505
+  FOUND arXiv ref -> 2305.02182 | cited_by=2308.16505
+  FOUND arXiv ref -> 2303.14524 | cited_by=2308.16505
+  FOUND arXiv ref -> 2305.06474 | cited_by=2308.16505
+  FOUND arXiv ref -> 2304.10149 | cited_by=2308.16505
+  FOUND arXiv ref -> 2101.06804 | cited_by=2308.16505
+  FOUND arXiv ref -> 2311.08719 | cited_by=2308.16505
+  FOUND arXiv ref -> 2303.17651 | cited_by=2308.16505
+  FOUND arXiv ref -> 2304.08354 | cited_by=2308.16505
+  FOUND arXiv ref -> 2307.16789 | cited_by=2308.16505
+  FOUND arXiv ref -> 2112.08633 | cited_by=2308.16505
+  FOUND arXiv ref -> 2302.04761 | cited_by=2308.16505
+  FOUND arXiv ref -> 2303.11366 | cited_by=2308.16505
+  FOUND arXiv ref -> 2208.03188 | cited_by=2308.16505
+  FOUND arXiv ref -> 2201.08239 | cited_by=2308.16505
+  FOUND arXiv ref -> 2307.09288 | cited_by=2308.16505
+  FOUND arXiv ref -> 2110.07477 | cited_by=2308.16505
+  FOUND arXiv ref -> 2304.03153 | cited_by=2308.16505
+  FOUND arXiv ref -> 2308.11432 | cited_by=2308.16505
+  FOUND arXiv ref -> 2305.04091 | cited_by=2308.16505
+  FOUND arXiv ref -> 2203.14257 | cited_by=2308.16505
+  FOUND arXiv ref -> 2306.07174 | cited_by=2308.16505
+  FOUND arXiv ref -> 2203.11171 | cited_by=2308.16505
+  FOUND arXiv ref -> 2303.04671 | cited_by=2308.16505
+  FOUND arXiv ref -> 2303.11381 | cited_by=2308.16505
+  FOUND arXiv ref -> 2305.10601 | cited_by=2308.16505
+  FOUND arXiv ref -> 2309.14365 | cited_by=2308.16505
+  FOUND arXiv ref -> 2306.05685 | cited_by=2308.16505
+  FOUND arXiv ref -> 2305.10250 | cited_by=2308.16505
+  FOUND via title search 'Towards conversational recommender systems...' -> 2111.13463 | cited_by=2308.16505
+  FOUND via title search 'Pal: Program-aided language models...' -> 2503.21676 | cited_by=2308.16505
+  FOUND via title search 'Self-attentive sequential recommendation...' -> 2203.16942 | cited_by=2308.16505
+  FOUND via title search 'Feature selection methods for conversational recom...' -> 2309.03645 | cited_by=2308.16505
+  FOUND via title search 'What does bert know about books, movies and music?...' -> 2007.15356 | cited_by=2308.16505
+  FOUND via title search 'Towards unified conversational recommender systems...' -> 2206.09363 | cited_by=2308.16505
+  FOUND via title search 'Comparison-based conversational recommender system...' -> 2208.09837 | cited_by=2308.16505
+  FOUND via title search 'Adapting user preference to online feedback in mul...' -> 2310.11188 | cited_by=2308.16505
+  FOUND via title search 'Towards conversational search and recommendation: ...' -> 2405.14249 | cited_by=2308.16505
+  FOUND via title search 'Towards question-based recommender systems...' -> 2411.07569 | cited_by=2308.16505
+  FOUND via title search 'Learning to ask: Question-based sequential Bayesia...' -> 1908.11733 | cited_by=2308.16505
+[5/100] Processing 2303.17760 (found from: 2402.15235)
+  [ERROR] fetch 2303.17760: 404 Client Error: Not Found for url: https://arxiv.org/html/2303.17760
+  Added: CAMEL: Communicative Agents for "Mind" Exploration of Large Language M...
+[6/100] Processing 2112.09332 (found from: 2402.15235)
+  [ERROR] fetch 2112.09332: 404 Client Error: Not Found for url: https://arxiv.org/html/2112.09332
+  Added: WebGPT: Browser-assisted question-answering with human feedback...
+[7/100] Processing 2308.10435 (found from: 2402.15235)
+  [ERROR] fetch 2308.10435: 404 Client Error: Not Found for url: https://arxiv.org/html/2308.10435
+  Added: GPT-in-the-Loop: Adaptive Decision-Making for Multiagent Systems...
+[8/100] Processing 2303.08774 (found from: 2402.15235)
+  Saved HTML: 2303.08774.html
+  Added: GPT-4 Technical Report...
+  FOUND arXiv ref -> 2203.15556 | cited_by=2303.08774
+  FOUND arXiv ref -> 2112.11446 | cited_by=2303.08774
+  FOUND arXiv ref -> 1901.02860 | cited_by=2303.08774
+  FOUND arXiv ref -> 1907.11692 | cited_by=2303.08774
+  FOUND arXiv ref -> 1810.04805 | cited_by=2303.08774
+  FOUND arXiv ref -> 1910.10683 | cited_by=2303.08774
+  FOUND arXiv ref -> 1804.04235 | cited_by=2303.08774
+  FOUND arXiv ref -> 1607.06450 | cited_by=2303.08774
+  FOUND arXiv ref -> 2210.11610 | cited_by=2303.08774
+  FOUND arXiv ref -> 2205.11916 | cited_by=2303.08774
+  FOUND arXiv ref -> 2001.08361 | cited_by=2303.08774
+  FOUND arXiv ref -> 2010.14701 | cited_by=2303.08774
+  FOUND arXiv ref -> 2203.03466 | cited_by=2303.08774
+  FOUND arXiv ref -> 1701.06538 | cited_by=2303.08774
+  FOUND arXiv ref -> 2202.08906 | cited_by=2303.08774
+  FOUND arXiv ref -> 2104.09864 | cited_by=2303.08774
+  FOUND arXiv ref -> 2209.06794 | cited_by=2303.08774
+  FOUND arXiv ref -> 2211.05100 | cited_by=2303.08774
+  FOUND arXiv ref -> 2205.01068 | cited_by=2303.08774
+  FOUND arXiv ref -> 1704.01444 | cited_by=2303.08774
+  FOUND arXiv ref -> 1901.07291 | cited_by=2303.08774
+  FOUND arXiv ref -> 2205.14135 | cited_by=2303.08774
+  FOUND arXiv ref -> 1904.10509 | cited_by=2303.08774
+  FOUND arXiv ref -> 2112.05682 | cited_by=2303.08774
+  FOUND arXiv ref -> 1712.00409 | cited_by=2303.08774
+  FOUND arXiv ref -> 2007.05558 | cited_by=2303.08774
+  FOUND arXiv ref -> 2211.02011 | cited_by=2303.08774
+  FOUND arXiv ref -> 2206.04615 | cited_by=2303.08774
+  FOUND arXiv ref -> 2009.03300 | cited_by=2303.08774
+  FOUND arXiv ref -> 2210.11399 | cited_by=2303.08774
+  FOUND arXiv ref -> 2210.11416 | cited_by=2303.08774
+  FOUND arXiv ref -> 2004.08994 | cited_by=2303.08774
+  FOUND arXiv ref -> 1907.10641 | cited_by=2303.08774
+  FOUND arXiv ref -> 2207.10397 | cited_by=2303.08774
+  FOUND arXiv ref -> 2009.07448 | cited_by=2303.08774
+  FOUND arXiv ref -> 2110.14168 | cited_by=2303.08774
+  FOUND arXiv ref -> 2206.14858 | cited_by=2303.08774
+  FOUND arXiv ref -> 2211.14275 | cited_by=2303.08774
+[9/100] Processing 2303.17580 (found from: 2402.15235)
+  [ERROR] fetch 2303.17580: 404 Client Error: Not Found for url: https://arxiv.org/html/2303.17580
+  Added: HuggingGPT: Solving AI Tasks with ChatGPT and its Friends in Hugging F...
+[10/100] Processing 2308.09904 (found from: 2402.15235)
+  [ERROR] fetch 2308.09904: 404 Client Error: Not Found for url: https://arxiv.org/html/2308.09904
+  Added: RAH! RecSys-Assistant-Human: A Human-Centered Recommendation Framework...
+[11/100] Processing 2302.13971 (found from: 2402.15235)
+  [ERROR] fetch 2302.13971: 404 Client Error: Not Found for url: https://arxiv.org/html/2302.13971
+  Added: LLaMA: Open and Efficient Foundation Language Models...
+[12/100] Processing 2306.02552 (found from: 2402.15235)
+  [ERROR] fetch 2306.02552: 404 Client Error: Not Found for url: https://arxiv.org/html/2306.02552
+  Added: User Behavior Simulation with Large Language Model based Agents...
+[13/100] Processing 2308.14296 (found from: 2402.15235)
+  Saved HTML: 2308.14296.html
+  Added: RecMind: Large Language Model Powered Agent For Recommendation...
+[14/100] Processing 2308.08155 (found from: 2402.15235)
+  [ERROR] fetch 2308.08155: 404 Client Error: Not Found for url: https://arxiv.org/html/2308.08155
+  Added: AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversati...
+[15/100] Processing 2210.03629 (found from: 2402.15235)
+  [ERROR] fetch 2210.03629: 404 Client Error: Not Found for url: https://arxiv.org/html/2210.03629
+  Added: ReAct: Synergizing Reasoning and Acting in Language Models...
+[16/100] Processing 2210.02414 (found from: 2402.15235)
+  [ERROR] fetch 2210.02414: 404 Client Error: Not Found for url: https://arxiv.org/html/2210.02414
+  Added: GLM-130B: An Open Bilingual Pre-trained Model...
+[17/100] Processing 2310.10108 (found from: 2402.15235)
+  Saved HTML: 2310.10108.html
+  Added: On Generative Agents in Recommendation...
+[18/100] Processing 2307.02485 (found from: 2402.15235)
+  [ERROR] fetch 2307.02485: 404 Client Error: Not Found for url: https://arxiv.org/html/2307.02485
+  Added: Building Cooperative Embodied Agents Modularly with Large Language Mod...
+[19/100] Processing 2310.09233 (found from: 2402.15235)
+  [ERROR] fetch 2310.09233: 404 Client Error: Not Found for url: https://arxiv.org/html/2310.09233
+  Added: AgentCF: Collaborative Learning with Autonomous Language Agents for Re...
+[20/100] Processing 2308.09687 (found from: 2308.16505)
+  [ERROR] fetch 2308.09687: 404 Client Error: Not Found for url: https://arxiv.org/html/2308.09687
+  Added: Graph of Thoughts: Solving Elaborate Problems with Large Language Mode...
+[21/100] Processing 1908.05391 (found from: 2308.16505)
+  [ERROR] fetch 1908.05391: 404 Client Error: Not Found for url: https://arxiv.org/html/1908.05391
+  Added: Towards Knowledge-Based Recommender Dialog System...
+[22/100] Processing 2211.12588 (found from: 2308.16505)
+  Saved HTML: 2211.12588.html
+  Added: Program of Thoughts Prompting: Disentangling Computation from Reasonin...
+[23/100] Processing 2204.02311 (found from: 2308.16505)
+  [ERROR] fetch 2204.02311: 404 Client Error: Not Found for url: https://arxiv.org/html/2204.02311
+  Added: PaLM: Scaling Language Modeling with Pathways...
+[24/100] Processing 2305.02182 (found from: 2308.16505)
+  [ERROR] fetch 2305.02182: 404 Client Error: Not Found for url: https://arxiv.org/html/2305.02182
+  Added: Uncovering ChatGPT's Capabilities in Recommender Systems...
+[25/100] Processing 2303.14524 (found from: 2308.16505)
+  [ERROR] fetch 2303.14524: 404 Client Error: Not Found for url: https://arxiv.org/html/2303.14524
+  Added: Chat-REC: Towards Interactive and Explainable LLMs-Augmented Recommend...
+[26/100] Processing 2305.06474 (found from: 2308.16505)
+  [ERROR] fetch 2305.06474: 404 Client Error: Not Found for url: https://arxiv.org/html/2305.06474
+  Added: Do LLMs Understand User Preferences? Evaluating LLMs On User Rating Pr...
+[27/100] Processing 2304.10149 (found from: 2308.16505)
+  [ERROR] fetch 2304.10149: 404 Client Error: Not Found for url: https://arxiv.org/html/2304.10149
+  Added: Is ChatGPT a Good Recommender? A Preliminary Study...
+[28/100] Processing 2101.06804 (found from: 2308.16505)
+  [ERROR] fetch 2101.06804: 404 Client Error: Not Found for url: https://arxiv.org/html/2101.06804
+  Added: What Makes Good In-Context Examples for GPT-$3$?...
+[29/100] Processing 2311.08719 (found from: 2308.16505)
+  [ERROR] fetch 2311.08719: 404 Client Error: Not Found for url: https://arxiv.org/html/2311.08719
+  Added: Think-in-Memory: Recalling and Post-thinking Enable LLMs with Long-Ter...
+[30/100] Processing 2303.17651 (found from: 2308.16505)
+  [ERROR] fetch 2303.17651: 404 Client Error: Not Found for url: https://arxiv.org/html/2303.17651
+  Added: Self-Refine: Iterative Refinement with Self-Feedback...
+[31/100] Processing 2304.08354 (found from: 2308.16505)
+  Saved HTML: 2304.08354.html
+  Added: Tool Learning with Foundation Models...
+[32/100] Processing 2307.16789 (found from: 2308.16505)
+  Saved HTML: 2307.16789.html
+  Added: ToolLLM: Facilitating Large Language Models to Master 16000+ Real-worl...
+[33/100] Processing 2112.08633 (found from: 2308.16505)
+  [ERROR] fetch 2112.08633: 404 Client Error: Not Found for url: https://arxiv.org/html/2112.08633
+  Added: Learning To Retrieve Prompts for In-Context Learning...
+[34/100] Processing 2302.04761 (found from: 2308.16505)
+  [ERROR] fetch 2302.04761: 404 Client Error: Not Found for url: https://arxiv.org/html/2302.04761
+  Added: Toolformer: Language Models Can Teach Themselves to Use Tools...
+[35/100] Processing 2303.11366 (found from: 2308.16505)
+  Saved HTML: 2303.11366.html
+  Added: Reflexion: Language Agents with Verbal Reinforcement Learning...
+[36/100] Processing 2208.03188 (found from: 2308.16505)
+  [ERROR] fetch 2208.03188: 404 Client Error: Not Found for url: https://arxiv.org/html/2208.03188
+  Added: BlenderBot 3: a deployed conversational agent that continually learns ...
+[37/100] Processing 2201.08239 (found from: 2308.16505)
+  [ERROR] fetch 2201.08239: 404 Client Error: Not Found for url: https://arxiv.org/html/2201.08239
+  Added: LaMDA: Language Models for Dialog Applications...
+[38/100] Processing 2307.09288 (found from: 2308.16505)
+  [ERROR] fetch 2307.09288: 404 Client Error: Not Found for url: https://arxiv.org/html/2307.09288
+  Added: Llama 2: Open Foundation and Fine-Tuned Chat Models...
+[39/100] Processing 2110.07477 (found from: 2308.16505)
+  [ERROR] fetch 2110.07477: 404 Client Error: Not Found for url: https://arxiv.org/html/2110.07477
+  Added: RecInDial: A Unified Framework for Conversational Recommendation with ...
+[40/100] Processing 2304.03153 (found from: 2308.16505)
+  [ERROR] fetch 2304.03153: 404 Client Error: Not Found for url: https://arxiv.org/html/2304.03153
+  Added: Zero-Shot Next-Item Recommendation using Large Pretrained Language Mod...
+[41/100] Processing 2308.11432 (found from: 2308.16505)
+  Saved HTML: 2308.11432.html
+  Added: A Survey on Large Language Model based Autonomous Agents...
+[42/100] Processing 2305.04091 (found from: 2308.16505)
+  [ERROR] fetch 2305.04091: 404 Client Error: Not Found for url: https://arxiv.org/html/2305.04091
+  Added: Plan-and-Solve Prompting: Improving Zero-Shot Chain-of-Thought Reasoni...
+[43/100] Processing 2203.14257 (found from: 2308.16505)
+  [ERROR] fetch 2203.14257: 404 Client Error: Not Found for url: https://arxiv.org/html/2203.14257
+  Added: BARCOR: Towards A Unified Framework for Conversational Recommendation ...
+[44/100] Processing 2306.07174 (found from: 2308.16505)
+  Saved HTML: 2306.07174.html
+  Added: Augmenting Language Models with Long-Term Memory...
+[45/100] Processing 2203.11171 (found from: 2308.16505)
+  [ERROR] fetch 2203.11171: 404 Client Error: Not Found for url: https://arxiv.org/html/2203.11171
+  Added: Self-Consistency Improves Chain of Thought Reasoning in Language Model...
+[46/100] Processing 2303.04671 (found from: 2308.16505)
+  [ERROR] fetch 2303.04671: 404 Client Error: Not Found for url: https://arxiv.org/html/2303.04671
+  Added: Visual ChatGPT: Talking, Drawing and Editing with Visual Foundation Mo...
+[47/100] Processing 2303.11381 (found from: 2308.16505)
+  [ERROR] fetch 2303.11381: 404 Client Error: Not Found for url: https://arxiv.org/html/2303.11381
+  Added: MM-REACT: Prompting ChatGPT for Multimodal Reasoning and Action...
+[48/100] Processing 2305.10601 (found from: 2308.16505)
+  Saved HTML: 2305.10601.html
+  Added: Tree of Thoughts: Deliberate Problem Solving with Large Language Model...
+[49/100] Processing 2309.14365 (found from: 2308.16505)
+  Saved HTML: 2309.14365.html
+  Added: An In-depth Survey of Large Language Model-based Artificial Intelligen...
+[50/100] Processing 2306.05685 (found from: 2308.16505)
+  Saved HTML: 2306.05685.html
+  Added: Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena...
+[51/100] Processing 2305.10250 (found from: 2308.16505)
+  [ERROR] fetch 2305.10250: 404 Client Error: Not Found for url: https://arxiv.org/html/2305.10250
+  Added: MemoryBank: Enhancing Large Language Models with Long-Term Memory...
+[52/100] Processing 2111.13463 (found from: 2308.16505)
+  Saved HTML: 2111.13463.html
+  Added: Generating Usage-related Questions for Preference Elicitation in Conve...
+[53/100] Processing 2503.21676 (found from: 2308.16505)
+  Saved HTML: 2503.21676.html
+  Added: How do language models learn facts? Dynamics, curricula and hallucinat...
+[54/100] Processing 2203.16942 (found from: 2308.16505)
+  [ERROR] fetch 2203.16942: 404 Client Error: Not Found for url: https://arxiv.org/html/2203.16942
+  Added: Sequential Recommendation with User Evolving Preference Decomposition...
+[55/100] Processing 2309.03645 (found from: 2308.16505)
+  [ERROR] fetch 2309.03645: 404 Client Error: Not Found for url: https://arxiv.org/html/2309.03645
+  Added: VideolandGPT: A User Study on a Conversational Recommender System...
+[56/100] Processing 2007.15356 (found from: 2308.16505)
+  [ERROR] fetch 2007.15356: 404 Client Error: Not Found for url: https://arxiv.org/html/2007.15356
+  Added: What does BERT know about books, movies and music? Probing BERT for Co...
+[57/100] Processing 2206.09363 (found from: 2308.16505)
+  [ERROR] fetch 2206.09363: 404 Client Error: Not Found for url: https://arxiv.org/html/2206.09363
+  Added: Towards Unified Conversational Recommender Systems via Knowledge-Enhan...
+[58/100] Processing 2208.09837 (found from: 2308.16505)
+  [ERROR] fetch 2208.09837: 404 Client Error: Not Found for url: https://arxiv.org/html/2208.09837
+  Added: Comparison-based Conversational Recommender System with Relative Bandi...
+[59/100] Processing 2310.11188 (found from: 2308.16505)
+  Saved HTML: 2310.11188.html
+  Added: Adversarial Bandits with Multi-User Delayed Feedback: Theory and Appli...
+[60/100] Processing 2405.14249 (found from: 2308.16505)
+  Saved HTML: 2405.14249.html
+  Added: Identifying Breakdowns in Conversational Recommender Systems using Use...
+[61/100] Processing 2411.07569 (found from: 2308.16505)
+  Saved HTML: 2411.07569.html
+  Added: Towards Automated Model Design on Recommender Systems...
+[62/100] Processing 1908.11733 (found from: 2308.16505)
+  [ERROR] fetch 1908.11733: 404 Client Error: Not Found for url: https://arxiv.org/html/1908.11733
+  Added: Learning to Ask: Question-based Sequential Bayesian Product Search...
+[63/100] Processing 2203.15556 (found from: 2303.08774)
+  [ERROR] fetch 2203.15556: 404 Client Error: Not Found for url: https://arxiv.org/html/2203.15556
+  Added: Training Compute-Optimal Large Language Models...
+[64/100] Processing 2112.11446 (found from: 2303.08774)
+  [ERROR] fetch 2112.11446: 404 Client Error: Not Found for url: https://arxiv.org/html/2112.11446
+  Added: Scaling Language Models: Methods, Analysis & Insights from Training Go...
+[65/100] Processing 1901.02860 (found from: 2303.08774)
+  [ERROR] fetch 1901.02860: 404 Client Error: Not Found for url: https://arxiv.org/html/1901.02860
+  Added: Transformer-XL: Attentive Language Models Beyond a Fixed-Length Contex...
+[66/100] Processing 1907.11692 (found from: 2303.08774)
+  [ERROR] fetch 1907.11692: 404 Client Error: Not Found for url: https://arxiv.org/html/1907.11692
+  Added: RoBERTa: A Robustly Optimized BERT Pretraining Approach...
+[67/100] Processing 1810.04805 (found from: 2303.08774)
+  [ERROR] fetch 1810.04805: 404 Client Error: Not Found for url: https://arxiv.org/html/1810.04805
+  Added: BERT: Pre-training of Deep Bidirectional Transformers for Language Und...
+[68/100] Processing 1910.10683 (found from: 2303.08774)
+  Saved HTML: 1910.10683.html
+  Added: Exploring the Limits of Transfer Learning with a Unified Text-to-Text ...
+[69/100] Processing 1804.04235 (found from: 2303.08774)
+  [ERROR] fetch 1804.04235: 404 Client Error: Not Found for url: https://arxiv.org/html/1804.04235
+  Added: Adafactor: Adaptive Learning Rates with Sublinear Memory Cost...
+[70/100] Processing 1607.06450 (found from: 2303.08774)
+  [ERROR] fetch 1607.06450: 404 Client Error: Not Found for url: https://arxiv.org/html/1607.06450
+  Added: Layer Normalization...
+[71/100] Processing 2210.11610 (found from: 2303.08774)
+  [ERROR] fetch 2210.11610: 404 Client Error: Not Found for url: https://arxiv.org/html/2210.11610
+  Added: Large Language Models Can Self-Improve...
+[72/100] Processing 2205.11916 (found from: 2303.08774)
+  [ERROR] fetch 2205.11916: 404 Client Error: Not Found for url: https://arxiv.org/html/2205.11916
+  Added: Large Language Models are Zero-Shot Reasoners...
+[73/100] Processing 2001.08361 (found from: 2303.08774)
+  [ERROR] fetch 2001.08361: 404 Client Error: Not Found for url: https://arxiv.org/html/2001.08361
+  Added: Scaling Laws for Neural Language Models...
+[74/100] Processing 2010.14701 (found from: 2303.08774)
+  [ERROR] fetch 2010.14701: 404 Client Error: Not Found for url: https://arxiv.org/html/2010.14701
+  Added: Scaling Laws for Autoregressive Generative Modeling...
+[75/100] Processing 2203.03466 (found from: 2303.08774)
+  [ERROR] fetch 2203.03466: 404 Client Error: Not Found for url: https://arxiv.org/html/2203.03466
+  Added: Tensor Programs V: Tuning Large Neural Networks via Zero-Shot Hyperpar...
+[76/100] Processing 1701.06538 (found from: 2303.08774)
+  [ERROR] fetch 1701.06538: 404 Client Error: Not Found for url: https://arxiv.org/html/1701.06538
+  Added: Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Expe...
+[77/100] Processing 2202.08906 (found from: 2303.08774)
+  [ERROR] fetch 2202.08906: 404 Client Error: Not Found for url: https://arxiv.org/html/2202.08906
+  Added: ST-MoE: Designing Stable and Transferable Sparse Expert Models...
+[78/100] Processing 2104.09864 (found from: 2303.08774)
+  [ERROR] fetch 2104.09864: 404 Client Error: Not Found for url: https://arxiv.org/html/2104.09864
+  Added: RoFormer: Enhanced Transformer with Rotary Position Embedding...
+[79/100] Processing 2209.06794 (found from: 2303.08774)
+  [ERROR] fetch 2209.06794: 404 Client Error: Not Found for url: https://arxiv.org/html/2209.06794
+  Added: PaLI: A Jointly-Scaled Multilingual Language-Image Model...
+[80/100] Processing 2211.05100 (found from: 2303.08774)
+  Saved HTML: 2211.05100.html
+  Added: BLOOM: A 176B-Parameter Open-Access Multilingual Language Model...
+[81/100] Processing 2205.01068 (found from: 2303.08774)
+  [ERROR] fetch 2205.01068: 404 Client Error: Not Found for url: https://arxiv.org/html/2205.01068
+  Added: OPT: Open Pre-trained Transformer Language Models...
+[82/100] Processing 1704.01444 (found from: 2303.08774)
+  [ERROR] fetch 1704.01444: 404 Client Error: Not Found for url: https://arxiv.org/html/1704.01444
+  Added: Learning to Generate Reviews and Discovering Sentiment...
+[83/100] Processing 1901.07291 (found from: 2303.08774)
+  [ERROR] fetch 1901.07291: 404 Client Error: Not Found for url: https://arxiv.org/html/1901.07291
+  Added: Cross-lingual Language Model Pretraining...
+[84/100] Processing 2205.14135 (found from: 2303.08774)
+  [ERROR] fetch 2205.14135: 404 Client Error: Not Found for url: https://arxiv.org/html/2205.14135
+  Added: FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awar...
+[85/100] Processing 1904.10509 (found from: 2303.08774)
+  [ERROR] fetch 1904.10509: 404 Client Error: Not Found for url: https://arxiv.org/html/1904.10509
+  Added: Generating Long Sequences with Sparse Transformers...
+[86/100] Processing 2112.05682 (found from: 2303.08774)
+  [ERROR] fetch 2112.05682: 404 Client Error: Not Found for url: https://arxiv.org/html/2112.05682
+  Added: Self-attention Does Not Need $O(n^2)$ Memory...
+[87/100] Processing 1712.00409 (found from: 2303.08774)
+  [ERROR] fetch 1712.00409: 404 Client Error: Not Found for url: https://arxiv.org/html/1712.00409
+  Added: Deep Learning Scaling is Predictable, Empirically...
+[88/100] Processing 2007.05558 (found from: 2303.08774)
+  [ERROR] fetch 2007.05558: 404 Client Error: Not Found for url: https://arxiv.org/html/2007.05558
+  Added: The Computational Limits of Deep Learning...
+[89/100] Processing 2211.02011 (found from: 2303.08774)
+  [ERROR] fetch 2211.02011: 404 Client Error: Not Found for url: https://arxiv.org/html/2211.02011
+  Added: Inverse scaling can become U-shaped...
+[90/100] Processing 2206.04615 (found from: 2303.08774)
+  Saved HTML: 2206.04615.html
+  Added: Beyond the Imitation Game: Quantifying and extrapolating the capabilit...
+[91/100] Processing 2009.03300 (found from: 2303.08774)
+  [ERROR] fetch 2009.03300: 404 Client Error: Not Found for url: https://arxiv.org/html/2009.03300
+  Added: Measuring Massive Multitask Language Understanding...
+[92/100] Processing 2210.11399 (found from: 2303.08774)
+  [ERROR] fetch 2210.11399: 404 Client Error: Not Found for url: https://arxiv.org/html/2210.11399
+  Added: Transcending Scaling Laws with 0.1% Extra Compute...
+[93/100] Processing 2210.11416 (found from: 2303.08774)
+  [ERROR] fetch 2210.11416: 404 Client Error: Not Found for url: https://arxiv.org/html/2210.11416
+  Added: Scaling Instruction-Finetuned Language Models...
+[94/100] Processing 2004.08994 (found from: 2303.08774)
+  [ERROR] fetch 2004.08994: 404 Client Error: Not Found for url: https://arxiv.org/html/2004.08994
+  Added: Adversarial Training for Large Neural Language Models...
+[95/100] Processing 1907.10641 (found from: 2303.08774)
+  [ERROR] fetch 1907.10641: 404 Client Error: Not Found for url: https://arxiv.org/html/1907.10641
+  Added: WinoGrande: An Adversarial Winograd Schema Challenge at Scale...
+[96/100] Processing 2207.10397 (found from: 2303.08774)
+  [ERROR] fetch 2207.10397: 404 Client Error: Not Found for url: https://arxiv.org/html/2207.10397
+  Added: CodeT: Code Generation with Generated Tests...
+[97/100] Processing 2009.07448 (found from: 2303.08774)
+  [ERROR] fetch 2009.07448: 404 Client Error: Not Found for url: https://arxiv.org/html/2009.07448
+  Added: Question Directed Graph Attention Network for Numerical Reasoning over...
+[98/100] Processing 2110.14168 (found from: 2303.08774)
+  [ERROR] fetch 2110.14168: 404 Client Error: Not Found for url: https://arxiv.org/html/2110.14168
+  Added: Training Verifiers to Solve Math Word Problems...
+[99/100] Processing 2206.14858 (found from: 2303.08774)
+  [ERROR] fetch 2206.14858: 404 Client Error: Not Found for url: https://arxiv.org/html/2206.14858
+  Added: Solving Quantitative Reasoning Problems with Language Models...
+[100/100] Processing 2211.14275 (found from: 2303.08774)
+  [ERROR] fetch 2211.14275: 404 Client Error: Not Found for url: https://arxiv.org/html/2211.14275
+  Added: Solving math word problems with process- and outcome-based feedback...
+Wrote 100 papers to /Users/simonwang/Library/CloudStorage/OneDrive-HongKongBaptistUniversity/GTD/Areas/Teaching/Courses/MCCP 6020/PhDagentSpring2026/writing/buildPaperCollection_arXiv/papers.csv
+HTML files in /Users/simonwang/Library/CloudStorage/OneDrive-HongKongBaptistUniversity/GTD/Areas/Teaching/Courses/MCCP 6020/PhDagentSpring2026/writing/buildPaperCollection_arXiv/html_collection/
+Process log: /Users/simonwang/Library/CloudStorage/OneDrive-HongKongBaptistUniversity/GTD/Areas/Teaching/Courses/MCCP 6020/PhDagentSpring2026/writing/buildPaperCollection_arXiv/process.log
+Done.

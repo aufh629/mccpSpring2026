@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Assisted Learning of Academic Spoken Collocations</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        :root {
+            --color-primary: #1B4942;
+            --color-text: #1a1a2e;
+            --color-bg: #FFFFFF;
+            --color-bg-alt: #F8FAF4;
+            --color-accent-light: #E8F0ED;
+            --color-accent: #2E7D6F;
+            --color-finding1: #D4AF37;
+            --color-finding2: #4A90E2;
+            --color-finding3: #E76F51;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--color-text);
+            background: var(--color-bg);
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            padding: 5vh 10vw;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .slide-number {
+            position: absolute;
+            bottom: 1.2rem;
+            right: 2rem;
+            color: #ccc;
+            font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+        }
+
+        h1 {
+            font-size: clamp(2.4rem, 4.2vw, 3.6rem);
+            color: var(--color-primary);
+            margin-bottom: 0.5em;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            color: var(--color-primary);
+            margin-bottom: 0.8em;
+            line-height: 1.3;
+        }
+
+        h3 {
+            font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+            color: var(--color-accent);
+            margin-bottom: 0.6em;
+            margin-top: 1em;
+        }
+
+        p, li {
+            font-size: clamp(1.25rem, 1.8vw, 1.55rem);
+            line-height: 1.6;
+            margin-bottom: 0.8em;
+        }
+
+        ul {
+            margin-left: 1.5em;
+        }
+
+        li {
+            margin-bottom: 0.6em;
+        }
+
+        .subtitle {
+            font-size: clamp(1.4rem, 2.2vw, 2rem);
+            color: var(--color-accent);
+            margin-bottom: 2em;
+        }
+
+        .author-info {
+            font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+            color: var(--color-text);
+            margin-top: 1.5em;
+        }
+
+        .rubric-tag {
+            display: inline-block;
+            padding: 0.3em 0.7em;
+            font-size: 0.78rem;
+            font-weight: 600;
+            border-radius: 4px;
+            margin-bottom: 0.5em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .rubric-tag.content {
+            background: #E3F2FD;
+            color: #1565C0;
+        }
+
+        .rubric-tag.delivery {
+            background: #F3E5F5;
+            color: #6A1B9A;
+        }
+
+        .transition-cue {
+            font-style: italic;
+            color: var(--color-primary);
+            margin-top: auto;
+            padding-top: 1em;
+            border-top: 1px solid #ddd;
+            font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+        }
+
+        .transition-cue::before {
+            content: '→ ';
+            font-weight: 700;
+        }
+
+        .highlight-box {
+            background: var(--color-accent-light);
+            padding: 1.5em;
+            border-left: 4px solid var(--color-primary);
+            margin: 1em 0;
+            font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2em;
+            margin: 1em 0;
+        }
+
+        .example-box {
+            background: var(--color-bg-alt);
+            padding: 1em;
+            border-radius: 8px;
+            margin: 0.5em 0;
+        }
+
+        .example-box.correct {
+            border-left: 4px solid #4CAF50;
+        }
+
+        .example-box.incorrect {
+            border-left: 4px solid #E76F51;
+        }
+
+        .big-question {
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            color: var(--color-primary);
+            text-align: center;
+            font-weight: 700;
+            margin: 1.5em 0;
+            line-height: 1.4;
+        }
+
+        .finding-card {
+            background: var(--color-bg-alt);
+            padding: 1.5em;
+            margin: 1em 0;
+            border-radius: 8px;
+            border-left: 5px solid;
+        }
+
+        .finding-card.f1 { border-left-color: var(--color-finding1); }
+        .finding-card.f2 { border-left-color: var(--color-finding2); }
+        .finding-card.f3 { border-left-color: var(--color-finding3); }
+
+        .finding-card h3 {
+            margin-top: 0;
+            font-size: clamp(1.3rem, 2vw, 1.7rem);
+        }
+
+        .stats {
+            font-size: clamp(2.8rem, 5vw, 4.2rem);
+            font-weight: 700;
+            color: var(--color-primary);
+            text-align: center;
+            margin: 0.5em 0;
+        }
+
+        .progress-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            background: var(--color-primary);
+            transition: width 0.3s ease;
+            z-index: 1000;
+        }
+
+        .toolbar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border: 2px solid var(--color-primary);
+            border-radius: 8px;
+            padding: 1em;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: none;
+            z-index: 2000;
+            min-width: 250px;
+        }
+
+        .toolbar.visible {
+            display: block;
+        }
+
+        .toolbar button {
+            display: block;
+            width: 100%;
+            margin: 0.5em 0;
+            padding: 0.7em;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .toolbar button:hover {
+            background: var(--color-accent);
+        }
+
+        .toolbar h4 {
+            margin-bottom: 0.8em;
+            color: var(--color-primary);
+            font-size: 1.1rem;
+        }
+
+        .timer {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(27, 73, 66, 0.9);
+            color: white;
+            padding: 0.8em 1.5em;
+            border-radius: 8px;
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+            font-weight: 700;
+            display: none;
+            z-index: 1500;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .timer.visible {
+            display: block;
+        }
+
+        .timer.warning {
+            background: rgba(231, 111, 81, 0.9);
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .timer-controls {
+            position: fixed;
+            bottom: 60px;
+            left: 20px;
+            display: flex;
+            gap: 0.5em;
+            z-index: 1500;
+        }
+
+        .timer-controls button {
+            padding: 0.5em 1em;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .timer-controls button:hover {
+            background: var(--color-accent);
+        }
+
+        .help-text {
+            position: fixed;
+            bottom: 40px;
+            right: 20px;
+            color: #999;
+            font-size: 0.85rem;
+            z-index: 500;
+        }
+
+        /* Title slide specific */
+        #slide1 {
+            text-align: center;
+            justify-content: center;
+        }
+
+        #slide1 h1 {
+            font-size: clamp(2.8rem, 5vw, 4rem);
+            margin-bottom: 0.3em;
+        }
+
+        /* Closing slide */
+        #slide9 {
+            text-align: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Timer -->
+    <div class="timer" id="timer">1:00</div>
+
+    <!-- Timer Controls -->
+    <div class="timer-controls">
+        <button onclick="startTimer()">Start</button>
+        <button onclick="pauseTimer()">Pause</button>
+        <button onclick="resetTimer()">Reset</button>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar" id="toolbar">
+        <h4>Edit Tools</h4>
+        <button onclick="saveToCache()">💾 Save to Cache</button>
+        <button onclick="loadFromCache()">📂 Load from Cache</button>
+        <button onclick="downloadHTML()">⬇️ Download HTML</button>
+        <button onclick="clearCache()">🗑️ Clear Cache</button>
+        <button onclick="toggleEditMode()">✏️ Toggle Edit Mode</button>
+    </div>
+
+    <!-- Help Text -->
+    <div class="help-text">
+        Press T for toolbar • E for edit • ← → to navigate
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide active" id="slide1">
+        <h1 contenteditable="false">AI-Assisted Learning of Academic Spoken Collocations</h1>
+        <p class="subtitle" contenteditable="false">Guided vs. Unguided Tasks in EAP Contexts</p>
+        <div class="author-info" contenteditable="false">
+            <p><strong>Paper by:</strong> Valentina Morgana & Francesca Poli</p>
+            <p><em>Journal of English for Academic Purposes</em> (2026)</p>
+        </div>
+        <div class="slide-number">1</div>
+    </div>
+
+    <!-- Slide 2: Opening Hook -->
+    <div class="slide" id="slide2">
+        <span class="rubric-tag delivery">ENGAGING OPENING</span>
+        <h2 contenteditable="false">The Challenge</h2>
+        <div class="big-question" contenteditable="false">
+            How much guidance do learners need when using AI?
+        </div>
+        <p contenteditable="false" style="text-align: center; font-size: clamp(1.3rem, 2vw, 1.7rem); margin-top: 2em;">
+            Imagine preparing for an academic presentation and struggling to find the right phrases. You know what you want to say, but it doesn't sound academic enough. Now imagine having ChatGPT to help...
+        </p>
+        <p contenteditable="false" style="text-align: center; font-size: clamp(1.35rem, 2.1vw, 1.75rem); color: var(--color-primary); margin-top: 1em;">
+            <strong>Should the AI guide you step-by-step, or should you explore freely?</strong>
+        </p>
+        <div class="transition-cue" contenteditable="false">Let's understand what this study investigated...</div>
+        <div class="slide-number">2</div>
+    </div>
+
+    <!-- Slide 3: Introduction -->
+    <div class="slide" id="slide3">
+        <span class="rubric-tag content">CONTENT & STRUCTURE</span>
+        <span class="rubric-tag content">NON-SPECIALIST</span>
+        <h2 contenteditable="false">What Are Academic Collocations?</h2>
+        
+        <p contenteditable="false"><strong>Collocations</strong> are word combinations that naturally appear together in academic contexts.</p>
+        
+        <div class="two-column">
+            <div class="example-box correct" contenteditable="false">
+                <h3 style="color: #4CAF50; margin-top: 0; font-size: clamp(1.2rem, 1.8vw, 1.5rem);">✓ Correct</h3>
+                <ul style="margin-left: 1.2em; font-size: clamp(1.15rem, 1.6vw, 1.4rem);">
+                    <li>significant findings</li>
+                    <li>conduct research</li>
+                    <li>theoretical framework</li>
+                </ul>
+            </div>
+            <div class="example-box incorrect" contenteditable="false">
+                <h3 style="color: #E76F51; margin-top: 0; font-size: clamp(1.2rem, 1.8vw, 1.5rem);">✗ Incorrect</h3>
+                <ul style="margin-left: 1.2em; font-size: clamp(1.15rem, 1.6vw, 1.4rem);">
+                    <li>big findings</li>
+                    <li>do research</li>
+                    <li>thinking framework</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3 contenteditable="false">The Research Gap</h3>
+        <p contenteditable="false">Even advanced learners struggle with collocations. Traditional teaching methods haven't been very effective, and we don't know the best way to use AI tools like ChatGPT for language learning.</p>
+        
+        <div class="transition-cue" contenteditable="false">So what did the researchers ask?</div>
+        <div class="slide-number">3</div>
+    </div>
+
+    <!-- Slide 4: Research Questions & Findings 1-2 -->
+    <div class="slide" id="slide4">
+        <span class="rubric-tag content">KEY FINDINGS</span>
+        <h2 contenteditable="false">Research Questions</h2>
+        
+        <div class="highlight-box" contenteditable="false">
+            <p><strong>1.</strong> Does <strong>guided</strong> ChatGPT use help students learn collocations better than <strong>unguided</strong> exploration?</p>
+            <p style="margin-bottom: 0;"><strong>2.</strong> How do AI-assisted tasks compare to <strong>traditional methods</strong> without AI?</p>
+        </div>
+
+        <h2 contenteditable="false" style="margin-top: 1em;">Key Findings</h2>
+        
+        <div class="finding-card f1" contenteditable="false">
+            <h3>Finding 1: Unguided AI Was More Effective</h3>
+            <p style="margin-bottom: 0;">Students who used ChatGPT <strong>freely</strong> (without structured guidance) used academic collocations <strong>more frequently and accurately</strong> than those following step-by-step activities. They experimented more with language and noticed useful patterns naturally.</p>
+        </div>
+
+        <div class="finding-card f2" contenteditable="false">
+            <h3>Finding 2: Both AI Groups Beat Non-AI Control</h3>
+            <p style="margin-bottom: 0;">Both AI groups performed significantly better than traditional learning. AI users produced <strong>richer, more varied</strong> academic language with approximately <strong>60 different collocations</strong> vs. far fewer in the control group.</p>
+        </div>
+
+        <div class="transition-cue" contenteditable="false">But the gains took time to develop...</div>
+        <div class="slide-number">4</div>
+    </div>
+
+    <!-- Slide 5: Finding 3 & Significance -->
+    <div class="slide" id="slide5">
+        <span class="rubric-tag content">KEY FINDINGS</span>
+        <span class="rubric-tag content">SIGNIFICANCE</span>
+        
+        <div class="finding-card f3" contenteditable="false">
+            <h3>Finding 3: Modest Gains Over Time</h3>
+            <p style="margin-bottom: 0;">The study tracked students over <strong>10 weeks</strong> with multiple tests. While AI users showed consistent improvement, overall gains weren't dramatic. This tells us: <strong>learning collocations takes time and repeated practice</strong>—even with AI, there are no shortcuts.</p>
+        </div>
+
+        <h2 contenteditable="false">Why This Matters</h2>
+        
+        <p contenteditable="false">This research challenges a widespread assumption: <strong>more structure doesn't always mean better learning</strong>. For proficient learners on familiar tasks, freedom to explore may be more beneficial than detailed scaffolding.</p>
+
+        <div class="highlight-box" contenteditable="false">
+            <p style="margin-bottom: 0;"><strong>Key Insight:</strong> The way we design learning tasks with AI is just as important as using AI itself. This study provides evidence-based guidance for teachers about task design in the age of AI.</p>
+        </div>
+
+        <div class="transition-cue" contenteditable="false">How does this influence my own research approach?</div>
+        <div class="slide-number">5</div>
+    </div>
+
+    <!-- Slide 6: Impact on Research & Writing -->
+    <div class="slide" id="slide6">
+        <span class="rubric-tag content">WRITING SKILLS</span>
+        <span class="rubric-tag content">EVIDENCE</span>
+        <h2 contenteditable="false">Impact on My Research & Writing</h2>
+
+        <h3 contenteditable="false">Research Design Lessons</h3>
+        <ul contenteditable="false">
+            <li>Consider <strong>learner proficiency level</strong> when deciding how much structure to provide</li>
+            <li>Include proper <strong>control groups</strong> rather than assuming technology improves learning</li>
+            <li>Use <strong>mixed methods</strong>—combine quantitative analysis with qualitative insights</li>
+        </ul>
+
+        <h3 contenteditable="false">Writing Skills Learned</h3>
+        <ul contenteditable="false">
+            <li><strong>Transparent limitation discussion</strong> strengthens credibility</li>
+            <li><strong>Comprehensive literature integration</strong> that synthesizes (not just lists) previous studies</li>
+            <li><strong>Accessibility despite complexity</strong>—explain terms, use examples, provide clear signposting</li>
+            <li><strong>Connect to broader debates</strong> beyond the narrow study focus</li>
+        </ul>
+
+        <div class="transition-cue" contenteditable="false">What are the broader implications?</div>
+        <div class="slide-number">6</div>
+    </div>
+
+    <!-- Slide 7: Broader Implications -->
+    <div class="slide" id="slide7">
+        <span class="rubric-tag content">SIGNIFICANCE</span>
+        <h2 contenteditable="false">Broader Implications for Education</h2>
+
+        <div class="highlight-box" contenteditable="false">
+            <p style="font-size: clamp(1.3rem, 2vw, 1.7rem); margin-bottom: 0;"><strong>As AI tools become common in classrooms, teachers need evidence-based guidance about task design.</strong></p>
+        </div>
+
+        <p contenteditable="false">The study developed the <strong>Academic Spoken Collocation List (ASCL)</strong>—focusing specifically on spoken academic language. This is important because academic presentations are unique: students prepare them in writing but deliver them orally.</p>
+
+        <h3 contenteditable="false">Key Takeaways</h3>
+        <ul contenteditable="false">
+            <li>The answer depends on <strong>learner proficiency and task familiarity</strong>—there's no one-size-fits-all approach</li>
+            <li>Rather than making students dependent on AI, <strong>open-ended interaction can encourage autonomy</strong></li>
+            <li>Students can notice language patterns, make choices, and <strong>take ownership of their learning</strong></li>
+        </ul>
+
+        <div class="transition-cue" contenteditable="false">Let me summarize the key message...</div>
+        <div class="slide-number">7</div>
+    </div>
+
+    <!-- Slide 8: Summary -->
+    <div class="slide" id="slide8">
+        <span class="rubric-tag content">CONTENT & STRUCTURE</span>
+        <h2 contenteditable="false">Key Takeaway</h2>
+
+        <div class="highlight-box" contenteditable="false" style="font-size: clamp(1.35rem, 2.1vw, 1.75rem); padding: 2em;">
+            <p style="text-align: center; line-height: 1.5; margin-bottom: 0;">
+                When using AI for language learning, <strong style="color: var(--color-primary);">more guidance isn't always better</strong>. 
+                For proficient learners on familiar tasks, <strong style="color: var(--color-primary);">freedom to explore</strong> 
+                led to richer collocation use than structured steps.
+            </p>
+        </div>
+
+        <p contenteditable="false" style="margin-top: 2em; font-size: clamp(1.3rem, 2vw, 1.7rem);">
+            However, <strong>both AI approaches outperformed traditional instruction</strong>, highlighting AI's potential when designed thoughtfully.
+        </p>
+
+        <div class="stats" contenteditable="false">Task design matters<br>as much as the AI itself</div>
+
+        <div class="transition-cue" contenteditable="false">Thank you for your attention...</div>
+        <div class="slide-number">8</div>
+    </div>
+
+    <!-- Slide 9: Closing -->
+    <div class="slide" id="slide9">
+        <h1 contenteditable="false">Thank You</h1>
+        <p contenteditable="false" style="font-size: clamp(1.4rem, 2.2vw, 2rem); margin-top: 1em;">Questions?</p>
+        <div class="author-info" contenteditable="false" style="margin-top: 3em;">
+            <p><strong>Reference:</strong></p>
+            <p>Morgana, V., & Poli, F. (2026). Guided and unguided GenAI tasks for learning academic spoken collocations. <em>Journal of English for Academic Purposes</em>, 80, 101638.</p>
+        </div>
+        <div class="slide-number">9</div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 9;
+        let editMode = false;
+        let timerInterval = null;
+        let timerSeconds = 60;
+        let timerRunning = false;
+
+        // Navigation
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => slide.classList.remove('active'));
+            
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            
+            // Update progress bar
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function nextSlide() {
+            if (!editMode) showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            if (!editMode) showSlide(currentSlide - 1);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (editMode && e.key !== 'Escape' && e.key.toLowerCase() !== 't') return;
+            
+            switch(e.key) {
+                case 'ArrowRight':
+                case ' ':
+                    e.preventDefault();
+                    nextSlide();
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    prevSlide();
+                    break;
+                case 'Home':
+                    e.preventDefault();
+                    showSlide(0);
+                    break;
+                case 'End':
+                    e.preventDefault();
+                    showSlide(totalSlides - 1);
+                    break;
+                case 'e':
+                case 'E':
+                    e.preventDefault();
+                    toggleEditMode();
+                    break;
+                case 't':
+                case 'T':
+                    e.preventDefault();
+                    toggleToolbar();
+                    break;
+                case 'Escape':
+                    if (editMode) {
+                        e.preventDefault();
+                        toggleEditMode();
+                    }
+                    break;
+            }
+        });
+
+        // Mouse navigation
+        document.addEventListener('click', (e) => {
+            if (editMode) return;
+            if (e.target.closest('.toolbar') || e.target.closest('.timer-controls')) return;
+            
+            const clickX = e.clientX;
+            const windowWidth = window.innerWidth;
+            
+            if (clickX > windowWidth * 0.4) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        });
+
+        // Edit mode
+        function toggleEditMode() {
+            editMode = !editMode;
+            const elements = document.querySelectorAll('[contenteditable]');
+            elements.forEach(el => {
+                el.contentEditable = editMode ? 'true' : 'false';
+                if (editMode) {
+                    el.style.outline = '1px dashed #1B4942';
+                } else {
+                    el.style.outline = 'none';
+                }
+            });
+            
+            if (editMode) {
+                alert('Edit mode ON. Click on any text to edit. Press ESC to exit edit mode.');
+            }
+        }
+
+        // Toolbar
+        function toggleToolbar() {
+            const toolbar = document.getElementById('toolbar');
+            toolbar.classList.toggle('visible');
+        }
+
+        function saveToCache() {
+            const html = document.documentElement.outerHTML;
+            localStorage.setItem('presentation-slides', html);
+            alert('Presentation saved to browser cache!');
+        }
+
+        function loadFromCache() {
+            const saved = localStorage.getItem('presentation-slides');
+            if (saved) {
+                if (confirm('This will replace current content with saved version. Continue?')) {
+                    document.open();
+                    document.write(saved);
+                    document.close();
+                }
+            } else {
+                alert('No saved presentation found in cache.');
+            }
+        }
+
+        function downloadHTML() {
+            const html = document.documentElement.outerHTML;
+            const blob = new Blob([html], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'presentation.html';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function clearCache() {
+            if (confirm('Clear saved presentation from cache?')) {
+                localStorage.removeItem('presentation-slides');
+                alert('Cache cleared!');
+            }
+        }
+
+        // Timer functions
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function updateTimer() {
+            const timerEl = document.getElementById('timer');
+            timerEl.textContent = formatTime(timerSeconds);
+            
+            if (timerSeconds <= 10) {
+                timerEl.classList.add('warning');
+            } else {
+                timerEl.classList.remove('warning');
+            }
+        }
+
+        function startTimer() {
+            if (timerRunning) return;
+            
+            const timerEl = document.getElementById('timer');
+            timerEl.classList.add('visible');
+            timerRunning = true;
+            
+            timerInterval = setInterval(() => {
+                timerSeconds--;
+                updateTimer();
+                
+                if (timerSeconds <= 0) {
+                    pauseTimer();
+                    // Optional: play sound or show alert
+                    alert('Time is up!');
+                }
+            }, 1000);
+        }
+
+        function pauseTimer() {
+            timerRunning = false;
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+        }
+
+        function resetTimer() {
+            pauseTimer();
+            timerSeconds = 60;
+            updateTimer();
+            const timerEl = document.getElementById('timer');
+            timerEl.classList.remove('visible');
+        }
+
+        // Initialize
+        showSlide(0);
+        updateTimer();
+    </script>
+</body>
+</html>

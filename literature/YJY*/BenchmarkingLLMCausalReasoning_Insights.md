@@ -219,6 +219,14 @@
 
 ## Key Excerpts from Original Paper
 
+### Abstract Excerpts
+
+**Benchmark scope**:
+"Causal reasoning is fundamental for Large Language Models (LLMs) to understand genuine cause-and-effect relationships beyond pattern matching... We introduce a novel benchmark constructed from causally identified relationships extracted from top-tier economics and finance journals, drawing on rigorous methodologies including instrumental variables, difference-in-differences, and regression discontinuity designs. Our benchmark comprises 29,972 evaluation items covering four task types across domains such as health, environment, technology, law, and culture."
+
+**Main finding**:
+"Experimental results on eight state-of-the-art LLMs reveal substantial limitations, with the best model achieving only 60.58% accuracy. Moreover, model scale does not consistently translate to superior performance, and even advanced reasoning models struggle with fundamental causal relationship identification."
+
 ### Introduction Excerpts
 
 **Centrality Claim**:
@@ -229,6 +237,17 @@
 
 **Contribution Statement**:
 "To bridge this gap, we propose a benchmark grounded in causally identified relationships published in peer-reviewed economics and finance top journals. This benchmark targets a central research question: Can contemporary LLMs understand and reason about complex, scientifically validated causal relationships across diverse real-world domains?"
+
+**Methodology preview**:
+"To address these limitations, we construct our benchmark through a systematic pipeline that extracts causally identified relationships from 14,977 papers published between 2000 and 2025 across eight top-tier economics and finance journals. Our approach leverages GPT-5-mini to extract candidate causal relationships from paper abstracts five times, employing clustering and consensus mechanisms to ensure reliability. This process yields 11,869 validated causal relationships spanning diverse economic and financial domains. From these relationships, we generate four distinct task types that progressively test different aspects of causal reasoning—from simple cause-effect identification to complex multi-hop reasoning and directional inference—resulting in a final benchmark of 29,972 questions after filtering out trivially easy items."
+
+### Benchmark Construction (Methods) Excerpts
+
+**Two-stage pipeline**:
+"The benchmark construction in this study proceeds in two main stages. In the first stage, we extract causal relations in the form of (X, Y, direction) from 8 top-tier economics and finance journals. In the second stage, we generate four distinct task types from these extracted relations."
+
+**Task design**:
+"Four distinct task types that progressively test different aspects of causal reasoning—from simple cause-effect identification to complex multi-hop reasoning and directional inference."
 
 ### Related Work Excerpts
 
@@ -245,6 +264,9 @@
 
 **Surprising Result**:
 "Surprisingly, even the most advanced reasoning model, GPT-5, achieved merely 29.3% accuracy in this category, underperforming stronger models like Llama-3.3-70B (54.4%), QwQ-32B (58.5%), and Qwen3-32B (71.3%)."
+
+**Difficulty analysis**:
+"All models struggled to accurately identify causal relationships even in the Type 1 (X-Y), which contains high-quality, high-context causal statements directly extracted from peer-reviewed social science papers. The average accuracy across all models for X-Y was 41.0%, with F1 scores averaging 26.9%."
 
 ### Conclusion Excerpts
 

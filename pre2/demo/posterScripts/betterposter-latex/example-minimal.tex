@@ -1,0 +1,44 @@
+%%%% Minimal Better Poster example (structure only)
+%%%% Based on rafaelbailo/betterposter-latex-template
+%%%% You need betterposter.cls and img/ from the original repo to compile.
+%%%% Or use Overleaf: https://www.overleaf.com/latex/templates/better-poster-latex-template/gmkgjvxqbyyt
+
+\documentclass[a0paper]{betterposter}
+
+\begin{document}
+\betterposter{
+  %%% MAIN COLUMN
+  \maincolumn{
+    \textbf{Your main finding} in plain English. \textbf{Emphasize} key terms.
+  }{
+    \qrcode{img/qrcode}{img/smartphoneWhite}{
+      \textbf{Take a picture} to download the full paper
+    }
+  }
+}{
+  %%% LEFT COLUMN
+  \title{Your Poster Title}
+  \author{Author One \and Author Two}
+  \institution{Your Institution}
+
+  \section{Introduction}
+  \begin{itemize}
+    \item Point one.
+    \item Point two.
+  \end{itemize}
+
+  \section{Methods}
+  Brief methods here.
+
+  \section{Results}
+  Key results or one figure.
+
+  \vfill
+  \includegraphics[width=\textwidth]{img/logo}
+}{
+  %%% RIGHT COLUMN (supplementary)
+  Extra figures or material.
+
+  \includegraphics[width=\textwidth]{img/supplementary}
+}
+\end{document}

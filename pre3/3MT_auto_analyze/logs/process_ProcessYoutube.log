@@ -1,0 +1,233 @@
+===================================================================================
+YouTube Video Processing Log
+===================================================================================
+Date: 2026-02-04
+Project: AI Training Course Video Capture and Transcription
+
+===================================================================================
+OBJECTIVE
+===================================================================================
+Automate the capture, download, and transcription of video lessons from online
+courses for offline study and reference.
+
+Initial Target: https://wemooc.sflep.com/course/courseSection?crid=261
+Final Target: YouTube videos (due to network issues with original site)
+
+===================================================================================
+CHALLENGES ENCOUNTERED
+===================================================================================
+
+1. Network Timeout Issues (Original Course Site)
+   - Problem: Persistent timeout errors when accessing wemooc.sflep.com
+   - Attempted Solutions:
+     * Increased timeout to 90 seconds
+     * Changed wait_until strategy to 'domcontentloaded'
+     * Implemented manual navigation mode with file-based signaling
+   - Outcome: Network issues persisted, decided to pivot to YouTube
+
+2. YouTube Download Restrictions
+   - Problem: HTTP 403 Forbidden errors when downloading videos
+   - Root Cause: YouTube SABR streaming restrictions for web clients
+   - Solution: Used Android client emulation via yt-dlp extractor args
+     * Flag: --extractor-args youtube:player_client=android
+     * User-Agent: Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36
+   - Outcome: Successfully bypassed restrictions
+
+3. Missing Dependencies
+   - yt-dlp: Not in PATH after pip installation
+     * Solution: Used full path ~/Library/Python/3.9/bin/yt-dlp
+   - ffmpeg: Not installed
+     * Solution: Installed via Homebrew (brew install ffmpeg)
+   - openai-whisper: Not installed
+     * Solution: Installed via pip3 (pip3 install openai-whisper)
+
+4. Python Version Deprecation Warning
+   - Warning: yt-dlp deprecated support for Python 3.9
+   - Impact: Non-blocking, functionality still works
+   - Future Action: Consider upgrading to Python 3.10+
+
+===================================================================================
+SUCCESSFUL PIPELINE
+===================================================================================
+
+Test Video: https://www.youtube.com/watch?v=B4jIyufgy-s
+Title: 【硬核】一口气了解黄金 | 为什么暴涨? 投资黄金需要注意什么?
+Duration: 29:13
+Language: Chinese
+
+Pipeline Steps:
+1. Browser Automation (Playwright)
+   - Launch Chromium browser (non-headless)
+   - Navigate to YouTube video URL
+   - Extract metadata (title, duration)
+   - Capture screenshot
+   - Save session state
+   - Duration: ~15 seconds
+
+2. Video Download (yt-dlp)
+   - Format: bestvideo[ext=mp4]+bestaudio[ext=m4a]
+   - Merge format: MP4
+   - Android client emulation to bypass restrictions
+   - Duration: ~20 seconds (depends on video length and network)
+
+3. Audio Extraction (ffmpeg)
+   - Input: MP4 video file
+   - Output: MP3 audio (192kbps, 44.1kHz)
+   - Duration: ~5 seconds
+
+4. Transcription (OpenAI Whisper)
+   - Model: base (139MB)
+   - First run: Downloads model (~15 seconds)
+   - Transcription: ~2-3 minutes for 29-minute video
+   - Output: Plain text + detailed JSON with timestamps
+   - Accuracy: Excellent for Chinese language
+
+Total Processing Time: ~3.5 minutes for 29-minute video
+
+===================================================================================
+OUTPUT FILES GENERATED
+===================================================================================
+
+Location: ProcessYoutube/output/youtube_output/
+
+1. 硬核一口气了解黄金  为什么暴涨 投资黄金需要注意什么.mp4
+   - Full video file
+   - Format: MP4
+   - Size: ~varies by video quality
+
+2. 硬核一口气了解黄金  为什么暴涨 投资黄金需要注意什么.mp3
+   - Extracted audio
+   - Format: MP3, 192kbps, 44.1kHz
+   - Size: ~smaller than video
+
+3. 硬核一口气了解黄金  为什么暴涨 投资黄金需要注意什么.txt
+   - Plain text transcript
+   - Encoding: UTF-8
+   - Language: Chinese
+
+4. 硬核一口气了解黄金  为什么暴涨 投资黄金需要注意什么.detailed.json
+   - Detailed transcript with timestamps
+   - Includes word-level timing information
+   - Format: JSON
+
+5. metadata.json
+   - Video metadata (URL, title, duration, timestamp)
+   - Format: JSON
+
+6. video_page.png
+   - Screenshot of YouTube page
+   - Format: PNG
+
+===================================================================================
+TECHNICAL STACK
+===================================================================================
+
+Languages & Frameworks:
+- Python 3.9
+- Async/Await (asyncio)
+
+Libraries:
+- playwright (async_api): Browser automation
+- yt-dlp: YouTube video downloader
+- ffmpeg: Audio/video processing
+- openai-whisper: Speech-to-text transcription
+- torch: Machine learning backend for Whisper
+- numpy, tiktoken: Whisper dependencies
+
+System Tools:
+- Homebrew: Package manager for ffmpeg
+- pip3: Python package installer
+
+===================================================================================
+KEY LEARNINGS
+===================================================================================
+
+1. YouTube Restrictions Workaround
+   - Android client emulation is more reliable than web client
+   - User-agent spoofing alone is insufficient
+
+2. Whisper Model Selection
+   - base model: Good balance of speed and accuracy
+   - Alternatives: tiny (faster, less accurate), small/medium/large (slower, more accurate)
+   - First run requires model download (~139MB for base)
+
+3. File Path Handling
+   - Chinese characters in filenames work fine on macOS
+   - Use Path objects for cross-platform compatibility
+
+4. Async Processing
+   - Playwright requires async/await pattern
+   - Subprocess calls are synchronous (blocking)
+
+5. Error Handling
+   - Network timeouts require generous timeout values (60-90s)
+   - Screenshot failures should not block pipeline
+   - Subprocess errors need explicit checking
+
+===================================================================================
+FUTURE IMPROVEMENTS
+===================================================================================
+
+1. Batch Processing
+   - Accept list of video URLs
+   - Process multiple videos sequentially or in parallel
+
+2. Resume Capability
+   - Skip already-downloaded videos
+   - Resume interrupted transcriptions
+
+3. Quality Selection
+   - Allow user to specify video quality
+   - Option for audio-only download (faster)
+
+4. Language Detection
+   - Auto-detect video language
+   - Use appropriate Whisper model
+
+5. Subtitle Integration
+   - Download existing subtitles if available
+   - Compare with Whisper transcription for accuracy
+
+6. Progress Indicators
+   - Real-time progress bars for downloads
+   - Transcription progress updates
+
+7. Error Recovery
+   - Retry logic for network failures
+   - Fallback to lower quality if high quality fails
+
+8. Output Formats
+   - SRT subtitle format
+   - VTT format for web players
+   - Markdown with timestamps
+
+===================================================================================
+SCRIPT INVENTORY
+===================================================================================
+
+Active Scripts:
+1. youtube_capture.py - Main production script (RECOMMENDED)
+   - Complete pipeline: download → extract → transcribe
+   - Handles all dependencies automatically
+   - Robust error handling
+
+Experimental/Development Scripts:
+2. explore_video_player.py - Initial exploration script
+   - For custom video players (non-YouTube)
+   - Network monitoring capabilities
+
+3. explore_video_player_manual.py - Manual navigation version
+   - Requires user interaction for login
+   - Session persistence
+
+4. explore_video_player_v2.py - File-based signaling version
+   - Uses control files instead of terminal input
+   - Better for background processing
+
+5. capture_now.py - Simplified capture script
+   - Quick metadata extraction
+   - No download/transcription
+
+===================================================================================
+END OF LOG
+===================================================================================

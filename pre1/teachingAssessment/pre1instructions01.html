@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCCP6020 — Presentation 1: Student Instructions</title>
+<style>
+body {
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  color: #222;
+  line-height: 1.7;
+  max-width: 820px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+h1 { font-size: 1.8rem; color: #1B4942; margin-bottom: 0.2rem; }
+h2 { font-size: 1.35rem; color: #1B4942; margin: 2rem 0 0.6rem; border-bottom: 2px solid #ccc; padding-bottom: 0.3rem; }
+h3 { font-size: 1.1rem; color: #264653; margin: 1.2rem 0 0.4rem; }
+p { margin-bottom: 0.7rem; }
+
+ul, ol { margin: 0.4rem 0 1rem 1.5rem; }
+li { margin-bottom: 0.35rem; }
+
+a { color: #1B4942; }
+
+code {
+  background: #f0f0f0;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+strong { color: #1B4942; }
+
+table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 0.95rem; }
+th { background: #1B4942; color: white; padding: 0.5rem 0.8rem; text-align: left; }
+td { padding: 0.5rem 0.8rem; border-bottom: 1px solid #ddd; vertical-align: top; }
+tr:nth-child(even) td { background: #f9f9f9; }
+
+.badge { display: inline-block; border: 2px solid #1B4942; color: #1B4942; font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 3px; margin-right: 4px; }
+
+.box { border: 1px solid #ccc; border-left: 4px solid #1B4942; padding: 0.8rem 1.2rem; margin: 0.8rem 0; border-radius: 0 6px 6px 0; }
+.box.warn { border-left-color: #E76F51; }
+.box.tip { border-left-color: #E9C46A; }
+
+.step-num { display: inline-block; width: 28px; height: 28px; background: #1B4942; color: white; border-radius: 50%; text-align: center; line-height: 28px; font-weight: 700; font-size: 0.85rem; margin-right: 6px; vertical-align: middle; }
+
+.flow-table td { font-size: 0.92rem; }
+.flow-table td:first-child { font-weight: 700; white-space: nowrap; color: #1B4942; width: 180px; }
+.flow-table td:nth-child(2) { color: #666; width: 60px; text-align: center; }
+
+.footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #ddd; font-size: 0.82rem; color: #999; text-align: center; }
+</style>
+</head>
+<body>
+
+<h1>Presentation 1: Student Instructions</h1>
+<p><strong>MCCP6020</strong> — Oral Presentation Assessment 1: Research Story-telling by Experienced Writers (20%)</p>
+
+<!-- ======================================= -->
+<h2>What You Need to Do — Overview</h2>
+
+<p>You will work with an AI agent (e.g., Cursor) to prepare an <strong>8-minute presentation</strong> on an empirical journal article in your field. The AI generates your presentation outline and HTML slides — but <strong>you</strong> review, give feedback, and practice the delivery yourself.</p>
+
+<div class="box warn">
+  <strong>Important:</strong> Reading from a script is <strong>not permitted</strong> and will result in a failing grade. Note cards with key points are allowed.
+</div>
+
+<!-- ======================================= -->
+<h2>Step 0: Pull the Latest Repository Changes</h2>
+
+<p>You have already forked <a href="https://github.com/tesolchina/mccpSpring2026" target="_blank">https://github.com/tesolchina/mccpSpring2026</a>. Now you need to <strong>sync your fork</strong> to get the latest files.</p>
+
+<p>Open your AI agent (Cursor) and give it this instruction:</p>
+
+<div class="box">
+  <code>Pull the latest changes from the upstream repository https://github.com/tesolchina/mccpSpring2026 into my local clone and push to my fork.</code>
+</div>
+
+<p>After syncing, navigate to your working folder: <code>pre1/teachingAssessment/pre1work/</code></p>
+
+<!-- ======================================= -->
+<h2>Step 1: Choose and Place Your Paper</h2>
+
+<p>Select an <strong>empirical journal article</strong> in your field and place it in <code>pre1work/papers/</code>.</p>
+
+<div class="box warn">
+  <strong>File format requirement:</strong> Your paper must be in one of these formats:
+  <ul style="margin-top:0.3rem;margin-bottom:0;">
+    <li><strong>HTML</strong> — preferred (most AI-friendly)</li>
+    <li><strong>Markdown (.md)</strong> — also works well</li>
+    <li><strong>LaTeX (.tex)</strong> — acceptable</li>
+    <li><strong>PDF</strong> — must be converted to markdown first. Ask the AI agent: <code>"Convert this PDF to markdown: [file path]"</code></li>
+  </ul>
+</div>
+
+<div class="box tip">
+  <strong>Tip:</strong> The demo used an HTML file: <code>pre1workDemo/papers/KV_flow_paper_full.html</code>. You can save web-based journal articles as HTML directly from your browser (File &gt; Save As &gt; HTML).
+</div>
+
+<!-- ======================================= -->
+<h2>Step 2: Generate Your Outline — Send the File Path to AI</h2>
+
+<p>This is how you interact with the AI agent: <strong>you give it a file path and it reads the file and follows the instructions inside.</strong></p>
+
+<p><span class="step-num">1</span> Send this file path to your AI agent:</p>
+<div class="box">
+  <code>pre1/teachingAssessment/pre1work/genOutline.md</code>
+</div>
+
+<p>The AI agent will:</p>
+<ol>
+  <li>Read the assessment requirements (rubric, presentation brief, Session 4 handout)</li>
+  <li>Read your paper in <code>pre1work/papers/</code></li>
+  <li>Generate two files:
+    <ul>
+      <li><strong><code>outline_generated.md</code></strong> — your 8-minute presentation outline with presenter notes</li>
+      <li><strong><code>slide_plan.md</code></strong> — a plan for your HTML presentation slides</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="box tip">
+  <strong>Demo reference:</strong> See <code>pre1workDemo/outline_generated.md</code> and <code>pre1workDemo/slide_plan.md</code> for what the output looks like.
+</div>
+
+<!-- ======================================= -->
+<h2>Step 3: Review the Outline and Write Feedback</h2>
+
+<p>Carefully read <code>outline_generated.md</code> and think about:</p>
+<ul>
+  <li>Is the content <strong>accurate</strong> to your paper?</li>
+  <li>Is the language <strong>accessible to non-specialists</strong>?</li>
+  <li>Are the <strong>writing lessons</strong> in Section 4 meaningful? (Can they be strengthened?)</li>
+  <li>Do you want specific <strong>visual elements</strong> on the slides?</li>
+  <li>Are there key <strong>quotes or evidence</strong> you want highlighted?</li>
+</ul>
+
+<p><span class="step-num">2</span> Write your feedback in <code>pre1work/feedback.md</code>, then send the file path to the AI agent:</p>
+<div class="box">
+  <code>pre1/teachingAssessment/pre1work/feedback.md</code>
+</div>
+
+<p>The AI will read your feedback and generate revised/additional files. Depending on your instructions, this may include:</p>
+
+<table class="flow-table">
+  <tr><td>updatedOutline.md</td><td>→</td><td>Revised outline incorporating your feedback and strengthening weak sections</td></tr>
+  <tr><td>style.md</td><td>→</td><td>Visual style guide (if you provided sample slides in <code>sample_slides/</code>)</td></tr>
+  <tr><td>updated_slide_plan.md</td><td>→</td><td>Revised slide plan combining your outline, feedback, and style preferences</td></tr>
+  <tr><td>slides4pre1.html</td><td>→</td><td>Your final HTML presentation slides</td></tr>
+</table>
+
+<div class="box tip">
+  <strong>Demo reference:</strong> In the demo, the teacher's feedback in <code>pre1workDemo/feedback.md</code> asked the AI to:
+  (1) convert sample .pptx files to markdown and extract styles,
+  (2) strengthen the writing analysis section using course writing materials,
+  (3) create updated slide plan, and
+  (4) generate HTML slides.
+  The AI produced 6 new files from that single set of instructions.
+</div>
+
+<!-- ======================================= -->
+<h2>Step 4: Review and Revise Your Slides</h2>
+
+<p>Open the generated HTML file in your browser. Check:</p>
+<ul>
+  <li>Are the <strong>font sizes large enough</strong>? (See <code>genHTMLguide.md</code> for minimums)</li>
+  <li>Is the content <strong>enough for 8 minutes</strong>? (Aim for 10-12 content slides)</li>
+  <li>Does each slide have a <strong>slide number</strong>?</li>
+  <li>Are there <strong>transition cues</strong> between slides?</li>
+  <li>Do <strong>rubric labels</strong> appear on relevant sections?</li>
+</ul>
+
+<p>If revisions are needed, create a <code>reviseSlides.md</code> file in your <code>pre1work/</code> folder with your change requests, then send the path to the AI agent. The AI will generate a new version (e.g., <code>slidesV2.html</code>).</p>
+
+<div class="box tip">
+  <strong>Demo reference:</strong> In the demo, the slides went through 3 versions:
+  <code>slides4pre1demo.html</code> → <code>slidesV2.html</code> (added margins, slide numbers, rubric tags, editable mode) → <code>slidesV3.html</code> (larger fonts, better space usage).
+  See <code>pre1workDemo/reviseSlides.md</code> for how the revision instructions were written.
+</div>
+
+<!-- ======================================= -->
+<h2>Step 5: Edit Slides Directly in Browser</h2>
+
+<div class="box">
+  <strong>New feature:</strong> Your HTML slides are <strong>editable directly in the browser</strong> — a feature developed specifically for this course. You do not need any code editor to make last-minute changes to your slides.
+</div>
+
+<p>How to use the built-in editing mode:</p>
+<ol>
+  <li>Open your HTML slides in any browser (Chrome, Firefox, Safari, Edge)</li>
+  <li>Press <strong>T</strong> to reveal the toolbar at the top of the screen</li>
+  <li>Press <strong>E</strong> to enter edit mode — all text on the current slide becomes editable. Click any text to modify it directly.</li>
+  <li>Use the toolbar buttons:
+    <ul>
+      <li><strong>Save to Cache</strong> — saves your current edits to the browser's local storage (persists between sessions)</li>
+      <li><strong>Load from Cache</strong> — restores a previously saved version</li>
+      <li><strong>Download HTML</strong> — exports the edited slides as a new <code>.html</code> file you can save and share</li>
+      <li><strong>Clear Cache</strong> — removes all saved data</li>
+    </ul>
+  </li>
+  <li>Press <strong>Escape</strong> to exit edit mode and return to presentation navigation</li>
+</ol>
+
+<div class="box tip">
+  <strong>Tip:</strong> This means you can fine-tune wording, fix typos, and adjust content without going back to the AI agent. The downloaded file is a complete, self-contained HTML presentation — just like the original.
+</div>
+
+<!-- ======================================= -->
+<h2>Step 6: Publish and Practice</h2>
+
+<ol>
+  <li><strong>Commit and push</strong> all your files to your forked GitHub repository</li>
+  <li>Your slides will be available via <strong>GitHub Pages</strong> at:<br>
+    <code>https://[your-username].github.io/mccpSpring2026/pre1/teachingAssessment/pre1work/[your-slides].html</code>
+  </li>
+  <li><strong>Practice your delivery:</strong>
+    <ul>
+      <li>Review the <a href="https://tesolchina.github.io/mccpSpring2026/pre1/teachingAssessment/deliveryTips.html" target="_blank">Delivery Tips (interactive guide)</a> — 7 skill levels covering body language, eye contact, voice, and audience interaction</li>
+      <li>Reference guide: <code>pre1/teachingAssessment/deliveryTips.md</code></li>
+      <li>Practice out loud at least 3 times. Time yourself — aim for exactly 8 minutes</li>
+      <li>Record yourself and listen back for filler words and pacing issues</li>
+    </ul>
+  </li>
+</ol>
+
+<!-- ======================================= -->
+<h2>Step 7: Post to the Forum</h2>
+
+<p>Post a reply to the course Moodle forum with:</p>
+<ul>
+  <li>Your <strong>paper title</strong> and why you chose it</li>
+  <li>A <strong>link to your slides</strong> (GitHub Pages URL or your forked repo)</li>
+  <li><strong>One thing you learned</strong> from the AI-assisted preparation process</li>
+</ul>
+
+<!-- ======================================= -->
+<h2>The Complete Workflow — Files Generated at Each Step</h2>
+
+<p>Here is the full chain of files involved, using the demo (<code>pre1workDemo/</code>) as reference:</p>
+
+<table>
+  <tr>
+    <th>Step</th>
+    <th>You do</th>
+    <th>AI generates</th>
+  </tr>
+  <tr>
+    <td><strong>Start</strong></td>
+    <td>Place your paper in <code>papers/</code></td>
+    <td>—</td>
+  </tr>
+  <tr>
+    <td><strong>Step 2</strong></td>
+    <td>Send path: <code>genOutline.md</code></td>
+    <td><code>outline_generated.md</code><br><code>slide_plan.md</code></td>
+  </tr>
+  <tr>
+    <td><strong>Step 3</strong></td>
+    <td>Write feedback in <code>feedback.md</code><br>Send path: <code>feedback.md</code></td>
+    <td><code>updatedOutline.md</code><br><code>updated_slide_plan.md</code><br><code>style.md</code> (if samples provided)<br><code>slides4pre1.html</code></td>
+  </tr>
+  <tr>
+    <td><strong>Step 4</strong></td>
+    <td>Write revisions in <code>reviseSlides.md</code><br>Send path: <code>reviseSlides.md</code></td>
+    <td><code>slidesV2.html</code><br><code>slidesV3.html</code> (etc.)</td>
+  </tr>
+  <tr>
+    <td><strong>Step 5</strong></td>
+    <td>Edit in browser, download</td>
+    <td>—</td>
+  </tr>
+  <tr>
+    <td><strong>Step 6</strong></td>
+    <td>Ask AI to commit, push, publish</td>
+    <td>GitHub Pages URL</td>
+  </tr>
+  <tr>
+    <td><strong>After session</strong></td>
+    <td>Record full 8-min presentation<br>Save video in <code>recordings/</code></td>
+    <td>AI analysis (instructions coming soon)</td>
+  </tr>
+</table>
+
+<!-- ======================================= -->
+<h2>Your pre1work/ Folder — What Each File Is For</h2>
+
+<table>
+  <tr>
+    <th>File / Folder</th>
+    <th>Purpose</th>
+  </tr>
+  <tr>
+    <td><code>papers/</code></td>
+    <td>Place your journal article here (HTML, MD, or LaTeX). This is the input for the AI.</td>
+  </tr>
+  <tr>
+    <td><code>sample_slides/</code></td>
+    <td>Optional: put sample PPTX or HTML slides here for the AI to learn design styles from.</td>
+  </tr>
+  <tr>
+    <td><code>genOutline.md</code></td>
+    <td><strong>Start here.</strong> Send this path to the AI. It reads your paper and generates an outline + slide plan.</td>
+  </tr>
+  <tr>
+    <td><code>feedback.md</code></td>
+    <td>After reviewing the outline, write your feedback here. Send path to AI to trigger revisions and HTML slide generation.</td>
+  </tr>
+  <tr>
+    <td><code>genHTMLguide.md</code></td>
+    <td>Design principles for HTML slides (font sizes, layout, colors). The AI uses this when generating slides.</td>
+  </tr>
+</table>
+
+<!-- ======================================= -->
+<h2>Assessment Rubric Summary</h2>
+
+<table>
+  <tr><th>Criterion</th><th>Focus Areas</th><th>Score</th></tr>
+  <tr><td><strong>Content, Structure &amp; Interaction</strong></td><td>Non-specialist audience, reflection integrated into analysis, logical flow, transitions, Q&amp;A, peer evaluation</td><td>/10</td></tr>
+  <tr><td><strong>Delivery, Body Language &amp; Timing</strong></td><td>Clarity, intonation/volume, eye contact, posture, gestures, no script-reading, timing</td><td>/10</td></tr>
+  <tr><td><strong>Use of Visual Aids</strong></td><td>Slide design quality, slides supplement (not duplicate) the speech</td><td>/10</td></tr>
+  <tr><td><strong>Language Range &amp; Accuracy</strong></td><td>Communicative effectiveness, grammatical accuracy</td><td>/10</td></tr>
+</table>
+<p style="text-align:center;"><strong>Total: /40</strong></p>
+
+<!-- ======================================= -->
+<h2>3-Hour Preparation Session Timeline</h2>
+
+<table>
+  <tr><th>Time</th><th>Activity</th><th>Details</th></tr>
+  <tr><td><strong>0:00–0:15</strong></td><td>Check-in</td><td>Confirm paper selected, outline generated, slides drafted. Instructor addresses common issues.</td></tr>
+  <tr><td><strong>0:15–0:45</strong></td><td>Peer review</td><td>In pairs/groups: share outlines and slides. Give feedback on accessibility, structure, and visual design.</td></tr>
+  <tr><td><strong>0:45–1:00</strong></td><td>Delivery tips</td><td>Walkthrough of <a href="https://tesolchina.github.io/mccpSpring2026/pre1/teachingAssessment/deliveryTips.html" target="_blank">Delivery Tips guide</a>: body language, eye contact (5-second technique), voice, pausing, audience interaction.</td></tr>
+  <tr><td><strong>1:00–1:10</strong></td><td>Break</td><td>Review notes, mentally rehearse your opening.</td></tr>
+  <tr><td><strong>1:10–2:30</strong></td><td>3-min practice + peer feedback</td><td>Each student delivers the <strong>first 3 minutes</strong> of their presentation. Focus on <strong>delivery only</strong> (not content). After each speaker, peers provide <strong>1-2 minutes of structured feedback</strong> (see Peer Feedback Guide below). Instructor adds brief targeted comments.</td></tr>
+  <tr><td><strong>2:30–2:45</strong></td><td>Reflection</td><td>Write down 3 specific improvements based on feedback. Update slides or outline. Commit to repo.</td></tr>
+  <tr><td><strong>2:45–3:00</strong></td><td>Wrap-up</td><td>Assessment date reminder, upload deadline (2 hours before), peer review duties.</td></tr>
+</table>
+
+<!-- ======================================= -->
+<h2>Peer Feedback Guide — What to Watch For</h2>
+
+<p>During the 3-minute practice, your role as a peer reviewer is to give <strong>specific, actionable feedback on delivery</strong> (not content). Use this framework:</p>
+
+<table>
+  <tr><th>Area</th><th>What to observe</th><th>Feedback starters</th></tr>
+  <tr>
+    <td><strong>Eye contact</strong></td>
+    <td>Does the speaker look at the audience or stare at slides/notes? Do they cover all parts of the room?</td>
+    <td>"I noticed you looked at the screen during... Try picking 3 anchor points in the room."</td>
+  </tr>
+  <tr>
+    <td><strong>Body language</strong></td>
+    <td>Stable stance? Open posture? Purposeful gestures or fidgeting?</td>
+    <td>"Your gestures were effective when... You could try keeping your hands still between points."</td>
+  </tr>
+  <tr>
+    <td><strong>Voice</strong></td>
+    <td>Audible? Varied tone? Rushing or too slow? Filler words (um, uh, so)?</td>
+    <td>"Your pace was good during the opening. Try pausing after key findings for emphasis."</td>
+  </tr>
+  <tr>
+    <td><strong>Interaction</strong></td>
+    <td>Does it feel like the speaker is talking TO you or AT you? Any questions or engagement cues?</td>
+    <td>"The rhetorical question at the start was great. You could add one more before the results section."</td>
+  </tr>
+  <tr>
+    <td><strong>Overall presence</strong></td>
+    <td>Does the speaker appear confident and natural? Any script-reading?</td>
+    <td>"You seemed most natural when... For the technical section, try using simpler language."</td>
+  </tr>
+</table>
+
+<div class="box tip">
+  <strong>Tip:</strong> Good feedback is <strong>specific</strong> ("When you explained the methodology, you spoke faster") rather than vague ("Good job"). Mention one strength and one area to improve.
+</div>
+
+<!-- ======================================= -->
+<h2>After the Session: Record a Full 8-Minute Presentation</h2>
+
+<p>After the preparation session, go home and <strong>record a full 8-minute practice presentation</strong>. This recording will be used for self-review and AI-assisted analysis.</p>
+
+<h3>Recording Instructions</h3>
+<ol>
+  <li><strong>Set up a screen recording</strong> that captures both your slides and your face/voice:
+    <ul>
+      <li><strong>Mac:</strong> Use QuickTime (File &gt; New Screen Recording) or Zoom (record a meeting with yourself, share screen)</li>
+      <li><strong>Windows:</strong> Use OBS Studio (free), Xbox Game Bar (Win+G), or Zoom</li>
+      <li><strong>Simplest method:</strong> Start a Zoom meeting alone, share your slides screen, turn on your camera, and hit Record</li>
+    </ul>
+  </li>
+  <li><strong>Open your HTML slides</strong> in full screen (press F11 or Cmd+Shift+F)</li>
+  <li><strong>Deliver the full 8-minute presentation</strong> as if presenting to a live audience:
+    <ul>
+      <li>Stand up if possible — it improves delivery</li>
+      <li>Look at the camera (your "audience"), not just the screen</li>
+      <li>Use the arrow keys to advance slides while speaking</li>
+    </ul>
+  </li>
+  <li><strong>Save the recording</strong> as an MP4 or MOV file</li>
+</ol>
+
+<h3>Save the Recording to Your Repository</h3>
+<ol>
+  <li>Create a folder in your working directory: <code>pre1work/recordings/</code></li>
+  <li>Save your video file there (e.g., <code>pre1work/recordings/practice_recording.mp4</code>)</li>
+  <li>Commit and push to your forked repository</li>
+</ol>
+
+<div class="box warn">
+  <strong>File size note:</strong> Video files can be large. If your recording exceeds GitHub's 100MB file limit, you can either:
+  (a) compress it using HandBrake (free) or an online video compressor,
+  (b) upload it to a cloud service (Google Drive, OneDrive) and put the sharing link in a <code>recording_link.md</code> file instead, or
+  (c) use Git LFS (ask your AI agent to help set this up).
+</div>
+
+<h3>What Happens Next</h3>
+<p><strong>More instructions will be provided</strong> on how to analyze your recorded presentation using AI tools. The AI can help you identify:</p>
+<ul>
+  <li>Filler word frequency and locations</li>
+  <li>Pacing patterns (where you rush or slow down)</li>
+  <li>Time spent on each section vs. target timing</li>
+  <li>Suggestions for improving delivery based on the assessment rubric</li>
+</ul>
+
+<div class="box">
+  <strong>Coming soon:</strong> Detailed instructions for AI-assisted video analysis will be shared in a follow-up post. For now, focus on making the best recording you can.
+</div>
+
+<!-- ======================================= -->
+<h2>Useful Links</h2>
+
+<table>
+  <tr><th>Resource</th><th>Location</th></tr>
+  <tr><td>Course Repository</td><td><a href="https://github.com/tesolchina/mccpSpring2026" target="_blank">github.com/tesolchina/mccpSpring2026</a></td></tr>
+  <tr><td>Assessment Brief</td><td><code>pre1/materials/Presentation_1_Brief.md</code></td></tr>
+  <tr><td>Assessment Rubric</td><td><code>pre1/materials/pre1AssessmentRubrics.md</code></td></tr>
+  <tr><td>Presentation Skills</td><td><code>pre1/materials/Session 4_Handout_STUDENT Version_LLM_Formatted.md</code></td></tr>
+  <tr><td>Delivery Tips (interactive)</td><td><a href="https://tesolchina.github.io/mccpSpring2026/pre1/teachingAssessment/deliveryTips.html" target="_blank">deliveryTips.html</a> — gamified guide with 7 skill levels</td></tr>
+  <tr><td>Delivery Tips (reference)</td><td><code>pre1/teachingAssessment/deliveryTips.md</code> — 10 source articles</td></tr>
+  <tr><td>HTML Slide Design Guide</td><td><code>pre1/teachingAssessment/pre1work/genHTMLguide.md</code></td></tr>
+  <tr><td>Demo (complete example)</td><td><code>pre1/teachingAssessment/pre1workDemo/</code> — full workflow from paper to finished slides</td></tr>
+  <tr><td>Demo Slides (live)</td><td><a href="https://tesolchina.github.io/mccpSpring2026/pre1/teachingAssessment/pre1workDemo/slidesV3.html" target="_blank">slidesV3.html</a></td></tr>
+  <tr><td>Cloning Guide</td><td><code>pre1/materials/cursor_cloning_mccpspring2026_repositor.md</code></td></tr>
+</table>
+
+<div class="footer">
+  MCCP6020 — Presentation 1 Student Instructions<br>
+  Last updated: February 2026
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Assisted Learning of Academic Spoken Collocations</title>
+    <style>
+        /* ===========================================
+           FONTS - Dark Botanical Style
+           Cormorant (elegant serif) + IBM Plex Sans
+           =========================================== */
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+
+        /* ===========================================
+           CSS VARIABLES - Dark Botanical Palette
+           =========================================== */
+        :root {
+            /* Colors */
+            --bg-primary: #0f0f0f;
+            --text-primary: #e8e4df;
+            --text-secondary: #9a9590;
+            --accent-warm: #d4a574;
+            --accent-pink: #e8b4b8;
+            --accent-gold: #c9b896;
+            --accent-sage: #8b9a8b;
+            
+            /* Typography - Responsive with clamp() */
+            --title-size: clamp(1.8rem, 5.5vw, 4.5rem);
+            --h2-size: clamp(1.4rem, 3.5vw, 2.8rem);
+            --h3-size: clamp(1.2rem, 2.5vw, 2rem);
+            --body-size: clamp(0.85rem, 1.6vw, 1.2rem);
+            --small-size: clamp(0.7rem, 1.2vw, 0.95rem);
+            
+            /* Spacing - Viewport responsive */
+            --slide-padding: clamp(1.5rem, 5vw, 5rem);
+            --content-gap: clamp(0.8rem, 2.5vw, 2.5rem);
+            --element-gap: clamp(0.4rem, 1.5vw, 1.2rem);
+        }
+
+        /* ===========================================
+           VIEWPORT FITTING - MANDATORY BASE
+           =========================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+        }
+        
+        html {
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        /* ===========================================
+           SLIDE STRUCTURE - Exact viewport height
+           =========================================== */
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh; /* Dynamic viewport for mobile */
+            overflow: hidden; /* CRITICAL: No scrolling */
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-height: 100%;
+            overflow: hidden;
+            padding: var(--slide-padding);
+            position: relative;
+            z-index: 10;
+        }
+
+        /* ===========================================
+           TYPOGRAPHY - Elegant serif headings
+           =========================================== */
+        h1 {
+            font-family: 'Cormorant', serif;
+            font-size: var(--title-size);
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.15;
+            margin-bottom: 0.4em;
+            letter-spacing: -0.02em;
+        }
+        
+        h2 {
+            font-family: 'Cormorant', serif;
+            font-size: var(--h2-size);
+            font-weight: 600;
+            color: var(--accent-warm);
+            line-height: 1.25;
+            margin-bottom: 0.6em;
+            letter-spacing: -0.01em;
+        }
+        
+        h3 {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: var(--h3-size);
+            font-weight: 500;
+            color: var(--accent-gold);
+            line-height: 1.3;
+            margin: 0.8em 0 0.4em;
+        }
+        
+        p, li {
+            font-size: var(--body-size);
+            line-height: 1.7;
+            margin-bottom: 0.7em;
+            color: var(--text-primary);
+            font-weight: 300;
+        }
+        
+        strong {
+            font-weight: 500;
+            color: var(--accent-warm);
+        }
+        
+        em {
+            font-style: italic;
+            font-family: 'Cormorant', serif;
+            color: var(--accent-pink);
+        }
+
+        /* ===========================================
+           LAYOUT COMPONENTS
+           =========================================== */
+        .subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 2.2rem);
+            color: var(--text-secondary);
+            font-weight: 300;
+            font-style: italic;
+            margin-bottom: 1.5em;
+        }
+        
+        .author-info {
+            margin-top: 2em;
+            font-size: var(--small-size);
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+        
+        ul {
+            margin-left: 1.8em;
+            list-style: none;
+        }
+        
+        li {
+            position: relative;
+            padding-left: 0.5em;
+        }
+        
+        li::before {
+            content: '—';
+            position: absolute;
+            left: -1.3em;
+            color: var(--accent-warm);
+        }
+
+        /* ===========================================
+           SPECIAL COMPONENTS
+           =========================================== */
+        .rubric-tag {
+            display: inline-block;
+            padding: 0.35em 0.8em;
+            font-size: clamp(0.6rem, 1vw, 0.75rem);
+            font-weight: 500;
+            border-radius: 4px;
+            margin-bottom: 0.8em;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            background: rgba(212, 165, 116, 0.15);
+            color: var(--accent-warm);
+            border: 1px solid rgba(212, 165, 116, 0.3);
+        }
+        
+        .transition-cue {
+            font-style: italic;
+            color: var(--accent-pink);
+            margin-top: auto;
+            padding-top: 1.2em;
+            border-top: 1px solid rgba(232, 180, 184, 0.2);
+            font-size: var(--small-size);
+            font-family: 'Cormorant', serif;
+        }
+        
+        .transition-cue::before {
+            content: '→ ';
+            font-weight: 600;
+            color: var(--accent-warm);
+        }
+        
+        .highlight-box {
+            background: rgba(212, 165, 116, 0.08);
+            padding: clamp(1rem, 2.5vw, 2rem);
+            border-left: 3px solid var(--accent-warm);
+            margin: 1em 0;
+            border-radius: 4px;
+        }
+        
+        .highlight-box p {
+            margin-bottom: 0.5em;
+        }
+        
+        .highlight-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ===========================================
+           GRID LAYOUTS
+           =========================================== */
+        .two-column {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+            gap: clamp(1rem, 2.5vw, 2rem);
+            margin: 1em 0;
+        }
+        
+        .example-box {
+            background: rgba(255, 255, 255, 0.03);
+            padding: clamp(0.8rem, 2vw, 1.5rem);
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .example-box.correct {
+            border-left: 3px solid var(--accent-sage);
+            background: rgba(139, 154, 139, 0.08);
+        }
+        
+        .example-box.incorrect {
+            border-left: 3px solid var(--accent-pink);
+            background: rgba(232, 180, 184, 0.08);
+        }
+        
+        .example-box h3 {
+            margin-top: 0;
+            font-size: clamp(1rem, 2vw, 1.4rem);
+        }
+        
+        .example-box ul {
+            margin-left: 1.5em;
+            font-size: var(--small-size);
+        }
+
+        /* ===========================================
+           FINDING CARDS
+           =========================================== */
+        .finding-card {
+            background: rgba(255, 255, 255, 0.04);
+            padding: clamp(1rem, 2.5vw, 1.8rem);
+            margin: 0.8em 0;
+            border-radius: 6px;
+            border-left: 4px solid;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        
+        .finding-card:hover {
+            transform: translateX(8px);
+            background: rgba(255, 255, 255, 0.06);
+        }
+        
+        .finding-card.f1 { border-left-color: var(--accent-gold); }
+        .finding-card.f2 { border-left-color: var(--accent-warm); }
+        .finding-card.f3 { border-left-color: var(--accent-pink); }
+        
+        .finding-card h3 {
+            margin-top: 0;
+            font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+        }
+        
+        .finding-card p {
+            margin-bottom: 0;
+        }
+
+        /* ===========================================
+           SPECIAL ELEMENTS
+           =========================================== */
+        .big-question {
+            font-family: 'Cormorant', serif;
+            font-size: clamp(1.6rem, 4vw, 3.2rem);
+            color: var(--accent-warm);
+            text-align: center;
+            font-weight: 600;
+            margin: 1.5em 0;
+            line-height: 1.35;
+            font-style: italic;
+        }
+        
+        .stats {
+            font-family: 'Cormorant', serif;
+            font-size: clamp(1.8rem, 4.5vw, 3.5rem);
+            font-weight: 700;
+            color: var(--accent-warm);
+            text-align: center;
+            margin: 1em 0;
+            line-height: 1.3;
+        }
+        
+        .slide-number {
+            position: absolute;
+            bottom: clamp(1rem, 2vw, 1.5rem);
+            right: clamp(1.5rem, 3vw, 2.5rem);
+            color: var(--text-secondary);
+            font-size: var(--small-size);
+            font-weight: 400;
+            z-index: 100;
+        }
+
+        /* ===========================================
+           DECORATIVE ELEMENTS - Abstract shapes
+           =========================================== */
+        .shape-decoration {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .shape-1 {
+            width: clamp(200px, 30vw, 450px);
+            height: clamp(200px, 30vw, 450px);
+            background: radial-gradient(circle, var(--accent-warm), transparent);
+            top: -10%;
+            right: -5%;
+        }
+        
+        .shape-2 {
+            width: clamp(180px, 25vw, 350px);
+            height: clamp(180px, 25vw, 350px);
+            background: radial-gradient(circle, var(--accent-pink), transparent);
+            bottom: -8%;
+            left: -3%;
+        }
+        
+        .shape-3 {
+            width: clamp(150px, 20vw, 300px);
+            height: clamp(150px, 20vw, 300px);
+            background: radial-gradient(circle, var(--accent-gold), transparent);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .accent-line {
+            position: absolute;
+            width: 2px;
+            height: 30%;
+            background: linear-gradient(to bottom, transparent, var(--accent-warm), transparent);
+            opacity: 0.3;
+            left: clamp(3rem, 8vw, 8rem);
+            top: 35%;
+        }
+
+        /* ===========================================
+           UI CONTROLS
+           =========================================== */
+        .progress-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-warm), var(--accent-pink));
+            transition: width 0.4s ease;
+            z-index: 1000;
+        }
+        
+        .toolbar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(15, 15, 15, 0.95);
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            border-radius: 8px;
+            padding: 1.2em;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            display: none;
+            z-index: 2000;
+            min-width: 260px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .toolbar.visible {
+            display: block;
+        }
+        
+        .toolbar h4 {
+            margin-bottom: 1em;
+            color: var(--accent-warm);
+            font-family: 'Cormorant', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .toolbar button {
+            display: block;
+            width: 100%;
+            margin: 0.6em 0;
+            padding: 0.8em;
+            background: rgba(212, 165, 116, 0.15);
+            color: var(--text-primary);
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            font-family: 'IBM Plex Sans', sans-serif;
+        }
+        
+        .toolbar button:hover {
+            background: rgba(212, 165, 116, 0.25);
+            border-color: var(--accent-warm);
+            transform: translateY(-2px);
+        }
+        
+        .timer {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(15, 15, 15, 0.95);
+            color: var(--accent-warm);
+            padding: 0.8em 1.5em;
+            border-radius: 8px;
+            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+            font-weight: 600;
+            display: none;
+            z-index: 1500;
+            font-variant-numeric: tabular-nums;
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            backdrop-filter: blur(10px);
+            font-family: 'IBM Plex Sans', sans-serif;
+        }
+        
+        .timer.visible {
+            display: block;
+        }
+        
+        .timer.warning {
+            background: rgba(232, 180, 184, 0.95);
+            color: var(--bg-primary);
+            border-color: var(--accent-pink);
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.05); }
+        }
+        
+        .timer-controls {
+            position: fixed;
+            bottom: 60px;
+            left: 20px;
+            display: flex;
+            gap: 0.6em;
+            z-index: 1500;
+        }
+        
+        .timer-controls button {
+            padding: 0.6em 1.2em;
+            background: rgba(212, 165, 116, 0.15);
+            color: var(--text-primary);
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-family: 'IBM Plex Sans', sans-serif;
+        }
+        
+        .timer-controls button:hover {
+            background: rgba(212, 165, 116, 0.25);
+            border-color: var(--accent-warm);
+        }
+        
+        .help-text {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            color: var(--text-secondary);
+            font-size: clamp(0.7rem, 1.1vw, 0.85rem);
+            z-index: 500;
+            font-weight: 300;
+        }
+
+        /* ===========================================
+           TITLE & CLOSING SLIDES - Centered
+           =========================================== */
+        #slide1 .slide-content,
+        #slide9 .slide-content {
+            text-align: center;
+            justify-content: center;
+        }
+        
+        #slide1 h1 {
+            font-size: clamp(2.2rem, 6vw, 5rem);
+            margin-bottom: 0.3em;
+        }
+
+        /* ===========================================
+           RESPONSIVE BREAKPOINTS - Height-based
+           =========================================== */
+        @media (max-height: 700px) {
+            :root {
+                --slide-padding: clamp(1rem, 4vw, 3rem);
+                --content-gap: clamp(0.6rem, 2vw, 1.5rem);
+                --title-size: clamp(1.5rem, 5vw, 3rem);
+                --h2-size: clamp(1.2rem, 3vw, 2rem);
+            }
+            
+            .shape-decoration {
+                filter: blur(60px);
+            }
+        }
+        
+        @media (max-height: 600px) {
+            :root {
+                --slide-padding: clamp(0.8rem, 3vw, 2rem);
+                --title-size: clamp(1.3rem, 4.5vw, 2.2rem);
+                --body-size: clamp(0.75rem, 1.4vw, 1rem);
+            }
+            
+            .help-text, .accent-line {
+                display: none;
+            }
+        }
+        
+        @media (max-height: 500px) {
+            :root {
+                --slide-padding: clamp(0.6rem, 2.5vw, 1.5rem);
+                --title-size: clamp(1.1rem, 4vw, 1.8rem);
+                --body-size: clamp(0.7rem, 1.2vw, 0.9rem);
+            }
+            
+            .shape-decoration {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.2s !important;
+            }
+            
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        /* ===========================================
+           ANIMATIONS - Fade in on slide entry
+           =========================================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .slide.active h1,
+        .slide.active h2 {
+            animation: fadeInUp 0.8s ease 0.1s both;
+        }
+        
+        .slide.active p,
+        .slide.active ul,
+        .slide.active .highlight-box,
+        .slide.active .finding-card {
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Timer -->
+    <div class="timer" id="timer">1:00</div>
+
+    <!-- Timer Controls -->
+    <div class="timer-controls">
+        <button onclick="startTimer()">Start</button>
+        <button onclick="pauseTimer()">Pause</button>
+        <button onclick="resetTimer()">Reset</button>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar" id="toolbar">
+        <h4>Edit Tools</h4>
+        <button onclick="saveToCache()">💾 Save to Cache</button>
+        <button onclick="loadFromCache()">📂 Load from Cache</button>
+        <button onclick="downloadHTML()">⬇️ Download HTML</button>
+        <button onclick="clearCache()">🗑️ Clear Cache</button>
+        <button onclick="toggleEditMode()">✏️ Toggle Edit Mode</button>
+    </div>
+
+    <!-- Help Text -->
+    <div class="help-text">
+        Press T for toolbar • E for edit • ← → to navigate
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide active" id="slide1">
+        <div class="shape-decoration shape-1"></div>
+        <div class="shape-decoration shape-2"></div>
+        <div class="slide-content">
+            <h1 contenteditable="false">AI-Assisted Learning of Academic Spoken Collocations</h1>
+            <p class="subtitle" contenteditable="false">Guided vs. Unguided Tasks in EAP Contexts</p>
+            <div class="author-info" contenteditable="false">
+                <p><strong>Paper by:</strong> Valentina Morgana & Francesca Poli</p>
+                <p><em>Journal of English for Academic Purposes</em> (2026)</p>
+            </div>
+        </div>
+        <div class="slide-number">1</div>
+    </div>
+
+    <!-- Slide 2: Opening Hook -->
+    <div class="slide" id="slide2">
+        <div class="shape-decoration shape-3"></div>
+        <div class="accent-line"></div>
+        <div class="slide-content">
+            <span class="rubric-tag" contenteditable="false">Engaging Opening</span>
+            <h2 contenteditable="false">The Challenge</h2>
+            <div class="big-question" contenteditable="false">
+                How much guidance do learners need when using AI?
+            </div>
+            <p contenteditable="false" style="text-align: center; margin-top: 2em;">
+                Imagine preparing for an important academic presentation and struggling to find the right phrases. You know what you want to say, but it doesn't sound academic enough. Now imagine having ChatGPT to help...
+            </p>
+            <p contenteditable="false" style="text-align: center; margin-top: 1em; color: var(--accent-warm);">
+                <strong>Should the AI guide you step-by-step, or should you explore freely?</strong>
+            </p>
+            <div class="transition-cue" contenteditable="false">Let's understand what this study investigated...</div>
+        </div>
+        <div class="slide-number">2</div>
+    </div>
+
+    <!-- Slide 3: Introduction -->
+    <div class="slide" id="slide3">
+        <div class="shape-decoration shape-1"></div>
+        <div class="accent-line"></div>
+        <div class="slide-content">
+            <span class="rubric-tag" contenteditable="false">Content & Structure</span>
+            <h2 contenteditable="false">What Are Academic Collocations?</h2>
+            
+            <p contenteditable="false"><strong>Collocations</strong> are word combinations that naturally appear together in academic contexts.</p>
+            
+            <div class="two-column">
+                <div class="example-box correct" contenteditable="false">
+                    <h3 style="color: var(--accent-sage); margin-top: 0;">✓ Correct</h3>
+                    <ul style="margin-left: 1.2em;">
+                        <li>significant findings</li>
+                        <li>conduct research</li>
+                        <li>theoretical framework</li>
+                    </ul>
+                </div>
+                <div class="example-box incorrect" contenteditable="false">
+                    <h3 style="color: var(--accent-pink); margin-top: 0;">✗ Incorrect</h3>
+                    <ul style="margin-left: 1.2em;">
+                        <li>big findings</li>
+                        <li>do research</li>
+                        <li>thinking framework</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 contenteditable="false">The Research Gap</h3>
+            <p contenteditable="false">Even advanced learners struggle with collocations. Traditional teaching methods haven't been very effective, and we don't know the best way to use AI tools like ChatGPT for language learning.</p>
+            
+            <div class="transition-cue" contenteditable="false">So what did the researchers ask?</div>
+        </div>
+        <div class="slide-number">3</div>
+    </div>
+
+    <!-- Slide 4: Research Questions & Findings 1-2 -->
+    <div class="slide" id="slide4">
+        <div class="shape-decoration shape-2"></div>
+        <div class="slide-content">
+            <span class="rubric-tag" contenteditable="false">Key Findings</span>
+            <h2 contenteditable="false">Research Questions</h2>
+            
+            <div class="highlight-box" contenteditable="false">
+                <p><strong>1.</strong> Does <strong>guided</strong> ChatGPT use help students learn collocations better than <strong>unguided</strong> exploration?</p>
+                <p style="margin-bottom: 0;"><strong>2.</strong> How do AI-assisted tasks compare to <strong>traditional methods</strong> without AI?</p>
+            </div>
+
+            <h2 contenteditable="false" style="margin-top: 0.8em;">Key Findings</h2>
+            
+            <div class="finding-card f1" contenteditable="false">
+                <h3>Finding 1: Unguided AI Was More Effective</h3>
+                <p>Students who used ChatGPT <strong>freely</strong> (without structured guidance) used academic collocations <strong>more frequently and accurately</strong> than those following step-by-step activities.</p>
+            </div>
+
+            <div class="finding-card f2" contenteditable="false">
+                <h3>Finding 2: Both AI Groups Beat Non-AI Control</h3>
+                <p>Both AI groups used approximately <strong>60 different collocations</strong> vs. far fewer in the control group.</p>
+            </div>
+
+            <div class="transition-cue" contenteditable="false">But the gains took time to develop...</div>
+        </div>
+        <div class="slide-number">4</div>
+    </div>
+
+    <!-- Slide 5: Finding 3 & Significance -->
+    <div class="slide" id="slide5">
+        <div class="shape-decoration shape-3"></div>
+        <div class="accent-line"></div>
+        <div class="slide-content">
+            <span class="rubric-tag" contenteditable="false">Significance</span>
+            
+            <div class="finding-card f3" contenteditable="false">
+                <h3>Finding 3: Modest Gains Over Time</h3>
+                <p>The study tracked students over <strong>10 weeks</strong>. While AI users showed consistent improvement, overall gains weren't dramatic. Learning collocations takes time—even with AI, there are no shortcuts.</p>
+            </div>
+
+            <h2 contenteditable="false">Why This Matters</h2>
+            
+            <p contenteditable="false">This research challenges a widespread assumption: <strong>more structure doesn't always mean better learning</strong>. For proficient learners on familiar tasks, freedom to explore may be more beneficial.</p>
+
+            <div class="highlight-box" contenteditable="false">
+                <p style="margin-bottom: 0;"><strong>Key Insight:</strong> The way we design learning tasks with AI is just as important as using AI itself.</p>
+            </div>
+
+            <div class="transition-cue" contenteditable="false">How does this influence my own research approach?</div>
+        </div>
+        <div class="slide-number">5</div>
+    </div>
+
+    <!-- Slide 6: Impact on Research & Writing -->
+    <div class="slide" id="slide6">
+        <div class="shape-decoration shape-1"></div>
+        <div class="slide-content">
+            <span class="rubric-tag" contenteditable="false">Writing Skills</span>
+            <h2 contenteditable="false">Impact on My Research & Writing</h2>
+
+            <h3 contenteditable="false">Research Design Lessons</h3>
+            <ul contenteditable="false">
+                <li>Consider <strong>learner proficiency level</strong> when deciding structure</li>
+                <li>Include proper <strong>control groups</strong> rather than assuming technology improves learning</li>
+                <li>Use <strong>mixed methods</strong>—combine quantitative and qualitative insights</li>
+            </ul>
+
+            <h3 contenteditable="false">Writing Skills Learned</h3>
+            <ul contenteditable="false">
+                <li><strong>Transparent limitation discussion</strong> strengthens credibility</li>
+                <li><strong>Comprehensive literature integration</strong> that synthesizes previous studies</li>
+                <li><strong>Accessibility despite complexity</strong>—explain terms, use examples</li>
+                <li><strong>Connect to broader debates</strong> beyond the narrow study focus</li>
+            </ul>
+
+            <div class="transition-cue" contenteditable="false">What are the broader implications?</div>
+        </div>
+        <div class="slide-number">6</div>
+    </div>
+
+    <!-- Slide 7: Broader Implications -->
+    <div class="slide" id="slide7">
+        <div class="shape-decoration shape-2"></div>
+        <div class="accent-line"></div>
+        <div class="slide-content">
+            <span class="rubric-tag" contenteditable="false">Broader Impact</span>
+            <h2 contenteditable="false">Broader Implications for Education</h2>
+
+            <div class="highlight-box" contenteditable="false">
+                <p style="margin-bottom: 0;"><strong>As AI tools become common in classrooms, teachers need evidence-based guidance about task design.</strong></p>
+            </div>
+
+            <p contenteditable="false">The study developed the <strong>Academic Spoken Collocation List (ASCL)</strong>—focusing specifically on spoken academic language, important because presentations are prepared in writing but delivered orally.</p>
+
+            <h3 contenteditable="false">Key Takeaways</h3>
+            <ul contenteditable="false">
+                <li>The answer depends on <strong>learner proficiency and task familiarity</strong>—no one-size-fits-all approach</li>
+                <li>Open-ended interaction can <strong>encourage autonomy</strong> rather than dependence</li>
+                <li>Students <strong>notice patterns and take ownership</strong> of their learning</li>
+            </ul>
+
+            <div class="transition-cue" contenteditable="false">Let me summarize the key message...</div>
+        </div>
+        <div class="slide-number">7</div>
+    </div>
+
+    <!-- Slide 8: Summary -->
+    <div class="slide" id="slide8">
+        <div class="shape-decoration shape-3"></div>
+        <div class="slide-content">
+            <span class="rubric-tag" contenteditable="false">Summary</span>
+            <h2 contenteditable="false">Key Takeaway</h2>
+
+            <div class="highlight-box" contenteditable="false" style="padding: clamp(1.5rem, 3vw, 2.5rem);">
+                <p style="text-align: center; line-height: 1.6; margin-bottom: 0; font-size: clamp(1rem, 2vw, 1.4rem);">
+                    When using AI for language learning, <strong>more guidance isn't always better</strong>. 
+                    For proficient learners on familiar tasks, <strong>freedom to explore</strong> 
+                    led to richer collocation use than structured steps.
+                </p>
+            </div>
+
+            <p contenteditable="false" style="margin-top: 1.5em;">
+                However, <strong>both AI approaches outperformed traditional instruction</strong>, highlighting AI's potential when designed thoughtfully.
+            </p>
+
+            <div class="stats" contenteditable="false">Task design matters<br>as much as the AI itself</div>
+
+            <div class="transition-cue" contenteditable="false">Thank you for your attention...</div>
+        </div>
+        <div class="slide-number">8</div>
+    </div>
+
+    <!-- Slide 9: Closing -->
+    <div class="slide" id="slide9">
+        <div class="shape-decoration shape-1"></div>
+        <div class="shape-decoration shape-2"></div>
+        <div class="slide-content">
+            <h1 contenteditable="false">Thank You</h1>
+            <p contenteditable="false" style="font-size: clamp(1.4rem, 2.8vw, 2.5rem); margin-top: 1em; font-family: 'Cormorant', serif; font-style: italic;">Questions?</p>
+            <div class="author-info" contenteditable="false" style="margin-top: 3em;">
+                <p><strong>Reference:</strong></p>
+                <p>Morgana, V., & Poli, F. (2026). Guided and unguided GenAI tasks for learning academic spoken collocations. <em>Journal of English for Academic Purposes</em>, 80, 101638.</p>
+            </div>
+        </div>
+        <div class="slide-number">9</div>
+    </div>
+
+    <script>
+        /* ===========================================
+           PRESENTATION NAVIGATION & CONTROLS
+           =========================================== */
+        let currentSlide = 0;
+        const totalSlides = 9;
+        let editMode = false;
+        let timerInterval = null;
+        let timerSeconds = 60;
+        let timerRunning = false;
+
+        // Get all slides
+        const slides = document.querySelectorAll('.slide');
+
+        // Navigation function
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            
+            // Update progress bar
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            
+            // Scroll to slide (for scroll-snap)
+            slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function nextSlide() {
+            if (!editMode) showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            if (!editMode) showSlide(currentSlide - 1);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (editMode && e.key !== 'Escape' && e.key.toLowerCase() !== 't') return;
+            
+            switch(e.key) {
+                case 'ArrowRight':
+                case ' ':
+                    e.preventDefault();
+                    nextSlide();
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    prevSlide();
+                    break;
+                case 'Home':
+                    e.preventDefault();
+                    showSlide(0);
+                    break;
+                case 'End':
+                    e.preventDefault();
+                    showSlide(totalSlides - 1);
+                    break;
+                case 'e':
+                case 'E':
+                    e.preventDefault();
+                    toggleEditMode();
+                    break;
+                case 't':
+                case 'T':
+                    e.preventDefault();
+                    toggleToolbar();
+                    break;
+                case 'Escape':
+                    if (editMode) {
+                        e.preventDefault();
+                        toggleEditMode();
+                    }
+                    break;
+            }
+        });
+
+        // Mouse navigation
+        document.addEventListener('click', (e) => {
+            if (editMode) return;
+            if (e.target.closest('.toolbar') || e.target.closest('.timer-controls')) return;
+            
+            const clickX = e.clientX;
+            const windowWidth = window.innerWidth;
+            
+            if (clickX > windowWidth * 0.4) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        });
+
+        /* ===========================================
+           EDIT MODE
+           =========================================== */
+        function toggleEditMode() {
+            editMode = !editMode;
+            const elements = document.querySelectorAll('[contenteditable]');
+            elements.forEach(el => {
+                el.contentEditable = editMode ? 'true' : 'false';
+                if (editMode) {
+                    el.style.outline = '2px dashed rgba(212, 165, 116, 0.5)';
+                    el.style.outlineOffset = '4px';
+                } else {
+                    el.style.outline = 'none';
+                }
+            });
+            
+            if (editMode) {
+                alert('Edit mode ON. Click on any text to edit. Press ESC to exit edit mode.');
+            }
+        }
+
+        /* ===========================================
+           TOOLBAR FUNCTIONS
+           =========================================== */
+        function toggleToolbar() {
+            const toolbar = document.getElementById('toolbar');
+            toolbar.classList.toggle('visible');
+        }
+
+        function saveToCache() {
+            const html = document.documentElement.outerHTML;
+            localStorage.setItem('presentation-slides-v2', html);
+            alert('Presentation saved to browser cache!');
+        }
+
+        function loadFromCache() {
+            const saved = localStorage.getItem('presentation-slides-v2');
+            if (saved) {
+                if (confirm('This will replace current content with saved version. Continue?')) {
+                    document.open();
+                    document.write(saved);
+                    document.close();
+                }
+            } else {
+                alert('No saved presentation found in cache.');
+            }
+        }
+
+        function downloadHTML() {
+            const html = document.documentElement.outerHTML;
+            const blob = new Blob([html], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'presentation-dark-botanical.html';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function clearCache() {
+            if (confirm('Clear saved presentation from cache?')) {
+                localStorage.removeItem('presentation-slides-v2');
+                alert('Cache cleared!');
+            }
+        }
+
+        /* ===========================================
+           TIMER FUNCTIONS
+           =========================================== */
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function updateTimer() {
+            const timerEl = document.getElementById('timer');
+            timerEl.textContent = formatTime(timerSeconds);
+            
+            if (timerSeconds <= 10) {
+                timerEl.classList.add('warning');
+            } else {
+                timerEl.classList.remove('warning');
+            }
+        }
+
+        function startTimer() {
+            if (timerRunning) return;
+            
+            const timerEl = document.getElementById('timer');
+            timerEl.classList.add('visible');
+            timerRunning = true;
+            
+            timerInterval = setInterval(() => {
+                timerSeconds--;
+                updateTimer();
+                
+                if (timerSeconds <= 0) {
+                    pauseTimer();
+                    alert('Time is up!');
+                }
+            }, 1000);
+        }
+
+        function pauseTimer() {
+            timerRunning = false;
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+        }
+
+        function resetTimer() {
+            pauseTimer();
+            timerSeconds = 60;
+            updateTimer();
+            const timerEl = document.getElementById('timer');
+            timerEl.classList.remove('visible');
+        }
+
+        /* ===========================================
+           INITIALIZE
+           =========================================== */
+        showSlide(0);
+        updateTimer();
+    </script>
+</body>
+</html>

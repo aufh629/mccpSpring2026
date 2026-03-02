@@ -1,0 +1,2 @@
+# Optional: for LLM-based sentence–template matching
+openai>=1.0.0

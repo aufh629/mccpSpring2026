@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>More on Planting Ideas — Five-Paper Analysis</title>
+  <style>
+    :root {
+      --bg: #f0f4f8;
+      --card: #fff;
+      --border: #c5d1de;
+      --text: #1a2332;
+      --muted: #5c6f82;
+      --accent: #2563eb;
+      --plant: #059669;
+      --harvest: #2563eb;
+      --source: #7c3aed;
+    }
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; line-height: 1.6; color: var(--text); background: var(--bg); margin: 0; padding: 1.25rem; max-width: 56rem; margin-inline: auto; }
+    h1 { font-size: 1.6rem; margin-top: 0; color: var(--text); }
+    h2 { font-size: 1.25rem; margin-top: 1.5rem; border-bottom: 2px solid var(--border); padding-bottom: 0.35rem; }
+    h3 { font-size: 1.08rem; margin-top: 1rem; color: var(--muted); }
+    .principle { color: var(--muted); font-size: 0.95rem; margin-bottom: 1rem; max-width: 48rem; }
+    nav[aria-label="Contents"] { background: var(--card); padding: 1.25rem; border-radius: 10px; margin-bottom: 1.5rem; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    nav[aria-label="Contents"] ul { list-style: none; padding: 0; margin: 0; }
+    nav[aria-label="Contents"] a { color: var(--accent); text-decoration: none; }
+    nav[aria-label="Contents"] a:hover { text-decoration: underline; }
+    .papers-list { list-style: none; padding: 0; }
+    .papers-list li { margin-bottom: 0.5rem; }
+    .papers-list a { color: var(--accent); font-weight: 500; }
+    section.paper { background: var(--card); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 1.25rem; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    section.paper summary { padding: 0.85rem 1.25rem; cursor: pointer; font-weight: 600; background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%); border-bottom: 1px solid var(--border); }
+    section.paper summary:hover { background: #e2e8f0; }
+    section.paper .paper-body { padding: 1.25rem; }
+    .source-link { display: inline-block; margin-top: 0.5rem; padding: 0.3rem 0.6rem; background: var(--source); color: #fff; border-radius: 6px; font-size: 0.8rem; text-decoration: none; }
+    .source-link:hover { background: #6d28d9; color: #fff; }
+    .para-map { list-style: none; padding: 0; margin: 0; }
+    .para-map li { margin-bottom: 0.85rem; padding: 0.65rem 0.85rem; background: var(--bg); border-radius: 6px; border-left: 4px solid var(--border); }
+    .para-map li.contrib { border-left-color: var(--harvest); }
+    .para-map .role { font-weight: 600; font-size: 0.85rem; color: var(--muted); margin-bottom: 0.2rem; }
+    .para-map blockquote { margin: 0; font-style: italic; font-size: 0.9rem; color: var(--text); }
+    .plant-harvest-list { list-style: none; padding: 0; margin: 0; }
+    .plant-harvest-list li { margin-bottom: 1rem; padding: 1rem; background: #f8fafc; border: 1px solid var(--border); border-radius: 8px; }
+    .plant-harvest-list .label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.25rem; }
+    .plant-harvest-list .plant .label { color: var(--plant); }
+    .plant-harvest-list .harvest .label { color: var(--harvest); }
+    .plant-harvest-list .why .label { color: var(--muted); }
+    .plant-harvest-list blockquote, .plant-harvest-list p { margin: 0 0 0.4rem; font-size: 0.9rem; }
+    .verdict { padding: 0.85rem 1rem; background: #eff6ff; border-radius: 8px; margin-top: 1rem; font-size: 0.9rem; border-left: 4px solid var(--harvest); }
+    .insights section { margin-bottom: 1.25rem; }
+    .insights h3 { font-size: 1rem; margin-bottom: 0.5rem; color: var(--text); }
+    .insights ul { margin: 0; padding-left: 1.25rem; }
+    .controls { margin-top: 0.75rem; }
+    .controls button { margin-right: 0.5rem; padding: 0.4rem 0.85rem; cursor: pointer; border: 1px solid var(--border); border-radius: 6px; background: var(--card); font-size: 0.9rem; }
+    .controls button:hover { background: #e2e8f0; }
+    .back-top { display: inline-block; margin-top: 1rem; font-size: 0.85rem; color: var(--accent); }
+    .full-paras { margin-top: 1rem; }
+    .full-paras details { margin-bottom: 0.75rem; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .full-paras summary { padding: 0.5rem 0.75rem; cursor: pointer; background: #f1f5f9; font-weight: 600; font-size: 0.9rem; }
+    .full-paras summary:hover { background: #e2e8f0; }
+    .full-paras .para-block { padding: 0.85rem 1rem; margin: 0; border-top: 1px solid var(--border); font-size: 0.9rem; line-height: 1.55; }
+    .full-paras .para-block .pn { font-weight: 600; color: var(--muted); font-size: 0.8rem; margin-bottom: 0.25rem; }
+    .gh-pages-link { display: inline-block; margin-bottom: 0.5rem; padding: 0.35rem 0.7rem; background: var(--accent); color: #fff; border-radius: 6px; font-size: 0.85rem; text-decoration: none; }
+    .gh-pages-link:hover { background: #1d4ed8; color: #fff; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>More on Planting Ideas</h1>
+    <p class="principle">How authors plant ideas early in the Introduction so that when the present work is announced, it feels logical and convincing. Five papers from the arXiv HTML collection are analyzed for paragraph map, <strong>full introduction paragraphs</strong> (toggle below), plant→harvest links, and verdicts. Source files linked below.</p>
+    <p><a href="https://tesolchina.github.io/mccpSpring2026/PhDagentSpring2026/writing/OrganizationalPatterns_recognition_reuse/phase3ScaleUpDemo/MoreonPlantIdeas.html" class="gh-pages-link" target="_blank" rel="noopener">View this report on GitHub Pages</a> <a href="https://github.com/tesolchina/mccpSpring2026" class="gh-pages-link" target="_blank" rel="noopener" style="background: var(--muted);">Repo: mccpSpring2026</a></p>
+  </header>
+
+  <nav aria-label="Contents">
+    <h2 id="toc">Contents</h2>
+    <ul class="papers-list">
+      <li><a href="#paper-1">1. Kostric et al. — Usage-related Questions for CRS (2111.13463)</a></li>
+      <li><a href="#paper-2">2. BIG-bench — Beyond the Imitation Game (2206.04615)</a></li>
+      <li><a href="#paper-3">3. BLOOM — 176B Open-Access Multilingual LM (2211.05100)</a></li>
+      <li><a href="#paper-4">4. T5 — Unified Text-to-Text Transformer (1910.10683)</a></li>
+      <li><a href="#paper-5">5. Brabra et al. — Identifying Breakdowns in CRSs (2405.14249)</a></li>
+      <li><a href="#insights">Actionable insights for novice writers</a></li>
+    </ul>
+    <div class="controls">
+      <button type="button" id="expand-all">Expand all papers</button>
+      <button type="button" id="collapse-all">Collapse all papers</button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="paper" id="paper-1" aria-labelledby="heading-1">
+      <details>
+        <summary id="heading-1">1. Kostric et al. — Generating Usage-related Questions for Preference Elicitation in CRS (2111.13463)</summary>
+        <div class="paper-body">
+          <a href="../../buildPaperCollection_arXiv/html_collection/2111.13463.html" class="source-link" target="_blank" rel="noopener">Open source: 2111.13463.html</a>
+          <h3>Introduction paragraph map</h3>
+          <ul class="para-map">
+            <li><span class="role">Para 1 — Traditional vs conversational</span><blockquote>Traditionally, recommender systems … A <strong>conversational recommender system</strong> (CRS) … can elicit user preferences in real-time using natural language.</blockquote></li>
+            <li><span class="role">Para 2 — Problem + plant “implicit” vs “explicit”</span><blockquote>… users often do not possess … attribute understanding. Instead, they only know where or how they intend to <strong>use</strong> the item. The novel research objective … is to generate <strong>implicit</strong> attribute questions … related to the <strong>intended use</strong> of items … in contrast to <strong>explicit</strong> questions.</blockquote></li>
+            <li><span class="role">Para 3 — Plant source (reviews)</span><blockquote><strong>Usage-related experiences are often captured in item reviews</strong>. By identifying review sentences … those sentences can then be turned into preference elicitation questions.</blockquote></li>
+            <li class="contrib"><span class="role">Para 4 — Contributions</span><blockquote>… our focus is on the <strong>offline question generation</strong> part. … <strong>multi-stage data generation protocol</strong> … four <strong>question generation</strong> models … <strong>Automatic</strong> and <strong>human evaluation</strong>.</blockquote></li>
+          </ul>
+          <h3>Full paragraphs (Introduction)</h3>
+          <div class="full-paras">
+            <details>
+              <summary>Toggle: show full introduction paragraphs</summary>
+              <div class="para-block"><span class="pn">Para 1.</span> Traditionally, recommender systems predict users' preference towards an item by performing offline analysis of past interaction data (e.g., click history, past visits, item ratings). These systems often do not take into account that users might have made mistakes in the past or that their preferences change over time. Additionally, for some users, there is little historical data which makes modeling their preferences difficult. A <em>conversational recommender system</em> (CRS), on the other hand, is a multi-turn, interactive recommender system that can elicit user preferences in real-time using natural language. Given its interactive nature, it is capable of modeling dynamic user preferences and taking actions based on users current needs.</div>
+              <div class="para-block"><span class="pn">Para 2.</span> One of the main tasks of a conversational recommender system is to elicit preferences from users. This is traditionally done by asking questions either about items directly or item attributes. … Ordinary users often do not possess this kind of attribute understanding. Instead, they only know where or how they intend to use the item. … The novel research objective of this work is to generate <em>implicit</em> attribute questions for eliciting user preferences, related to the intended use of items. This stands in contrast to explicit questions that ask about specific item attributes.</div>
+              <div class="para-block"><span class="pn">Para 3.</span> Our approach hinges on the observation that usage-related experiences are often captured in item reviews. By identifying review sentences that discuss particular item features or aspects (e.g., "fat tires") that matter in the context of various activities or usage scenarios (e.g., "for conquering tough terrain"), those sentences can then be turned into preference elicitation questions. In our envisaged scenario, a large collection of implicit preference elicitation questions is generated offline, and then utilized later in real-time interactions by a CRS.</div>
+              <div class="para-block"><span class="pn">Para 4.</span> In this paper, our focus is on the offline question generation part. … As our first contribution, we address the problem of creating a sentence-to-question dataset by developing a multi-stage data generation protocol. … As our second contribution, we propose four <em>question generation</em> models that, given a review as input, produce an implicit question in an end-to-end fashion. … Automatic evaluation … Human evaluation …</div>
+              <div class="para-block"><span class="pn">Para 5.</span> In summary, our main contributions: Introduce the novel task of eliciting preferences in CRSs via usage-related questions; Develop a multi-stage data annotation protocol using crowdsourcing; Introduce two template-based and two neural approaches for generating usage-related questions based on a corpus of item reviews; Develop human evaluation protocols and perform an extensive analysis of results.</div>
+            </details>
+          </div>
+          <h3>Plant → harvest (sample)</h3>
+          <ul class="plant-harvest-list">
+            <li>
+              <div class="plant"><span class="label">Plant (Para 2)</span><blockquote>users … only know where or how they intend to <strong>use</strong> the item; <strong>implicit</strong> … intended <strong>use</strong></blockquote></div>
+              <div class="harvest"><span class="label">Harvest (Para 4)</span><blockquote><strong>usage-related</strong> questions; review sentences … turned into … questions</blockquote></div>
+              <div class="why"><span class="label">Why</span><p>Exact echo of "use" / "usage" and implicit so the contribution feels like the natural solution.</p></div>
+            </li>
+            <li>
+              <div class="plant"><span class="label">Plant (Para 3)</span><blockquote><strong>usage-related experiences</strong> … captured in <strong>item reviews</strong></blockquote></div>
+              <div class="harvest"><span class="label">Harvest (Para 4)</span><blockquote>multi-stage data generation protocol; given a <strong>review</strong> as input, produce an implicit question</blockquote></div>
+              <div class="why"><span class="label">Why</span><p>Data source (reviews) and pipeline are planted then harvested.</p></div>
+            </li>
+          </ul>
+          <div class="verdict"><strong>Verdict:</strong> Strong plant→harvest. Reader is prepared for "implicit," "usage," "reviews," and "question generation" before the contribution paragraph.</div>
+          <a href="#toc" class="back-top">↑ Back to contents</a>
+        </div>
+      </details>
+    </section>
+
+    <section class="paper" id="paper-2" aria-labelledby="heading-2">
+      <details>
+        <summary id="heading-2">2. BIG-bench — Beyond the Imitation Game (2206.04615)</summary>
+        <div class="paper-body">
+          <a href="../../buildPaperCollection_arXiv/html_collection/2206.04615.html" class="source-link" target="_blank" rel="noopener">Open source: 2206.04615.html</a>
+          <h3>Introduction paragraph map</h3>
+          <ul class="para-map">
+            <li><span class="role">§1.1 — Importance</span><blockquote>… vitally important that we <strong>understand their capabilities and limitations</strong> and how those … are likely to <strong>change as models are improved</strong>.</blockquote></li>
+            <li><span class="role">§1.2 — Limitations of current benchmarks</span><blockquote>Current … benchmarks are <strong>insufficient</strong>. These <strong>existing benchmarks suffer from several limitations</strong>. Restricted scope, short lifespans, non-expert labeling.</blockquote></li>
+            <li class="contrib"><span class="role">§1.3 — Contribution</span><blockquote><strong>Motivated by</strong> the importance … and <strong>by the limitations of current benchmarks</strong>, we introduce a <strong>large-scale, extremely difficult and diverse</strong> benchmark … <strong>BIG-bench</strong>.</blockquote></li>
+          </ul>
+          <h3>Full paragraphs (Introduction, key sections)</h3>
+          <div class="full-paras">
+            <details>
+              <summary>Toggle: show full introduction paragraphs</summary>
+              <div class="para-block"><span class="pn">Epigraph.</span> <em>An important feature of a learning machine is that its teacher will often be very largely ignorant of quite what is going on inside.</em> — A.M. Turing, <em>Computing Machinery and Intelligence</em>, 1950</div>
+              <div class="para-block"><span class="pn">§1.1.</span> … It is vitally important that we understand their capabilities and limitations, and that we understand how those capabilities and limitations are likely to change as models are improved. This understanding will directly motivate the development of new technologies; allow us to identify and mitigate potential harmful social effects; … and enable us to avoid devoting research resources to problems that are likely to be solved by scale alone.</div>
+              <div class="para-block"><span class="pn">§1.2.</span> Current language-modeling benchmarks are insufficient to satisfy our need to understand the behavior of language models and to predict their future behavior. These existing benchmarks suffer from several limitations. First, many benchmarks have restricted scope. … Second, recent language-modeling benchmarks have often had short useful lifespans. … Finally, many current benchmarks use data collected through human labeling that is not performed by experts or by the task authors.</div>
+              <div class="para-block"><span class="pn">§1.3.</span> Motivated by the importance of predicting the potentially transformative effects of large language models, and by the limitations of current benchmarks, we introduce a large-scale, extremely difficult and diverse benchmark. We then measure model performance on this benchmark. … Furthermore, models are measured across scales to facilitate a naive extrapolation of the scale at which they may be indistinguishable from human evaluators. … we call this benchmark the Beyond the Imitation Game benchmark, or BIG-bench.</div>
+            </details>
+          </div>
+          <h3>Plant → harvest (sample)</h3>
+          <ul class="plant-harvest-list">
+            <li>
+              <div class="plant"><span class="label">Plant (§1.2)</span><blockquote>benchmarks <strong>insufficient</strong>; <strong>limitations</strong> … restricted <strong>scope</strong>, short <strong>lifespans</strong></blockquote></div>
+              <div class="harvest"><span class="label">Harvest (§1.3)</span><blockquote><strong>Motivated by</strong> … the <strong>limitations of current benchmarks</strong>, we introduce a <strong>large-scale, extremely difficult and diverse</strong> benchmark</blockquote></div>
+              <div class="why"><span class="label">Why</span><p>Each limitation is answered: scope → large/diverse; lifespans → extremely difficult.</p></div>
+            </li>
+          </ul>
+          <div class="verdict"><strong>Verdict:</strong> Very clear plant→harvest. §1.3 opens with "Motivated by" and delivers BIG-bench as the direct response.</div>
+          <a href="#toc" class="back-top">↑ Back to contents</a>
+        </div>
+      </details>
+    </section>
+
+    <section class="paper" id="paper-3" aria-labelledby="heading-3">
+      <details>
+        <summary id="heading-3">3. BLOOM — 176B-Parameter Open-Access Multilingual LM (2211.05100)</summary>
+        <div class="paper-body">
+          <a href="../../buildPaperCollection_arXiv/html_collection/2211.05100.html" class="source-link" target="_blank" rel="noopener">Open source: 2211.05100.html</a>
+          <h3>Introduction paragraph map</h3>
+          <ul class="para-map">
+            <li><span class="role">Para 1 — Trend + gap</span><blockquote>… costs … <strong>only affordable for well-resourced organizations</strong>. … <strong>most LLMs were not publicly released</strong>. … <strong>majority of the research community has been excluded</strong>. … most LLMs … trained on <strong>English-language</strong> text.</blockquote></li>
+            <li class="contrib"><span class="role">Para 2 — Contribution</span><blockquote><strong>To address these issues</strong>, we present … <strong>BLOOM</strong>. … trained on <strong>46 natural languages and 13 programming languages</strong> … <strong>collaboration of hundreds of researchers</strong>. … <strong>publicly release</strong> … <strong>multilingual</strong> … <strong>document the coordinated process</strong>.</blockquote></li>
+          </ul>
+          <h3>Full paragraphs (Introduction)</h3>
+          <div class="full-paras">
+            <details>
+              <summary>Toggle: show full introduction paragraphs</summary>
+              <div class="para-block"><span class="pn">Para 1.</span> Pretrained language models have become a cornerstone of modern NLP pipelines because they often produce better performance from smaller quantities of labeled data. … Apart from environmental concerns, the costs of training large language models (LLMs) are only affordable for well-resourced organizations. Furthermore, until recently, most LLMs were not publicly released. As a result, the majority of the research community has been excluded from the development of LLMs. This exclusion has had concrete consequences; for example, most LLMs are primarily trained on English-language text (with notable exceptions in Chinese and Korean).</div>
+              <div class="para-block"><span class="pn">Para 2.</span> To address these issues, we present the BigScience Large Open-science Open-access Multilingual Language Model (BLOOM). BLOOM is a 176 billion parameter language model trained on 46 natural languages and 13 programming languages that was developed and released by a collaboration of hundreds of researchers. … Our overall aim is not only to publicly release a large-scale multilingual language model with performance comparable to recently developed systems, but also to document the coordinated process that went into its development. The purpose of this paper is to provide a high-level overview of these design steps while referencing the individual reports we produced over the course of developing BLOOM.</div>
+            </details>
+          </div>
+          <h3>Plant → harvest (sample)</h3>
+          <ul class="plant-harvest-list">
+            <li>
+              <div class="plant"><span class="label">Plant (Para 1)</span><blockquote>costs … only affordable for well-resourced; not publicly released; <strong>excluded</strong>; <strong>English-language</strong></blockquote></div>
+              <div class="harvest"><span class="label">Harvest (Para 2)</span><blockquote><strong>To address these issues</strong>, we present BLOOM; <strong>publicly release</strong>; <strong>multilingual</strong> (46+13 languages); collaboration of hundreds</blockquote></div>
+              <div class="why"><span class="label">Why</span><p>Each problem (cost, no release, exclusion, English-only) is answered with open, collaborative, multilingual model.</p></div>
+            </li>
+          </ul>
+          <div class="verdict"><strong>Verdict:</strong> Very strong. Para 1 lays out cost, not released, excluded, English-only; Para 2 starts with "To address these issues" and harvests every point.</div>
+          <a href="#toc" class="back-top">↑ Back to contents</a>
+        </div>
+      </details>
+    </section>
+
+    <section class="paper" id="paper-4" aria-labelledby="heading-4">
+      <details>
+        <summary id="heading-4">4. T5 — Unified Text-to-Text Transfer Transformer (1910.10683)</summary>
+        <div class="paper-body">
+          <a href="../../buildPaperCollection_arXiv/html_collection/1910.10683.html" class="source-link" target="_blank" rel="noopener">Open source: 1910.10683.html</a>
+          <h3>Introduction paragraph map</h3>
+          <ul class="para-map">
+            <li><span class="role">Para 3 — Gap + motive</span><blockquote>… <strong>difficult to compare</strong> … <strong>understand the space</strong>. <strong>Motivated by a need for more rigorous understanding</strong>, we leverage a <strong>unified approach</strong> … to <strong>systematically study</strong> … and <strong>push the current limits</strong>.</blockquote></li>
+            <li><span class="role">Para 4 — Text-to-text</span><blockquote>… treat every … problem as a <strong>'text-to-text'</strong> problem. … <strong>same</strong> model, objective … across … <strong>diverse</strong> set of tasks. … <strong>exploring the limits</strong> … by <strong>scaling up</strong>.</blockquote></li>
+            <li class="contrib"><span class="role">Para 5 — Goal + C4</span><blockquote>… goal is <strong>not to propose new methods</strong> but … <strong>comprehensive perspective</strong>. … we introduce the <strong>Colossal Clean Crawled Corpus (C4)</strong>.</blockquote></li>
+          </ul>
+          <h3>Full paragraphs (Introduction, key)</h3>
+          <div class="full-paras">
+            <details>
+              <summary>Toggle: show full introduction paragraphs</summary>
+              <div class="para-block"><span class="pn">Para 3.</span> This synergy has resulted in a great deal of recent work developing transfer learning methodology for NLP, which has produced a wide landscape of pre-training objectives, unlabeled data sets, benchmarks, fine-tuning methods, and more. The rapid rate of progress and diversity of techniques can make it difficult to compare different algorithms, tease apart the effects of new contributions, and understand the space of existing methods. Motivated by a need for more rigorous understanding, we leverage a unified approach to transfer learning that allows us to systematically study different approaches and push the current limits of the field.</div>
+              <div class="para-block"><span class="pn">Para 4.</span> The basic idea underlying our work is to treat every text processing problem as a "text-to-text" problem. Crucially, the text-to-text framework allows us to directly apply the same model, objective, training procedure, and decoding process to every task we consider. … With this unified approach, we can compare the effectiveness of different transfer learning objectives, unlabeled data sets, and other factors, while exploring the limits of transfer learning for NLP by scaling up models and data sets beyond what has previously been considered.</div>
+              <div class="para-block"><span class="pn">Para 5.</span> We emphasize that our goal is not to propose new methods but instead to provide a comprehensive perspective on where the field stands. As such, our work primarily comprises a survey, exploration, and empirical comparison of existing techniques. We also explore the limits of current approaches by scaling up the insights from our systematic study (training models up to 11 billion parameters) to obtain state-of-the-art results. In order to perform experiments at this scale, we introduce the "Colossal Clean Crawled Corpus" (C4), a data set consisting of hundreds of gigabytes of clean English text scraped from the web. We release our code, data sets, and pre-trained models.</div>
+            </details>
+          </div>
+          <h3>Plant → harvest (sample)</h3>
+          <ul class="plant-harvest-list">
+            <li>
+              <div class="plant"><span class="label">Plant (Para 3)</span><blockquote><strong>unified approach</strong>; <strong>systematically study</strong>; <strong>push the current limits</strong></blockquote></div>
+              <div class="harvest"><span class="label">Harvest (Para 4–5)</span><blockquote><strong>text-to-text</strong> … <strong>same</strong> model … <strong>every</strong> task; <strong>comprehensive perspective</strong>; <strong>exploring the limits</strong> … <strong>scaling up</strong></blockquote></div>
+              <div class="why"><span class="label">Why</span><p>Need for comparison and systematic understanding is harvested as unified framework and comprehensive study.</p></div>
+            </li>
+          </ul>
+          <div class="verdict"><strong>Verdict:</strong> Strong. "Difficult to compare / unified approach" is planted in Para 3 and harvested in Paras 4–5 with text-to-text and C4.</div>
+          <a href="#toc" class="back-top">↑ Back to contents</a>
+        </div>
+      </details>
+    </section>
+
+    <section class="paper" id="paper-5" aria-labelledby="heading-5">
+      <details>
+        <summary id="heading-5">5. Brabra et al. — Identifying Breakdowns in CRSs using User Simulation (2405.14249)</summary>
+        <div class="paper-body">
+          <a href="../../buildPaperCollection_arXiv/html_collection/2405.14249.html" class="source-link" target="_blank" rel="noopener">Open source: 2405.14249.html</a>
+          <h3>Introduction paragraph map</h3>
+          <ul class="para-map">
+            <li><span class="role">Para 1 — Problem + contrast</span><blockquote>… <strong>breakdown</strong> … flow discontinues or even stops. Previously … <strong>chat-oriented</strong> … <strong>annotated</strong> … labels do not give … <strong>specific type</strong>. <strong>Our work</strong> focuses on <strong>recommendation</strong> … <strong>task-oriented</strong> … <strong>not annotated</strong>. … <strong>identify specific breakdowns</strong> … <strong>via user simulation</strong>.</blockquote></li>
+            <li><span class="role">Para 2 — Methodology</span><blockquote><strong>Leveraging user simulation</strong> … our <strong>methodology</strong> identifies <strong>conversational paths</strong> … that <strong>lead to</strong> … breakdowns. … <strong>detectors</strong> for three <strong>specific</strong> breakdowns.</blockquote></li>
+            <li class="contrib"><span class="role">Para 4 — Contributions</span><blockquote>… <strong>methodology</strong> to identify … breakdowns; <strong>case study</strong> … <strong>open-sourced</strong> CRS and user simulator.</blockquote></li>
+          </ul>
+          <h3>Full paragraphs (Introduction)</h3>
+          <div class="full-paras">
+            <details>
+              <summary>Toggle: show full introduction paragraphs</summary>
+              <div class="para-block"><span class="pn">Para 1.</span> Conversational recommender systems (CRSs) aim to provide personalized recommendations through multi-turn conversations. However, ensuring the robustness and effectiveness of these systems under any and all of the possible situations encountered while engaging with users remains a critical challenge. We define a <em>breakdown</em> as a moment in the conversation where the flow discontinues or even stops. … Previously, the dialogue breakdown detection challenge motivated research on breakdown detection in chat-oriented dialogues. … Our work focuses on recommendation dialogues, i.e., task-oriented dialogues, that are not annotated. Furthermore, we aim to identify specific breakdowns in dialogues. Therefore, we propose a novel methodology to identify breakdowns and assess the robustness of an existing CRS via user simulation.</div>
+              <div class="para-block"><span class="pn">Para 2.</span> Leveraging user simulation has several advantages. First, it is a simple, cost-effective, and efficient solution to test a CRS that supplements human evaluation. Second, it allows for a comprehensive assessment of a CRS's abilities in various scenarios. In particular, our methodology identifies conversational paths (i.e., sequences of intents) that lead to conversational breakdowns. … As a starting point, we present detectors for three specific breakdowns: <em>system failure</em> (bugs), <em>dialogue of the deaf</em>, and <em>conversational flow discontinuation</em>. The identification of breakdowns in the conversational flow can provide insights to improve the robustness and effectiveness of the CRS.</div>
+              <div class="para-block"><span class="pn">Para 3.</span> To demonstrate the usefulness of our approach, we present a case study with an existing CRS and user simulator, in which the conversational breakdown detection is performed on four subsequent versions of the CRS. … The results show that modifying the CRS with regards to one type of breakdown reduces its presence. Moreover, we note that some breakdowns stem from imperfections in the user simulator. We demonstrate that our methodology can help improve the user simulator, parallel to the CRS.</div>
+              <div class="para-block"><span class="pn">Para 4.</span> In summary, the main contributions of this work are twofold. First, we propose a methodology to identify conversational breakdowns in CRSs. Second, we present a case study where we apply this approach with an existing open-sourced CRS and user simulator. More specifically, we show how we improve the CRS based on the breakdowns identified.</div>
+            </details>
+          </div>
+          <h3>Plant → harvest (sample)</h3>
+          <ul class="plant-harvest-list">
+            <li>
+              <div class="plant"><span class="label">Plant (Para 1)</span><blockquote><strong>breakdown</strong>; <strong>task-oriented</strong> … <strong>not annotated</strong>; <strong>identify specific</strong> breakdowns; <strong>via user simulation</strong></blockquote></div>
+              <div class="harvest"><span class="label">Harvest (Para 2–4)</span><blockquote><strong>methodology</strong> … <strong>via user simulation</strong>; <strong>conversational paths</strong> … <strong>lead to</strong> breakdowns; <strong>detectors</strong> for three <strong>specific</strong> breakdowns</blockquote></div>
+              <div class="why"><span class="label">Why</span><p>Contrast (task-oriented, unannotated, specific types) is stated and then implemented in the contribution.</p></div>
+            </li>
+          </ul>
+          <div class="verdict"><strong>Verdict:</strong> Strong. Defines "breakdown," contrasts chat/annotated vs task/unannotated/specific, plants "user simulation" and "methodology"; harvests in same and next paragraphs.</div>
+          <a href="#toc" class="back-top">↑ Back to contents</a>
+        </div>
+      </details>
+    </section>
+
+    <section class="insights" id="insights">
+      <h2>Actionable insights for novice writers</h2>
+      <p><em>Consolidated from all five papers.</em></p>
+
+      <section>
+        <h3>1. Open the contribution with a backward-looking phrase</h3>
+        <ul>
+          <li>BLOOM: <em>"<strong>To address these issues</strong>, we present … BLOOM."</em> BIG-bench: <em>"<strong>Motivated by</strong> … the limitations of current benchmarks, we introduce …."</em></li>
+          <li><strong>Actionable:</strong> Start the contribution sentence with "To address this gap," "Motivated by these limitations," or "In response to this need."</li>
+        </ul>
+      </section>
+      <section>
+        <h3>2. Plant the exact wording you will harvest</h3>
+        <ul>
+          <li>Kostric et al.: "implicit," "intended use," "usage-related … in item reviews" → harvested as "implicit questions," "usage-related questions," "review as input."</li>
+          <li><strong>Actionable:</strong> Use the same or very close terms when you first introduce the idea and when you announce the contribution.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>3. One clear gap per paragraph, then one harvest per gap</h3>
+        <ul>
+          <li>BIG-bench: §1.2 lists three limitations; §1.3 addresses each with BIG-bench design. BLOOM: Para 1 lists cost, no release, exclusion, English-only; Para 2 addresses each.</li>
+          <li><strong>Actionable:</strong> Avoid overloading one paragraph with many unrelated gaps. Prefer 1–2 gaps per paragraph and explicitly harvest each.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>4. Contrast "prior/current" vs "our" in the same breath</h3>
+        <ul>
+          <li>Brabra et al.: "Previously … chat-oriented … annotated. <strong>Our work</strong> focuses on recommendation … task-oriented … not annotated … identify specific breakdowns."</li>
+          <li><strong>Actionable:</strong> Use a tight contrast (e.g. "Prior work does X; we do Y") so the harvest feels like a direct alternative.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>5. Name the contribution early, then unpack it</h3>
+        <ul>
+          <li>Kostric: "The novel research objective … is to generate implicit attribute questions" (Para 2) → later "our main contributions" (Para 4–5). Brabra: "we propose a novel methodology … via user simulation" (Para 1) → "our methodology" (Para 2), "main contributions" (Para 4).</li>
+          <li><strong>Actionable:</strong> One short sentence that states the contribution early, then justify and unpack so the formal "contributions" list feels like a recap.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>6. Checklist for your own introduction</h3>
+        <ol>
+          <li><strong>Backward link:</strong> Does the first sentence of the contribution paragraph refer explicitly to what came before?</li>
+          <li><strong>Echo:</strong> For each key phrase in the contribution, did I use the same or very similar wording when I first introduced the idea?</li>
+          <li><strong>Gap–harvest match:</strong> Can I list 2–4 specific gaps and point to the exact sentence(s) that address each?</li>
+          <li><strong>Contrast:</strong> Did I clearly contrast prior/current approach with "our" approach?</li>
+          <li><strong>Early seed:</strong> Did I state the core contribution in one sentence before the full contribution paragraph?</li>
+        </ol>
+      </section>
+      <a href="#toc" class="back-top">↑ Back to contents</a>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var details = document.querySelectorAll('section.paper details');
+      document.getElementById('expand-all').addEventListener('click', function () {
+        details.forEach(function (d) { d.open = true; });
+      });
+      document.getElementById('collapse-all').addEventListener('click', function () {
+        details.forEach(function (d) { d.open = false; });
+      });
+    })();
+  </script>
+</body>
+</html>

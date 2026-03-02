@@ -1,0 +1,1939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+<title>An In-depth Survey of Large Language Model-based Artificial Intelligence Agents</title>
+<!--Generated on Sat Sep 23 11:23:56 2023 by LaTeXML (version 0.8.7) http://dlmf.nist.gov/LaTeXML/.-->
+<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link href="https://browse.arxiv.org/latexml/ar5iv_0.7.4.min.css" rel="stylesheet" type="text/css"/>
+<link href="https://browse.arxiv.org/latexml/styles.css" rel="stylesheet" type="text/css"/>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.3/html2canvas.min.js"></script>
+<script src="https://browse.arxiv.org/latexml/addons.js"></script>
+<script src="https://browse.arxiv.org/latexml/feedbackOverlay.js"></script>
+</head>
+<body>
+<nav class="ltx_page_navbar">
+<nav class="ltx_TOC">
+<ol class="ltx_toclist">
+<li class="ltx_tocentry ltx_tocentry_section"><a class="ltx_ref" href="#S1" title="1. Introduction ‣ An In-depth Survey of Large Language Model-based Artificial Intelligence Agents"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">1 </span>Introduction</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_section"><a class="ltx_ref" href="#S2" title="2. LLM vs. Traditional Agents ‣ An In-depth Survey of Large Language Model-based Artificial Intelligence Agents"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">2 </span>LLM vs. Traditional Agents</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_section">
+<a class="ltx_ref" href="#S3" title="3. Components of AI Agents ‣ An In-depth Survey of Large Language Model-based Artificial Intelligence Agents"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3 </span>Components of AI Agents</span></a>
+<ol class="ltx_toclist ltx_toclist_section">
+<li class="ltx_tocentry ltx_tocentry_subsection"><a class="ltx_ref" href="#S3.SS1" title="3.1. Overview ‣ 3. Components of AI Agents ‣ An In-depth Survey of Large Language Model-based Artificial Intelligence Agents"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3.1 </span>Overview</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection">
+<a class="ltx_ref" href="#S3.SS2" title="3.2. Planning ‣ 3. Components of AI Agents ‣ An In-depth Survey of Large Language Model-based Artificial Intelligence Agents"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3.2 </span>Planning</span></a>
+<ol class="ltx_toclist ltx_toclist_subsection">
+<li class="ltx_tocentry ltx_tocentry_subsubsection"><a class="ltx_ref" href="#S3.SS2.SSS1" title="3.2.1. Task Decomposition ‣ 3.2. Planning ‣ 3. Components of AI Agents ‣ An In-depth Survey of Large Language Model-based Artificial Intelligence Agents"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3.2.1 </span>Task Decomposition</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsubsection"><a class="ltx_ref" href="#S3.SS2.SSS2" title="3.2.2. Self-Reflection ‣ 3.2. Planning ‣ 3. Components of AI Agents ‣ An In-depth Survey of Large Language Model-based Artificial Intelligence Agents"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3.2.2 </span>Self-Reflection</span></a></li>
+</ol>
+</li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a class="ltx_ref" href="#S3.SS3" title="3.3. Memory ‣ 3. Components of AI Agents ‣ An In-depth Survey of Large Language Model-based Artificial Intelligence Agents"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3.3 </span>Memory</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a class="ltx_ref" href="#S3.SS4" title="3.4. Tool Use ‣ 3. Components of AI Agents ‣ An In-depth Survey of Large Language Model-based Artificial Intelligence Agents"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3.4 </span>Tool Use</span></a></li>
+</ol>
+</li>
+<li class="ltx_tocentry ltx_tocentry_section">
+<a class="ltx_ref" href="#S4" title="4. Application ‣ An In-depth Survey of Large Language Model-based Artificial Intelligence Agents"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">4 </span>Application</span></a>
+<ol class="ltx_toclist ltx_toclist_section">
+<li class="ltx_tocentry ltx_tocentry_subsection"><a class="ltx_ref" href="#S4.SS1" title="4.1. Chatbot ‣ 4. Application ‣ An In-depth Survey of Large Language Model-based Artificial Intelligence Agents"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">4.1 </span>Chatbot</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a class="ltx_ref" href="#S4.SS2" title="4.2. Game ‣ 4. Application ‣ An In-depth Survey of Large Language Model-based Artificial Intelligence Agents"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">4.2 </span>Game</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a class="ltx_ref" href="#S4.SS3" title="4.3. Coding ‣ 4. Application ‣ An In-depth Survey of Large Language Model-based Artificial Intelligence Agents"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">4.3 </span>Coding</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a class="ltx_ref" href="#S4.SS4" title="4.4. Design ‣ 4. Application ‣ An In-depth Survey of Large Language Model-based Artificial Intelligence Agents"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">4.4 </span>Design</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a class="ltx_ref" href="#S4.SS5" title="4.5. Research ‣ 4. Application ‣ An In-depth Survey of Large Language Model-based Artificial Intelligence Agents"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">4.5 </span>Research</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a class="ltx_ref" href="#S4.SS6" title="4.6. Collaboration ‣ 4. Application ‣ An In-depth Survey of Large Language Model-based Artificial Intelligence Agents"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">4.6 </span>Collaboration</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a class="ltx_ref" href="#S4.SS7" title="4.7. General purpose ‣ 4. Application ‣ An In-depth Survey of Large Language Model-based Artificial Intelligence Agents"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">4.7 </span>General purpose</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a class="ltx_ref" href="#S4.SS8" title="4.8. Vision-Language model-based agent application ‣ 4. Application ‣ An In-depth Survey of Large Language Model-based Artificial Intelligence Agents"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">4.8 </span>Vision-Language model-based agent application</span></a></li>
+</ol>
+</li>
+<li class="ltx_tocentry ltx_tocentry_section"><a class="ltx_ref" href="#S5" title="5. Benchmarking ‣ An In-depth Survey of Large Language Model-based Artificial Intelligence Agents"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">5 </span>Benchmarking</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_section"><a class="ltx_ref" href="#S6" title="6. Conclusion ‣ An In-depth Survey of Large Language Model-based Artificial Intelligence Agents"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">6 </span>Conclusion</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_section"><a class="ltx_ref" href="#S7" title="7. Bibliographical References ‣ An In-depth Survey of Large Language Model-based Artificial Intelligence Agents"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">7 </span>Bibliographical References</span></a></li>
+</ol></nav>
+</nav>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document">
+<h1 class="ltx_title ltx_title_document">An In-depth Survey of Large Language Model-based Artificial Intelligence Agents</h1>
+<div class="ltx_abstract">
+<h6 class="ltx_title ltx_title_abstract">Abstract</h6>
+<p class="ltx_p" id="id1.id1">Due to the powerful capabilities demonstrated by large language model (LLM), there has been a recent surge in efforts to integrate them with AI agents to enhance their performance. In this paper, we have explored the core differences and characteristics between LLM-based AI agents and traditional AI agents. Specifically, we first compare the fundamental characteristics of these two types of agents, clarifying the significant advantages of LLM-based agents in handling natural language, knowledge storage, and reasoning capabilities. Subsequently, we conducted an in-depth analysis of the key components of AI agents, including planning, memory, and tool use. Particularly, for the crucial component of memory, this paper introduced an innovative classification scheme, not only departing from traditional classification methods but also providing a fresh perspective on the design of an AI agent’s memory system. We firmly believe that in-depth research and understanding of these core components will lay a solid foundation for the future advancement of AI agent technology. At the end of the paper, we provide directional suggestions for further research in this field, with the hope of offering valuable insights to scholars and researchers in the field.
+
+<br class="ltx_break"/>
+<br class="ltx_break"/>
+<span class="ltx_text ltx_font_bold" id="id1.id1.1">Keywords: </span>AI agents, Survey, Large language model</p>
+</div>
+<span class="ltx_ERROR undefined" id="id1">\newcites</span>
+<div class="ltx_para" id="p1">
+<p class="ltx_p" id="p1.1">languageresource 
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p>
+</div>
+<div class="ltx_pagination ltx_role_newpage"></div>
+<div class="ltx_pagination ltx_role_newpage"></div>
+<div class="ltx_para" id="p2">
+<p class="ltx_p" id="p2.1"><span class="ltx_text" id="p2.1.1"></span></p>
+</div>
+<div class="ltx_para ltx_align_center" id="p3">
+<p class="ltx_p" id="p3.1"><span class="ltx_text ltx_font_bold" id="p3.1.1" style="font-size:144%;">An In-depth Survey of Large Language Model-based Artificial Intelligence Agents</span></p>
+</div>
+<div class="ltx_para ltx_align_center" id="p4">
+<table class="ltx_tabular ltx_align_top" id="p4.2">
+<tr class="ltx_tr" id="p4.2.2">
+<td class="ltx_td ltx_align_center" id="p4.2.2.2"><span class="ltx_text ltx_font_bold" id="p4.2.2.2.2" style="font-size:120%;">Pengyu Zhao<math alttext="{}^{\ast}" class="ltx_Math" display="inline" id="p4.1.1.1.1.m1.1"><semantics id="p4.1.1.1.1.m1.1a"><msup id="p4.1.1.1.1.m1.1.1" xref="p4.1.1.1.1.m1.1.1.cmml"><mi id="p4.1.1.1.1.m1.1.1a" xref="p4.1.1.1.1.m1.1.1.cmml"></mi><mo id="p4.1.1.1.1.m1.1.1.1" mathvariant="normal" xref="p4.1.1.1.1.m1.1.1.1.cmml">∗</mo></msup><annotation-xml encoding="MathML-Content" id="p4.1.1.1.1.m1.1b"><apply id="p4.1.1.1.1.m1.1.1.cmml" xref="p4.1.1.1.1.m1.1.1"><ci id="p4.1.1.1.1.m1.1.1.1.cmml" xref="p4.1.1.1.1.m1.1.1.1">normal-∗</ci></apply></annotation-xml><annotation encoding="application/x-tex" id="p4.1.1.1.1.m1.1c">{}^{\ast}</annotation><annotation encoding="application/x-llamapun" id="p4.1.1.1.1.m1.1d">start_FLOATSUPERSCRIPT ∗ end_FLOATSUPERSCRIPT</annotation></semantics></math>, Zijian Jin<math alttext="{}^{\ast}" class="ltx_Math" display="inline" id="p4.2.2.2.2.m2.1"><semantics id="p4.2.2.2.2.m2.1a"><msup id="p4.2.2.2.2.m2.1.1" xref="p4.2.2.2.2.m2.1.1.cmml"><mi id="p4.2.2.2.2.m2.1.1a" xref="p4.2.2.2.2.m2.1.1.cmml"></mi><mo id="p4.2.2.2.2.m2.1.1.1" mathvariant="normal" xref="p4.2.2.2.2.m2.1.1.1.cmml">∗</mo></msup><annotation-xml encoding="MathML-Content" id="p4.2.2.2.2.m2.1b"><apply id="p4.2.2.2.2.m2.1.1.cmml" xref="p4.2.2.2.2.m2.1.1"><ci id="p4.2.2.2.2.m2.1.1.1.cmml" xref="p4.2.2.2.2.m2.1.1.1">normal-∗</ci></apply></annotation-xml><annotation encoding="application/x-tex" id="p4.2.2.2.2.m2.1c">{}^{\ast}</annotation><annotation encoding="application/x-llamapun" id="p4.2.2.2.2.m2.1d">start_FLOATSUPERSCRIPT ∗ end_FLOATSUPERSCRIPT</annotation></semantics></math>, Ning Cheng</span></td>
+</tr>
+<tr class="ltx_tr" id="p4.2.3">
+<td class="ltx_td ltx_align_center" id="p4.2.3.1">Beijing Jiaotong University, New York University,</td>
+</tr>
+<tr class="ltx_tr" id="p4.2.4">
+<td class="ltx_td ltx_align_center" id="p4.2.4.1">zj2076@nyu.edu</td>
+</tr>
+<tr class="ltx_tr" id="p4.2.5">
+<td class="ltx_td ltx_align_center" id="p4.2.5.1">{pengyuzhao, ningcheng}@bjtu.edu.cn</td>
+</tr>
+</table>
+<br class="ltx_break"/>
+<p class="ltx_p" id="p4.3"><span class="ltx_text ltx_font_italic" id="p4.3.1">Abstract content</span></p>
+</div>
+<span class="ltx_note ltx_role_footnotetext" id="footnotex1"><sup class="ltx_note_mark">1</sup><span class="ltx_note_outer"><span class="ltx_note_content"><sup class="ltx_note_mark">1</sup><span class="ltx_note_type">footnotetext: </span>Equal contribution.</span></span></span>
+<section class="ltx_section" id="S1">
+<h2 class="ltx_title ltx_font_bold ltx_title_section" style="font-size:120%;">1.   Introduction</h2>
+<div class="ltx_para ltx_noindent" id="S1.p1">
+<p class="ltx_p" id="S1.p1.1">The notion of intelligent agents can trace its roots back to the research of the mid to late 20th century. Pioneering contributions in this realm encompass Hewitt’s Actor model <cite class="ltx_cite ltx_citemacro_cite">Hewitt et al. (<a class="ltx_ref" href="#bib.bib32" title="">1973</a>)</cite> and Minsky’s innovative conceptualization in the ’Society of Mind’ <cite class="ltx_cite ltx_citemacro_cite">Minsky (<a class="ltx_ref" href="#bib.bib67" title="">1988</a>)</cite> which still trigger some new ideas recently eg: ”Mindstorms in Natural Language-Based Societies of Mind”  <cite class="ltx_cite ltx_citemacro_cite">Zhuge and et al. (<a class="ltx_ref" href="#bib.bib113" title="">2023</a>)</cite>.In the 1990s, Russell introduced the framework for intelligent and rational agents  <cite class="ltx_cite ltx_citemacro_cite">Russell and Norvig (<a class="ltx_ref" href="#bib.bib82" title="">2010</a>)</cite>, which has since become a foundational theory in this field.
+The advent of deep neural networks post-2012 marked a significant shift in the AI landscape. Leveraging the power of backpropagation <cite class="ltx_cite ltx_citemacro_cite">Rumelhart et al. (<a class="ltx_ref" href="#bib.bib81" title="">1986</a>)</cite> for training deep models, researchers began to explore more sophisticated agent behaviors, transcending beyond traditional rule-based methods. Among the emergent methodologies, Reinforcement Learning (RL) stood out as a paradigm where agents learn optimal behavior through interactions with the environment and receiving feedback in the form of rewards or penalties. In 2013, DeepMind  <cite class="ltx_cite ltx_citemacro_cite">Mnih et al. (<a class="ltx_ref" href="#bib.bib68" title="">2013</a>)</cite> used RL to play the Atair Game and win humans’ performance which indicates that AI Agents are available to outperform human capabilities in specific areas. The incorporation of neural networks into RL, often referred to as Deep Reinforcement Learning (DRL)  <cite class="ltx_cite ltx_citemacro_cite">Li (<a class="ltx_ref" href="#bib.bib51" title="">2017</a>)</cite>, allowed for the tackling of previously intractable problems, bridging the gap between high-dimensional input spaces and complex decision-making processes <cite class="ltx_cite ltx_citemacro_cite">Arulkumaran et al. (<a class="ltx_ref" href="#bib.bib4" title="">2017</a>)</cite>.
+Despite the promising advancements offered by DRL, certain challenges persist. Chief among these is the issue of generalization. Many reinforcement learning agents, especially those trained in simulated environments, struggle to transfer their learned behavior to new or slightly altered scenarios, often termed as domain adaptation <cite class="ltx_cite ltx_citemacro_cite">Arndt et al. (<a class="ltx_ref" href="#bib.bib3" title="">2020</a>)</cite>. Training these agents can also be computationally intensive, often requiring vast amounts of interactions to achieve satisfactory performance. Furthermore, Reinforcement learning training struggles with convergence and the design of reward functions can be challenging, particularly in real-world scenarios, and can be a daunting and often unfeasible task. This hampers the rapid development and deployment of RL-based agents in diverse environments.</p>
+</div>
+<div class="ltx_para ltx_noindent" id="S1.p2">
+<p class="ltx_p" id="S1.p2.1">In 2020, OpenAI released GPT3 <cite class="ltx_cite ltx_citemacro_cite">Brown et al. (<a class="ltx_ref" href="#bib.bib12" title="">2020</a>)</cite> with 175 billion parameters, making it the largest publicly available language model at the time. These models, characterized by their immense size and capacity, have shown exceptional prowess in generalization across a myriad of tasks. The ability of LLMs to understand and generate language allows them to act as a foundational model for a wide range of applications  <cite class="ltx_cite ltx_citemacro_cite">Huang and Chang (<a class="ltx_ref" href="#bib.bib34" title="">2022</a>)</cite>. Their inherent generalization capabilities make them ideal candidates to serve as base models for universal agents. By harnessing the vast knowledge embedded within LLMs, researchers are now exploring hybrid models, integrating the strengths of reinforcement learning with the generalization capacities of LLMs  <cite class="ltx_cite ltx_citemacro_cite">Hu et al. (<a class="ltx_ref" href="#bib.bib33" title="">2023</a>)</cite>. This symbiotic combination promises to pave the way for more robust, adaptable, and efficient intelligent agents in the future.</p>
+</div>
+<div class="ltx_para ltx_noindent" id="S1.p3">
+<p class="ltx_p" id="S1.p3.1">In order to assist readers in quickly understanding the research history of AI agents and to further inspire research in AI agents, in this paper, we offer a comprehensive and systematic review of AI agents based on the components<span class="ltx_note ltx_role_footnote" id="footnote1"><sup class="ltx_note_mark">1</sup><span class="ltx_note_outer"><span class="ltx_note_content"><sup class="ltx_note_mark">1</sup><span class="ltx_tag ltx_tag_note">1</span>The key components of AI agents were originally defined at https://lilianweng.github.io/posts/2023-06-23-agent/</span></span></span> and applications.</p>
+</div>
+</section>
+<section class="ltx_section" id="S2">
+<h2 class="ltx_title ltx_font_bold ltx_title_section" style="font-size:120%;">2.   LLM vs. Traditional Agents</h2>
+<div class="ltx_para ltx_noindent" id="S2.p1">
+<p class="ltx_p" id="S2.p1.1">Traditional agents were designed specifically to address certain problems. They primarily relied on predetermined algorithms or rule sets, excelling in tasks they were built for. However, they often struggled with generalization and reasoning when confronted with tasks outside their initial scope.</p>
+</div>
+<div class="ltx_para ltx_noindent" id="S2.p2">
+<p class="ltx_p" id="S2.p2.1">The introduction of Large Language Models (LLMs) has brought significant changes to AI agent design. These agents, trained on the extensive corpus, are not only proficient in understanding and generating natural language but also display strong generalization abilities. This capability allows them to easily integrate with various tools, enhancing their versatility. On the other hand, the emergent abilities of Large Language Models <cite class="ltx_cite ltx_citemacro_cite">Wei et al. (<a class="ltx_ref" href="#bib.bib102" title="">2022a</a>)</cite> shows that LLMs are also good at reasoning which can help them learn from fault behavior.</p>
+</div>
+<div class="ltx_para ltx_noindent" id="S2.p3">
+<p class="ltx_p" id="S2.p3.1">Taking game exploration as an example, especially in the Minecraft setting, the differences between LLM-based agents like VOYAGER <cite class="ltx_cite ltx_citemacro_cite">Wang et al. (<a class="ltx_ref" href="#bib.bib100" title="">2023a</a>)</cite> and traditional RL agents are evident. LLM agents, with their rich pre-trained knowledge, have an advantage in decision-making strategies even without task-specific training. On the other hand, traditional RL agents often need to start from scratch in new environments, relying heavily on interaction to learn. In this scenario, VOYAGER showcases better generalization and data efficiency.</p>
+</div>
+</section>
+<section class="ltx_section" id="S3">
+<h2 class="ltx_title ltx_font_bold ltx_title_section" style="font-size:120%;">3.   Components of AI Agents</h2>
+<section class="ltx_subsection" id="S3.SS1">
+<h3 class="ltx_title ltx_font_bold ltx_title_subsection">3.1.   Overview</h3>
+<div class="ltx_para ltx_noindent" id="S3.SS1.p1">
+<p class="ltx_p" id="S3.SS1.p1.1">The LLM-powered AI agent system relies on LLM to function as its brain, which is supported by several crucial components that deploy various important functions. These functions, including planning, memory, and tool use, have been studied independently and thoughtfully in the past and have a well-established history. In this survey, we will introduce the research history of each individual functional model, mainstream methods, combination methods with the AI agent, and potential directions for the future. We hope that this historical information will serve as an inspiration for the future development of AI agents. It is worth noting that the integration of these three functional models is still a relatively new concept.</p>
+</div>
+</section>
+<section class="ltx_subsection" id="S3.SS2">
+<h3 class="ltx_title ltx_font_bold ltx_title_subsection">3.2.   Planning</h3>
+<div class="ltx_para" id="S3.SS2.p1">
+<p class="ltx_p" id="S3.SS2.p1.1">The goal of planning is to design a series of actions to facilitate state transitions and ultimately achieve the desired task. As shown in the left of Figure <a class="ltx_ref" href="#S3.F1" title="Figure 1 ‣ 3.2. Planning ‣ 3. Components of AI Agents ‣ An In-depth Survey of Large Language Model-based Artificial Intelligence Agents"><span class="ltx_text ltx_ref_tag">1</span></a>,
+this component, functioning as an individual module, has been integrated in various applications, such as robot manipulations <cite class="ltx_cite ltx_citemacro_cite">Chen et al. (<a class="ltx_ref" href="#bib.bib15" title="">2021</a>)</cite>, robot navigation <cite class="ltx_cite ltx_citemacro_cite">Lo et al. (<a class="ltx_ref" href="#bib.bib60" title="">2018</a>)</cite>, and service robots <cite class="ltx_cite ltx_citemacro_cite">Li and Ding (<a class="ltx_ref" href="#bib.bib49" title="">2023</a>)</cite>. And the existing works, such as methods using the planning domain description language (PDDL) <cite class="ltx_cite ltx_citemacro_cite">Aeronautiques et al. (<a class="ltx_ref" href="#bib.bib1" title="">1998</a>); Fox and Long (<a class="ltx_ref" href="#bib.bib28" title="">2003</a>); Jiang et al. (<a class="ltx_ref" href="#bib.bib38" title="">2019</a>)</cite> and hierarchical planning frameworks <cite class="ltx_cite ltx_citemacro_cite">Erol et al. (<a class="ltx_ref" href="#bib.bib26" title="">1994</a>); Suárez-Hernández et al. (<a class="ltx_ref" href="#bib.bib90" title="">2018</a>); Guo et al. (<a class="ltx_ref" href="#bib.bib31" title="">2023</a>)</cite>, have greatly propelled the advancement of planning systems.</p>
+</div>
+<figure class="ltx_figure" id="S3.F1"><img alt="Refer to caption" class="ltx_graphics ltx_centering ltx_img_landscape" height="327" id="S3.F1.g1" src="x1.png" width="784"/>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Figure 1: </span>Overview of the planning component of AI agent. <span class="ltx_text ltx_font_italic" id="S3.F1.3.1">Left</span> introduces some applications and representative methods of planning. <span class="ltx_text ltx_font_italic" id="S3.F1.4.2">Right</span> provides an example illustrating the working mechanism of an AI agent with task decomposition and self-reflection.</figcaption>
+</figure>
+<div class="ltx_para ltx_noindent" id="S3.SS2.p2">
+<p class="ltx_p" id="S3.SS2.p2.1">Recently, with significant successes achieved by LLMs in various domains, numerous studies have been exploring the utilization of LLMs to enhance the planning and execution capabilities of AI agents.
+Benefiting from the powerful inference capabilities of LLM,
+LLM-based AI agents can efficiently decompose complex tasks or instructions into a series of sub-tasks or simpler instructions (i.e., planning). For instance, as shown in the top right of Figure <a class="ltx_ref" href="#S3.F1" title="Figure 1 ‣ 3.2. Planning ‣ 3. Components of AI Agents ‣ An In-depth Survey of Large Language Model-based Artificial Intelligence Agents"><span class="ltx_text ltx_ref_tag">1</span></a>, the LLM-based agent decomposes the complex instruction “Put the banana on the counter” into a series of simpler instructions which are easier for the agent to accomplish.
+Further, taking actions solely based on the initial plan formulated by the agent without considering external environmental feedback may limit the performance of the agent. For example, as shown in the bottom right of Figure <a class="ltx_ref" href="#S3.F1" title="Figure 1 ‣ 3.2. Planning ‣ 3. Components of AI Agents ‣ An In-depth Survey of Large Language Model-based Artificial Intelligence Agents"><span class="ltx_text ltx_ref_tag">1</span></a>, an agent creates a plan for the instruction “Put the bat on the bed”, and the first step in the initial planning is “Pick up the baseball bat”, which may fail to execute when there is no ’bat’ nearby. However, if the agent can self-reflection based on the feedback, it can refine the first step to ”Walk to the side of the baseball bat”, and then progressively work towards achieving the goal.
+Therefore, during the execution process, reflecting on and analyzing past behaviors and feedback, and subsequently adjusting the plan, are equally pivotal for the successful execution of tasks by AI agents.
+Next, we will introduce relevant works that utilize LLM for task decomposition and self-reflection.</p>
+</div>
+<section class="ltx_subsubsection" id="S3.SS2.SSS1">
+<h4 class="ltx_title ltx_font_bold ltx_title_subsubsection">3.2.1.   Task Decomposition</h4>
+<div class="ltx_para ltx_noindent" id="S3.SS2.SSS1.p1">
+<p class="ltx_p" id="S3.SS2.SSS1.p1.1">Task decomposition aims to decompose the complex task or instruction into a series of simpler sub-goals or sub-instructions for performing the task. For example, as shown in the top right of Figure <a class="ltx_ref" href="#S3.F1" title="Figure 1 ‣ 3.2. Planning ‣ 3. Components of AI Agents ‣ An In-depth Survey of Large Language Model-based Artificial Intelligence Agents"><span class="ltx_text ltx_ref_tag">1</span></a>, given a task instruction ”Put the banana on the counter”, the agent will split it into three steps: 1. Pick up the banana. 2. Go to the counter. 3. Put down the banana. The existing works mainly perform task decomposition by chain or tree of thought <cite class="ltx_cite ltx_citemacro_cite">Wei et al. (<a class="ltx_ref" href="#bib.bib103" title="">2022b</a>); Kojima et al. (<a class="ltx_ref" href="#bib.bib45" title="">2022</a>); Yao et al. (<a class="ltx_ref" href="#bib.bib106" title="">2023a</a>)</cite> and PDDL with LLM <cite class="ltx_cite ltx_citemacro_cite">Liu et al. (<a class="ltx_ref" href="#bib.bib56" title="">2023a</a>)</cite>.
+Chain of thought can utilize a few examples or simple instructions to progressively guide LLM reasoning, in order to decompose complex tasks into a series of simpler tasks <cite class="ltx_cite ltx_citemacro_cite">Wei et al. (<a class="ltx_ref" href="#bib.bib103" title="">2022b</a>); Zhang et al. (<a class="ltx_ref" href="#bib.bib111" title="">2022</a>); Huang et al. (<a class="ltx_ref" href="#bib.bib35" title="">2022a</a>); Wang et al. (<a class="ltx_ref" href="#bib.bib101" title="">2023b</a>)</cite>. Zhang et al. <cite class="ltx_cite ltx_citemacro_cite">Zhang et al. (<a class="ltx_ref" href="#bib.bib111" title="">2022</a>)</cite> proposed a method for automatically generating chain of thought samples. They first clustered the problems and then, for each cluster, selected representative questions to generate chain of thought samples in a zero-shot manner. Huang et al. <cite class="ltx_cite ltx_citemacro_cite">Huang et al. (<a class="ltx_ref" href="#bib.bib35" title="">2022a</a>)</cite> utilized high-level tasks related to the given task and their decomposed planning steps as examples, and combined these examples with input information to construct prompts. Then, they employed LLM to predict the next steps of planning and added the generated steps to the original prompts, continuing the prediction until the entire task was completed. Wang et al. <cite class="ltx_cite ltx_citemacro_cite">Wang et al. (<a class="ltx_ref" href="#bib.bib101" title="">2023b</a>)</cite> proposed that by guiding LLM to first construct a series of plans and then progressively execute solutions, it can effectively alleviate the issue of intermediate plans disappearing during the reasoning process.
+Unlike linear thinking, the Tree of Thought <cite class="ltx_cite ltx_citemacro_cite">Long (<a class="ltx_ref" href="#bib.bib62" title="">2023</a>); Yao et al. (<a class="ltx_ref" href="#bib.bib106" title="">2023a</a>)</cite> generates multiple branches of thoughts at each step to create a tree-like structure. Subsequently, searching on this tree of thought is conducted using methods like breadth-first search or depth-first search. For evaluating each state, reasoning can be facilitated using a ”value prompt” or assessment results can be generated through a voting mechanism.
+In addition, some research efforts consider combining LLM with PDDL for the purpose of planning target problems <cite class="ltx_cite ltx_citemacro_cite">Xie et al. (<a class="ltx_ref" href="#bib.bib104" title="">2023</a>); Liu et al. (<a class="ltx_ref" href="#bib.bib56" title="">2023a</a>); Guan et al. (<a class="ltx_ref" href="#bib.bib30" title="">2023</a>)</cite>. For example, Liu et al. <cite class="ltx_cite ltx_citemacro_cite">Liu et al. (<a class="ltx_ref" href="#bib.bib56" title="">2023a</a>)</cite> first conveyed the task description in the form of natural language to LLM for translating to PDDL format by in-context learning, then they employed the classical planners to generate plans and converted them into natural language format by LLM again.</p>
+</div>
+</section>
+<section class="ltx_subsubsection" id="S3.SS2.SSS2">
+<h4 class="ltx_title ltx_font_bold ltx_title_subsubsection">3.2.2.   Self-Reflection</h4>
+<div class="ltx_para ltx_noindent" id="S3.SS2.SSS2.p1">
+<p class="ltx_p" id="S3.SS2.SSS2.p1.1">During the process of interacting with the environment, AI agents can enhance their planning ability by reflecting on past actions by receiving feedback. There are many works attempt to combine LLM-based agents with the self-reflection <cite class="ltx_cite ltx_citemacro_cite">Yao et al. (<a class="ltx_ref" href="#bib.bib107" title="">2022</a>); Huang et al. (<a class="ltx_ref" href="#bib.bib36" title="">2022b</a>); Shinn et al. (<a class="ltx_ref" href="#bib.bib86" title="">2023</a>); Liu et al. (<a class="ltx_ref" href="#bib.bib57" title="">2023b</a>); Sun et al. (<a class="ltx_ref" href="#bib.bib91" title="">2023</a>); Singh et al. (<a class="ltx_ref" href="#bib.bib89" title="">2023</a>); Yao et al. (<a class="ltx_ref" href="#bib.bib108" title="">2023b</a>); Chen and Chang (<a class="ltx_ref" href="#bib.bib18" title="">2023</a>)</cite>. For example, Yao et al. <cite class="ltx_cite ltx_citemacro_cite">Yao et al. (<a class="ltx_ref" href="#bib.bib107" title="">2022</a>)</cite> integrated actions with the chain of thought, leveraging thought to formulate planning that guides the agent’s execution of acts. Simultaneously, interactive execution of actions in the environment further enhances the agent’s planning ability. Shinn et al. <cite class="ltx_cite ltx_citemacro_cite">Shinn et al. (<a class="ltx_ref" href="#bib.bib86" title="">2023</a>)</cite>
+introduced a framework named Reflexion, in which the approach first generates actions through the Actor module and evaluates them. Then utilizes the self-reflection module to generate feedback and store it in memory. When errors occur, this method can infer the actions that led to the errors and correct them, thereby continuously enhancing the agent’s capabilities. Liu et al. <cite class="ltx_cite ltx_citemacro_cite">Liu et al. (<a class="ltx_ref" href="#bib.bib57" title="">2023b</a>)</cite> first rated the various outputs of the model based on human feedback, then they used prompt templates to construct these ratings into natural language forms and combined them with the outputs for fine-tuning the model, thereby enabling it to learn self-reflection. Singh et al. <cite class="ltx_cite ltx_citemacro_cite">Singh et al. (<a class="ltx_ref" href="#bib.bib89" title="">2023</a>)</cite> utilize Pythonic program and annotations to generate planning, wherein assertion functions are used to obtain feedback from the environment. When assertions are false, error recovery can be performed. Sun et al. <cite class="ltx_cite ltx_citemacro_cite">Sun et al. (<a class="ltx_ref" href="#bib.bib91" title="">2023</a>)</cite> proposed a model named AdaPlanner, which utilizes two refiners to optimize and refine plans. One of the refiners collects information from the environment after executing an action, which is then utilized for subsequent actions. The other one adjusts the existing plan based on feedback obtained from the external environment when the executed action fails to achieve its intended outcome. Similarly, Yao et al <cite class="ltx_cite ltx_citemacro_cite">Yao et al. (<a class="ltx_ref" href="#bib.bib108" title="">2023b</a>)</cite>. first finetuned a small language model as a retrospective model to generate feedback for past failures, and then appended this feedback to the actor prompt as input of the large LLM for preventing the recurrence of similar errors and predicting the next action.
+</p>
+</div>
+</section>
+</section>
+<section class="ltx_subsection" id="S3.SS3">
+<h3 class="ltx_title ltx_font_bold ltx_title_subsection">3.3.   Memory</h3>
+<div class="ltx_para ltx_noindent" id="S3.SS3.p1">
+<p class="ltx_p" id="S3.SS3.p1.1">Memory can help individuals integrate past learned knowledge and experience events with their current state, thereby assisting in making more appropriate decisions.
+In general, human memory can be categorized into three primary types: sensory memory, short-term memory, and long-term memory <cite class="ltx_cite ltx_citemacro_cite">Camina and Güell (<a class="ltx_ref" href="#bib.bib14" title="">2017</a>)</cite>. Sensory memory is the collection of information through the senses of touch, hearing, vision, and other senses, and it has an extremely brief lifespan <cite class="ltx_cite ltx_citemacro_cite">Wan et al. (<a class="ltx_ref" href="#bib.bib99" title="">2020</a>); Jung et al. (<a class="ltx_ref" href="#bib.bib39" title="">2019</a>)</cite>.
+Short-term memory refers to the process of handling information within a brief period, and it is typically carried out by working memory <cite class="ltx_cite ltx_citemacro_cite">Hunter (<a class="ltx_ref" href="#bib.bib37" title="">1957</a>); Baddeley (<a class="ltx_ref" href="#bib.bib6" title="">1983</a>, <a class="ltx_ref" href="#bib.bib5" title="">1997</a>)</cite>.
+In contrast, long-term memory refers to memories that can be stored for an extended period, which encompasses episodic memory and semantic memory. Episodic memory refers to the memory capacity for events that individuals have personally experienced, and it is often able to closely associate these events with contextual information <cite class="ltx_cite ltx_citemacro_cite">Tulving et al. (<a class="ltx_ref" href="#bib.bib95" title="">1972</a>); Tulving (<a class="ltx_ref" href="#bib.bib94" title="">1983</a>)</cite>.
+Semantic memory refers to the factual knowledge that individuals know, and this type of memory is unrelated to specific events and personal experiences <cite class="ltx_cite ltx_citemacro_cite">Tulving et al. (<a class="ltx_ref" href="#bib.bib95" title="">1972</a>)</cite>.</p>
+</div>
+<div class="ltx_para" id="S3.SS3.p2">
+<p class="ltx_p" id="S3.SS3.p2.1">Similarly, memory, as a key component of AI agents, can assist them in learning valuable knowledge from past information, thereby helping the agents perform tasks more effectively.
+To fully utilize the stored information in memory, some research has attempted to integrate AI agents with short-term memory <cite class="ltx_cite ltx_citemacro_cite">Kang et al. (<a class="ltx_ref" href="#bib.bib40" title="">2023</a>); Peng et al. (<a class="ltx_ref" href="#bib.bib77" title="">2023</a>)</cite>, long-term memory <cite class="ltx_cite ltx_citemacro_cite">Vere and Bickmore (<a class="ltx_ref" href="#bib.bib97" title="">1990</a>); Kazemifard et al. (<a class="ltx_ref" href="#bib.bib42" title="">2014</a>)</cite>, and a combination of both <cite class="ltx_cite ltx_citemacro_cite">Nuxoll and Laird (<a class="ltx_ref" href="#bib.bib70" title="">2007</a>); Kim et al. (<a class="ltx_ref" href="#bib.bib44" title="">2023</a>); Yao et al. (<a class="ltx_ref" href="#bib.bib108" title="">2023b</a>); Shinn et al. (<a class="ltx_ref" href="#bib.bib86" title="">2023</a>)</cite>. In addition, since sensory memory can be regarded as the embedded representation of inputs such as text and images, similar to a sensory buffer, we consider sensory memory not to be part of the memory module of the AI agent.
+With the emergence of large language models (LLM), some works devoted to drive the development of AI agents using LLM. Considering the characteristics of LLM, as shown in Figure <a class="ltx_ref" href="#S3.F2" title="Figure 2 ‣ 3.3. Memory ‣ 3. Components of AI Agents ‣ An In-depth Survey of Large Language Model-based Artificial Intelligence Agents"><span class="ltx_text ltx_ref_tag">2</span></a>, we further redefine the concepts of memory types for AI agents and classify them into training memory, short-term memory, and long-term memory.</p>
+</div>
+<figure class="ltx_figure" id="S3.F2"><img alt="Refer to caption" class="ltx_graphics ltx_centering ltx_img_landscape" height="462" id="S3.F2.g1" src="x2.png" width="697"/>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Figure 2: </span>Mapping Structure of Memory: <span class="ltx_text ltx_font_italic" id="S3.F2.3.1">Left</span> illustrates memory categories in human memory, while the <span class="ltx_text ltx_font_italic" id="S3.F2.4.2">right</span> depicts memory categories in AI agents, which have been redefined based on the characteristics of LLM.</figcaption>
+</figure>
+<div class="ltx_para ltx_noindent" id="S3.SS3.p3">
+<p class="ltx_p" id="S3.SS3.p3.1">Training memory refers to the knowledge and facts that a model learns during the pre-training process, and this information is stored through model parameters. Existing research has shown that models can learn world knowledge <cite class="ltx_cite ltx_citemacro_cite">Rogers et al. (<a class="ltx_ref" href="#bib.bib80" title="">2021</a>)</cite>, relational knowledge <cite class="ltx_cite ltx_citemacro_cite">Petroni et al. (<a class="ltx_ref" href="#bib.bib78" title="">2019</a>); Safavi and Koutra (<a class="ltx_ref" href="#bib.bib83" title="">2021</a>)</cite>, common sense knowledge <cite class="ltx_cite ltx_citemacro_cite">Davison et al. (<a class="ltx_ref" href="#bib.bib23" title="">2019</a>); Da et al. (<a class="ltx_ref" href="#bib.bib22" title="">2021</a>); Bian et al. (<a class="ltx_ref" href="#bib.bib9" title="">2023</a>)</cite>, semantic knowledge <cite class="ltx_cite ltx_citemacro_cite">Tang et al. (<a class="ltx_ref" href="#bib.bib92" title="">2023</a>)</cite>, and syntactic knowledge <cite class="ltx_cite ltx_citemacro_cite">Chiang et al. (<a class="ltx_ref" href="#bib.bib20" title="">2020</a>)</cite> during the pre-training phase.
+Therefore, by employing LLM for reasoning, the AI agent can implicitly recall this knowledge to enhance the model’s performance.</p>
+</div>
+<div class="ltx_para ltx_noindent" id="S3.SS3.p4">
+<p class="ltx_p" id="S3.SS3.p4.1">Short-term memory refers to the temporary information that AI agents process during task execution, such as the example information involved in the in-context learning process and the intermediate results generated during LLM inference. During the inference process, LLM temporarily stores and processes in-context information or intermediate results, using them to improve the ability of the model. This is similar to human working memory, which temporarily holds and processes information in the short-term to support complex cognitive tasks <cite class="ltx_cite ltx_citemacro_cite"><a class="ltx_ref" href="#bib.bib29" title="">Gong et al. </a></cite>. Some works utilize in-context learning to improve the performance of LLM. They first combine some examples with input information to construct a prompt and then send this prompt to LLM to utilize short-term memory <cite class="ltx_cite ltx_citemacro_cite">Li et al. (<a class="ltx_ref" href="#bib.bib48" title="">2023b</a>); Logeswaran et al. (<a class="ltx_ref" href="#bib.bib61" title="">2022</a>); Omidvar and An (<a class="ltx_ref" href="#bib.bib71" title="">2023</a>)</cite>.
+For example,
+Li et al. <cite class="ltx_cite ltx_citemacro_cite">Li et al. (<a class="ltx_ref" href="#bib.bib48" title="">2023b</a>)</cite> pointed out that when provided with a context that is relevant to the task, it is important to ensure that its working memory is controlled by the context. Otherwise, the model should rely on the world knowledge obtained during the pre-training phase. Logeswaran et al. <cite class="ltx_cite ltx_citemacro_cite">Logeswaran et al. (<a class="ltx_ref" href="#bib.bib61" title="">2022</a>)</cite> first combined some examples with input instructions as a prompt, and then generated multiple candidate sub-goal plans using LLM. Subsequently, they employed a re-rank model to select the most suitable plan from these candidates.
+Some works prompt LLM to output its thinking process and results in the form of chain-of-thought, or to feed the intermediate results from LLM’s inference into LLM for further reasoning <cite class="ltx_cite ltx_citemacro_cite">Huang et al. (<a class="ltx_ref" href="#bib.bib35" title="">2022a</a>); Akyurek et al. (<a class="ltx_ref" href="#bib.bib2" title="">2023</a>); Chen et al. (<a class="ltx_ref" href="#bib.bib17" title="">2023b</a>, <a class="ltx_ref" href="#bib.bib16" title="">a</a>); Zhang et al. (<a class="ltx_ref" href="#bib.bib109" title="">2023a</a>); Chen et al. (<a class="ltx_ref" href="#bib.bib19" title="">2023c</a>)</cite>. For example, Zhang et al. <cite class="ltx_cite ltx_citemacro_cite">Zhang et al. (<a class="ltx_ref" href="#bib.bib109" title="">2023a</a>)</cite> first guided the model to generate a chain of thought by engaging it in multi-turn dialogues based on the given context. Subsequently, they combined the context with the generated chain of thought to form samples, which are then used to assist the model in reasoning and prediction under new contextual situations. Akyurek et al. <cite class="ltx_cite ltx_citemacro_cite">Akyurek et al. (<a class="ltx_ref" href="#bib.bib2" title="">2023</a>)</cite> proposed a multi-agent collaborative system that includes two LLMs. One LLM is responsible for generating answers based on the input content, while the other LLM generates a textual critique based on the input and output of the first LLM to assist in error correction.</p>
+</div>
+<div class="ltx_para ltx_noindent" id="S3.SS3.p5">
+<p class="ltx_p" id="S3.SS3.p5.1">Long-term memory refers to the information stored in an external storage system, and when AI agents use this memory, they can retrieve information relevant to the current context from the external storage. The utilization of long-term memory can be divided into three steps: information storage, information retrieval, and information updating. Information storage aims to store essential information from the interactions between the agent and its environment. For example, Shuster et al. <cite class="ltx_cite ltx_citemacro_cite">Shuster et al. (<a class="ltx_ref" href="#bib.bib87" title="">2022</a>)</cite> first generated a summary of the last interaction. If the generated summary is ”no persona,” it is not stored; otherwise, the summary information is stored in long-term memory. Zhang et al. <cite class="ltx_cite ltx_citemacro_cite">Zhang et al. (<a class="ltx_ref" href="#bib.bib110" title="">2023b</a>)</cite> utilized a tabular format to store memory in the form of key-value pairs. In this format, the observations and states serve as the keys, and the actions and their corresponding Q-values are stored as values.
+Liang et al. <cite class="ltx_cite ltx_citemacro_cite">Liang et al. (<a class="ltx_ref" href="#bib.bib52" title="">2023a</a>)</cite> stored the relevant information from the interactions between the agent and the environment. The information from the last interaction is stored in the flash memory for quick retrieval. The rest of the information is stored in the action memory as long-term memory.
+Information retrieval aims to retrieve information relevant to the current context from long-term memory to assist the agent in performing tasks. For example, Lee et al. <cite class="ltx_cite ltx_citemacro_cite">Lee et al. (<a class="ltx_ref" href="#bib.bib46" title="">2023</a>)</cite> first clarified the input information, then they employed dense passage retrievers to select relevant information from long-term memory. Afterward, they combined the selected information with the input information and used methods like chain-of-thought or few-shot learning to choose the most relevant information for task execution. Zhang et al. <cite class="ltx_cite ltx_citemacro_cite">Zhang et al. (<a class="ltx_ref" href="#bib.bib110" title="">2023b</a>)</cite> first computed the similarity between the received information and the keys stored in the long-term memory, and then selected the top k records with the highest similarity to assist the LLM’s decision-making.
+Information updating aims to update the stored long-term memory. For example, Zhong et al. <cite class="ltx_cite ltx_citemacro_cite">Zhong et al. (<a class="ltx_ref" href="#bib.bib112" title="">2023</a>)</cite> designed a forgetting mechanism based on the Ebbinghaus forgetting curve to simulate the updating process of human long-term memory.</p>
+</div>
+</section>
+<section class="ltx_subsection" id="S3.SS4">
+<h3 class="ltx_title ltx_font_bold ltx_title_subsection">3.4.   Tool Use</h3>
+<div class="ltx_para ltx_noindent" id="S3.SS4.p1">
+<p class="ltx_p" id="S3.SS4.p1.1">Recent works have greatly propelled the development of LLMs, however, LLMs still fail to achieve satisfactory performance in certain scenarios involving up-to-date information, computational reasoning, and others. For example, when a user asks, ’Where is the global premiere of Oppenheimer?’, ChatGPT is unable to answer this question because the movie ’Oppenheimer’ is the latest information and is not included in the training corpus of the LLM.</p>
+</div>
+<div class="ltx_para ltx_noindent" id="S3.SS4.p2">
+<p class="ltx_p" id="S3.SS4.p2.1">To bridge these gaps, many efforts have been dedicated to integrating LLM with external tools to extend its capabilities. Some works aim to integrate LLM with specific tools such as web search <cite class="ltx_cite ltx_citemacro_cite">Nakano et al. (<a class="ltx_ref" href="#bib.bib69" title="">2021</a>)</cite>, translation <cite class="ltx_cite ltx_citemacro_cite">Thoppilan et al. (<a class="ltx_ref" href="#bib.bib93" title="">2022</a>)</cite>, calculators <cite class="ltx_cite ltx_citemacro_cite">Cobbe et al. (<a class="ltx_ref" href="#bib.bib21" title="">2021</a>)</cite>, and some plugins of ChatGPT<span class="ltx_note ltx_role_footnote" id="footnote2"><sup class="ltx_note_mark">2</sup><span class="ltx_note_outer"><span class="ltx_note_content"><sup class="ltx_note_mark">2</sup><span class="ltx_tag ltx_tag_note">2</span>https://openai.com/blog/chatgpt-plugins</span></span></span>.
+Some other works consider teaching LLMs to choose suitable tools or combine various tools to accomplish tasks. For example,
+Karpas et al. <cite class="ltx_cite ltx_citemacro_cite">Karpas et al. (<a class="ltx_ref" href="#bib.bib41" title="">2022</a>)</cite> implemented a system named MRKL, which mainly consists of a language model, an adapter, and multiple experts (e.g., model or tools), where the adapter is utilized to select the appropriate expert to assist the language model in processing input requests. Parisi et al. <cite class="ltx_cite ltx_citemacro_cite">Parisi et al. (<a class="ltx_ref" href="#bib.bib74" title="">2022</a>)</cite> designed an iterative self-play algorithm to assist LM in learning how to utilize external APIs by fine-tuning LM. In self-play, they first fine-tuned LM with a few samples and then utilized it to generate the tool input for invoking the tool API to generate results, followed by an LM to infer an answer. If the referred answer is similar to the golden answer, the task input and predicted results (i.e., tool input, tool result, and predicted answer) are appended to the corpus sets for further fine-tuning and iteration in the next round.
+Patil et al. <cite class="ltx_cite ltx_citemacro_cite">Patil et al. (<a class="ltx_ref" href="#bib.bib76" title="">2023</a>)</cite> first constructed a dataset with the format of instruct-API pairs, and then fine-tuned LLM based on the dataset for aiding LLM to employ tools with zero-shot and retriever-aware.
+Similarly, Schick et al. <cite class="ltx_cite ltx_citemacro_cite">Schick et al. (<a class="ltx_ref" href="#bib.bib84" title="">2023</a>)</cite> fine-tuned the LLM on a dataset containing API calls to help the LLM learn the ability to invoke APIs.
+Paranjape et al. <cite class="ltx_cite ltx_citemacro_cite">Paranjape et al. (<a class="ltx_ref" href="#bib.bib73" title="">2023</a>)</cite> first retrieved the related examples with the input task as a prompt and then employed the LLM to implement inference with chain reasoning. In this process, if the immediate step requires tools, the inference process is paused to execute the tools, and the output of the tools is inserted into the inference process.
+Li et al. <cite class="ltx_cite ltx_citemacro_cite">Li et al. (<a class="ltx_ref" href="#bib.bib50" title="">2023c</a>)</cite> proposed the API bank to evaluate the LLM’s ability to utilize tools and devised a tool-augmented LLM paradigm to alleviate the limitation of in-context length.
+Shen et al. <cite class="ltx_cite ltx_citemacro_cite">Shen et al. (<a class="ltx_ref" href="#bib.bib85" title="">2023</a>)</cite> proposed a method to combine LLM with HuggingFace to enhance the performance of LLM. Specifically, the method first employs LLM to decompose complex tasks into a series of sub-tasks and then sequentially selects suitable models from HuggingFace to perform these sub-tasks.
+Lu et al. <cite class="ltx_cite ltx_citemacro_cite">Lu et al. (<a class="ltx_ref" href="#bib.bib63" title="">2023</a>)</cite> designed a plug-and-play compositional reasoning method, which first plans the schedule of input tasks and then composes multiple tools to execute sub-tasks for achieving the original task.
+Liang et al. <cite class="ltx_cite ltx_citemacro_cite">Liang et al. (<a class="ltx_ref" href="#bib.bib53" title="">2023b</a>)</cite> first applied a multi-model foundation model to understand and plan the given instructions for selecting suitable APIs from the API platform, and then utilized an action executor to generate results based on the selected APIs. Besides, they also exploited the feedback of humans to optimize the ability of planning and choose APIs of LLM, and the document of API in API platform.
+Different from the above approaches, Cai et al. <cite class="ltx_cite ltx_citemacro_cite">Cai et al. (<a class="ltx_ref" href="#bib.bib13" title="">2023</a>)</cite> first employed an LLM to generate tool for input task, and then utilized an LLM to perform task based on the generated tool. Specifically, for an incoming task, if the tool required by the task has been generated, the tool will be invoked directly, otherwise, the LLM will first generates tool, and then uses it.</p>
+</div>
+<figure class="ltx_table" id="S3.T1">
+<table class="ltx_tabular ltx_centering ltx_align_middle" id="S3.T1.1">
+<tr class="ltx_tr" id="S3.T1.1.1">
+<td class="ltx_td ltx_align_center ltx_border_tt" id="S3.T1.1.1.1"><span class="ltx_text ltx_font_bold" id="S3.T1.1.1.1.1" style="font-size:70%;">Category</span></td>
+<td class="ltx_td ltx_align_center ltx_border_tt" id="S3.T1.1.1.2"><span class="ltx_text ltx_font_bold" id="S3.T1.1.1.2.1" style="font-size:70%;">Application</span></td>
+<td class="ltx_td ltx_align_justify ltx_border_tt" id="S3.T1.1.1.3" style="width:227.6pt;">
+<p class="ltx_p ltx_align_top" id="S3.T1.1.1.3.1"><span class="ltx_text" id="S3.T1.1.1.3.1.1"></span><span class="ltx_text" id="S3.T1.1.1.3.1.2" style="font-size:70%;"> </span><span class="ltx_text" id="S3.T1.1.1.3.1.3" style="font-size:70%;">
+<span class="ltx_tabular ltx_align_middle" id="S3.T1.1.1.3.1.3.1">
+<span class="ltx_tr" id="S3.T1.1.1.3.1.3.1.1">
+<span class="ltx_td ltx_align_center" id="S3.T1.1.1.3.1.3.1.1.1"><span class="ltx_text ltx_font_bold" id="S3.T1.1.1.3.1.3.1.1.1.1">Description</span></span></span>
+</span></span><span class="ltx_text" id="S3.T1.1.1.3.1.4" style="font-size:70%;"> </span><span class="ltx_text" id="S3.T1.1.1.3.1.5"></span></p>
+</td>
+</tr>
+<tr class="ltx_tr" id="S3.T1.1.2">
+<td class="ltx_td ltx_align_center ltx_border_t" id="S3.T1.1.2.1">
+<span class="ltx_text" id="S3.T1.1.2.1.1"></span><span class="ltx_text" id="S3.T1.1.2.1.2" style="font-size:70%;"> </span><span class="ltx_text" id="S3.T1.1.2.1.3" style="font-size:70%;">
+<span class="ltx_tabular ltx_align_middle" id="S3.T1.1.2.1.3.1">
+<span class="ltx_tr" id="S3.T1.1.2.1.3.1.1">
+<span class="ltx_td ltx_align_center" id="S3.T1.1.2.1.3.1.1.1">Chatbot</span></span>
+</span></span><span class="ltx_text" id="S3.T1.1.2.1.4" style="font-size:70%;"> </span><span class="ltx_text" id="S3.T1.1.2.1.5"></span>
+</td>
+<td class="ltx_td ltx_align_center ltx_border_t" id="S3.T1.1.2.2"><span class="ltx_text" id="S3.T1.1.2.2.1" style="font-size:70%;">Pi</span></td>
+<td class="ltx_td ltx_align_justify ltx_border_t" id="S3.T1.1.2.3" style="width:227.6pt;">
+<p class="ltx_p ltx_align_top" id="S3.T1.1.2.3.1"><span class="ltx_text" id="S3.T1.1.2.3.1.1" style="font-size:70%;">Inflection’s chatting AI agent known for its emotional companionship and high emotional intelligence</span></p>
+</td>
+</tr>
+<tr class="ltx_tr" id="S3.T1.1.3">
+<td class="ltx_td ltx_align_center ltx_border_t" id="S3.T1.1.3.1"><span class="ltx_text" id="S3.T1.1.3.1.1" style="font-size:70%;">Game</span></td>
+<td class="ltx_td ltx_align_center ltx_border_t" id="S3.T1.1.3.2">
+<span class="ltx_text" id="S3.T1.1.3.2.1" style="font-size:70%;">Voyager </span><cite class="ltx_cite ltx_citemacro_cite">Wang et al. <span class="ltx_text" id="S3.T1.1.3.2.2.1.1.1" style="font-size:70%;">(</span><a class="ltx_ref" href="#bib.bib100" title="">2023a</a><span class="ltx_text" id="S3.T1.1.3.2.3.2.2.1" style="font-size:70%;">)</span></cite>
+</td>
+<td class="ltx_td ltx_align_justify ltx_border_t" id="S3.T1.1.3.3" style="width:227.6pt;">
+<p class="ltx_p ltx_align_top" id="S3.T1.1.3.3.1"><span class="ltx_text" id="S3.T1.1.3.3.1.1" style="font-size:70%;">The first LLM-powered embodied lifelong learning agent in Minecraft that continuously explores the world, acquires diverse skills, and makes novel discoveries without human intervention</span></p>
+</td>
+</tr>
+<tr class="ltx_tr" id="S3.T1.1.4">
+<td class="ltx_td ltx_align_center ltx_border_t" id="S3.T1.1.4.1"><span class="ltx_text" id="S3.T1.1.4.1.1" style="font-size:70%;">Coding</span></td>
+<td class="ltx_td ltx_align_center ltx_border_t" id="S3.T1.1.4.2"><span class="ltx_text" id="S3.T1.1.4.2.1" style="font-size:70%;">GPT Engineer</span></td>
+<td class="ltx_td ltx_align_justify ltx_border_t" id="S3.T1.1.4.3" style="width:227.6pt;">
+<p class="ltx_p ltx_align_top" id="S3.T1.1.4.3.1"><span class="ltx_text" id="S3.T1.1.4.3.1.1" style="font-size:70%;">A AI coding agent that can generate an entire codebase based on a prompt</span></p>
+</td>
+</tr>
+<tr class="ltx_tr" id="S3.T1.1.5">
+<td class="ltx_td ltx_align_center ltx_border_t" id="S3.T1.1.5.1"><span class="ltx_text" id="S3.T1.1.5.1.1" style="font-size:70%;">Design</span></td>
+<td class="ltx_td ltx_align_center ltx_border_t" id="S3.T1.1.5.2"><span class="ltx_text" id="S3.T1.1.5.2.1" style="font-size:70%;">Diagram</span></td>
+<td class="ltx_td ltx_align_justify ltx_border_t" id="S3.T1.1.5.3" style="width:227.6pt;">
+<p class="ltx_p ltx_align_top" id="S3.T1.1.5.3.1"><span class="ltx_text" id="S3.T1.1.5.3.1.1" style="font-size:70%;">An AI-powered and automatable design platform</span></p>
+</td>
+</tr>
+<tr class="ltx_tr" id="S3.T1.1.6">
+<td class="ltx_td ltx_align_center ltx_border_t" id="S3.T1.1.6.1" rowspan="2"><span class="ltx_text" id="S3.T1.1.6.1.1" style="font-size:70%;">Research</span></td>
+<td class="ltx_td ltx_align_center ltx_border_t" id="S3.T1.1.6.2">
+<span class="ltx_text" id="S3.T1.1.6.2.1" style="font-size:70%;">ChemCrow </span><cite class="ltx_cite ltx_citemacro_cite">Bran et al. <span class="ltx_text" id="S3.T1.1.6.2.2.1.1.1" style="font-size:70%;">(</span><a class="ltx_ref" href="#bib.bib11" title="">2023</a><span class="ltx_text" id="S3.T1.1.6.2.3.2.2.1" style="font-size:70%;">)</span></cite>
+</td>
+<td class="ltx_td ltx_align_justify ltx_border_t" id="S3.T1.1.6.3" style="width:227.6pt;">
+<p class="ltx_p ltx_align_top" id="S3.T1.1.6.3.1"><span class="ltx_text" id="S3.T1.1.6.3.1.1" style="font-size:70%;">An LLM chemistry agent designed
+to accomplish tasks across organic synthesis, drug discovery, and materials design</span></p>
+</td>
+</tr>
+<tr class="ltx_tr" id="S3.T1.1.7">
+<td class="ltx_td ltx_align_center" id="S3.T1.1.7.1">
+<span class="ltx_text" id="S3.T1.1.7.1.1" style="font-size:70%;">Agent </span><cite class="ltx_cite ltx_citemacro_cite">Boiko et al. <span class="ltx_text" id="S3.T1.1.7.1.2.1.1.1" style="font-size:70%;">(</span><a class="ltx_ref" href="#bib.bib10" title="">2023</a><span class="ltx_text" id="S3.T1.1.7.1.3.2.2.1" style="font-size:70%;">)</span></cite>
+</td>
+<td class="ltx_td ltx_align_justify" id="S3.T1.1.7.2" style="width:227.6pt;">
+<p class="ltx_p ltx_align_top" id="S3.T1.1.7.2.1"><span class="ltx_text" id="S3.T1.1.7.2.1.1" style="font-size:70%;">An intelligent agent system that combines multiple large language models for autonomous
+design, planning, and execution of scientific experiments</span></p>
+</td>
+</tr>
+<tr class="ltx_tr" id="S3.T1.1.8">
+<td class="ltx_td ltx_align_center ltx_border_t" id="S3.T1.1.8.1" rowspan="5"><span class="ltx_text" id="S3.T1.1.8.1.1" style="font-size:70%;">Collaboration</span></td>
+<td class="ltx_td ltx_align_center ltx_border_t" id="S3.T1.1.8.2">
+<span class="ltx_text" id="S3.T1.1.8.2.1" style="font-size:70%;">DialOp </span><cite class="ltx_cite ltx_citemacro_cite">Lin et al. <span class="ltx_text" id="S3.T1.1.8.2.2.1.1.1" style="font-size:70%;">(</span><a class="ltx_ref" href="#bib.bib54" title="">2023a</a><span class="ltx_text" id="S3.T1.1.8.2.3.2.2.1" style="font-size:70%;">)</span></cite>
+</td>
+<td class="ltx_td ltx_align_justify ltx_border_t" id="S3.T1.1.8.3" style="width:227.6pt;">
+<p class="ltx_p ltx_align_top" id="S3.T1.1.8.3.1"><span class="ltx_text" id="S3.T1.1.8.3.1.1" style="font-size:70%;">AI assistants
+collaborating with one or more humans via natural language to help them make complex decisions</span></p>
+</td>
+</tr>
+<tr class="ltx_tr" id="S3.T1.1.9">
+<td class="ltx_td ltx_align_center" id="S3.T1.1.9.1"><span class="ltx_text" id="S3.T1.1.9.1.1" style="font-size:70%;">MindOS</span></td>
+<td class="ltx_td ltx_align_justify" id="S3.T1.1.9.2" style="width:227.6pt;">
+<p class="ltx_p ltx_align_top" id="S3.T1.1.9.2.1"><span class="ltx_text" id="S3.T1.1.9.2.1.1" style="font-size:70%;">An engine creating autonomous AI agents for users’ professional tasks</span></p>
+</td>
+</tr>
+<tr class="ltx_tr" id="S3.T1.1.10">
+<td class="ltx_td ltx_align_center" id="S3.T1.1.10.1"><span class="ltx_text" id="S3.T1.1.10.1.1" style="font-size:70%;">MetaGPT</span></td>
+<td class="ltx_td ltx_align_justify" id="S3.T1.1.10.2" style="width:227.6pt;">
+<p class="ltx_p ltx_align_top" id="S3.T1.1.10.2.1"><span class="ltx_text" id="S3.T1.1.10.2.1.1" style="font-size:70%;">An multi-agent framework assigning different roles to GPTs to form a collaborative software entity for complex tasks</span></p>
+</td>
+</tr>
+<tr class="ltx_tr" id="S3.T1.1.11">
+<td class="ltx_td ltx_align_center" id="S3.T1.1.11.1"><span class="ltx_text" id="S3.T1.1.11.1.1" style="font-size:70%;">Multi-GPT</span></td>
+<td class="ltx_td ltx_align_justify" id="S3.T1.1.11.2" style="width:227.6pt;">
+<p class="ltx_p ltx_align_top" id="S3.T1.1.11.2.1"><span class="ltx_text" id="S3.T1.1.11.2.1.1" style="font-size:70%;">An experimental multi-agent system where multiple “expertGPTs” collaborate to perform a task and each has their own short and long-term memory and the ability to communicate with each other.</span></p>
+</td>
+</tr>
+<tr class="ltx_tr" id="S3.T1.1.12">
+<td class="ltx_td ltx_align_center" id="S3.T1.1.12.1">
+<span class="ltx_text" id="S3.T1.1.12.1.1" style="font-size:70%;">Generative Agents </span><cite class="ltx_cite ltx_citemacro_cite">Park et al. <span class="ltx_text" id="S3.T1.1.12.1.2.1.1.1" style="font-size:70%;">(</span><a class="ltx_ref" href="#bib.bib75" title="">2023</a><span class="ltx_text" id="S3.T1.1.12.1.3.2.2.1" style="font-size:70%;">)</span></cite>
+</td>
+<td class="ltx_td ltx_align_justify" id="S3.T1.1.12.2" style="width:227.6pt;">
+<p class="ltx_p ltx_align_top" id="S3.T1.1.12.2.1"><span class="ltx_text" id="S3.T1.1.12.2.1.1" style="font-size:70%;">Multiple AI agents for the interactive simulacra of human behavior</span></p>
+</td>
+</tr>
+<tr class="ltx_tr" id="S3.T1.1.13">
+<td class="ltx_td ltx_align_center ltx_border_bb ltx_border_t" id="S3.T1.1.13.1" rowspan="6"><span class="ltx_text" id="S3.T1.1.13.1.1" style="font-size:70%;">General purpose</span></td>
+<td class="ltx_td ltx_align_center ltx_border_t" id="S3.T1.1.13.2"><span class="ltx_text" id="S3.T1.1.13.2.1" style="font-size:70%;">Auto-GPT</span></td>
+<td class="ltx_td ltx_align_justify ltx_border_t" id="S3.T1.1.13.3" style="width:227.6pt;">
+<p class="ltx_p ltx_align_top" id="S3.T1.1.13.3.1"><span class="ltx_text" id="S3.T1.1.13.3.1.1" style="font-size:70%;">An AI agent chaining LLM “thoughts” together to autonomously achieve whatever goal users set</span></p>
+</td>
+</tr>
+<tr class="ltx_tr" id="S3.T1.1.14">
+<td class="ltx_td ltx_align_center" id="S3.T1.1.14.1"><span class="ltx_text" id="S3.T1.1.14.1.1" style="font-size:70%;">BabyAGI</span></td>
+<td class="ltx_td ltx_align_justify" id="S3.T1.1.14.2" style="width:227.6pt;">
+<p class="ltx_p ltx_align_top" id="S3.T1.1.14.2.1"><span class="ltx_text" id="S3.T1.1.14.2.1.1" style="font-size:70%;">An task-driven autonomous agent leveraging GPT-4 language model, Pinecone vector search, and the LangChain framework to perform a wide range of tasks across diverse domains</span></p>
+</td>
+</tr>
+<tr class="ltx_tr" id="S3.T1.1.15">
+<td class="ltx_td ltx_align_center" id="S3.T1.1.15.1"><span class="ltx_text" id="S3.T1.1.15.1.1" style="font-size:70%;">SuperAGI</span></td>
+<td class="ltx_td ltx_align_justify" id="S3.T1.1.15.2" style="width:227.6pt;">
+<p class="ltx_p ltx_align_top" id="S3.T1.1.15.2.1"><span class="ltx_text" id="S3.T1.1.15.2.1.1" style="font-size:70%;">A developer-centric open-source framework to build, manage and run useful Autonomous AI Agents</span></p>
+</td>
+</tr>
+<tr class="ltx_tr" id="S3.T1.1.16">
+<td class="ltx_td ltx_align_center ltx_border_bb" id="S3.T1.1.16.1"><span class="ltx_text" id="S3.T1.1.16.1.1" style="font-size:70%;">AgentGPT</span></td>
+<td class="ltx_td ltx_align_justify ltx_border_bb" id="S3.T1.1.16.2" style="width:227.6pt;">
+<p class="ltx_p ltx_align_top" id="S3.T1.1.16.2.1"><span class="ltx_text" id="S3.T1.1.16.2.1.1" style="font-size:70%;">A framework allow users to configure and deploy Autonomous AI agents rapidly</span></p>
+</td>
+</tr>
+</table>
+<figcaption class="ltx_caption ltx_centering" style="font-size:70%;"><span class="ltx_tag ltx_tag_table">Table 1: </span>LLM-based AI Agent applications.</figcaption>
+</figure>
+</section>
+</section>
+<section class="ltx_section" id="S4">
+<h2 class="ltx_title ltx_font_bold ltx_title_section" style="font-size:120%;">4.   Application</h2>
+<div class="ltx_para ltx_noindent" id="S4.p1">
+<p class="ltx_p" id="S4.p1.1">AI Agent is not an emergent concept. As early as 1959, the world’s first complete artificial intelligence system, <em class="ltx_emph ltx_font_italic" id="S4.p1.1.1">advice taker</em> <cite class="ltx_cite ltx_citemacro_cite">McCarthy (<a class="ltx_ref" href="#bib.bib66" title="">1959</a>)</cite>, was proposed. Subsequently, John McCarthy and others began to use the term <em class="ltx_emph ltx_font_italic" id="S4.p1.1.2">Agent</em> to describe the role that a computing program can play in a scene to achieve certain tasks in artificial intelligence. With reinforcement learning coming into prominence, the field of artificial intelligence has seen a number of notable AI agents based on reinforcement learning and gaming strategies, such as <em class="ltx_emph ltx_font_italic" id="S4.p1.1.3">AlphaGo</em> <cite class="ltx_cite ltx_citemacro_cite">Silver et al. (<a class="ltx_ref" href="#bib.bib88" title="">2016</a>)</cite>, a Go agent launched by DeepMind in 2014. Similarly, OpenAI launched <em class="ltx_emph ltx_font_italic" id="S4.p1.1.4">OpenAI Five</em> <cite class="ltx_cite ltx_citemacro_cite">Berner and et al. (<a class="ltx_ref" href="#bib.bib8" title="">2019</a>)</cite> for playing the game of Dota 2 in 2017 and DeepMind announced <em class="ltx_emph ltx_font_italic" id="S4.p1.1.5">AlphaStar</em> <cite class="ltx_cite ltx_citemacro_cite">Vinyals et al. (<a class="ltx_ref" href="#bib.bib98" title="">2019</a>)</cite> for playing StarCraft II. Recently, the emergence of ChatGPT has made AI agents active once again. The LLM-based Agent also keeps emerging. In this paper, we focus on the latest LLM-based AI Agent applications and talk about the applications of AI Agent from seven aspects: chatbot, game, design, research, coding, collaboration, and general purpose, as shown in Tab. <a class="ltx_ref" href="#S3.T1" title="Table 1 ‣ 3.4. Tool Use ‣ 3. Components of AI Agents ‣ An In-depth Survey of Large Language Model-based Artificial Intelligence Agents"><span class="ltx_text ltx_ref_tag">1</span></a>.</p>
+</div>
+<section class="ltx_subsection" id="S4.SS1">
+<h3 class="ltx_title ltx_font_bold ltx_title_subsection">4.1.   Chatbot</h3>
+<div class="ltx_para ltx_noindent" id="S4.SS1.p1">
+<p class="ltx_p" id="S4.SS1.p1.1">Pi<span class="ltx_note ltx_role_footnote" id="footnote3"><sup class="ltx_note_mark">3</sup><span class="ltx_note_outer"><span class="ltx_note_content"><sup class="ltx_note_mark">3</sup><span class="ltx_tag ltx_tag_note">3</span><a class="ltx_ref ltx_url ltx_font_typewriter" href="https://pi.ai/talk" title="">https://pi.ai/talk</a></span></span></span> is a typical LLM-based chatting AI agent released by Inflection. Like ChatGPT<span class="ltx_note ltx_role_footnote" id="footnote4"><sup class="ltx_note_mark">4</sup><span class="ltx_note_outer"><span class="ltx_note_content"><sup class="ltx_note_mark">4</sup><span class="ltx_tag ltx_tag_note">4</span><a class="ltx_ref ltx_url ltx_font_typewriter" href="https://chat.openai.com" title="">https://chat.openai.com</a></span></span></span> and Claude<span class="ltx_note ltx_role_footnote" id="footnote5"><sup class="ltx_note_mark">5</sup><span class="ltx_note_outer"><span class="ltx_note_content"><sup class="ltx_note_mark">5</sup><span class="ltx_tag ltx_tag_note">5</span><a class="ltx_ref ltx_url ltx_font_typewriter" href="https://www.anthropic.com/index/claude-2" title="">https://www.anthropic.com/index/claude-2</a></span></span></span>, users can talk directly with Pi, but Pi not only serves productivity needs such as searching or answering questions but also focuses on emotional companionship. Pi is known for its high emotional intelligence. Users can communicate with Pi as naturally as they would with a close friend.</p>
+</div>
+</section>
+<section class="ltx_subsection" id="S4.SS2">
+<h3 class="ltx_title ltx_font_bold ltx_title_subsection">4.2.   Game</h3>
+<div class="ltx_para ltx_noindent" id="S4.SS2.p1">
+<p class="ltx_p" id="S4.SS2.p1.1">No other LLM-based gaming intelligence has recently received more attention than Voyager <cite class="ltx_cite ltx_citemacro_cite">Wang et al. (<a class="ltx_ref" href="#bib.bib100" title="">2023a</a>)</cite>. Voyager is an AI agent with access to GPT-4 <cite class="ltx_cite ltx_citemacro_cite">OpenAI (<a class="ltx_ref" href="#bib.bib72" title="">2023</a>)</cite>. Voyager shows remarkable proficiency in playing the game of Minecraft and is able to utilize a learned skill library to solve new tasks from scratch without human intervention, demonstrating strong in-context lifelong learning capabilities.</p>
+</div>
+</section>
+<section class="ltx_subsection" id="S4.SS3">
+<h3 class="ltx_title ltx_font_bold ltx_title_subsection">4.3.   Coding</h3>
+<div class="ltx_para ltx_noindent" id="S4.SS3.p1">
+<p class="ltx_p" id="S4.SS3.p1.1">Developers have always wanted to have a code generator to help improve programming efficiency. LLM-based agents are naturally used in code generation. A very attractive coding agent is GPT Engineer<span class="ltx_note ltx_role_footnote" id="footnote6"><sup class="ltx_note_mark">6</sup><span class="ltx_note_outer"><span class="ltx_note_content"><sup class="ltx_note_mark">6</sup><span class="ltx_tag ltx_tag_note">6</span><a class="ltx_ref ltx_url ltx_font_typewriter" href="https://github.com/AntonOsika/gpt-engineer" title="">https://github.com/AntonOsika/gpt-engineer</a></span></span></span>, which can generate an entire codebase according to a prompt. GPT Engineer even learns the developer’s coding style and lets the developer finish the coding project in just a few minutes. What makes GPT Engineer unique is that GPT Engineer asks many detailed questions to allow developers to clarify missing details instead of accepting these requests unconditionally made by developers.</p>
+</div>
+</section>
+<section class="ltx_subsection" id="S4.SS4">
+<h3 class="ltx_title ltx_font_bold ltx_title_subsection">4.4.   Design</h3>
+<div class="ltx_para ltx_noindent" id="S4.SS4.p1">
+<p class="ltx_p" id="S4.SS4.p1.1">The idea of AI Agent has also been applied to design. Diagram<span class="ltx_note ltx_role_footnote" id="footnote7"><sup class="ltx_note_mark">7</sup><span class="ltx_note_outer"><span class="ltx_note_content"><sup class="ltx_note_mark">7</sup><span class="ltx_tag ltx_tag_note">7</span><a class="ltx_ref ltx_url ltx_font_typewriter" href="https://diagram.com/" title="">https://diagram.com/</a></span></span></span> is a representative AI-powered and automatable design platform with many products, including Magician, Genius, Automator, and UI-AI, for designing high-quality charts and graphs. Taking Genius and UI-AI as examples. Genius is equivalent to a design assistant, helping to transform users’ ideas into designs. Users only need to provide a product description and Genius can create fully editable UI designs. In addition, Genius can provide design suggestions to help improve productivity. UI-AI contains a series of user interface AI models made for designers that leverage the latest advancements in AI combined with creative prompting or multimodal prompts to generate design assets.</p>
+</div>
+</section>
+<section class="ltx_subsection" id="S4.SS5">
+<h3 class="ltx_title ltx_font_bold ltx_title_subsection">4.5.   Research</h3>
+<div class="ltx_para ltx_noindent" id="S4.SS5.p1">
+<p class="ltx_p" id="S4.SS5.p1.1">A number of AI agents for autonomous scientific research have emerged. ChemCrow <cite class="ltx_cite ltx_citemacro_cite">Bran et al. (<a class="ltx_ref" href="#bib.bib11" title="">2023</a>)</cite> is an LLM chemistry agent designed to accomplish various tasks such as organic synthesis, drug discovery, and materials design. It integrates 17 expert-designed chemistry tools and operates by prompting GPT-4 to provide specific instructions about the task and the format required. Specifically, a set of tools is created by using a variety of chemistry-related packages and software. These tools and user prompts are provided to GPT-4 and GPT-4 determines its behavioral path before arriving at the final answer through an automated, iterative chain-of-thought process. Throughout the process, ChemCrow serves as an assistant to expert chemists while simultaneously lowering the entry barrier for non-experts by offering a simple interface to access accurate chemical knowledge.</p>
+</div>
+<div class="ltx_para ltx_noindent" id="S4.SS5.p2">
+<p class="ltx_p" id="S4.SS5.p2.1">Agent <cite class="ltx_cite ltx_citemacro_cite">Boiko et al. (<a class="ltx_ref" href="#bib.bib10" title="">2023</a>)</cite> is an exploration of emerging autonomous scientific research capabilities of large language models. It binds multiple LLMs together for autonomous design, planning, and execution of scientific experiments (eg., the synthesis experiment of ibuprofen and the cross-coupling experiment of Suzuki and Sonogashira reaction). Specifically, autonomous scientific research is accomplished through a series of tools for surfing the Web, reading documents, executing code, etc., and several LLMs for well-timed calls.</p>
+</div>
+</section>
+<section class="ltx_subsection" id="S4.SS6">
+<h3 class="ltx_title ltx_font_bold ltx_title_subsection">4.6.   Collaboration</h3>
+<div class="ltx_para ltx_noindent" id="S4.SS6.p1">
+<p class="ltx_p" id="S4.SS6.p1.1">Collaboration is one of the most significant applications of AI agents. Many researchers have already started to develop the application by allowing different AI agents to collaborate with each other, such as AI lawyers, AI programmers, and AI finance to form a team to complete complex tasks together. DialOp <cite class="ltx_cite ltx_citemacro_cite">Lin et al. (<a class="ltx_ref" href="#bib.bib54" title="">2023a</a>)</cite> describes a simple collaborative morphology, in which AI assistants collaborate with one or more humans via natural language to help them make complex decisions. The autonomous AI agents currently created by MindOS<span class="ltx_note ltx_role_footnote" id="footnote8"><sup class="ltx_note_mark">8</sup><span class="ltx_note_outer"><span class="ltx_note_content"><sup class="ltx_note_mark">8</sup><span class="ltx_tag ltx_tag_note">8</span><a class="ltx_ref ltx_url ltx_font_typewriter" href="https://mindos.com/marketplace" title="">https://mindos.com/marketplace</a></span></span></span> are also used for simple human-agent collaboration to assist users with professional tasks. Compared to DialOp and MindOS, MetaGPT<span class="ltx_note ltx_role_footnote" id="footnote9"><sup class="ltx_note_mark">9</sup><span class="ltx_note_outer"><span class="ltx_note_content"><sup class="ltx_note_mark">9</sup><span class="ltx_tag ltx_tag_note">9</span><a class="ltx_ref ltx_url ltx_font_typewriter" href="https://github.com/geekan/MetaGPT" title="">https://github.com/geekan/MetaGPT</a></span></span></span>and Multi-GPT<span class="ltx_note ltx_role_footnote" id="footnote10"><sup class="ltx_note_mark">10</sup><span class="ltx_note_outer"><span class="ltx_note_content"><sup class="ltx_note_mark">10</sup><span class="ltx_tag ltx_tag_note">10</span><a class="ltx_ref ltx_url ltx_font_typewriter" href="https://github.com/sidhq/Multi-GPT" title="">https://github.com/sidhq/Multi-GPT</a></span></span></span> allow multiple agents can automatically divide up the work and collaborate with each other to accomplish a task, with MetaGPT focusing more on software industry tasks.</p>
+</div>
+<div class="ltx_para ltx_noindent" id="S4.SS6.p2">
+<p class="ltx_p" id="S4.SS6.p2.1">Additionally, Generative Agents <cite class="ltx_cite ltx_citemacro_cite">Park et al. (<a class="ltx_ref" href="#bib.bib75" title="">2023</a>)</cite> are introduced to simulate human behavior. By extending LLMs, complete records of the experiences of the generative agents are stored using natural language, and over time these memories are synthesized to form higher-level reflections that are dynamically retrieved to plan behavior. End-users can interact with a town of 25 generative agents using natural language. The architecture behind these generative agents is expected to be applied in collaborative scenarios.</p>
+</div>
+</section>
+<section class="ltx_subsection" id="S4.SS7">
+<h3 class="ltx_title ltx_font_bold ltx_title_subsection">4.7.   General purpose</h3>
+<div class="ltx_para ltx_noindent" id="S4.SS7.p1">
+<p class="ltx_p" id="S4.SS7.p1.1">In addition to specific applications, some AI agents are developed for general purposes. These AI agents generally perform a wide range of tasks across diverse domains and attempt to reach the goal by thinking of tasks to do, executing them, and learning from the results. Auto-GPT<span class="ltx_note ltx_role_footnote" id="footnote11"><sup class="ltx_note_mark">11</sup><span class="ltx_note_outer"><span class="ltx_note_content"><sup class="ltx_note_mark">11</sup><span class="ltx_tag ltx_tag_note">11</span><a class="ltx_ref ltx_url ltx_font_typewriter" href="https://github.com/Significant-Gravitas/Auto-GPT" title="">https://github.com/Significant-Gravitas/Auto-GPT</a></span></span></span> is one of the first examples of GPT-4 running fully autonomously. The feature of completing tasks autonomously without human intervention attracts people’s attention. Similar to Auto-GPT, BabyAGI<span class="ltx_note ltx_role_footnote" id="footnote12"><sup class="ltx_note_mark">12</sup><span class="ltx_note_outer"><span class="ltx_note_content"><sup class="ltx_note_mark">12</sup><span class="ltx_tag ltx_tag_note">12</span><a class="ltx_ref ltx_url ltx_font_typewriter" href="https://github.com/yoheinakajima/babyagi" title="">https://github.com/yoheinakajima/babyagi</a></span></span></span> is a task-driven autonomous AI agent. BabyAGI constructs a task list dedicated to achieving the goal, derives further tasks based on the previous results, and executes these tasks in order of priority until the overall goal is achieved. Moreover, SuperAGI<span class="ltx_note ltx_role_footnote" id="footnote13"><sup class="ltx_note_mark">13</sup><span class="ltx_note_outer"><span class="ltx_note_content"><sup class="ltx_note_mark">13</sup><span class="ltx_tag ltx_tag_note">13</span><a class="ltx_ref ltx_url ltx_font_typewriter" href="https://github.com/TransformerOptimus/SuperAGI" title="">https://github.com/TransformerOptimus/SuperAGI</a></span></span></span> and AgentGPT<span class="ltx_note ltx_role_footnote" id="footnote14"><sup class="ltx_note_mark">14</sup><span class="ltx_note_outer"><span class="ltx_note_content"><sup class="ltx_note_mark">14</sup><span class="ltx_tag ltx_tag_note">14</span><a class="ltx_ref ltx_url ltx_font_typewriter" href="https://github.com/reworkd/AgentGPT" title="">https://github.com/reworkd/AgentGPT</a></span></span></span> support the building and deployment of autonomous AI agents, and have it embark on any goal imaginable. Although these AI agents are not so perfect and even have some deficiencies, their presentation is certainly an important step towards artificial general intelligence.</p>
+</div>
+</section>
+<section class="ltx_subsection" id="S4.SS8">
+<h3 class="ltx_title ltx_font_bold ltx_title_subsection">4.8.   Vision-Language model-based agent application</h3>
+<div class="ltx_para ltx_noindent" id="S4.SS8.p1">
+<p class="ltx_p" id="S4.SS8.p1.1">LLM has already demonstrated outstanding capabilities in language-only scenarios. However, in some application scenarios, agents need to deal with multi-modal information, especially vision-language modalities. In such cases, modeling only the language information may not achieve satisfactory performance. Recent work considers equipping agents with the Vision-language model (VLM) to handle multi-modal information. In this subsection, we introduce some latest VLM-based agent applications.
+Some works attempt to apply VLM in the field of embodied AI and robotics that are based on visual and language modalities. For example, Khandelwal et al. <cite class="ltx_cite ltx_citemacro_cite">Khandelwal et al. (<a class="ltx_ref" href="#bib.bib43" title="">2022</a>)</cite> introduced CLIP <cite class="ltx_cite ltx_citemacro_cite">Radford et al. (<a class="ltx_ref" href="#bib.bib79" title="">2021</a>)</cite> into Embodied Agents, and demonstrated that CLIP can effectively enhance the task performance of embodied AI.
+Driess et al. <cite class="ltx_cite ltx_citemacro_cite">Driess et al. (<a class="ltx_ref" href="#bib.bib25" title="">2023</a>)</cite> combined ViT and PaLM to construct a multi-modal model named PaLM-E, which is applied in embodied reasoning. PaLM-E takes a multi-modal sequence (i.e., text and image) as input and converts it into text and image embeddings. Specifically, the image embedding is generated by the ViT and a projector encode images. Then, the text and image embeddings serve as input to PaLM for inferring the decisions that the robot needs to execute. Finally, the decisions are transformed into actions by a low-level policy or planner.
+Some works focus on the navigation task. For instance, Dorbala et al. <cite class="ltx_cite ltx_citemacro_cite">Dorbala et al. (<a class="ltx_ref" href="#bib.bib24" title="">2022</a>)</cite> first used GPT-3 to break down navigation instructions into a series of sub-instructions. Then, at each time step, they utilized CLIP to select an image from the current panoramic view that corresponded to the sub-instructions, serving as the direction for the next navigation step. This process continued until the agent reached its target location. ZSON <cite class="ltx_cite ltx_citemacro_cite">Majumdar et al. (<a class="ltx_ref" href="#bib.bib65" title="">2022</a>)</cite> is an object-goal navigation agent designed to locate specific objects within an environment.
+Besides, some works consider applied LVM in the field of multi-model conversational. For example, Video-ChatGPT <cite class="ltx_cite ltx_citemacro_cite">Maaz et al. (<a class="ltx_ref" href="#bib.bib64" title="">2023</a>)</cite> is a video-based conversational agent fine-tuned using video instruction data. It first employs the visual encoder from CLIP to encode video frames into temporal and spatial features. Then, it utilizes a trainable adapter to map these features into the language space and combines them with query representations as inputs of LLM to generate responses. Li et al.<cite class="ltx_cite ltx_citemacro_cite">Li et al. (<a class="ltx_ref" href="#bib.bib47" title="">2023a</a>)</cite> introduce a conversational assistant for the biomedical field, named LLaVA-Med. It is continuously trained by LLaVA on multimodal biomedical datasets.</p>
+</div>
+</section>
+</section>
+<section class="ltx_section" id="S5">
+<h2 class="ltx_title ltx_font_bold ltx_title_section" style="font-size:120%;">5.   Benchmarking</h2>
+<div class="ltx_para ltx_noindent" id="S5.p1">
+<p class="ltx_p" id="S5.p1.1">Recently, LLM-based AI agents have attracted significant research interest. In order to evaluate the performance of the proposed agents, some works focus on designing more suitable benchmarks. For example,
+Valmeekam et al. <cite class="ltx_cite ltx_citemacro_cite">Valmeekam et al. (<a class="ltx_ref" href="#bib.bib96" title="">2023</a>)</cite> focused on assessing the planning ability of LLMs, which is a key component of AI agents.
+Liu et al. <cite class="ltx_cite ltx_citemacro_cite">Liu et al. (<a class="ltx_ref" href="#bib.bib59" title="">2023d</a>)</cite> designed a benchmark based on the WebShop and HotPotQA environment. Their goal is to compare the performance of multiple agent architectures equipped with different LLMs.
+Li et al. <cite class="ltx_cite ltx_citemacro_cite">Li et al. (<a class="ltx_ref" href="#bib.bib50" title="">2023c</a>)</cite> constructed a benchmark, named API Bank, to evaluate the ability of LLMs to use tools.
+Fan et al. <cite class="ltx_cite ltx_citemacro_cite">Fan et al. (<a class="ltx_ref" href="#bib.bib27" title="">2022</a>)</cite> proposed a simulator based on Minecraft to assess the performance of open-ended embodied agent.
+Xu et al. <cite class="ltx_cite ltx_citemacro_cite">Xu et al. (<a class="ltx_ref" href="#bib.bib105" title="">2023</a>)</cite> designed a benchmark, named GentBench, which consists of public and private sections, with the aim of comprehensively evaluating the performance of agents. Specifically, GentBench includes a series of complex tasks that promote LLMs to employ external tools for addressing these challenges.
+Banerjee <cite class="ltx_cite ltx_citemacro_cite">Banerjee et al. (<a class="ltx_ref" href="#bib.bib7" title="">2023</a>)</cite> introduced an end-to-end benchmark that evaluates the performance of LLM-based chatbots by comparing generated answers with the gold answer.
+Lin et al. <cite class="ltx_cite ltx_citemacro_cite">Lin et al. (<a class="ltx_ref" href="#bib.bib55" title="">2023b</a>)</cite> presented a task-based evaluation method, which assesses the capabilities of agents based on their task completion within the interactive environment.
+Liu et al. <cite class="ltx_cite ltx_citemacro_cite">Liu et al. (<a class="ltx_ref" href="#bib.bib58" title="">2023c</a>)</cite> introduced a multi-dimensional benchmark, named AgentBench, which evaluates the performance of LLM across multiple environments.
+</p>
+</div>
+</section>
+<section class="ltx_section" id="S6">
+<h2 class="ltx_title ltx_font_bold ltx_title_section" style="font-size:120%;">6.   Conclusion</h2>
+<div class="ltx_para ltx_noindent" id="S6.p1">
+<p class="ltx_p" id="S6.p1.1">In this paper, we presented a comprehensive and systematic survey of the LLM-based agents. We first introduced the difference between agents based on LLM and traditional methods, then reviewed the related works from the perspectives of components and application of AI agents. Furthermore, we have explored some pressing issues that require solutions and valuable research directions. With the development of LLM, an increasing amount of research attention has been directed toward the field of AI agents, resulting in the emergence of numerous new technologies and methods. Through this review, we aim to assist readers in swiftly grasping the key information and applications of AI agents, and also provide insights into future research directions.</p>
+</div>
+</section>
+<section class="ltx_section" id="S7">
+<h2 class="ltx_title ltx_font_bold ltx_title_section" style="font-size:120%;">7.   Bibliographical References</h2>
+</section>
+<section class="ltx_bibliography" id="bib">
+<h2 class="ltx_title ltx_title_bibliography"></h2>
+<ul class="ltx_biblist">
+<li class="ltx_bibitem" id="bib.bib1">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Aeronautiques et al. (1998)</span>
+<span class="ltx_bibblock">
+Constructions Aeronautiques, Adele Howe, Craig Knoblock, ISI Drew McDermott, Ashwin Ram, Manuela Veloso, Daniel Weld, David Wilkins SRI, Anthony Barrett, Dave Christianson, et al. 1998.
+
+</span>
+<span class="ltx_bibblock">Pddl— the planning domain definition language.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib1.1.1">Technical Report, Tech. Rep.</em>
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib2">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Akyurek et al. (2023)</span>
+<span class="ltx_bibblock">
+Afra Feyza Akyurek, Ekin Akyurek, Ashwin Kalyan, Peter Clark, Derry Tanti Wijaya, and Niket Tandon. 2023.
+
+</span>
+<span class="ltx_bibblock">RL4F: Generating natural language feedback with reinforcement learning for repairing model outputs.
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic" id="bib.bib2.1.1">Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics</em>, pages 7716–7733.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib3">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Arndt et al. (2020)</span>
+<span class="ltx_bibblock">
+Karol Arndt, Murtaza Hazara, Ali Ghadirzadeh, and Ville Kyrki. 2020.
+
+</span>
+<span class="ltx_bibblock">Meta reinforcement learning for sim-to-real domain adaptation.
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic" id="bib.bib3.1.1">2020 IEEE International Conference on Robotics and Automation (ICRA)</em>, pages 2725–2731. IEEE.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib4">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Arulkumaran et al. (2017)</span>
+<span class="ltx_bibblock">
+Kai Arulkumaran, Marc Peter Deisenroth, Miles Brundage, and Anil Anthony Bharath. 2017.
+
+</span>
+<span class="ltx_bibblock">Deep reinforcement learning: A brief survey.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib4.1.1">IEEE Signal Processing Magazine</em>, 34(6):26–38.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib5">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Baddeley (1997)</span>
+<span class="ltx_bibblock">
+Alan D Baddeley. 1997.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib5.1.1">Human memory: Theory and practice</em>.
+
+</span>
+<span class="ltx_bibblock">psychology press.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib6">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Baddeley (1983)</span>
+<span class="ltx_bibblock">
+Alan David Baddeley. 1983.
+
+</span>
+<span class="ltx_bibblock">Working memory.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib6.1.1">Philosophical Transactions of the Royal Society of London. B, Biological Sciences</em>, 302(1110):311–324.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib7">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Banerjee et al. (2023)</span>
+<span class="ltx_bibblock">
+Debarag Banerjee, Pooja Singh, Arjun Avadhanam, and Saksham Srivastava. 2023.
+
+</span>
+<span class="ltx_bibblock">Benchmarking llm powered chatbots: Methods and metrics.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib7.1.1">arXiv preprint arXiv:2308.04624</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib8">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Berner and et al. (2019)</span>
+<span class="ltx_bibblock">
+Christopher Berner and Brockman et al. 2019.
+
+</span>
+<span class="ltx_bibblock">Dota 2 with large scale deep reinforcement learning.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib8.1.1">arXiv preprint arXiv:1912.06680</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib9">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Bian et al. (2023)</span>
+<span class="ltx_bibblock">
+Ning Bian, Xianpei Han, Le Sun, Hongyu Lin, Yaojie Lu, and Ben He. 2023.
+
+</span>
+<span class="ltx_bibblock">Chatgpt is a knowledgeable but inexperienced solver: An investigation of commonsense problem in large language models.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib9.1.1">arXiv preprint arXiv:2303.16421</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib10">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Boiko et al. (2023)</span>
+<span class="ltx_bibblock">
+Daniil A Boiko, Robert MacKnight, and Gabe Gomes. 2023.
+
+</span>
+<span class="ltx_bibblock">Emergent autonomous scientific research capabilities of large language models.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib10.1.1">arXiv preprint arXiv:2304.05332</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib11">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Bran et al. (2023)</span>
+<span class="ltx_bibblock">
+Andres M Bran, Sam Cox, Andrew D White, and Philippe Schwaller. 2023.
+
+</span>
+<span class="ltx_bibblock">Chemcrow: Augmenting large-language models with chemistry tools.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib11.1.1">arXiv preprint arXiv:2304.05376</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib12">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Brown et al. (2020)</span>
+<span class="ltx_bibblock">
+Tom Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared D Kaplan, Prafulla Dhariwal, Arvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell, et al. 2020.
+
+</span>
+<span class="ltx_bibblock">Language models are few-shot learners.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib12.1.1">Advances in neural information processing systems</em>, 33:1877–1901.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib13">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Cai et al. (2023)</span>
+<span class="ltx_bibblock">
+Tianle Cai, Xuezhi Wang, Tengyu Ma, Xinyun Chen, and Denny Zhou. 2023.
+
+</span>
+<span class="ltx_bibblock">Large language models as tool makers.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib13.1.1">arXiv preprint arXiv:2305.17126</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib14">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Camina and Güell (2017)</span>
+<span class="ltx_bibblock">
+Eduardo Camina and Francisco Güell. 2017.
+
+</span>
+<span class="ltx_bibblock">The neuroanatomical, neurophysiological and psychological basis of memory: Current models and their origins.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib14.1.1">Frontiers in pharmacology</em>, 8:438.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib15">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Chen et al. (2021)</span>
+<span class="ltx_bibblock">
+Jingkai Chen, Brian C Williams, and Chuchu Fan. 2021.
+
+</span>
+<span class="ltx_bibblock">Optimal mixed discrete-continuous planning for linear hybrid systems.
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic" id="bib.bib15.1.1">Proceedings of the 24th International Conference on Hybrid Systems: Computation and Control</em>, pages 1–12.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib16">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Chen et al. (2023a)</span>
+<span class="ltx_bibblock">
+Jiuhai Chen, Lichang Chen, Heng Huang, and Tianyi Zhou. 2023a.
+
+</span>
+<span class="ltx_bibblock">When do you need chain-of-thought prompting for chatgpt?
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib16.1.1">arXiv preprint arXiv:2304.03262</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib17">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Chen et al. (2023b)</span>
+<span class="ltx_bibblock">
+Liting Chen, Lu Wang, Hang Dong, Yali Du, Jie Yan, Fangkai Yang, Shuang Li, Pu Zhao, Si Qin, Saravan Rajmohan, et al. 2023b.
+
+</span>
+<span class="ltx_bibblock">Introspective tips: Large language model for in-context decision making.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib17.1.1">arXiv preprint arXiv:2305.11598</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib18">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Chen and Chang (2023)</span>
+<span class="ltx_bibblock">
+Po-Lin Chen and Cheng-Shang Chang. 2023.
+
+</span>
+<span class="ltx_bibblock">Interact: Exploring the potentials of chatgpt as a cooperative agent.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib18.1.1">arXiv preprint arXiv:2308.01552</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib19">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Chen et al. (2023c)</span>
+<span class="ltx_bibblock">
+Zhipeng Chen, Kun Zhou, Beichen Zhang, Zheng Gong, Wayne Xin Zhao, and Ji-Rong Wen. 2023c.
+
+</span>
+<span class="ltx_bibblock">Chatcot: Tool-augmented chain-of-thought reasoning on<math alttext="\backslash" class="ltx_Math" display="inline" id="bib.bib19.1.m1.1"><semantics id="bib.bib19.1.m1.1a"><mo id="bib.bib19.1.m1.1.1" xref="bib.bib19.1.m1.1.1.cmml">\</mo><annotation-xml encoding="MathML-Content" id="bib.bib19.1.m1.1b"><ci id="bib.bib19.1.m1.1.1.cmml" xref="bib.bib19.1.m1.1.1">\</ci></annotation-xml><annotation encoding="application/x-tex" id="bib.bib19.1.m1.1c">\backslash</annotation><annotation encoding="application/x-llamapun" id="bib.bib19.1.m1.1d">\</annotation></semantics></math><math alttext="\backslash" class="ltx_Math" display="inline" id="bib.bib19.2.m2.1"><semantics id="bib.bib19.2.m2.1a"><mo id="bib.bib19.2.m2.1.1" xref="bib.bib19.2.m2.1.1.cmml">\</mo><annotation-xml encoding="MathML-Content" id="bib.bib19.2.m2.1b"><ci id="bib.bib19.2.m2.1.1.cmml" xref="bib.bib19.2.m2.1.1">\</ci></annotation-xml><annotation encoding="application/x-tex" id="bib.bib19.2.m2.1c">\backslash</annotation><annotation encoding="application/x-llamapun" id="bib.bib19.2.m2.1d">\</annotation></semantics></math>chat-based large language models.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib19.3.1">arXiv preprint arXiv:2305.14323</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib20">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Chiang et al. (2020)</span>
+<span class="ltx_bibblock">
+Cheng-Han Chiang, Sung-Feng Huang, and Hung-Yi Lee. 2020.
+
+</span>
+<span class="ltx_bibblock">Pretrained language model embryology: The birth of albert.
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic" id="bib.bib20.1.1">Proceedings of the Conference on Empirical Methods in Natural Language Processing</em>, pages 6813–6828.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib21">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Cobbe et al. (2021)</span>
+<span class="ltx_bibblock">
+Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano, et al. 2021.
+
+</span>
+<span class="ltx_bibblock">Training verifiers to solve math word problems.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib21.1.1">arXiv preprint arXiv:2110.14168</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib22">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Da et al. (2021)</span>
+<span class="ltx_bibblock">
+Jeff Da, Ronan Le Bras, Ximing Lu, Yejin Choi, and Antoine Bosselut. 2021.
+
+</span>
+<span class="ltx_bibblock">Analyzing commonsense emergence in few-shot knowledge models.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib22.1.1">arXiv preprint arXiv:2101.00297</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib23">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Davison et al. (2019)</span>
+<span class="ltx_bibblock">
+Joe Davison, Joshua Feldman, and Alexander M Rush. 2019.
+
+</span>
+<span class="ltx_bibblock">Commonsense knowledge mining from pretrained models.
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic" id="bib.bib23.1.1">Proceedings of the conference on empirical methods in natural language processing and the 9th international joint conference on natural language processing</em>, pages 1173–1178.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib24">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Dorbala et al. (2022)</span>
+<span class="ltx_bibblock">
+Vishnu Sashank Dorbala, Gunnar Sigurdsson, Robinson Piramuthu, Jesse Thomason, and Gaurav S Sukhatme. 2022.
+
+</span>
+<span class="ltx_bibblock">Clip-nav: Using clip for zero-shot vision-and-language navigation.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib24.1.1">arXiv preprint arXiv:2211.16649</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib25">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Driess et al. (2023)</span>
+<span class="ltx_bibblock">
+Danny Driess, Fei Xia, Mehdi S. M. Sajjadi, Corey Lynch, Aakanksha Chowdhery, Brian Ichter, Ayzaan Wahid, Jonathan Tompson, Quan Vuong, Tianhe Yu, Wenlong Huang, Yevgen Chebotar, Pierre Sermanet, Daniel Duckworth, Sergey Levine, Vincent Vanhoucke, Karol Hausman, Marc Toussaint, Klaus Greff, Andy Zeng, Igor Mordatch, and Pete Florence. 2023.
+
+</span>
+<span class="ltx_bibblock">Palm-e: An embodied multimodal language model.
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic" id="bib.bib25.1.1">Proceedings of the International Conference on Machine Learning</em>, pages 8469–8488.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib26">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Erol et al. (1994)</span>
+<span class="ltx_bibblock">
+Kutluhan Erol, James Hendler, and Dana S Nau. 1994.
+
+</span>
+<span class="ltx_bibblock">Htn planning: complexity and expressivity.
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic" id="bib.bib26.1.1">Proceedings of the Twelfth AAAI National Conference on Artificial Intelligence</em>, pages 1123–1128.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib27">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Fan et al. (2022)</span>
+<span class="ltx_bibblock">
+Linxi Fan, Guanzhi Wang, Yunfan Jiang, Ajay Mandlekar, Yuncong Yang, Haoyi Zhu, Andrew Tang, De-An Huang, Yuke Zhu, and Anima Anandkumar. 2022.
+
+</span>
+<span class="ltx_bibblock">Minedojo: Building open-ended embodied agents with internet-scale knowledge.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib27.1.1">Advances in Neural Information Processing Systems</em>, 35:18343–18362.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib28">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Fox and Long (2003)</span>
+<span class="ltx_bibblock">
+Maria Fox and Derek Long. 2003.
+
+</span>
+<span class="ltx_bibblock">Pddl2. 1: An extension to pddl for expressing temporal planning domains.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib28.1.1">Journal of artificial intelligence research</em>, 20:61–124.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib29">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">(29)</span>
+<span class="ltx_bibblock">
+Dongyu Gong, Xingchen Wan, and Dingmin Wang.
+
+</span>
+<span class="ltx_bibblock">Working memory capacity of chatgpt: An empirical study.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib30">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Guan et al. (2023)</span>
+<span class="ltx_bibblock">
+Lin Guan, Karthik Valmeekam, Sarath Sreedharan, and Subbarao Kambhampati. 2023.
+
+</span>
+<span class="ltx_bibblock">Leveraging pre-trained large language models to construct and utilize world models for model-based task planning.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib30.1.1">arXiv preprint arXiv:2305.14909</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib31">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Guo et al. (2023)</span>
+<span class="ltx_bibblock">
+Huihui Guo, Fan Wu, Yunchuan Qin, Ruihui Li, Keqin Li, and Kenli Li. 2023.
+
+</span>
+<span class="ltx_bibblock">Recent trends in task and motion planning for robotics: A survey.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib31.1.1">ACM Computing Surveys</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib32">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Hewitt et al. (1973)</span>
+<span class="ltx_bibblock">
+Carl Hewitt, Peter Bishop, and Richard Steiger. 1973.
+
+</span>
+<span class="ltx_bibblock">A universal modular actor formalism for artificial intelligence.
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic" id="bib.bib32.1.1">Proceedings of the 3rd international joint conference on Artificial intelligence</em>, pages 235–245.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib33">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Hu et al. (2023)</span>
+<span class="ltx_bibblock">
+Bin Hu, Chenyang Zhao, Pu Zhang, Zihao Zhou, Yuanhang Yang, Zenglin Xu, and Bin Liu. 2023.
+
+</span>
+<span class="ltx_bibblock">Enabling efficient interaction between an algorithm agent and an llm: A reinforcement learning approach.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib33.1.1">arXiv preprint arXiv:2306.03604</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib34">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Huang and Chang (2022)</span>
+<span class="ltx_bibblock">
+Jie Huang and Kevin Chen-Chuan Chang. 2022.
+
+</span>
+<span class="ltx_bibblock">Towards reasoning in large language models: A survey.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib34.1.1">arXiv preprint arXiv:2212.10403</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib35">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Huang et al. (2022a)</span>
+<span class="ltx_bibblock">
+Wenlong Huang, Pieter Abbeel, Deepak Pathak, and Igor Mordatch. 2022a.
+
+</span>
+<span class="ltx_bibblock">Language models as zero-shot planners: Extracting actionable knowledge for embodied agents.
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic" id="bib.bib35.1.1">International Conference on Machine Learning</em>, pages 9118–9147.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib36">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Huang et al. (2022b)</span>
+<span class="ltx_bibblock">
+Wenlong Huang, Fei Xia, Ted Xiao, Harris Chan, Jacky Liang, Pete Florence, Andy Zeng, Jonathan Tompson, Igor Mordatch, Yevgen Chebotar, et al. 2022b.
+
+</span>
+<span class="ltx_bibblock">Inner monologue: Embodied reasoning through planning with language models.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib36.1.1">arXiv preprint arXiv:2207.05608</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib37">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Hunter (1957)</span>
+<span class="ltx_bibblock">
+Ian ML Hunter. 1957.
+
+</span>
+<span class="ltx_bibblock">Memory: Facts and fallacies.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib38">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Jiang et al. (2019)</span>
+<span class="ltx_bibblock">
+Yu-qian Jiang, Shi-qi Zhang, Piyush Khandelwal, and Peter Stone. 2019.
+
+</span>
+<span class="ltx_bibblock">Task planning in robotics: an empirical comparison of pddl-and asp-based systems.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib38.1.1">Frontiers of Information Technology &amp; Electronic Engineering</em>, 20:363–373.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib39">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Jung et al. (2019)</span>
+<span class="ltx_bibblock">
+Yei Hwan Jung, Byeonghak Park, Jong Uk Kim, and Tae-il Kim. 2019.
+
+</span>
+<span class="ltx_bibblock">Bioinspired electronics for artificial sensory systems.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib39.1.1">Advanced Materials</em>, 31(34):1803637.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib40">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Kang et al. (2023)</span>
+<span class="ltx_bibblock">
+Jikun Kang, Romain Laroche, Xindi Yuan, Adam Trischler, Xue Liu, and Jie Fu. 2023.
+
+</span>
+<span class="ltx_bibblock">Think before you act: Decision transformers with internal working memory.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib40.1.1">arXiv preprint arXiv:2305.16338</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib41">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Karpas et al. (2022)</span>
+<span class="ltx_bibblock">
+Ehud Karpas, Omri Abend, Yonatan Belinkov, Barak Lenz, Opher Lieber, Nir Ratner, Yoav Shoham, Hofit Bata, Yoav Levine, Kevin Leyton-Brown, et al. 2022.
+
+</span>
+<span class="ltx_bibblock">Mrkl systems: A modular, neuro-symbolic architecture that combines large language models, external knowledge sources and discrete reasoning.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib41.1.1">arXiv preprint arXiv:2205.00445</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib42">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Kazemifard et al. (2014)</span>
+<span class="ltx_bibblock">
+Mohammad Kazemifard, Nasser Ghasem-Aghaee, Bryan L Koenig, and Tuncer I Ören. 2014.
+
+</span>
+<span class="ltx_bibblock">An emotion understanding framework for intelligent agents based on episodic and semantic memories.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib42.1.1">Autonomous agents and multi-agent systems</em>, 28:126–153.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib43">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Khandelwal et al. (2022)</span>
+<span class="ltx_bibblock">
+Apoorv Khandelwal, Luca Weihs, Roozbeh Mottaghi, and Aniruddha Kembhavi. 2022.
+
+</span>
+<span class="ltx_bibblock">Simple but effective: Clip embeddings for embodied ai.
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic" id="bib.bib43.1.1">Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition</em>, pages 14829–14838.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib44">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Kim et al. (2023)</span>
+<span class="ltx_bibblock">
+Taewoon Kim, Michael Cochez, Vincent François-Lavet, Mark Neerincx, and Piek Vossen. 2023.
+
+</span>
+<span class="ltx_bibblock">A machine with short-term, episodic, and semantic memory systems.
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic" id="bib.bib44.1.1">Proceedings of the AAAI Conference on Artificial Intelligence</em>, volume 37, pages 48–56.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib45">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Kojima et al. (2022)</span>
+<span class="ltx_bibblock">
+Takeshi Kojima, Shixiang Shane Gu, Machel Reid, Yutaka Matsuo, and Yusuke Iwasawa. 2022.
+
+</span>
+<span class="ltx_bibblock">Large language models are zero-shot reasoners.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib45.1.1">Advances in neural information processing systems</em>, 35:22199–22213.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib46">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Lee et al. (2023)</span>
+<span class="ltx_bibblock">
+Gibbeum Lee, Volker Hartmann, Jongho Park, Dimitris Papailiopoulos, and Kangwook Lee. 2023.
+
+</span>
+<span class="ltx_bibblock">Prompted llms as chatbot modules for long open-domain conversation.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib46.1.1">arXiv preprint arXiv:2305.04533</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib47">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Li et al. (2023a)</span>
+<span class="ltx_bibblock">
+Chunyuan Li, Cliff Wong, Sheng Zhang, Naoto Usuyama, Haotian Liu, Jianwei Yang, Tristan Naumann, Hoifung Poon, and Jianfeng Gao. 2023a.
+
+</span>
+<span class="ltx_bibblock">Llava-med: Training a large language-and-vision assistant for biomedicine in one day.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib47.1.1">arXiv preprint arXiv:2306.00890</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib48">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Li et al. (2023b)</span>
+<span class="ltx_bibblock">
+Daliang Li, Ankit Singh Rawat, Manzil Zaheer, Xin Wang, Michal Lukasik, Andreas Veit, Felix Yu, and Sanjiv Kumar. 2023b.
+
+</span>
+<span class="ltx_bibblock">Large language models with controllable working memory.
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic" id="bib.bib48.1.1">Findings of the Association for Computational Linguistics: ACL</em>, pages 1774–1793.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib49">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Li and Ding (2023)</span>
+<span class="ltx_bibblock">
+Haizhen Li and Xilun Ding. 2023.
+
+</span>
+<span class="ltx_bibblock">Adaptive and intelligent robot task planning for home service: A review.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib49.1.1">Engineering Applications of Artificial Intelligence</em>, 117:105618.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib50">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Li et al. (2023c)</span>
+<span class="ltx_bibblock">
+Minghao Li, Feifan Song, Bowen Yu, Haiyang Yu, Zhoujun Li, Fei Huang, and Yongbin Li. 2023c.
+
+</span>
+<span class="ltx_bibblock">Api-bank: A benchmark for tool-augmented llms.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib50.1.1">arXiv preprint arXiv:2304.08244</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib51">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Li (2017)</span>
+<span class="ltx_bibblock">
+Yuxi Li. 2017.
+
+</span>
+<span class="ltx_bibblock">Deep reinforcement learning: An overview.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib51.1.1">arXiv preprint arXiv:1701.07274</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib52">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Liang et al. (2023a)</span>
+<span class="ltx_bibblock">
+Xinnian Liang, Bing Wang, Hui Huang, Shuangzhi Wu, Peihao Wu, Lu Lu, Zejun Ma, and Zhoujun Li. 2023a.
+
+</span>
+<span class="ltx_bibblock">Unleashing infinite-length input capacity for large-scale language models with self-controlled memory system.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib52.1.1">arXiv preprint arXiv:2304.13343</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib53">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Liang et al. (2023b)</span>
+<span class="ltx_bibblock">
+Yaobo Liang, Chenfei Wu, Ting Song, Wenshan Wu, Yan Xia, Yu Liu, Yang Ou, Shuai Lu, Lei Ji, Shaoguang Mao, et al. 2023b.
+
+</span>
+<span class="ltx_bibblock">Taskmatrix. ai: Completing tasks by connecting foundation models with millions of apis.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib53.1.1">arXiv preprint arXiv:2303.16434</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib54">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Lin et al. (2023a)</span>
+<span class="ltx_bibblock">
+Jessy Lin, Nicholas Tomlin, Jacob Andreas, and Jason Eisner. 2023a.
+
+</span>
+<span class="ltx_bibblock">Decision-oriented dialogue for human-ai collaboration.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib54.1.1">arXiv preprint arXiv:2305.20076</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib55">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Lin et al. (2023b)</span>
+<span class="ltx_bibblock">
+Jiaju Lin, Haoran Zhao, Aochi Zhang, Yiting Wu, Huqiuyue Ping, and Qin Chen. 2023b.
+
+</span>
+<span class="ltx_bibblock">Agentsims: An open-source sandbox for large language model evaluation.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib55.1.1">arXiv preprint arXiv:2308.04026</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib56">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Liu et al. (2023a)</span>
+<span class="ltx_bibblock">
+Bo Liu, Yuqian Jiang, Xiaohan Zhang, Qiang Liu, Shiqi Zhang, Joydeep Biswas, and Peter Stone. 2023a.
+
+</span>
+<span class="ltx_bibblock">Llm+ p: Empowering large language models with optimal planning proficiency.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib56.1.1">arXiv preprint arXiv:2304.11477</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib57">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Liu et al. (2023b)</span>
+<span class="ltx_bibblock">
+Hao Liu, Carmelo Sferrazza, and Pieter Abbeel. 2023b.
+
+</span>
+<span class="ltx_bibblock">Chain of hindsight aligns language models with feedback.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib57.1.1">arXiv preprint arXiv:2302.02676</em>, 3.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib58">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Liu et al. (2023c)</span>
+<span class="ltx_bibblock">
+Xiao Liu, Hao Yu, Hanchen Zhang, Yifan Xu, Xuanyu Lei, Hanyu Lai, Yu Gu, Hangliang Ding, Kaiwen Men, Kejuan Yang, et al. 2023c.
+
+</span>
+<span class="ltx_bibblock">Agentbench: Evaluating llms as agents.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib58.1.1">arXiv preprint arXiv:2308.03688</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib59">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Liu et al. (2023d)</span>
+<span class="ltx_bibblock">
+Zhiwei Liu, Weiran Yao, Jianguo Zhang, Le Xue, Shelby Heinecke, Rithesh Murthy, Yihao Feng, Zeyuan Chen, Juan Carlos Niebles, Devansh Arpit, et al. 2023d.
+
+</span>
+<span class="ltx_bibblock">Bolaa: Benchmarking and orchestrating llm-augmented autonomous agents.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib59.1.1">arXiv preprint arXiv:2308.05960</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib60">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Lo et al. (2018)</span>
+<span class="ltx_bibblock">
+Shih-Yun Lo, Shiqi Zhang, and Peter Stone. 2018.
+
+</span>
+<span class="ltx_bibblock">Petlon: planning efficiently for task-level-optimal navigation.
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic" id="bib.bib60.1.1">Proceedings of the 17th International Conference on Autonomous Agents and MultiAgent Systems</em>, pages 220–228.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib61">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Logeswaran et al. (2022)</span>
+<span class="ltx_bibblock">
+Lajanugen Logeswaran, Yao Fu, Moontae Lee, and Honglak Lee. 2022.
+
+</span>
+<span class="ltx_bibblock">Few-shot subgoal planning with language models.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib61.1.1">arXiv preprint arXiv:2205.14288</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib62">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Long (2023)</span>
+<span class="ltx_bibblock">
+Jieyi Long. 2023.
+
+</span>
+<span class="ltx_bibblock">Large language model guided tree-of-thought.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib62.1.1">arXiv preprint arXiv:2305.08291</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib63">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Lu et al. (2023)</span>
+<span class="ltx_bibblock">
+Pan Lu, Baolin Peng, Hao Cheng, Michel Galley, Kai-Wei Chang, Ying Nian Wu, Song-Chun Zhu, and Jianfeng Gao. 2023.
+
+</span>
+<span class="ltx_bibblock">Chameleon: Plug-and-play compositional reasoning with large language models.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib63.1.1">arXiv preprint arXiv:2304.09842</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib64">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Maaz et al. (2023)</span>
+<span class="ltx_bibblock">
+Muhammad Maaz, Hanoona Rasheed, Salman Khan, and Fahad Shahbaz Khan. 2023.
+
+</span>
+<span class="ltx_bibblock">Video-chatgpt: Towards detailed video understanding via large vision and language models.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib64.1.1">arXiv preprint arXiv:2306.05424</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib65">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Majumdar et al. (2022)</span>
+<span class="ltx_bibblock">
+Arjun Majumdar, Gunjan Aggarwal, Bhavika Devnani, Judy Hoffman, and Dhruv Batra. 2022.
+
+</span>
+<span class="ltx_bibblock">Zson: Zero-shot object-goal navigation using multimodal goal embeddings.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib65.1.1">Advances in Neural Information Processing Systems</em>, pages 32340–32352.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib66">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">McCarthy (1959)</span>
+<span class="ltx_bibblock">
+J McCarthy. 1959.
+
+</span>
+<span class="ltx_bibblock">Programs with common sense.
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic" id="bib.bib66.1.1">Proc. Teddington Conference on the Mechanization of Thought Processes, 1959</em>, pages 75–91.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib67">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Minsky (1988)</span>
+<span class="ltx_bibblock">
+Marvin L. Minsky. 1988.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib67.1.1">The Society of Mind</em>.
+
+</span>
+<span class="ltx_bibblock">Simon &amp; Schuster, New York.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib68">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Mnih et al. (2013)</span>
+<span class="ltx_bibblock">
+Volodymyr Mnih, Koray Kavukcuoglu, David Silver, Alex Graves, Ioannis Antonoglou, Daan Wierstra, and Martin A. Riedmiller. 2013.
+
+</span>
+<span class="ltx_bibblock"><a class="ltx_ref ltx_href" href="http://arxiv.org/abs/1312.5602" title="">Playing atari with deep reinforcement learning</a>.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib68.1.1">CoRR</em>, abs/1312.5602.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib69">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Nakano et al. (2021)</span>
+<span class="ltx_bibblock">
+Reiichiro Nakano, Jacob Hilton, Suchir Balaji, Jeff Wu, Long Ouyang, Christina Kim, Christopher Hesse, Shantanu Jain, Vineet Kosaraju, William Saunders, et al. 2021.
+
+</span>
+<span class="ltx_bibblock">Webgpt: Browser-assisted question-answering with human feedback.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib69.1.1">arXiv preprint arXiv:2112.09332</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib70">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Nuxoll and Laird (2007)</span>
+<span class="ltx_bibblock">
+Andrew M Nuxoll and John E Laird. 2007.
+
+</span>
+<span class="ltx_bibblock">Extending cognitive architecture with episodic memory.
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic" id="bib.bib70.1.1">Proceedings of the 22nd national conference on Artificial intelligence-Volume 2</em>, pages 1560–1565.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib71">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Omidvar and An (2023)</span>
+<span class="ltx_bibblock">
+Amin Omidvar and Aijun An. 2023.
+
+</span>
+<span class="ltx_bibblock">Empowering conversational agents using semantic in-context learning.
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic" id="bib.bib71.1.1">Proceedings of the 18th Workshop on Innovative Use of NLP for Building Educational Applications (BEA 2023)</em>, pages 766–771.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib72">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">OpenAI (2023)</span>
+<span class="ltx_bibblock">
+OpenAI. 2023.
+
+</span>
+<span class="ltx_bibblock"><a class="ltx_ref ltx_href" href="http://arxiv.org/abs/2303.08774" title="">Gpt-4 technical report</a>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib73">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Paranjape et al. (2023)</span>
+<span class="ltx_bibblock">
+Bhargavi Paranjape, Scott Lundberg, Sameer Singh, Hannaneh Hajishirzi, Luke Zettlemoyer, and Marco Tulio Ribeiro. 2023.
+
+</span>
+<span class="ltx_bibblock">Art: Automatic multi-step reasoning and tool-use for large language models.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib73.1.1">arXiv preprint arXiv:2303.09014</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib74">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Parisi et al. (2022)</span>
+<span class="ltx_bibblock">
+Aaron Parisi, Yao Zhao, and Noah Fiedel. 2022.
+
+</span>
+<span class="ltx_bibblock">Talm: Tool augmented language models.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib74.1.1">arXiv preprint arXiv:2205.12255</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib75">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Park et al. (2023)</span>
+<span class="ltx_bibblock">
+Joon Sung Park, Joseph C O’Brien, Carrie J Cai, Meredith Ringel Morris, Percy Liang, and Michael S Bernstein. 2023.
+
+</span>
+<span class="ltx_bibblock">Generative agents: Interactive simulacra of human behavior.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib75.1.1">arXiv preprint arXiv:2304.03442</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib76">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Patil et al. (2023)</span>
+<span class="ltx_bibblock">
+Shishir G Patil, Tianjun Zhang, Xin Wang, and Joseph E Gonzalez. 2023.
+
+</span>
+<span class="ltx_bibblock">Gorilla: Large language model connected with massive apis.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib76.1.1">arXiv preprint arXiv:2305.15334</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib77">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Peng et al. (2023)</span>
+<span class="ltx_bibblock">
+Baolin Peng, Michel Galley, Pengcheng He, Hao Cheng, Yujia Xie, Yu Hu, Qiuyuan Huang, Lars Liden, Zhou Yu, Weizhu Chen, et al. 2023.
+
+</span>
+<span class="ltx_bibblock">Check your facts and try again: Improving large language models with external knowledge and automated feedback.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib77.1.1">arXiv preprint arXiv:2302.12813</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib78">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Petroni et al. (2019)</span>
+<span class="ltx_bibblock">
+Fabio Petroni, Tim Rocktäschel, Sebastian Riedel, Patrick Lewis, Anton Bakhtin, Yuxiang Wu, and Alexander Miller. 2019.
+
+</span>
+<span class="ltx_bibblock">Language models as knowledge bases?
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic" id="bib.bib78.1.1">Proceedings of the Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing</em>, pages 2463–2473.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib79">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Radford et al. (2021)</span>
+<span class="ltx_bibblock">
+Alec Radford, Jong Wook Kim, Chris Hallacy, Aditya Ramesh, Gabriel Goh, Sandhini Agarwal, Girish Sastry, Amanda Askell, Pamela Mishkin, Jack Clark, Gretchen Krueger, and Ilya Sutskever. 2021.
+
+</span>
+<span class="ltx_bibblock">Learning transferable visual models from natural language supervision.
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic" id="bib.bib79.1.1">Proceedings of the 38th International Conference on Machine Learning</em>, pages 8748–8763.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib80">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Rogers et al. (2021)</span>
+<span class="ltx_bibblock">
+Anna Rogers, Olga Kovaleva, and Anna Rumshisky. 2021.
+
+</span>
+<span class="ltx_bibblock">A primer in bertology: What we know about how bert works.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib80.1.1">Transactions of the Association for Computational Linguistics</em>, 8:842–866.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib81">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Rumelhart et al. (1986)</span>
+<span class="ltx_bibblock">
+David E Rumelhart, Geoffrey E Hinton, and Ronald J Williams. 1986.
+
+</span>
+<span class="ltx_bibblock">Learning representations by back-propagating errors.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib81.1.1">nature</em>, 323(6088):533–536.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib82">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Russell and Norvig (2010)</span>
+<span class="ltx_bibblock">
+Stuart Russell and Peter Norvig. 2010.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib82.1.1">Artificial Intelligence: A Modern Approach</em>, 3 edition.
+
+</span>
+<span class="ltx_bibblock">Prentice Hall.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib83">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Safavi and Koutra (2021)</span>
+<span class="ltx_bibblock">
+Tara Safavi and Danai Koutra. 2021.
+
+</span>
+<span class="ltx_bibblock">Relational world knowledge representation in contextual language models: A review.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib83.1.1">arXiv preprint arXiv:2104.05837</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib84">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Schick et al. (2023)</span>
+<span class="ltx_bibblock">
+Timo Schick, Jane Dwivedi-Yu, Roberto Dessì, Roberta Raileanu, Maria Lomeli, Luke Zettlemoyer, Nicola Cancedda, and Thomas Scialom. 2023.
+
+</span>
+<span class="ltx_bibblock">Toolformer: Language models can teach themselves to use tools.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib84.1.1">arXiv preprint arXiv:2302.04761</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib85">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Shen et al. (2023)</span>
+<span class="ltx_bibblock">
+Yongliang Shen, Kaitao Song, Xu Tan, Dongsheng Li, Weiming Lu, and Yueting Zhuang. 2023.
+
+</span>
+<span class="ltx_bibblock">Hugginggpt: Solving ai tasks with chatgpt and its friends in huggingface.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib85.1.1">arXiv preprint arXiv:2303.17580</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib86">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Shinn et al. (2023)</span>
+<span class="ltx_bibblock">
+Noah Shinn, Beck Labash, and Ashwin Gopinath. 2023.
+
+</span>
+<span class="ltx_bibblock">Reflexion: an autonomous agent with dynamic memory and self-reflection.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib86.1.1">arXiv preprint arXiv:2303.11366</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib87">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Shuster et al. (2022)</span>
+<span class="ltx_bibblock">
+Kurt Shuster, Jing Xu, Mojtaba Komeili, Da Ju, Eric Michael Smith, Stephen Roller, Megan Ung, Moya Chen, Kushal Arora, Joshua Lane, et al. 2022.
+
+</span>
+<span class="ltx_bibblock">Blenderbot 3: a deployed conversational agent that continually learns to responsibly engage.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib87.1.1">arXiv preprint arXiv:2208.03188</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib88">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Silver et al. (2016)</span>
+<span class="ltx_bibblock">
+David Silver, Aja Huang, Chris J Maddison, Arthur Guez, Laurent Sifre, George Van Den Driessche, Julian Schrittwieser, Ioannis Antonoglou, Veda Panneershelvam, Marc Lanctot, et al. 2016.
+
+</span>
+<span class="ltx_bibblock">Mastering the game of go with deep neural networks and tree search.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib88.1.1">nature</em>, 529(7587):484–489.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib89">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Singh et al. (2023)</span>
+<span class="ltx_bibblock">
+Ishika Singh, Valts Blukis, Arsalan Mousavian, Ankit Goyal, Danfei Xu, Jonathan Tremblay, Dieter Fox, Jesse Thomason, and Animesh Garg. 2023.
+
+</span>
+<span class="ltx_bibblock">Progprompt: Generating situated robot task plans using large language models.
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic" id="bib.bib89.1.1">Proceedings of IEEE International Conference on Robotics and Automation</em>, pages 11523–11530.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib90">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Suárez-Hernández et al. (2018)</span>
+<span class="ltx_bibblock">
+Alejandro Suárez-Hernández, Guillem Alenyà, and Carme Torras. 2018.
+
+</span>
+<span class="ltx_bibblock">Interleaving hierarchical task planning and motion constraint testing for dual-arm manipulation.
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic" id="bib.bib90.1.1">2018 IEEE/RSJ International Conference on Intelligent Robots and Systems</em>, pages 4061–4066.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib91">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Sun et al. (2023)</span>
+<span class="ltx_bibblock">
+Haotian Sun, Yuchen Zhuang, Lingkai Kong, Bo Dai, and Chao Zhang. 2023.
+
+</span>
+<span class="ltx_bibblock">Adaplanner: Adaptive planning from feedback with language models.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib91.1.1">arXiv preprint arXiv:2305.16653</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib92">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Tang et al. (2023)</span>
+<span class="ltx_bibblock">
+Chao Tang, Dehao Huang, Wenqi Ge, Weiyu Liu, and Hong Zhang. 2023.
+
+</span>
+<span class="ltx_bibblock">Graspgpt: Leveraging semantic knowledge from a large language model for task-oriented grasping.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib92.1.1">arXiv preprint arXiv:2307.13204</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib93">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Thoppilan et al. (2022)</span>
+<span class="ltx_bibblock">
+Romal Thoppilan, Daniel De Freitas, Jamie Hall, Noam Shazeer, Apoorv Kulshreshtha, Heng-Tze Cheng, Alicia Jin, Taylor Bos, Leslie Baker, Yu Du, et al. 2022.
+
+</span>
+<span class="ltx_bibblock">Lamda: Language models for dialog applications.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib93.1.1">arXiv preprint arXiv:2201.08239</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib94">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Tulving (1983)</span>
+<span class="ltx_bibblock">
+Endel Tulving. 1983.
+
+</span>
+<span class="ltx_bibblock">Elements of episodic memory.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib95">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Tulving et al. (1972)</span>
+<span class="ltx_bibblock">
+Endel Tulving et al. 1972.
+
+</span>
+<span class="ltx_bibblock">Episodic and semantic memory.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib95.1.1">Organization of memory</em>, 1(381-403):1.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib96">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Valmeekam et al. (2023)</span>
+<span class="ltx_bibblock">
+Karthik Valmeekam, Sarath Sreedharan, Matthew Marquez, Alberto Olmo, and Subbarao Kambhampati. 2023.
+
+</span>
+<span class="ltx_bibblock">On the planning abilities of large language models (a critical investigation with a proposed benchmark).
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib96.1.1">arXiv preprint arXiv:2302.06706</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib97">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Vere and Bickmore (1990)</span>
+<span class="ltx_bibblock">
+Steven Vere and Timothy Bickmore. 1990.
+
+</span>
+<span class="ltx_bibblock">A basic agent.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib97.1.1">Computational intelligence</em>, 6(1):41–60.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib98">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Vinyals et al. (2019)</span>
+<span class="ltx_bibblock">
+Oriol Vinyals, Igor Babuschkin, Wojciech M Czarnecki, Michaël Mathieu, Andrew Dudzik, Junyoung Chung, David H Choi, Richard Powell, Timo Ewalds, Petko Georgiev, et al. 2019.
+
+</span>
+<span class="ltx_bibblock">Grandmaster level in starcraft ii using multi-agent reinforcement learning.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib98.1.1">Nature</em>, 575(7782):350–354.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib99">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Wan et al. (2020)</span>
+<span class="ltx_bibblock">
+Changjin Wan, Pingqiang Cai, Ming Wang, Yan Qian, Wei Huang, and Xiaodong Chen. 2020.
+
+</span>
+<span class="ltx_bibblock">Artificial sensory memory.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib99.1.1">Advanced Materials</em>, 32(15):1902434.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib100">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Wang et al. (2023a)</span>
+<span class="ltx_bibblock">
+Guanzhi Wang, Yuqi Xie, Yunfan Jiang, Ajay Mandlekar, Chaowei Xiao, Yuke Zhu, Linxi Fan, and Anima Anandkumar. 2023a.
+
+</span>
+<span class="ltx_bibblock">Voyager: An open-ended embodied agent with large language models.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib100.1.1">arXiv preprint arXiv:2305.16291</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib101">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Wang et al. (2023b)</span>
+<span class="ltx_bibblock">
+Lei Wang, Wanyu Xu, Yihuai Lan, Zhiqiang Hu, Yunshi Lan, Roy Ka-Wei Lee, and Ee-Peng Lim. 2023b.
+
+</span>
+<span class="ltx_bibblock">Plan-and-solve prompting: Improving zero-shot chain-of-thought reasoning by large language models.
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic" id="bib.bib101.1.1">Proceedings of the 61st Annual Meeting of the Association for Computational</em>, pages 2609–2634.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib102">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Wei et al. (2022a)</span>
+<span class="ltx_bibblock">
+Jason Wei, Yi Tay, Rishi Bommasani, Colin Raffel, Barret Zoph, Sebastian Borgeaud, Dani Yogatama, Maarten Bosma, Denny Zhou, Donald Metzler, et al. 2022a.
+
+</span>
+<span class="ltx_bibblock">Emergent abilities of large language models.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib102.1.1">arXiv preprint arXiv:2206.07682</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib103">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Wei et al. (2022b)</span>
+<span class="ltx_bibblock">
+Jason Wei, Xuezhi Wang, Dale Schuurmans, Maarten Bosma, Fei Xia, Ed Chi, Quoc V Le, Denny Zhou, et al. 2022b.
+
+</span>
+<span class="ltx_bibblock">Chain-of-thought prompting elicits reasoning in large language models.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib103.1.1">Advances in Neural Information Processing Systems</em>, 35:24824–24837.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib104">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Xie et al. (2023)</span>
+<span class="ltx_bibblock">
+Yaqi Xie, Chen Yu, Tongyao Zhu, Jinbin Bai, Ze Gong, and Harold Soh. 2023.
+
+</span>
+<span class="ltx_bibblock">Translating natural language to planning goals with large-language models.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib104.1.1">arXiv preprint arXiv:2302.05128</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib105">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Xu et al. (2023)</span>
+<span class="ltx_bibblock">
+Binfeng Xu, Xukun Liu, Hua Shen, Zeyu Han, Yuhan Li, Murong Yue, Zhiyuan Peng, Yuchen Liu, Ziyu Yao, and Dongkuan Xu. 2023.
+
+</span>
+<span class="ltx_bibblock">Gentopia: A collaborative platform for tool-augmented llms.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib105.1.1">arXiv preprint arXiv:2308.04030</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib106">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Yao et al. (2023a)</span>
+<span class="ltx_bibblock">
+Shunyu Yao, Dian Yu, Jeffrey Zhao, Izhak Shafran, Thomas L Griffiths, Yuan Cao, and Karthik Narasimhan. 2023a.
+
+</span>
+<span class="ltx_bibblock">Tree of thoughts: Deliberate problem solving with large language models.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib106.1.1">arXiv preprint arXiv:2305.10601</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib107">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Yao et al. (2022)</span>
+<span class="ltx_bibblock">
+Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan, and Yuan Cao. 2022.
+
+</span>
+<span class="ltx_bibblock">React: Synergizing reasoning and acting in language models.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib107.1.1">arXiv preprint arXiv:2210.03629</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib108">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Yao et al. (2023b)</span>
+<span class="ltx_bibblock">
+Weiran Yao, Shelby Heinecke, Juan Carlos Niebles, Zhiwei Liu, Yihao Feng, Le Xue, Rithesh Murthy, Zeyuan Chen, Jianguo Zhang, Devansh Arpit, et al. 2023b.
+
+</span>
+<span class="ltx_bibblock">Retroformer: Retrospective large language agents with policy gradient optimization.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib108.1.1">arXiv preprint arXiv:2308.02151</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib109">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Zhang et al. (2023a)</span>
+<span class="ltx_bibblock">
+Bowen Zhang, Xianghua Fu, Daijun Ding, Hu Huang, Yangyang Li, and Liwen Jing. 2023a.
+
+</span>
+<span class="ltx_bibblock">Investigating chain-of-thought with chatgpt for stance detection on social media.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib109.1.1">arXiv preprint arXiv:2304.03087</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib110">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Zhang et al. (2023b)</span>
+<span class="ltx_bibblock">
+Danyang Zhang, Lu Chen, Situo Zhang, Hongshen Xu, Zihan Zhao, and Kai Yu. 2023b.
+
+</span>
+<span class="ltx_bibblock">Large language model is semi-parametric reinforcement learning agent.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib110.1.1">arXiv preprint arXiv:2306.07929</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib111">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Zhang et al. (2022)</span>
+<span class="ltx_bibblock">
+Zhuosheng Zhang, Aston Zhang, Mu Li, and Alex Smola. 2022.
+
+</span>
+<span class="ltx_bibblock">Automatic chain of thought prompting in large language models.
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic" id="bib.bib111.1.1">Proceedings of the Eleventh International Conference on Learning Representations</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib112">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Zhong et al. (2023)</span>
+<span class="ltx_bibblock">
+Wanjun Zhong, Lianghong Guo, Qiqi Gao, and Yanlin Wang. 2023.
+
+</span>
+<span class="ltx_bibblock">Memorybank: Enhancing large language models with long-term memory.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic" id="bib.bib112.1.1">arXiv preprint arXiv:2305.10250</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib113">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Zhuge and et al. (2023)</span>
+<span class="ltx_bibblock">
+Mingchen Zhuge and Haozhe Liu et al. 2023.
+
+</span>
+<span class="ltx_bibblock"><a class="ltx_ref ltx_href" href="http://arxiv.org/abs/2305.17066" title="">Mindstorms in natural language-based societies of mind</a>.
+
+</span>
+</li>
+</ul>
+</section>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Sat Sep 23 11:23:56 2023 by <a class="ltx_LaTeXML_logo" href="http://dlmf.nist.gov/LaTeXML/"><span style="letter-spacing:-0.2em; margin-right:0.1em;">L<span style="font-size:70%;position:relative; bottom:2.2pt;">A</span>T<span style="position:relative; bottom:-0.4ex;">E</span></span><span class="ltx_font_smallcaps">xml</span><img alt="[LOGO]" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg=="/></a>
+</div></footer>
+</div>
+
+<div class="package-alerts" role="alert">
+<button aria-label="Dismiss alert" onclick="closePopup()">
+<span aria-hidden="true"><svg aria-hidden="true" focusable="false" height="30" role="presentation" viewbox="0 0 44 44" width="30">
+<path d="M0.549989 4.44999L4.44999 0.549988L43.45 39.55L39.55 43.45L0.549989 4.44999Z"></path>
+<path d="M39.55 0.549988L43.45 4.44999L4.44999 43.45L0.549988 39.55L39.55 0.549988Z"></path>
+</svg></span>
+</button>
+<p>This paper uses the following packages that do not yet convert to HTML. These are known issues and are being worked on. Have free development cycles? <a href="https://github.com/brucemiller/LaTeXML/issues" target="_blank">We welcome contributors</a>.</p>
+<ul>
+<li>failed: multibib</li>
+<li>failed: xstring</li>
+</ul>
+</div>
+<script> 
+            function closePopup() {
+                document.querySelector('.package-alerts').style.display = 'none';
+            }
+        </script>
+</body>
+</html>

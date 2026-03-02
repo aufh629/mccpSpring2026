@@ -1,0 +1,102 @@
+[2026-02-01 23:45:08] Starting map_sentences: paper=2211.12588, out_dir=trial
+[2026-02-01 23:45:08] Paper: 2211.12588, sentences: 1
+[2026-02-01 23:45:08]   sample: See pages 1-last of _TMLR__Program_of_Thoughts...
+[2026-02-01 23:45:08] Using Poe API (key from LLM/poe.md).
+[2026-02-01 23:45:09] Using LLM for matching (model=gpt-4o-mini).
+[2026-02-01 23:45:09] Processing function 1/17: being-critical
+[2026-02-01 23:45:11]   wrote report_being-critical.md
+[2026-02-01 23:45:11] Processing function 2/17: classifying-and-listing
+[2026-02-01 23:45:12]   wrote report_classifying-and-listing.md
+[2026-02-01 23:45:12] Processing function 3/17: compare-and-contrast
+[2026-02-01 23:45:14]   wrote report_compare-and-contrast.md
+[2026-02-01 23:45:14] Processing function 4/17: describing-quantities
+[2026-02-01 23:45:15]   wrote report_describing-quantities.md
+[2026-02-01 23:45:15] Processing function 5/17: describing-trends
+[2026-02-01 23:45:17]   wrote report_describing-trends.md
+[2026-02-01 23:45:17] Processing function 6/17: explaining-cause-and-effect
+[2026-02-01 23:45:18]   wrote report_explaining-cause-and-effect.md
+[2026-02-01 23:45:18] Processing function 7/17: giving-examples
+[2026-02-01 23:45:19]   wrote report_giving-examples.md
+[2026-02-01 23:45:19] Processing function 8/17: signalling-transition
+[2026-02-01 23:45:20]   wrote report_signalling-transition.md
+[2026-02-01 23:45:20] Processing function 9/17: using-cautious-language
+[2026-02-01 23:45:21]   wrote report_using-cautious-language.md
+[2026-02-01 23:45:21] Processing function 10/17: writing-about-the-past
+[2026-02-01 23:45:23]   wrote report_writing-about-the-past.md
+[2026-02-01 23:45:23] Processing function 11/17: writing-definitions
+[2026-02-01 23:45:24]   wrote report_writing-definitions.md
+[2026-02-01 23:45:24] Processing function 12/17: describing-methods
+[2026-02-01 23:45:26]   wrote report_describing-methods.md
+[2026-02-01 23:45:26] Processing function 13/17: discussing-findings
+[2026-02-01 23:45:27]   wrote report_discussing-findings.md
+[2026-02-01 23:45:27] Processing function 14/17: introducing-work
+[2026-02-01 23:45:29]   wrote report_introducing-work.md
+[2026-02-01 23:45:29] Processing function 15/17: referring-to-sources
+[2026-02-01 23:45:30]   wrote report_referring-to-sources.md
+[2026-02-01 23:45:30] Processing function 16/17: reporting-results
+[2026-02-01 23:45:31]   wrote report_reporting-results.md
+[2026-02-01 23:45:31] Processing function 17/17: writing-conclusions
+[2026-02-01 23:45:32]   wrote report_writing-conclusions.md
+[2026-02-01 23:45:32] Done. Reports in trial
+[2026-02-01 23:47:26] Starting map_sentences: paper=2211.05100, out_dir=trial
+[2026-02-01 23:47:26] Paper: 2211.05100, sentences: 322
+[2026-02-01 23:47:26]   sample: Large language models (LLMs) have been shown to be able to perform new tasks bas...
+[2026-02-01 23:47:26] Using Poe API (key from LLM/poe.md).
+[2026-02-01 23:47:26] Using LLM for matching (model=gpt-4o-mini).
+[2026-02-01 23:47:26] Processing function 1/17: being-critical
+[2026-02-01 23:47:57]   wrote report_being-critical.md
+[2026-02-01 23:47:57] Processing function 2/17: classifying-and-listing
+[2026-02-01 23:48:38]   wrote report_classifying-and-listing.md
+[2026-02-01 23:48:38] Processing function 3/17: compare-and-contrast
+[2026-02-01 23:49:06]   wrote report_compare-and-contrast.md
+[2026-02-01 23:49:06] Processing function 4/17: describing-quantities
+[2026-02-01 23:49:48]   wrote report_describing-quantities.md
+[2026-02-01 23:49:48] Processing function 5/17: describing-trends
+[2026-02-01 23:50:15]   wrote report_describing-trends.md
+[2026-02-01 23:50:15] Processing function 6/17: explaining-cause-and-effect
+[2026-02-01 23:51:05]   wrote report_explaining-cause-and-effect.md
+[2026-02-01 23:51:05] Processing function 7/17: giving-examples
+[2026-02-01 23:51:53]   wrote report_giving-examples.md
+[2026-02-01 23:51:53] Processing function 8/17: signalling-transition
+[2026-02-01 23:52:17]   wrote report_signalling-transition.md
+[2026-02-01 23:52:17] Processing function 9/17: using-cautious-language
+[2026-02-01 23:52:37] Starting map_sentences: paper=2211.05100, out_dir=trial
+[2026-02-01 23:52:37] Paper: 2211.05100, sentences: 322
+[2026-02-01 23:52:37]   sample: Large language models (LLMs) have been shown to be able to perform new tasks bas...
+[2026-02-01 23:52:37] Using Poe API (key from LLM/poe.md).
+[2026-02-01 23:52:38] Using LLM for matching (model=gpt-4o-mini).
+[2026-02-01 23:52:38] Processing function 1/17: being-critical
+[2026-02-01 23:53:11]   wrote report_being-critical.md
+[2026-02-01 23:53:11] Processing function 2/17: classifying-and-listing
+[2026-02-01 23:53:51]   wrote report_classifying-and-listing.md
+[2026-02-01 23:53:51] Processing function 3/17: compare-and-contrast
+[2026-02-01 23:54:23]   wrote report_compare-and-contrast.md
+[2026-02-01 23:54:23] Processing function 4/17: describing-quantities
+[2026-02-01 23:54:51]   wrote report_describing-quantities.md
+[2026-02-01 23:54:51] Processing function 5/17: describing-trends
+[2026-02-01 23:55:19]   wrote report_describing-trends.md
+[2026-02-01 23:55:19] Processing function 6/17: explaining-cause-and-effect
+[2026-02-01 23:55:44]   wrote report_explaining-cause-and-effect.md
+[2026-02-01 23:55:44] Processing function 7/17: giving-examples
+[2026-02-01 23:56:12]   wrote report_giving-examples.md
+[2026-02-01 23:56:12] Processing function 8/17: signalling-transition
+[2026-02-01 23:56:38]   wrote report_signalling-transition.md
+[2026-02-01 23:56:38] Processing function 9/17: using-cautious-language
+[2026-02-01 23:57:11]   wrote report_using-cautious-language.md
+[2026-02-01 23:57:11] Processing function 10/17: writing-about-the-past
+[2026-02-01 23:57:22]   wrote report_writing-about-the-past.md
+[2026-02-01 23:57:22] Processing function 11/17: writing-definitions
+[2026-02-01 23:57:40]   wrote report_writing-definitions.md
+[2026-02-01 23:57:40] Processing function 12/17: describing-methods
+[2026-02-02 00:00:03]   wrote report_describing-methods.md
+[2026-02-02 00:00:03] Processing function 13/17: discussing-findings
+[2026-02-02 00:02:22]   wrote report_discussing-findings.md
+[2026-02-02 00:02:22] Processing function 14/17: introducing-work
+[2026-02-02 00:02:54]   wrote report_introducing-work.md
+[2026-02-02 00:02:54] Processing function 15/17: referring-to-sources
+[2026-02-02 00:04:29]   wrote report_referring-to-sources.md
+[2026-02-02 00:04:29] Processing function 16/17: reporting-results
+[2026-02-02 00:05:02]   wrote report_reporting-results.md
+[2026-02-02 00:05:02] Processing function 17/17: writing-conclusions
+[2026-02-02 00:05:25]   wrote report_writing-conclusions.md
+[2026-02-02 00:05:25] Done. Reports in trial

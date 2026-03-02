@@ -1,0 +1,43 @@
+% 3-slide trial: small part of aaai25.tex (title + abstract + intro teaser)
+% No aaai25.sty or .bib; standard Beamer only.
+\documentclass{beamer}
+\usetheme{Madrid}
+\usepackage{amsmath,amssymb}
+
+\title{Doubly-Bounded Queue for Constrained Online Learning:\\Keeping Pace with Dynamics of Both Loss and Constraint}
+\author{Juncheng Wang, Bingjie Yan, Yituo Liu}
+\institute{Department of Computer Science, Hong Kong Baptist University}
+\date{}
+
+\begin{document}
+
+% --- Slide 1: Title ---
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% --- Slide 2: Abstract ---
+\begin{frame}{Abstract}
+  \begin{itemize}
+    \item Online convex optimization with \textbf{time-varying constraints}; metrics: dynamic regret and \textbf{hard} constraint violation.
+    \item Algorithm: \textbf{COLDQ} (Constrained Online Learning with Doubly-bounded Queue) — virtual queue with lower and upper bounds; no Slater condition.
+    \item Bounds: $\mathcal{O}(T^{(1+V_x)/2})$ dynamic regret and $\mathcal{O}(T^{V_g})$ hard violation ($V_x$, $V_g$ = dynamics of loss and constraint). Smoothly approach $\mathcal{O}(T^{1/2})$ regret and $\mathcal{O}(1)$ violation as dynamics diminish.
+    \item Strongly convex case: $\mathcal{O}(\log T)$ static regret; expert-tracking variant with same bounds without prior on dynamics.
+    \item Experiments: COLDQ outperforms state-of-the-art.
+  \end{itemize}
+\end{frame}
+
+% --- Slide 3: Introduction (teaser) ---
+\begin{frame}{Introduction (teaser)}
+  \textbf{Motivation:}
+  \begin{itemize}
+    \item OCO: losses and constraints are \textit{dynamic}; best bounds for \textit{fixed} constraints ($\mathcal{O}(T^{1/2})$ regret, $\mathcal{O}(1)$ violation) do not carry over to time-varying case.
+    \item Time-varying: best hard violation only $\mathcal{O}(T^{1/2}\log T)$ — algorithms do \textit{not} keep pace with constraint dynamics.
+  \end{itemize}
+  \vspace{0.5em}
+  \textbf{Key question:} Can a constrained OCO algorithm provide dynamic regret and constraint violation that \textit{smoothly} approach $\mathcal{O}(T^{1/2})$ and $\mathcal{O}(1)$ as dynamics diminish?
+  \vspace{0.5em}
+  \textbf{Our answer:} Yes — COLDQ achieves this.
+\end{frame}
+
+\end{document}

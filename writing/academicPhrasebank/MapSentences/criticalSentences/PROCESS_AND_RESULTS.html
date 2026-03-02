@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Critical Sentences — Process &amp; Results</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #faf9f7;
+      --surface: #ffffff;
+      --text: #1a1a1a;
+      --text-muted: #5c5c5c;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --success: #059669;
+      --success-soft: #d1fae5;
+      --border: #e5e5e5;
+      --shadow: 0 1px 3px rgba(0,0,0,.06);
+      --shadow-lg: 0 4px 14px rgba(0,0,0,.08);
+      --radius: 12px;
+      --radius-sm: 8px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 0.35em;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin: 0 0 2rem;
+    }
+    .summary-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    .card-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.2;
+    }
+    .card-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+    }
+    .card.highlight { border-color: var(--accent); background: var(--accent-soft); }
+    .card.highlight .card-num { color: #1d4ed8; }
+    h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin: 2rem 0 1rem;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+    .step {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+    }
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-right: 0.6rem;
+      vertical-align: middle;
+    }
+    .step-title { font-weight: 600; margin-bottom: 0.5rem; }
+    .step-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin: 0.5rem 0 0.75rem;
+    }
+    .step-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background: var(--bg);
+      padding: 0.5rem 0.75rem;
+      border-radius: var(--radius-sm);
+      margin-top: 0.75rem;
+    }
+    .step-result {
+      margin-top: 0.75rem;
+      padding: 0.6rem 0.9rem;
+      border-radius: var(--radius-sm);
+      background: var(--success-soft);
+      color: #047857;
+      font-size: 0.9rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      margin: 0.5rem 0 1rem;
+    }
+    th, td { padding: 0.6rem 0.75rem; text-align: left; border-bottom: 1px solid var(--border); }
+    th { font-weight: 600; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.03em; }
+    tr:last-child td { border-bottom: none; }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .links a {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .links a:hover { background: #1d4ed8; }
+    .links a.secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+    .links a.secondary:hover { background: var(--bg); }
+    .note {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+    code { font-family: 'JetBrains Mono', monospace; font-size: 0.88em; background: var(--bg); padding: 0.15em 0.4em; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Critical Sentences: Process &amp; Results</h1>
+    <p class="subtitle">How papers were processed and what was found (no external LLM). Template: <code>findCriticalSentences.md</code> · Papers: <code>html_collection</code></p>
+
+    <div class="summary-cards">
+      <div class="card">
+        <div class="card-num">28</div>
+        <div class="card-label">Papers scanned</div>
+      </div>
+      <div class="card">
+        <div class="card-num">6,601</div>
+        <div class="card-label">Sentences extracted</div>
+      </div>
+      <div class="card">
+        <div class="card-num">128</div>
+        <div class="card-label">Candidates (keyword filter)</div>
+      </div>
+      <div class="card highlight">
+        <div class="card-num">69</div>
+        <div class="card-label">Final matches</div>
+      </div>
+      <div class="card">
+        <div class="card-num">50</div>
+        <div class="card-label">Inadequacies (cat. 1)</div>
+      </div>
+      <div class="card">
+        <div class="card-num">19</div>
+        <div class="card-label">Paucity/lack (cat. 2)</div>
+      </div>
+    </div>
+
+    <h2>Pipeline (4 steps)</h2>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Extract sentences from HTML</span>
+      <p class="step-desc">Script reads all <code>.html</code> files in <code>html_collection</code>, parses LaTeXML <code>&lt;p class="ltx_p"&gt;</code> paragraphs, and keeps lines ≥ 15 characters.</p>
+      <div class="step-meta">Command: <code>python3 find_critical_sentences.py --extract-only</code></div>
+      <div class="step-result">Output: <strong>sentences_all.json</strong> — 28 papers, 6,601 sentences</div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">Filter candidates (keywords)</span>
+      <p class="step-desc">Each sentence is checked for phrases like <em>previous stud</em>, <em>prior work</em>, <em>little attention</em>, <em>few studies</em>, <em>lack of</em>, <em>failed to address</em>, <em>limited to</em>, <em>contrasts with</em>, <em>overlooked</em>, etc.</p>
+      <div class="step-meta">Command: <code>python3 find_critical_sentences.py --candidates</code></div>
+      <div class="step-result">Output: <strong>candidates.tsv</strong> — 128 candidate sentences (paper_id, sentence)</div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">Classify &amp; extract templates (AI, no API)</span>
+      <p class="step-desc">In-session AI read <code>candidates.tsv</code>, assigned each sentence to <strong>Category 1</strong> (inadequacies of previous studies) or <strong>Category 2</strong> (paucity/lack of previous research), dropped false positives, and wrote a short extracted template (X, Y, Z placeholders) per match.</p>
+      <div class="step-meta">Output: <strong>matches_from_ai.json</strong></div>
+      <div class="step-result">69 matches: 50 inadequacies, 19 paucity/lack</div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span><span class="step-title">Generate reports</span>
+      <p class="step-desc">Script loads <code>matches_from_ai.json</code> and <code>findCriticalSentences.md</code>, then writes the sentence report and a dark-theme HTML table view.</p>
+      <div class="step-meta">Command: <code>python3 find_critical_sentences.py --from-matches matches_from_ai.json</code></div>
+      <div class="step-result">Output: <strong>report_criticalSentences.md</strong>, <strong>report_criticalSentences.html</strong></div>
+    </div>
+
+    <h2>Results at a glance</h2>
+    <div class="card" style="padding: 1.25rem 1.5rem;">
+      <table>
+        <thead><tr><th>Stage</th><th>Count</th></tr></thead>
+        <tbody>
+          <tr><td>Papers</td><td>28</td></tr>
+          <tr><td>Sentences extracted</td><td>6,601</td></tr>
+          <tr><td>Candidates (keyword filter)</td><td>128</td></tr>
+          <tr><td><strong>Final matches</strong></td><td><strong>69</strong></td></tr>
+          <tr><td>→ Inadequacies (cat. 1)</td><td>50</td></tr>
+          <tr><td>→ Paucity/lack (cat. 2)</td><td>19</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Artifacts</h2>
+    <div class="card" style="padding: 1.25rem 1.5rem;">
+      <table>
+        <thead><tr><th>Role</th><th>File</th></tr></thead>
+        <tbody>
+          <tr><td>Input (templates)</td><td><code>findCriticalSentences.md</code></td></tr>
+          <tr><td>Input (papers)</td><td><code>buildPaperCollection_arXiv/html_collection/*.html</code></td></tr>
+          <tr><td>Intermediate</td><td><code>sentences_all.json</code>, <code>candidates.tsv</code>, <code>matches_from_ai.json</code></td></tr>
+          <tr><td>Output (reports)</td><td><code>report_criticalSentences.md</code>, <code>report_criticalSentences.html</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="links">
+      <a href="report_criticalSentences.html">View sentence report (HTML)</a>
+      <a href="report_criticalSentences.md">Sentence report (MD)</a>
+      <a href="PROCESS_AND_RESULTS.md" class="secondary">This doc (MD)</a>
+    </div>
+  </div>
+</body>
+</html>

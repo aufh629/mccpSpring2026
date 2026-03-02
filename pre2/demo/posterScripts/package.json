@@ -1,0 +1,12 @@
+{
+  "name": "poster-scripts",
+  "version": "1.0.0",
+  "description": "Scripts for poster design and export (html2canvas, Puppeteer)",
+  "private": true,
+  "scripts": {
+    "export": "node export-node.js"
+  },
+  "dependencies": {
+    "puppeteer": "^23.0.0"
+  }
+}

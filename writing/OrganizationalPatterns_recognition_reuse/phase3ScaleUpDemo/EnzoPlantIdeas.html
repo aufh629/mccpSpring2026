@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Planting Ideas for Later — Intro-to-Contribution Analysis</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --card: #fff;
+      --border: #dee2e6;
+      --text: #212529;
+      --muted: #6c757d;
+      --accent: #0d6efd;
+      --plant: #198754;
+      --harvest: #0d6efd;
+    }
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg); margin: 0; padding: 1rem; max-width: 52rem; margin-inline: auto; }
+    h1 { font-size: 1.5rem; margin-top: 0; }
+    h2 { font-size: 1.25rem; margin-top: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.25rem; }
+    h3 { font-size: 1.1rem; margin-top: 1rem; }
+    nav[aria-label="Contents"] { background: var(--card); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; border: 1px solid var(--border); }
+    nav[aria-label="Contents"] ul { list-style: none; padding: 0; margin: 0; }
+    nav[aria-label="Contents"] a { color: var(--accent); text-decoration: none; }
+    nav[aria-label="Contents"] a:hover { text-decoration: underline; }
+    .principle { color: var(--muted); font-size: 0.95rem; margin-bottom: 1rem; }
+    .papers-list { list-style: none; padding: 0; }
+    .papers-list li { margin-bottom: 0.5rem; }
+    .papers-list a { color: var(--accent); }
+    section.paper { background: var(--card); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 1rem; overflow: hidden; }
+    section.paper summary { padding: 0.75rem 1rem; cursor: pointer; font-weight: 600; background: #f1f3f5; }
+    section.paper summary:hover { background: #e9ecef; }
+    section.paper .paper-body { padding: 1rem; }
+    .para-map { list-style: none; padding: 0; margin: 0; }
+    .para-map li { margin-bottom: 1rem; padding: 0.75rem; background: var(--bg); border-radius: 6px; border-left: 3px solid var(--border); }
+    .para-map li.contrib { border-left-color: var(--harvest); }
+    .para-map .role { font-weight: 600; font-size: 0.9rem; color: var(--muted); margin-bottom: 0.25rem; }
+    .para-map blockquote { margin: 0; font-style: italic; font-size: 0.95rem; color: var(--text); }
+    .plant-harvest-list { list-style: none; padding: 0; margin: 0; }
+    .plant-harvest-list li { margin-bottom: 1rem; padding: 1rem; background: var(--card); border: 1px solid var(--border); border-radius: 8px; }
+    .plant-harvest-list .label { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+    .plant-harvest-list .plant .label { color: var(--plant); }
+    .plant-harvest-list .harvest .label { color: var(--harvest); }
+    .plant-harvest-list .why .label { color: var(--muted); }
+    .plant-harvest-list blockquote, .plant-harvest-list p { margin: 0 0 0.5rem; font-size: 0.95rem; }
+    .verdict { padding: 0.75rem 1rem; background: #e7f3ff; border-radius: 6px; margin-top: 1rem; font-size: 0.95rem; }
+    .insights section { margin-bottom: 1.25rem; }
+    .insights h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+    .insights ul { margin: 0; padding-left: 1.25rem; }
+    .controls { margin-bottom: 0.5rem; }
+    .controls button { margin-right: 0.5rem; padding: 0.35rem 0.75rem; cursor: pointer; border: 1px solid var(--border); border-radius: 6px; background: var(--card); font-size: 0.9rem; }
+    .controls button:hover { background: #e9ecef; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Planting Ideas for Later</h1>
+    <p class="principle">Strong introductions "plant" ideas early so that when the present work is announced, it feels logical rather than abrupt. This report maps how earlier phrases and concepts are picked up in the contribution paragraph. Structure scales: each paper uses the same sections.</p>
+  </header>
+
+  <nav aria-label="Contents">
+    <h2 id="toc">Contents</h2>
+    <ul class="papers-list">
+      <li><a href="#paper-enzo">Enzo et al. — Playlist Generation (RecSys '25)</a></li>
+      <li><a href="#insights">Actionable insights for novice writers</a></li>
+    </ul>
+    <div class="controls">
+      <button type="button" id="expand-all">Expand all papers</button>
+      <button type="button" id="collapse-all">Collapse all papers</button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="paper" id="paper-enzo" aria-labelledby="heading-enzo">
+      <details open>
+        <summary id="heading-enzo">Enzo et al. — A Language Model-Based Playlist Generation Recommender System (RecSys '25)</summary>
+        <div class="paper-body">
+          <h3>Introduction paragraph map</h3>
+          <p>Each paragraph is listed with its role and a short excerpt. The contribution is announced in Para 5.</p>
+          <ul class="para-map">
+            <li>
+              <span class="role">Para 1 — Establish importance</span>
+              <blockquote>In the era of personalized digital experiences, recommender systems have become crucial for delivering content tailored to individual tastes. … Music platforms, in particular, rely heavily on recommender systems to enhance user engagement and satisfaction.</blockquote>
+            </li>
+            <li>
+              <span class="role">Para 2 — Establish problem</span>
+              <blockquote>However, creating tailored playlists remains a challenging and time-consuming task for users. … This process can be overwhelming, especially for those with large music libraries or eclectic tastes.</blockquote>
+            </li>
+            <li>
+              <span class="role">Para 3 — Introduce key resource (title as seed)</span>
+              <blockquote>Apart from the tracks, another distinctive characteristic of a playlist is its title. … the playlist title can be a key element in recommender systems … First, it can serve as the <strong>sole seed element</strong> to suggest songs for an empty playlist in a <em>cold start</em> scenario. Secondly, it can enhance other types of recommender systems.</blockquote>
+            </li>
+            <li>
+              <span class="role">Para 4 — Narrow to the gap</span>
+              <blockquote>While it is true that titles like those mentioned in the previous paragraph may have abundant ready-made materials … a user may instead want to have a playlist named ‘Housewarming Party’, ‘Spring awakening’, or ‘Country summer’ <strong>will hardly have a straightforward, one-to-one match with existing categories</strong>.</blockquote>
+            </li>
+            <li class="contrib">
+              <span class="role">Para 5 — Announce present study &amp; contribution</span>
+              <blockquote>In this paper, we specifically study <strong>this challenge</strong> in proposing a pipeline for playlist generation using a <strong>sole title as input</strong>. Unlike previous works …, we use language models to capture the semantic meaning … of <strong>any complexity and not necessarily matching a pre-existing category</strong> (genre, mood, emotion, purpose) as in previous related work. … we assess the capacity of Large Language Models … both in a <strong>0-shot</strong> scenario and for ranking.</blockquote>
+            </li>
+          </ul>
+
+          <h3>Plant → harvest links</h3>
+          <p>When you reach the contribution paragraph (Para 5), these earlier ideas are explicitly picked up:</p>
+          <ul class="plant-harvest-list">
+            <li>
+              <div class="plant">
+                <span class="label">Plant (Para 3)</span>
+                <blockquote>the playlist title can be … the <strong>sole seed element</strong> to suggest songs for an empty playlist in a <em>cold start</em> scenario</blockquote>
+              </div>
+              <div class="harvest">
+                <span class="label">Harvest (Para 5)</span>
+                <blockquote>a pipeline for playlist generation using a <strong>sole title as input</strong></blockquote>
+              </div>
+              <div class="why">
+                <span class="label">Why</span>
+                <p>The contribution adopts "sole title" from "sole seed element" and the cold-start use case.</p>
+              </div>
+            </li>
+            <li>
+              <div class="plant">
+                <span class="label">Plant (Para 3)</span>
+                <p>cold start scenario</p>
+              </div>
+              <div class="harvest">
+                <span class="label">Harvest (Para 5)</span>
+                <blockquote>we assess the capacity of … LLM … both in a <strong>0-shot</strong> scenario</blockquote>
+              </div>
+              <div class="why">
+                <span class="label">Why</span>
+                <p>Zero-shot evaluation is the natural test of the cold-start setting.</p>
+              </div>
+            </li>
+            <li>
+              <div class="plant">
+                <span class="label">Plant (Para 4)</span>
+                <blockquote>‘Housewarming Party’, ‘Spring awakening’, or ‘Country summer’ <strong>will hardly have a straightforward, one-to-one match with existing categories</strong></blockquote>
+              </div>
+              <div class="harvest">
+                <span class="label">Harvest (Para 5)</span>
+                <blockquote>vector representations for <strong>any playlist title</strong>, whether known or unknown, of <strong>any complexity and not necessarily matching a pre-existing category</strong> (genre, mood, emotion, purpose) as in previous related work</blockquote>
+              </div>
+              <div class="why">
+                <span class="label">Why</span>
+                <p>The contribution explicitly addresses that limitation with "any complexity" and "not necessarily matching a pre-existing category."</p>
+              </div>
+            </li>
+            <li>
+              <div class="plant">
+                <span class="label">Plant (Para 4)</span>
+                <p>"this challenge" (titles that don’t match categories)</p>
+              </div>
+              <div class="harvest">
+                <span class="label">Harvest (Para 5)</span>
+                <blockquote>In this paper, we specifically study <strong>this challenge</strong></blockquote>
+              </div>
+              <div class="why">
+                <span class="label">Why</span>
+                <p>The sentence opens with a clear backward reference to the preceding paragraph.</p>
+              </div>
+            </li>
+            <li>
+              <div class="plant">
+                <span class="label">Plant (Para 3)</span>
+                <p>title as semantic/key element</p>
+              </div>
+              <div class="harvest">
+                <span class="label">Harvest (Para 5)</span>
+                <blockquote>we use <strong>language models</strong> to capture the <strong>semantic meaning</strong> of playlist and track titles</blockquote>
+              </div>
+              <div class="why">
+                <span class="label">Why</span>
+                <p>The move to language models is motivated by the earlier claim that the title is semantically rich.</p>
+              </div>
+            </li>
+          </ul>
+          <div class="verdict">
+            <strong>Verdict:</strong> The author successfully plants and harvests. The reader is prepared for "sole title as input," "any complexity / no pre-existing category," and "cold start / 0-shot" before the contribution paragraph, so the announcement feels logical rather than abrupt.
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section class="insights" id="insights">
+      <h2>Actionable insights for novice writers</h2>
+      <p><em>Shared across papers.</em></p>
+
+      <section>
+        <h3>Plan your harvest before you write</h3>
+        <ul>
+          <li><strong>Before drafting the contribution sentence</strong>, list 2–4 key phrases you want to use there (e.g. "sole title as input," "any complexity," "zero-shot").</li>
+          <li><strong>Then</strong> go back and plant those concepts (or close synonyms) in the 1–2 paragraphs <em>before</em> the contribution (e.g. "sole seed element," "no one-to-one match with existing categories," "cold start").</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Use explicit backward reference</h3>
+        <ul>
+          <li>The phrase <em>"In this paper, we specifically study <strong>this challenge</strong>"</em> ties the contribution directly to the preceding paragraph. Use a clear backward reference ("this gap," "this problem," "these limitations") so the reader sees the link.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Echo wording when harvesting</h3>
+        <ul>
+          <li>Don’t only repeat the <em>idea</em>; echo the <em>wording</em> when you harvest. Enzo reuses "sole" (sole seed → sole title), "cold start" / "0-shot," and "matching a pre-existing category" so the reader recognizes the harvest.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>One clear limitation per "gap" paragraph</h3>
+        <ul>
+          <li>Para 4 does one job: state that complex/niche titles don’t match existing categories. That single limitation is then harvested in one clear sentence in Para 5. Avoid overloading the gap paragraph with many unrelated limitations.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Checklist for your own intro</h3>
+        <p>When revising your introduction, ask:</p>
+        <ol>
+          <li><strong>Plant list:</strong> Which exact phrases in my contribution paragraph did I already introduce earlier? (List them.)</li>
+          <li><strong>Harvest list:</strong> For each such phrase, where did I first plant it? (Paragraph + short quote.)</li>
+          <li><strong>Backward link:</strong> Does my contribution sentence include a clear pointer to the immediately preceding idea (e.g. "this challenge")?</li>
+          <li><strong>Echo:</strong> Did I reuse or closely echo the planted wording when announcing the contribution?</li>
+        </ol>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var details = document.querySelectorAll('section.paper details');
+      document.getElementById('expand-all').addEventListener('click', function () {
+        details.forEach(function (d) { d.open = true; });
+      });
+      document.getElementById('collapse-all').addEventListener('click', function () {
+        details.forEach(function (d) { d.open = false; });
+      });
+    })();
+  </script>
+</body>
+</html>
